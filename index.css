@@ -1,0 +1,32 @@
+
+
+
+
+
+
+
+
+
+.adventureButton{
+    box-shadow:inset 0px 10px 0px -10px #e67a73;
+  	background-color:transparent;
+  	border:2px solid #000000;
+  	display:inline-block;
+  	cursor:pointer;
+  	color:#ffffff;
+  	font-family:Arial;
+  	font-size:19px;
+  	font-weight:bold;
+  	padding:25px;
+  	text-decoration:none;
+    text-align: left;
+     white-space:pre;
+
+}
+.adventureButton:hover {
+background-color:#C297FB;
+}
+.adventureButton:active {
+position:relative;
+top:1px;
+}
