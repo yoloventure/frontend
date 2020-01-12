@@ -16,6 +16,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar />
+
         <figure className="experience-fig">
           <h2>Host an Experience</h2>
         </figure>
@@ -76,8 +77,11 @@ class App extends React.Component {
           </figure>
           <img className="woman" src={woman} alt="photo of a smiling chef" />
           <figure className="quote1">
-            "It means a lot to me to share my insights on my job with young
-            talents."
+            <div className="quote1-inside">
+              <span className="beg-quote">"</span>It means a lot to me to share
+              my insights on my job with young talents.{" "}
+              <span className="end-quote">"</span>
+            </div>
           </figure>
           <figure className="fig2">
             <h5>① Apply to host Express</h5>

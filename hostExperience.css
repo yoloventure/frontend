@@ -1,11 +1,11 @@
 .App {
     text-align: center;
-    width: 100%;
+    width: 90%;
     /* padding-left: 5%; */
 }
 
 .experience-fig {
-    background: #f2c94c;
+    background: #f0cc01;
     background: url(photos/hostbackground.jpg);
     mix-blend-mode: hard-light;
     opacity: 0.8;
@@ -59,7 +59,7 @@
     position: absolute;
     width: 304px;
     height: 18px;
-    left: 209px;
+    left: 109px;
     top: 695px;
 }
 
@@ -67,7 +67,7 @@
     position: absolute;
     width: 304px;
     height: 18px;
-    left: 801px;
+    right: 650px;
     top: 1589px;
 }
 
@@ -76,8 +76,8 @@
     position: absolute;
     width: 510px;
     height: 72px;
-    left: 209px;
-    top: 727px;
+    left: 35px;
+    top: 700px;
     /* Headers/H3 */
     font-family: Mplus 1p;
     font-style: normal;
@@ -93,7 +93,7 @@
     position: absolute;
     width: 197px;
     height: 45px;
-    left: 210px;
+    left: 200px;
     top: 816px;
     /* Colors/Secondary_100 */
     background: #5e239d;
@@ -104,7 +104,7 @@
 .apply-now-2 a {
     position: relative;
     bottom: 2px;
-    left: 2px;
+    left: 30px;
     /*Button */
     font-family: Mplus 1p;
     font-style: normal;
@@ -153,8 +153,8 @@
     width: 679px;
     height: 606px;
     left: -2px;
-    top: 945px;
-    background: linear-gradient( 138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    top: 931px;
+    background: linear-gradient(138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
     background-blend-mode: normal, normal, overlay;
     backdrop-filter: blur(30px);
 }
@@ -220,8 +220,8 @@
     position: absolute;
     width: 510px;
     height: 72px;
-    left: 801px;
-    top: 1621px;
+    left: 781px;
+    top: 1590px;
     /* Headers/H3 */
     font-family: Mplus 1p;
     font-style: normal;
@@ -276,15 +276,62 @@
     position: absolute;
     width: 460px;
     height: 738px;
-    left: -2px;
+    left: 30px;
     top: 1854px;
 }
 
-.quote1 {
+.beg-quote {
+    position: relative;
+    width: 83px;
+    height: 128px;
+    top: -100px;
+    left: 150px;
+    /* left: 530px;
+top: 1856px; */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 216px;
+    /* Colors/LightGrey */
+    color: #F4F4ED;
+    opacity: 0.25;
+}
+
+.end-quote {
+    position: relative;
+    left: -150px;
+    width: 71px;
+    height: 128px;
+    top: 100px;
+    /* left: 542px;
+ */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 216px;
+    /* Colors/LightGrey */
+    color: #F4F4ED;
+    opacity: 0.25;
+}
+
+.quote-1 {
+    position: absolute;
+    width: 441px;
+    height: 540px;
+    left: 345px;
+    top: 1789px;
+    /* Yellow */
+    background: #F2C94C;
+    mix-blend-mode: normal;
+}
+
+.quote1-inside {
     position: absolute;
     width: 377px;
     height: 504px;
-    left: 409px;
+    left: 450px;
     top: 1796px;
     background: #F2C94C;
     mix-blend-mode: normal;
@@ -315,7 +362,7 @@
     width: 1440px;
     height: 1080px;
     left: 0px;
-    top: 2514px;
+    top: 2800px;
     /* Colors/White */
     background: #FCFCFC;
 }
@@ -441,3 +488,9 @@ aside {
     /* Colors/Secondary_400 */
     background: #150433;
 }
+
+
+/* .section-1 {
+    position: absolute;
+    left: 50px;
+} */
