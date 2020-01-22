@@ -1,0 +1,209 @@
+li {
+    list-style-type: none;
+}
+
+footer {
+    width: 100%;
+    height: 558px;
+    /* position: relative;
+left: 100px; */
+    background: #150433;
+}
+
+.logo {
+    width: 77px;
+    height: 43px;
+    position: relative;
+    left: 147px;
+    top: 126px;
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 43px;
+    /* identical to box height */
+    letter-spacing: 2px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.start {
+    position: relative;
+    height: 53px;
+    left: 147px;
+    top: 186px;
+    /* Text/Small */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16.2px;
+    line-height: 26px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.title {
+    position: absolute;
+    top: 126px;
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12.6px;
+    line-height: 26px;
+    /* identical to box height */
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.title1 {
+    width: 97px;
+    height: 27px;
+    left: 441px;
+    top: 126px;
+    /* Title/Small */
+    /* Colors/White */
+    /* color: #FCFCFC; */
+}
+
+.title2 {
+    width: 143px;
+    height: 27px;
+    left: 735px;
+}
+
+.title3 {
+    /* For HOST */
+    width: 114px;
+    height: 27px;
+    left: 974px;
+}
+
+.title4 {
+    /* For shadower */
+    left: 1179px;
+    width: 176px;
+    height: 27px;
+}
+
+.privacy {
+    position: absolute;
+    width: 134px;
+    height: 85px;
+    left: 441px;
+    top: 181px;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.link {
+    position: absolute;
+    width: 130px;
+    height: 29px;
+    left: 735px;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.link1 {
+    top: 183px;
+}
+
+.phone {
+    top: 221px;
+}
+
+.guidelines {
+    position: absolute;
+    width: 115px;
+    height: 29px;
+    left: 972px;
+    top: 181px;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+a:visited,
+a {
+    color: white;
+}
+
+.apply {
+    /* Apply Now */
+    position: absolute;
+    width: 76px;
+    height: 29px;
+    left: 973px;
+    top: 219px;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.for-shadower {
+    position: absolute;
+    width: 135px;
+    height: 29px;
+    left: 1185px;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #FCFCFC;
+}
+
+.l1 {
+    top: 181px;
+}
+
+.l2 {
+    top: 219px;
+}
+
+.footer-copyright {
+    position: absolute;
+    width: 178px;
+    height: 20px;
+    left: 631px;
+    top: 414px;
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11.7px;
+    line-height: 19px;
+    /* identical to box height */
+    /* Colors/White */
+    color: #FCFCFC;
+}
