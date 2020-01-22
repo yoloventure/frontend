@@ -1,17 +1,25 @@
 import React from 'react';
+import ReactDOM from "react-dom"
 import Homepage from "./Homepage"
 import Explore from "./Explore"
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+
+
+
+
 
 class App extends React.Component {
   render(){
   return (
     <Router>
     <div >
-
+      
       <Route path="/" exact render={ ()=>
       { return(
-          < Homepage/>
+          <div>< Homepage/>
+
+
+              </div>
        );
       }
       }/>
