@@ -15,7 +15,7 @@ class Explore extends React.Component{
 
      <Navbar />
     <section className="search">
-    
+
      <h1>Start Your next Journey </h1>
        <input type="text" id="mySearch"  placeholder="Search.." title="Start Your next Journey"/>
        <ul  id="subnav">
