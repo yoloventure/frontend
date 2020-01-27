@@ -15,10 +15,11 @@ import bquote from "../photos/bquote.png";
 class hostExperience extends React.Component {
   render() {
     return (
-      <div className="App">
+      
+      <div className="App container-sm">
         <Navbar />
 
-        <figure className="experience-fig">
+        <figure className="experience-fig row">
           <h2>Host an Experience</h2>
         </figure>
         <div>
