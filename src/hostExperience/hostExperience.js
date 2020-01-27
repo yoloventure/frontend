@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./hostExperience.css";
-import Navbar from "./Navbar";
+import Navbar from "./commons/Navbar";
 import FooterPage from "./footer";
 import chef from "./photos/chef.jpg";
 import woman from "./photos/woman.jpg";
