@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import Homepage from "./Homepage"
 import Explore from "./Explore"
 import { BrowserRouter as Router, Route} from 'react-router-dom'
+import hostExperience from "./hostExperience/hostExperience"
 
 
 

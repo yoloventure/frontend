@@ -1,17 +1,18 @@
 import React, { Component } from "react";
+import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
-import Navbar from "./commons/Navbar";
-import FooterPage from "./footer";
-import chef from "./photos/chef.jpg";
-import woman from "./photos/woman.jpg";
-import faces from "./photos/Faces.png";
-import kaixin from "./photos/kaixin.jpg";
-import fquote from "./photos/fquote.png";
-import quotes from "./photos/quotes.png";
-import bquote from "./photos/bquote.png";
-import hostbackground from "./photos/hostbackground.jpg";
+import Navbar from "../commons/Navbar";
+import FooterPage from "../commons/footer";
+import chef from "../photos/chef.jpg";
+import woman from "../photos/woman.jpg";
+import faces from "../photos/Faces.png";
+import kaixin from "../photos/kaixin.jpg";
+import fquote from "../photos/fquote.png";
+import quotes from "../photos/quotes.png";
+import bquote from "../photos/bquote.png";
 
-class App extends React.Component {
+
+class hostExperience extends React.Component {
   render() {
     return (
       <div className="App">
@@ -128,4 +129,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default hostExperience;

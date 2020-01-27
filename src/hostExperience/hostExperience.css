@@ -6,7 +6,7 @@
 
 .experience-fig {
     background: #f0cc01;
-    background: url(photos/hostbackground.jpg);
+    background: url(/src/photos//hostbackground.jpg);
     mix-blend-mode: hard-light;
     opacity: 0.8;
     width: 100%;
