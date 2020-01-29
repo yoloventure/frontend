@@ -1,0 +1,496 @@
+.App {
+    text-align: center;
+    width: 90%;
+    /* padding-left: 5%; */
+}
+
+.experience-fig {
+    background: #f0cc01;
+    background: url(/src/photos//hostbackground.jpg);
+    mix-blend-mode: hard-light;
+    opacity: 0.8;
+    width: 100%;
+    height: 360px;
+    left: 0px;
+    top: 144px;
+}
+
+@media screen and (max-width: 800px) {
+    .left,
+    .main,
+    .right {
+        width: 100%;
+        /* The width is 100%, when the viewport is 800px or smaller */
+    }
+}
+
+.experience-fig h2 {
+    /* Host An Experience */
+    position: absolute;
+    width: 529px;
+    height: 90px;
+    left: 209px;
+    top: 293px;
+    /* Headers/H2 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 54px;
+    line-height: 80px;
+    /* Colors/Secondary_200 */
+    color: #3a0475;
+}
+
+.here1,
+.here2 {
+    /* Title/Small */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12.6px;
+    line-height: 26px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    /* Colors/Primary */
+    color: #f61067;
+}
+
+.here1 {
+    position: absolute;
+    width: 304px;
+    height: 18px;
+    left: 109px;
+    top: 695px;
+}
+
+.here2 {
+    position: absolute;
+    width: 304px;
+    height: 18px;
+    right: 650px;
+    top: 1589px;
+}
+
+.why-host {
+    /* Why Host */
+    position: absolute;
+    width: 510px;
+    height: 72px;
+    left: 35px;
+    top: 700px;
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.apply-now-1 {
+    color: white;
+    position: absolute;
+    width: 197px;
+    height: 45px;
+    left: 200px;
+    top: 816px;
+    /* Colors/Secondary_100 */
+    background: #5e239d;
+    border-radius: 36px;
+}
+
+.apply-now-1 a,
+.apply-now-2 a {
+    position: relative;
+    bottom: 2px;
+    left: 30px;
+    /*Button */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.host-guidelines {
+    position: absolute;
+    width: 197px;
+    height: 45px;
+    left: 440px;
+    top: 816px;
+    /* Colors/Secondary_100 */
+    border: 1px solid #5e239d;
+    box-sizing: border-box;
+    border-radius: 36px;
+}
+
+.host-guidelines a {
+    position: relative;
+    left: 8px;
+    /* Text_Misc/Button */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Colors/Secondary_100 */
+    color: #5e239d;
+}
+
+.fig1 {
+    position: absolute;
+    width: 679px;
+    height: 606px;
+    left: -2px;
+    top: 931px;
+    background: linear-gradient( 138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background-blend-mode: normal, normal, overlay;
+    backdrop-filter: blur(30px);
+}
+
+.inside h5 {
+    /* position: absolute;
+    width: 567px;
+    height: 350px;
+    left: 70px;
+    top: 1055px; */
+    /* Text/Regular */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 29px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.inside p {
+    /* position: absolute;
+  width: 567px;
+  height: 350px;
+  left: 70px;
+  top: 1055px; */
+    /* Text/Regular */
+    font-family: Mplus 1p;
+    font-style: normal;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.chef-image {
+    position: absolute;
+    width: 460px;
+    height: 738px;
+    left: 677px;
+    top: 695px;
+}
+
+.quote {
+    position: absolute;
+    width: 377px;
+    height: 504px;
+    left: 1088px;
+    top: 695px;
+    background: #f2c94c;
+    mix-blend-mode: normal;
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 22.5px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    /* Colors/Secondary_300 */
+    color: #30124e;
+}
+
+.how-to {
+    /* How to Become a Host */
+    position: absolute;
+    width: 510px;
+    height: 72px;
+    left: 781px;
+    top: 1590px;
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.apply-now-2 {
+    position: absolute;
+    width: 197px;
+    height: 45px;
+    left: 801px;
+    top: 1707px;
+    /* Colors/Secondary_100 */
+    background: #5e239d;
+    border-radius: 36px;
+}
+
+.host-guidelines-1 {
+    position: absolute;
+    width: 197px;
+    height: 45px;
+    left: 1034px;
+    top: 1707px;
+    /* Colors/Secondary_100 */
+    border: 1px solid #5e239d;
+    box-sizing: border-box;
+    border-radius: 36px;
+}
+
+.host-guidelines-1 a {
+    position: relative;
+    left: 8px;
+    /* Text_Misc/Button */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Colors/Secondary_100 */
+    color: #5e239d;
+}
+
+.woman {
+    position: absolute;
+    width: 460px;
+    height: 738px;
+    left: 30px;
+    top: 1854px;
+}
+
+.beg-quote {
+    position: relative;
+    width: 83px;
+    height: 128px;
+    top: -100px;
+    left: 150px;
+    /* left: 530px;
+top: 1856px; */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 216px;
+    /* Colors/LightGrey */
+    color: #f4f4ed;
+    opacity: 0.25;
+}
+
+.end-quote {
+    position: relative;
+    left: -150px;
+    width: 71px;
+    height: 128px;
+    top: 100px;
+    /* left: 542px;
+ */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 216px;
+    /* Colors/LightGrey */
+    color: #f4f4ed;
+    opacity: 0.25;
+}
+
+.quote-1 {
+    position: absolute;
+    width: 441px;
+    height: 540px;
+    left: 345px;
+    top: 1789px;
+    /* Yellow */
+    background: #f2c94c;
+    mix-blend-mode: normal;
+}
+
+.quote1-inside {
+    position: absolute;
+    width: 377px;
+    height: 504px;
+    left: 450px;
+    top: 1796px;
+    background: #f2c94c;
+    mix-blend-mode: normal;
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 22.5px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    /* Colors/Secondary_300 */
+    color: #30124e;
+}
+
+.fig2 {
+    position: absolute;
+    width: 679px;
+    height: 618px;
+    left: 763px;
+    top: 1854px;
+    background: linear-gradient( 137.97deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background-blend-mode: overlay, normal, normal, overlay;
+    backdrop-filter: blur(30px);
+}
+
+.fig3 {
+    position: absolute;
+    width: 1440px;
+    height: 1080px;
+    left: 0px;
+    top: 2800px;
+    /* Colors/White */
+    background: #fcfcfc;
+}
+
+.kaixin {
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    left: 490px;
+}
+
+aside {
+    position: relative;
+    width: 754px;
+    height: 64px;
+    left: 450px;
+    top: 600px;
+    /* Quote/Large */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 64px;
+    /* identical to box height */
+    text-align: center;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.open-quote {
+    position: absolute;
+    width: 92.25px;
+    height: 79.73px;
+    left: 679.3px;
+    top: 500px;
+}
+
+.subscribe h4 {
+    position: absolute;
+    width: 613px;
+    height: 67px;
+    left: 413px;
+    top: 3699px;
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* identical to box height */
+    text-align: center;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.subscribe h6 {
+    position: absolute;
+    width: 341px;
+    height: 27px;
+    left: 549px;
+    top: 3789px;
+    /* Headers/H6 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    text-align: center;
+    /* TextColors/Maintext */
+    color: #776c82;
+}
+
+.subscribe input {
+    /* Enter email */
+    position: absolute;
+    width: 167px;
+    height: 38px;
+    left: 459px;
+    top: 3879px;
+    /* Title/Large */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 37px;
+    /* identical to box height */
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    /* TextColors/Grey */
+    color: #9b94a3;
+}
+
+.subscribe button {
+    position: absolute;
+    width: 125px;
+    height: 57px;
+    left: 800px;
+    top: 3861px;
+}
+
+.subscribe button a {
+    /* Title/Small */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12.6px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    /* Colors/Primary */
+    color: #f61067;
+}
+
+.footerpage {
+    position: absolute;
+    width: 100%;
+    height: 558px;
+    left: 0px;
+    top: 4012px;
+    /* Colors/Secondary_400 */
+    background: #150433;
+}
+
+
+/* .section-1 {
+    position: absolute;
+    left: 50px;
+} */
