@@ -154,7 +154,7 @@
     height: 606px;
     left: -2px;
     top: 931px;
-    background: linear-gradient(138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background: linear-gradient( 138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
     background-blend-mode: normal, normal, overlay;
     backdrop-filter: blur(30px);
 }
@@ -212,7 +212,7 @@
     display: flex;
     align-items: center;
     /* Colors/Secondary_300 */
-    color: #30124E;
+    color: #30124e;
 }
 
 .how-to {
@@ -229,7 +229,7 @@
     font-size: 45px;
     line-height: 67px;
     /* TextColors/Headers */
-    color: #30233D;
+    color: #30233d;
 }
 
 .apply-now-2 {
@@ -239,7 +239,7 @@
     left: 801px;
     top: 1707px;
     /* Colors/Secondary_100 */
-    background: #5E239D;
+    background: #5e239d;
     border-radius: 36px;
 }
 
@@ -250,7 +250,7 @@
     left: 1034px;
     top: 1707px;
     /* Colors/Secondary_100 */
-    border: 1px solid #5E239D;
+    border: 1px solid #5e239d;
     box-sizing: border-box;
     border-radius: 36px;
 }
@@ -294,7 +294,7 @@ top: 1856px; */
     font-size: 144px;
     line-height: 216px;
     /* Colors/LightGrey */
-    color: #F4F4ED;
+    color: #f4f4ed;
     opacity: 0.25;
 }
 
@@ -312,7 +312,7 @@ top: 1856px; */
     font-size: 144px;
     line-height: 216px;
     /* Colors/LightGrey */
-    color: #F4F4ED;
+    color: #f4f4ed;
     opacity: 0.25;
 }
 
@@ -323,7 +323,7 @@ top: 1856px; */
     left: 345px;
     top: 1789px;
     /* Yellow */
-    background: #F2C94C;
+    background: #f2c94c;
     mix-blend-mode: normal;
 }
 
@@ -333,7 +333,7 @@ top: 1856px; */
     height: 504px;
     left: 450px;
     top: 1796px;
-    background: #F2C94C;
+    background: #f2c94c;
     mix-blend-mode: normal;
     font-family: Noticia Text;
     font-style: italic;
@@ -343,7 +343,7 @@ top: 1856px; */
     display: flex;
     align-items: center;
     /* Colors/Secondary_300 */
-    color: #30124E;
+    color: #30124e;
 }
 
 .fig2 {
@@ -352,7 +352,7 @@ top: 1856px; */
     height: 618px;
     left: 763px;
     top: 1854px;
-    background: linear-gradient(137.97deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background: linear-gradient( 137.97deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
     background-blend-mode: overlay, normal, normal, overlay;
     backdrop-filter: blur(30px);
 }
@@ -364,7 +364,7 @@ top: 1856px; */
     left: 0px;
     top: 2800px;
     /* Colors/White */
-    background: #FCFCFC;
+    background: #fcfcfc;
 }
 
 .kaixin {
@@ -389,7 +389,7 @@ aside {
     /* identical to box height */
     text-align: center;
     /* TextColors/Headers */
-    color: #30233D;
+    color: #30233d;
 }
 
 .open-quote {
@@ -415,7 +415,7 @@ aside {
     /* identical to box height */
     text-align: center;
     /* TextColors/Headers */
-    color: #30233D;
+    color: #30233d;
 }
 
 .subscribe h6 {
@@ -433,7 +433,7 @@ aside {
     /* identical to box height */
     text-align: center;
     /* TextColors/Maintext */
-    color: #776C82;
+    color: #776c82;
 }
 
 .subscribe input {
@@ -453,7 +453,7 @@ aside {
     letter-spacing: 4px;
     text-transform: uppercase;
     /* TextColors/Grey */
-    color: #9B94A3;
+    color: #9b94a3;
 }
 
 .subscribe button {
@@ -476,7 +476,7 @@ aside {
     letter-spacing: 6px;
     text-transform: uppercase;
     /* Colors/Primary */
-    color: #F61067;
+    color: #f61067;
 }
 
 .footerpage {
