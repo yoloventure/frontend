@@ -1,0 +1,149 @@
+.navHome {
+  position: absolute;
+  width: 1046px;
+  height: 47px;
+  left: 148px;
+  top: 80px;
+  z-index: 1;
+ }
+
+.YOLOHome{
+  position: absolute;
+  left: 0%;
+  right: 92.64%;
+  top: 8.51%;
+  bottom: 0%;
+
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 43px;
+  /* identical to box height */
+
+  letter-spacing: 2px;
+
+  /* Colors/White */
+
+  color: #FCFCFC;
+
+
+}
+
+.ExploreHome{
+  position: absolute;
+left: 18.45%;
+right: 74.86%;
+top: 23.4%;
+bottom: 12.77%;
+
+/* Text_Misc/Nav */
+
+font-family: Mplus 1p;
+font-style: normal;
+font-weight: 800;
+font-size: 14.4px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 2px;
+
+/* Colors/White */
+
+color: #FCFCFC;
+}
+
+.StoryHome{
+  position: absolute;
+left: 32.41%;
+right: 62.72%;
+top: 23.4%;
+bottom: 12.77%;
+
+/* Text_Misc/Nav */
+
+font-family: Mplus 1p;
+font-style: normal;
+font-weight: 800;
+font-size: 14.4px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 2px;
+
+/* Colors/White */
+
+color: #FCFCFC;
+opacity: 0.8;
+}
+
+.HostExpHome{
+  position: absolute;
+left: 44.55%;
+right: 38.24%;
+top: 21.28%;
+bottom: 14.89%;
+
+/* Text_Misc/Nav */
+
+font-family: Mplus 1p;
+font-style: normal;
+font-weight: 800;
+font-size: 14.4px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 2px;
+
+/* Colors/White */
+
+color: #FCFCFC;
+opacity: 0.8;
+}
+
+.AboutHome{
+  position: absolute;
+left: 69.02%;
+right: 25.72%;
+top: 21.28%;
+bottom: 14.89%;
+
+/* Text_Misc/Nav */
+
+font-family: Mplus 1p;
+font-style: normal;
+font-weight: 800;
+font-size: 14.4px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 2px;
+
+/* Colors/White */
+
+color: #FCFCFC;
+opacity: 0.8;
+}
+
+.ContactHome{
+  position: absolute;
+left: 81.55%;
+right: 8.7%;
+top: 21.28%;
+bottom: 14.89%;
+
+/* Text_Misc/Nav */
+
+font-family: Mplus 1p;
+font-style: normal;
+font-weight: 800;
+font-size: 14.4px;
+line-height: 30px;
+/* identical to box height */
+
+letter-spacing: 2px;
+
+/* Colors/White */
+
+color: #FCFCFC;
+}
