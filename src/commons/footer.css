@@ -14,8 +14,11 @@ left: 100px; */
     width: 77px;
     height: 43px;
     position: relative;
+    top: 10%;
+    left: 20%;
+    /* position: relative;
     left: 147px;
-    top: 126px;
+    top: 126px; */
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: 900;
@@ -24,14 +27,16 @@ left: 100px; */
     /* identical to box height */
     letter-spacing: 2px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .start {
     position: relative;
     height: 53px;
-    left: 147px;
-    top: 186px;
+    top: 10%;
+    left: 20%;
+    /* left: 147px;
+    top: 186px; */
     /* Text/Small */
     font-family: Mplus 1p;
     font-style: normal;
@@ -39,12 +44,14 @@ left: 100px; */
     font-size: 16.2px;
     line-height: 26px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .title {
-    position: absolute;
-    top: 126px;
+    /* position: absolute; */
+    /* top: 126px; */
+    position: relative;
+    top: 10%;
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: 800;
@@ -54,14 +61,14 @@ left: 100px; */
     letter-spacing: 6px;
     text-transform: uppercase;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .title1 {
     width: 97px;
     height: 27px;
-    left: 441px;
-    top: 126px;
+    /* left: 441px;
+    top: 126px; */
     /* Title/Small */
     /* Colors/White */
     /* color: #FCFCFC; */
@@ -70,29 +77,37 @@ left: 100px; */
 .title2 {
     width: 143px;
     height: 27px;
-    left: 735px;
+    /* left: 735px; */
 }
 
 .title3 {
     /* For HOST */
     width: 114px;
     height: 27px;
-    left: 974px;
+    /* left: 974px; */
 }
 
 .title4 {
     /* For shadower */
-    left: 1179px;
+    /* left: 1179px; */
     width: 176px;
     height: 27px;
 }
 
+.title5 {
+    left: 200%;
+    bottom: 50%;
+}
+
 .privacy {
-    position: absolute;
+    /* position: absolute; */
     width: 134px;
     height: 85px;
-    left: 441px;
-    top: 181px;
+    position: relative;
+    top: 10%;
+    left: -25%;
+    /* left: 441px;
+    top: 181px; */
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -101,14 +116,15 @@ left: 100px; */
     line-height: 28px;
     letter-spacing: 1px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .link {
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     width: 130px;
     height: 29px;
-    left: 735px;
+    /* left: 735px; */
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -117,23 +133,26 @@ left: 100px; */
     line-height: 28px;
     letter-spacing: 1px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .link1 {
-    top: 183px;
+    top: 20px;
+    right: 35%;
 }
 
 .phone {
-    top: 221px;
+    top: 20px;
+    right: 35%;
 }
 
 .guidelines {
-    position: absolute;
+    position: relative;
+    top: 10%;
     width: 115px;
     height: 29px;
-    left: 972px;
-    top: 181px;
+    /* left: 972px;
+    top: 181px; */
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -142,7 +161,7 @@ left: 100px; */
     line-height: 28px;
     letter-spacing: 1px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 a:visited,
@@ -152,11 +171,11 @@ a {
 
 .apply {
     /* Apply Now */
-    position: absolute;
+    /* position: absolute; */
     width: 76px;
     height: 29px;
-    left: 973px;
-    top: 219px;
+    /* left: 973px;
+    top: 219px; */
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -165,14 +184,14 @@ a {
     line-height: 28px;
     letter-spacing: 1px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
 .for-shadower {
-    position: absolute;
+    /* position: absolute; */
     width: 135px;
-    height: 29px;
-    left: 1185px;
+    /* height: 29px;
+    left: 1185px; */
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -181,23 +200,24 @@ a {
     line-height: 28px;
     letter-spacing: 1px;
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
 
-.l1 {
+
+/* .l1 {
     top: 181px;
 }
 
 .l2 {
     top: 219px;
-}
+} */
 
 .footer-copyright {
-    position: absolute;
+    /* position: absolute; */
     width: 178px;
     height: 20px;
-    left: 631px;
-    top: 414px;
+    left: 60%;
+    /* top: 414px; */
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: normal;
@@ -205,5 +225,5 @@ a {
     line-height: 19px;
     /* identical to box height */
     /* Colors/White */
-    color: #FCFCFC;
+    color: #fcfcfc;
 }
