@@ -15,7 +15,7 @@ left: 100px; */
     height: 43px;
     position: relative;
     top: 10%;
-    left: 20%;
+    left: 10%;
     /* position: relative;
     left: 147px;
     top: 126px; */
@@ -34,7 +34,7 @@ left: 100px; */
     position: relative;
     height: 53px;
     top: 10%;
-    left: 20%;
+    left: 10%;
     /* left: 147px;
     top: 186px; */
     /* Text/Small */
@@ -105,7 +105,7 @@ left: 100px; */
     height: 85px;
     position: relative;
     top: 10%;
-    left: -25%;
+    left: -15%;
     /* left: 441px;
     top: 181px; */
     /* Text_Misc/Nav_Footer */
@@ -137,18 +137,19 @@ left: 100px; */
 }
 
 .link1 {
-    top: 20px;
-    right: 35%;
+    top: 25px;
+    right: 20%;
 }
 
 .phone {
-    top: 20px;
-    right: 35%;
+    top: 25px;
+    right: 20%;
 }
 
 .guidelines {
     position: relative;
-    top: 10%;
+    top: 20px;
+    right: 20%;
     width: 115px;
     height: 29px;
     /* left: 972px;
@@ -172,6 +173,9 @@ a {
 .apply {
     /* Apply Now */
     /* position: absolute; */
+    position: relative;
+    top: 20px;
+    right: 20%;
     width: 76px;
     height: 29px;
     /* left: 973px;
@@ -190,8 +194,11 @@ a {
 .for-shadower {
     /* position: absolute; */
     width: 135px;
+    position: relative;
     /* height: 29px;
     left: 1185px; */
+    top: 20px;
+    right: 10%;
     /* Text_Misc/Nav_Footer */
     font-family: Mplus 1p Bold;
     font-style: normal;
@@ -227,3 +234,158 @@ a {
     /* Colors/White */
     color: #fcfcfc;
 }
+
+
+/* // Extra small devices (portrait phones, less than 576px) */
+
+
+/* // Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 500px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 770px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/* // Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991.98px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/* // Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199.98px) {}

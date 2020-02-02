@@ -1,10 +1,10 @@
 import React from "react";
 // import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-// import "./footer.css";
+import "./footer.css";
 
 const FooterPage = () => {
   return (
-    <footer className="row">
+    <footer className="row app">
       <div className="col-sm-2 ml-auto">
         <h5 className="logo ">YOLO</h5>
         <p className="start">Start your next adventure with us</p>
@@ -13,7 +13,7 @@ const FooterPage = () => {
         <h5 className="title title1">
           <a href="#">ABOUT</a>
         </h5>
-        <ul className="privacy justify-content-start">
+        <ul className="privacy justify-content-center">
           <li className="list-unstyled">
             <a href="#!">Terms</a>
           </li>
