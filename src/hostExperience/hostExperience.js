@@ -11,81 +11,86 @@ import fquote from "../photos/fquote.png";
 import quotes from "../photos/quotes.png";
 import bquote from "../photos/bquote.png";
 
-
 class hostExperience extends React.Component {
   render() {
     return (
-      
-      <div className="App container-sm">
+      <div className="container-fluid">
         <Navbar />
-
-        <figure className="experience-fig row">
-          <h2>Host an Experience</h2>
-        </figure>
+        <div className="row experience-fig1">
+          <figure className="experience-fig1 col-sm-10 offset-1">
+            <h2>Host an Experience</h2>
+          </figure>
+        </div>
         <div>
-          <figure>
-            <h5 className="here1"> HERE WE GO</h5>
-            <h3 className="why-host">Why Host</h3>
-            <button className="apply-now-1">
-              <a href="#">Apply Now</a>
-            </button>
-            <button className="host-guidelines">
-              <a href="#">Host Guidelines</a>
-            </button>
-          </figure>
-          <figure className="fig1">
-            <div className="inside">
-              <h5>Demonstrate your values</h5>
-              <p>
-                Show your openness, dedication to diversity & inclusion, and
-                willingness to give back.
-              </p>
-              <h5>Get a new perspective</h5>
-              <p>
-                Infuse your business with a different point of view and
-                innovative ideas.
-              </p>
-              <h5>Grow your brand Bring </h5>
-              <p>
-                people along on your business journey and create a community of
-                fans and advocates and get rewarded for it.
-              </p>
-            </div>
-          </figure>
-          <img
-            src={chef}
-            alt="photo of a smiling chef"
-            className="chef-image"
-          />
+          <div className="row align-items-center">
+            <figure>
+              <h5 className="here10"> HERE WE GO</h5>
+              <h3 className="whyHost">Why Host</h3>
+              <button className="applyNow-1">
+                <a href="#">Apply Now</a>
+              </button>
+              <button className="hostGuidelines">
+                <a href="#">Host Guidelines</a>
+              </button>
+            </figure>
+            <figure className="fig10">
+              <div className="insider">
+                <h5>Demonstrate your values</h5>
+                <p>
+                  Show your openness, dedication to diversity & inclusion, and
+                  willingness to give back.
+                </p>
+                <h5>Get a new perspective</h5>
+                <p>
+                  Infuse your business with a different point of view and
+                  innovative ideas.
+                </p>
+                <h5>Grow your brand Bring </h5>
+                <p>
+                  people along on your business journey and create a community
+                  of fans and advocates and get rewarded for it.
+                </p>
+              </div>
+            </figure>
+            <img
+              src={chef}
+              alt="photo of a smiling chef"
+              className="chefImage"
+            />
 
-          <figure className="quote">
-            <img src={fquote} alt="" />
-            "YOLOers really inspire me! I’ve got different points of view on the
-            work I do."
-            <img src={bquote} alt="" />
-          </figure>
+            <figure className="quotes">
+              <img src={fquote} alt="" />
+              "YOLOers really inspire me! I’ve got different points of view on
+              the work I do."
+              <img src={bquote} alt="" />
+            </figure>
+          </div>
         </div>
 
         <div>
           <figure>
-            <h5 className="here2"> HERE WE GO</h5>
-            <h3 className="how-to">How to Become a Host</h3>
-            <button className="apply-now-2">
+            <h5 className="here20"> HERE WE GO</h5>
+            <h3 className="howTo">How to Become a Host</h3>
+            <button className="applyNow-2">
               <a href="#">Apply Now</a>
             </button>
-            <button className="host-guidelines-1">
+            <button className="host-guidelines1">
               <a href="#">Host Guidelines</a>
             </button>
           </figure>
-          <img className="woman" src={woman} alt="photo of a smiling chef" />
+          <img
+            className="woman-smiling"
+            src={woman}
+            alt="photo of a smiling chef"
+          />
           <figure className="quote1">
-            <div className="quote1-inside">
-              <span className="beg-quote">"</span>It means a lot to me to share
+            <div className="quote1Inside">
+              <span className="begQuote">"</span>It means a lot to me to share
               my insights on my job with young talents.{" "}
-              <span className="end-quote">"</span>
+              <span className="endQuote">"</span>
             </div>
           </figure>
-          <figure className="fig2">
+          <figure className="fig20">
             <h5>① Apply to host Express</h5>
             <p>
               your interest through a simple form. It’s less about what you do
@@ -105,14 +110,14 @@ class hostExperience extends React.Component {
           </figure>
         </div>
 
-        <figure className="fig3">
+        <figure className="fig30">
           <aside>YOLO empowers me to be an adventurer </aside>
-          <img className="kaixin" src={kaixin} alt="" />
+          <img className="kaixinn" src={kaixin} alt="" />
           <img className="faces" src={faces} alt="" />
-          <img className="open-quote" src={quotes} alt="" />
+          <img className="openQuote" src={quotes} alt="" />
         </figure>
 
-        <div className="subscribe">
+        <div className="subscriber">
           <h4>Subscribe to Our Newsletter</h4>
           <h6>stay tuned for our adventurous stories</h6>
 
@@ -122,7 +127,7 @@ class hostExperience extends React.Component {
           </button>
         </div>
 
-        <div className="footerpage">
+        <div className="footerpages">
           <FooterPage />
         </div>
       </div>
