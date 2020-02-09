@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React from "react";
 import ReactDOM from "react-dom";
-import "./Navbar.css";
+// import "./Navbar.css";
 import { BrowserRouter as Router } from "react-router-dom";
 
 class Navbar extends React.Component {

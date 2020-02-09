@@ -162,6 +162,12 @@
     backdrop-filter: blur(30px);
 }
 
+.insider {
+    background: linear-gradient(138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background-blend-mode: normal, normal, overlay;
+    backdrop-filter: blur(30px);
+}
+
 .insider h5 {
     /* position: absolute;
     width: 567px;
@@ -191,17 +197,20 @@
     color: #30233d;
 }
 
-.chefImage {
+.chefimage {
+    position: relative;
+    left: -15px;
+    bottom: 10px;
     /* position: absolute; */
-    width: 460px;
-    height: 738px;
+    /* width: 460px;
+    height: 738px; */
     /* left: 677px;
     top: 695px; */
 }
 
 .quotes {
     /* position: absolute; */
-    width: 377px;
+    width: 500%;
     height: 504px;
     /* left: 1088px;
     top: 695px; */
@@ -321,7 +330,7 @@ top: 1856px; */
 
 .quote1 {
     /* position: absolute; */
-    width: 441px;
+    width: 641px;
     height: 540px;
     /* left: 345px;
     top: 1789px; */
