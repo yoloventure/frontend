@@ -14,7 +14,7 @@ import bquote from "../photos/bquote.png";
 class hostExperience extends React.Component {
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container`">
         <div className="nav">
           <Navbar />
         </div>
@@ -80,7 +80,7 @@ class hostExperience extends React.Component {
           </div>
         </div>
 
-        <div>
+        <div className="container-fluid row">
           <figure>
             <h5 className="here20"> HERE WE GO</h5>
             <h3 className="howTo">How to Become a Host</h3>
@@ -122,14 +122,18 @@ class hostExperience extends React.Component {
             </p>
           </figure>
         </div>
-
-        <figure className="fig30">
-          <aside>YOLO empowers me to be an adventurer </aside>
-          <img className="kaixinn" src={kaixin} alt="" />
-          <img className="faces" src={faces} alt="" />
-          <img className="openQuote" src={quotes} alt="" />
-        </figure>
-
+        <div className="row">
+          <figure className="fig30 align-self-center row">
+            <aside>YOLO empowers me to be an adventurer </aside>
+            <img className="kaixinn" src={kaixin} alt="" />
+            <img
+              className="col order-1 offset-2 faces align-self-end"
+              src={faces}
+              alt=""
+            />
+            <img className="openQuote" src={quotes} alt="" />
+          </figure>
+        </div>
         <div className="subscriber">
           <h4>Subscribe to Our Newsletter</h4>
           <h6>stay tuned for our adventurous stories</h6>
