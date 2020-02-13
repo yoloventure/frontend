@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
-import "./about.css";
+// import "./about.css";
 import Navbar from "../commons/Navbar";
 import FooterPage from "../commons/footer";
 import faces from "../photos/Faces.png";
@@ -15,7 +15,7 @@ import may from "../photos/may.png";
 class about extends React.Component {
   render() {
     return (
-      <div className="container">
+      <div className="container app">
         <Navbar />
 
         <figure className="experience-fig">
@@ -87,10 +87,10 @@ class about extends React.Component {
           <img src={may} alt="" className="ellipse" />
         </div>
 
-        <figure className="fig3">
+        <figure className="fig3 row">
           <aside>YOLO empowers me to be an adventurer </aside>
           <img className="kaixin" src={kaixin} alt="" />
-          <img className="faces" src={faces} alt="" />
+          <img className="col align-self-start faces" src={faces} alt="" />
           <img className="open-quote" src={quotes} alt="" />
         </figure>
 
