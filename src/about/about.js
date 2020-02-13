@@ -15,7 +15,7 @@ import may from "../photos/may.png";
 class about extends React.Component {
   render() {
     return (
-      <div className="container app">
+      <div className="container-fluid app">
         <Navbar />
 
         <figure className="experience-fig">
@@ -104,7 +104,7 @@ class about extends React.Component {
           </button>
         </div>
 
-        <div className="footerpage">
+        <div className="col offset-.5 footerpage">
           <FooterPage />
         </div>
       </div>
