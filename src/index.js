@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./about/about.js";
-import about from "./about/about";
+import App from "./hostExperience/hostExperience.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));

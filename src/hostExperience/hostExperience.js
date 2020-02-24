@@ -14,7 +14,7 @@ import bquote from "../photos/bquote.png";
 class hostExperience extends React.Component {
   render() {
     return (
-      <div className="container`">
+      <div className="container-fluid app">
         <div className="nav">
           <Navbar />
         </div>
@@ -80,61 +80,66 @@ class hostExperience extends React.Component {
           </div>
         </div>
 
-        <div className="container-fluid row">
-          <figure>
-            <h5 className="here20"> HERE WE GO</h5>
-            <h3 className="howTo">How to Become a Host</h3>
-            <button className="applyNow-2">
-              <a href="#">Apply Now</a>
-            </button>
-            <button className="host-guidelines1">
-              <a href="#">Host Guidelines</a>
-            </button>
-          </figure>
-          <img
-            className="woman-smiling"
-            src={woman}
-            alt="photo of a smiling chef"
-          />
-          <div className="quote1">
-            <div className="quote1Inside">
-              <span className="begQuote">"</span>It means a lot to me to share
-              my insights on my job with young talents.{" "}
-              <span className="endQuote">"</span>
-            </div>
+        <div className="container-md-fluid row mb-10">
+          <div className="container-sm row mt-5 mb-4">
+            <figure className="col align-self-end">
+              <h5 className="here20"> HERE WE GO</h5>
+              <h3 className="howTo">How to Become a Host</h3>
+              <button className="applyNow-2">
+                <a href="#">Apply Now</a>
+              </button>
+              <button className="host-guidelines1">
+                <a href="#">Host Guidelines</a>
+              </button>
+            </figure>
           </div>
-          <figure className="fig20">
-            <h5>① Apply to host Express</h5>
-            <p>
-              your interest through a simple form. It’s less about what you do
-              and more about how passionate you are about sharing your mission
-              with others.
-            </p>
-            <h5>② Create your profile</h5>
-            <p>
-              Once our team reviews and approves your application, you will be
-              invited to set set up your host profile.
-            </p>
-            <h5>③ Start hosting</h5>
-            <p>
-              Once your profile is live, shadowers will be able to browse and
-              request to book your experience immediately.
-            </p>
-          </figure>
+          <div className="container-md row">
+            <img
+              className="woman-smiling col align-items-center"
+              src={woman}
+              alt="photo of a smiling woman"
+            />
+            <div className="quote1 col align-items-start">
+              <div className="quote1Inside">
+                <span className="begQuote">"</span>It means a lot to me to share
+                my insights on my job with young talents.{" "}
+                <span className="endQuote">"</span>
+              </div>
+            </div>
+            <figure className="fig20 col align-items-end">
+              <h5>① Apply to host Express</h5>
+              <p>
+                your interest through a simple form. It’s less about what you do
+                and more about how passionate you are about sharing your mission
+                with others.
+              </p>
+              <h5>② Create your profile</h5>
+              <p>
+                Once our team reviews and approves your application, you will be
+                invited to set set up your host profile.
+              </p>
+              <h5>③ Start hosting</h5>
+              <p>
+                Once your profile is live, shadowers will be able to browse and
+                request to book your experience immediately.
+              </p>
+            </figure>
+          </div>
         </div>
+
         <div className="row">
           <figure className="fig30 align-self-center row">
             <aside>YOLO empowers me to be an adventurer </aside>
             <img className="kaixinn" src={kaixin} alt="" />
             <img
-              className="col order-1 offset-2 faces align-self-end"
+              className="col order-1 faces align-self-center"
               src={faces}
               alt=""
             />
             <img className="openQuote" src={quotes} alt="" />
           </figure>
         </div>
-        <div className="subscriber">
+        <div className="subscriber row">
           <h4>Subscribe to Our Newsletter</h4>
           <h6>stay tuned for our adventurous stories</h6>
 
