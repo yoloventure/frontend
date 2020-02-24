@@ -2,17 +2,17 @@
 import React from "react"
 import ReactDOM from "react-dom"
 // import "./Home.css"
-import Navbar from "./components/Navbar"
-import midSectionHome from './components/midSectionHome.js'
-import Slider from './components/Slider'
-import homeArrow from './images/homeArrow.png'
-import Background from './images/CoverPhoto.png'
-import icon1 from './images/Icon1.png'
-import icon2 from './images/Icon2.png'
-import icon3 from './images/Icon3.png'
-import icon4 from './images/Icon4.png'
-import icon5 from './images/Icon5.png'
-import icon6 from './images/Icon6.png'
+import Navbar from "../components/Navbar"
+import midSectionHome from '../components/midSectionHome.js'
+import Slider from '../components/Slider'
+import homeArrow from '../photos/homeArrow.png'
+import Background from '../photos/CoverPhoto.png'
+import icon1 from '../photos/Icon1.png'
+import icon2 from '../photos/Icon2.png'
+import icon3 from '../photos/Icon3.png'
+import icon4 from '../photos/Icon4.png'
+import icon5 from '../photos/Icon5.png'
+import icon6 from '../photos/Icon6.png'
 
 
 export default class Homepage extends React.Component{
