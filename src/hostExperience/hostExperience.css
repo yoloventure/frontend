@@ -184,6 +184,9 @@
     color: #30233d;
 }
 
+
+/* .faces{} */
+
 .insider p {
     /* position: absolute;
   width: 567px;
@@ -506,3 +509,34 @@ top: 4012px; */
     position: absolute;
     left: 50px;
 } */
+
+@media (max-width: 500px) {
+    .app {
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .app {
+        width: 100%;
+    }
+}
+
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    .app {
+        width: 100%;
+    }
+}
+
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {}
+
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {}
