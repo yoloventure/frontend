@@ -20,11 +20,11 @@ color: #30233D;
 
 
 .learnmore{
-  // position: absolute;
+ 
 width: 190px;
 height: 45px;
-// left: 10%;
-// top: 1400%;
+ left: 30%;
+ top: 110%;
 
 
 
@@ -81,14 +81,14 @@ border-radius: 36px
 }
 
 .right-arrow {
-  // position: absolute;
-  // top: 50%;
-  // right: 50%;
-  //z-index: 99999;
+   position: absolute;
+   top: 50%;
+  right: 27%;
+  z-index: 999;
   color: red;
 
   img {
-    transform: translate(2px, 0);
+    transform: translate(50%, 40%);
 
     &:focus {
       outline: 0;
@@ -97,15 +97,15 @@ border-radius: 36px
 }
 
 .left-arrow {
-  // position: absolute;
-  // top: 50%;
-  // left: 1%;
+  position: absolute;
+   top: 50%;
+   left: 2%;
 
-//  z-index: 99999;
+  z-index: 999;
   color: red;
 
   img {
-    transform: translate(-2px, 0);
+    transform: translate(29%,40%);
 
     &:focus {
       outline: 0;

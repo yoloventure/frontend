@@ -71,14 +71,14 @@ export default class Slider extends Component {
     return (
       <div className=''>
       <div className='row'>
-            <div className='FeatureStoryTitle col-lg-4 col-sm-12  '>
+            <div className='FeatureStoryTitle col-lg-6 col-md-4 col-sm-6 col-5 offset-1 offset-lg-1 pt-5  '>
                  <h2 className="text-center">  {this.state.title[this.state.currentIndex]} </h2>
                  <h3 className="text-center"> {this.state.body[this.state.currentIndex]} </h3>
-                 <button class="learnmore" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#FCFCFC', whiteSpace:'pre'}}>     Learn More   </button>
+                 <button class="offset-lg-4 learnmore" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#FCFCFC', whiteSpace:'pre'}}>     Learn More   </button>
             </div>
 
 
-            <div className="slider col-lg-2-sm-12 offset-sm-1 ">
+            <div className="slider col-lg-5 col-md-6 col-sm-6 col-7 ">
               <LeftArrow
                prevSlide={this.goToPrevSlide}
                coolButtons={false}
@@ -99,7 +99,7 @@ export default class Slider extends Component {
                     ))
                   }
               </div>
-              
+
 
             </div>
 

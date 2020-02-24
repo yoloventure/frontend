@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React from "react"
 import ReactDOM from "react-dom"
-import Navbar from "./Navbar"
+import Navbar from "./components/Navbar"
 import "./Explore.css"
 
 

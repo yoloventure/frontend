@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React from "react"
 import ReactDOM from "react-dom"
-import "./Navbar.css"
+
 import { BrowserRouter as Router} from 'react-router-dom'
 
 
@@ -30,7 +30,7 @@ class Navbar extends React.Component{
      <div className="collapse navbar-collapse" id="navbarSupportedContent">
        <ul className="navbar-nav mr-auto">
          <li className="nav-item active">
-           <a className="nav-link" style={styles} href="#">Explore <span className="sr-only">(current)</span></a>
+           <a className="nav-link" style={styles} href="/Explore">Explore <span className="sr-only">(current)</span></a>
          </li>
          <li className="nav-item active">
            <a className="nav-link" style={styles} href="#">Story</a>
