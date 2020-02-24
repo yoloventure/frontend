@@ -95,18 +95,18 @@ class hostExperience extends React.Component {
           </div>
           <div className="container-md row">
             <img
-              className="woman-smiling col align-items-center"
+              className="woman-smiling col-sm-5 align-items-center"
               src={woman}
               alt="photo of a smiling woman"
             />
-            <div className="quote1 col align-items-start">
+            <div className="quote1 col-sm-4 align-items-start">
               <div className="quote1Inside">
                 <span className="begQuote">"</span>It means a lot to me to share
                 my insights on my job with young talents.{" "}
                 <span className="endQuote">"</span>
               </div>
             </div>
-            <figure className="fig20 col align-items-end">
+            <figure className="fig20 col-3">
               <h5>① Apply to host Express</h5>
               <p>
                 your interest through a simple form. It’s less about what you do
