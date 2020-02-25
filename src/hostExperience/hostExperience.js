@@ -128,19 +128,21 @@ class hostExperience extends React.Component {
           </div>
         </div>
         {/* Third part */}
-        <div className="row">
-          <figure className="fig30 align-self-center row">
-            <aside className="">YOLO empowers me to be an adventurer </aside>
-            <div className="row justify-content-end">
-              <img className="kaixinn" src={kaixin} alt="" />
+        <div className="d-flex flex-column">
+          <div className="d-flex justify-content-center">
+            <img className="kaixinn" src={kaixin} alt="" />
+          </div>
+          <div className="d-flex flex-column">
+            <div className="d-flex justify-content-center">
+              <img className="openQuote " src={quotes} alt="" />
             </div>
-            <img
-              className="col order-1 faces align-self-center"
-              src={faces}
-              alt=""
-            />
-            <img className="openQuote" src={quotes} alt="" />
-          </figure>
+            <div className="d-flex justify-content-center ">
+              <p className="aside ">YOLO empowers me to be an adventurer </p>
+            </div>
+          </div>
+          <div>
+            <img className="col faces align-self-center" src={faces} alt="" />
+          </div>
         </div>
 
         <div className="container-fluid subscriber">
