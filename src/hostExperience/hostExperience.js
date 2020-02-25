@@ -80,8 +80,8 @@ class hostExperience extends React.Component {
           </div>
         </div>
 
-        <div className="container-md-fluid row mb-10">
-          <div className="container-sm row mt-5 mb-4">
+        <div className="container-md-fluid d-flex justify-content-end row mb-10">
+          <div className="container-sm d-flex flex-column align-items-end mt-5 mb-4">
             <figure className="col align-self-end">
               <h5 className="here20"> HERE WE GO</h5>
               <h3 className="howTo">How to Become a Host</h3>
@@ -93,20 +93,21 @@ class hostExperience extends React.Component {
               </button>
             </figure>
           </div>
-          <div className="container-md row">
+          <div className="container-md-fluid row">
             <img
-              className="woman-smiling col align-items-center"
+              className="woman-smiling col-sm-4 align-self-center"
               src={woman}
               alt="photo of a smiling woman"
             />
-            <div className="quote1 col align-items-start">
+            <div className="quote1 col-sm-3 align-items-start">
               <div className="quote1Inside">
                 <span className="begQuote">"</span>It means a lot to me to share
                 my insights on my job with young talents.{" "}
                 <span className="endQuote">"</span>
               </div>
             </div>
-            <figure className="fig20 col align-items-end">
+
+            <figure className="fig20 col-4">
               <h5>① Apply to host Express</h5>
               <p>
                 your interest through a simple form. It’s less about what you do
@@ -126,27 +127,39 @@ class hostExperience extends React.Component {
             </figure>
           </div>
         </div>
-
-        <div className="row">
-          <figure className="fig30 align-self-center row">
-            <aside>YOLO empowers me to be an adventurer </aside>
+        {/* Third part */}
+        <div className="d-flex flex-column">
+          <div className="d-flex justify-content-center">
             <img className="kaixinn" src={kaixin} alt="" />
-            <img
-              className="col order-1 faces align-self-center"
-              src={faces}
-              alt=""
-            />
-            <img className="openQuote" src={quotes} alt="" />
-          </figure>
+          </div>
+          <div className="d-flex flex-column">
+            <div className="d-flex justify-content-center">
+              <img className="openQuote " src={quotes} alt="" />
+            </div>
+            <div className="d-flex justify-content-center ">
+              <p className="aside ">YOLO empowers me to be an adventurer </p>
+            </div>
+          </div>
+          <div>
+            <img className="col faces align-self-center" src={faces} alt="" />
+          </div>
         </div>
-        <div className="subscriber row">
-          <h4>Subscribe to Our Newsletter</h4>
-          <h6>stay tuned for our adventurous stories</h6>
 
-          <input type="email" placeholder="ENTER EMAIL" />
-          <button>
-            <a href="#"></a>Subscribe
-          </button>
+        <div className="container-fluid subscriber">
+          <div className="row d-flex flex-column">
+            <div className="col d-flex justify-content-center">
+              <h4>Subscribe to Our Newsletter</h4>
+            </div>
+            <div className="col d-flex justify-content-center">
+              <h6>stay tuned for our adventurous stories</h6>
+            </div>
+            <div className="col d-flex justify-content-center">
+              <input type="email" placeholder="ENTER EMAIL" />
+              <button>
+                <a href="#"></a>Subscribe
+              </button>
+            </div>
+          </div>
         </div>
 
         <div className="footerpages">
