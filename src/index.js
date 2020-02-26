@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./about/about.js";
+import App from "./explore/Explore.js";
 
 ReactDOM.render(<App />, document.getElementById("root"));
