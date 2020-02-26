@@ -1,38 +1,74 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Homepage from "./Homepage";
-import Explore from "./Explore";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-// import hostExperience from "./hostExperience/hostExperience"
+import firebase from "./config/firebase";
+import Homepage from "./home/Homepage";
+import Explore from "./explore/Explore";
+import Login from "./auth/login";
+import HostExperience from "./hostExperience/hostExperience"
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Route
-            path="/"
-            exact
-            render={() => {
-              return (
-                <div>
-                  <Homepage />
-                </div>
-              );
-            }}
-          />
+    constructor(props) {
+        super(props);
+        this.state = ({
+            user: null,
+        });
+        this.authListener = this.authListener.bind(this);
+    }
 
-          <Route
-            path="/explore"
-            exact
-            render={() => {
-              return <Explore />;
-            }}
-          />
-        </div>
-      </Router>
-    );
-  }
+    componentDidMount() {
+        this.authListener();
+    }
+
+    authListener() {
+        firebase.auth().onAuthStateChanged((user) => {
+            console.log(user);
+            if (user) {
+                this.setState({user});
+                localStorage.setItem('user', user.uid);
+            } else {
+                this.setState({user: null});
+                localStorage.removeItem('user');
+            }
+        });
+    }
+
+
+    render() {
+        return (
+            <Router>
+                <div>{this.state.user ? (<div>
+                    <Route
+                        path="/explore"
+                        exact
+                        render={() => {
+                            return (
+                                <Explore/>
+                            );
+                        }}
+                    />
+                    <Route
+                        path="/hostexperience"
+                        exact
+                        render={() => {
+                            return (
+                                <HostExperience/>
+                            );
+                        }}
+                    />
+                    <Route
+                        path="/"
+                        exact
+                        render={() => {
+                            return (
+                                <Homepage/>
+                            );
+                        }}
+                    />
+                </div>) : (<Login/>)}
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
