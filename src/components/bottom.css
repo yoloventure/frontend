@@ -1,0 +1,32 @@
+.kaixinn {
+    /* position: absolute; */
+    width: 460px;
+    height: 460px;
+    /* left: 490px; */
+}
+
+.openQuote {
+    /* position: absolute; */
+    width: 92.25px;
+    height: 79.73px;
+    /* left: 679.3px;
+    top: 500px; */
+}
+
+.aside {
+    /* position: relative; */
+    width: 50%;
+    height: 64px;
+    /* left: 450px;
+    top: 600px; */
+    /* Quote/Large */
+    font-family: Noticia Text;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 64px;
+    /* identical to box height */
+    text-align: center;
+    /* TextColors/Headers */
+    color: #30233d;
+}

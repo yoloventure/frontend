@@ -1,9 +1,9 @@
 .FeatureStoryTitle{
-  position: absolute;
-width: 471px;
-height: 142px;
-left: 10%;
-top: 20%;
+  // position: absolute;
+width: 30%;
+height: 5%;
+// left: 10%;
+// top: 120%;
 
 /* Headers/H3 */
 
@@ -19,18 +19,31 @@ color: #30233D;
 }
 
 
+.learnmore{
+ 
+width: 190px;
+height: 45px;
+ left: 30%;
+ top: 110%;
 
+
+
+background: #5E239D;
+border-radius: 36px
+
+
+}
 
 .slider {
-  position: absolute;
-
-left: 647px;
-top: 972px;
+//   position: absolute;
+//
+// left: 647px;
+// top: 972px;
   overflow: hidden;
   white-space: nowrap;
 
   .slider-wrapper {
-    position: relative;
+    // position: relative;
     height: 100%;
     width: 100%;
 
@@ -48,9 +61,9 @@ top: 972px;
   height: 50px;
   width: 50px;
 
-  display: flex;
+  /*display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;*/
   background: #f9f9f9;
   border-radius: 50%;
   cursor: pointer;
@@ -68,14 +81,14 @@ top: 972px;
 }
 
 .right-arrow {
-  position: absolute;
-  top: 50%;
-  right: 50%;
+   position: absolute;
+   top: 50%;
+  right: 27%;
   z-index: 999;
-  color: #fff;
+  color: red;
 
   img {
-    transform: translate(2px, 0);
+    transform: translate(50%, 40%);
 
     &:focus {
       outline: 0;
@@ -85,14 +98,14 @@ top: 972px;
 
 .left-arrow {
   position: absolute;
-  top: 50%;
-  left: 1%;
+   top: 50%;
+   left: 2%;
 
   z-index: 999;
-  color: #fff;
+  color: red;
 
   img {
-    transform: translate(-2px, 0);
+    transform: translate(29%,40%);
 
     &:focus {
       outline: 0;

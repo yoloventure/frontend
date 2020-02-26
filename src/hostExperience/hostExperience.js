@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../commons/Navbar";
+import Bottom from "../components/bottom";
 import FooterPage from "../commons/footer";
 import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
@@ -14,7 +15,7 @@ import bquote from "../photos/bquote.png";
 class hostExperience extends React.Component {
   render() {
     return (
-      <div className="container`">
+      <div className="container-fluid app">
         <div className="nav">
           <Navbar />
         </div>
@@ -80,68 +81,55 @@ class hostExperience extends React.Component {
           </div>
         </div>
 
-        <div className="container-fluid row">
-          <figure>
-            <h5 className="here20"> HERE WE GO</h5>
-            <h3 className="howTo">How to Become a Host</h3>
-            <button className="applyNow-2">
-              <a href="#">Apply Now</a>
-            </button>
-            <button className="host-guidelines1">
-              <a href="#">Host Guidelines</a>
-            </button>
-          </figure>
-          <img
-            className="woman-smiling"
-            src={woman}
-            alt="photo of a smiling chef"
-          />
-          <div className="quote1">
-            <div className="quote1Inside">
-              <span className="begQuote">"</span>It means a lot to me to share
-              my insights on my job with young talents.{" "}
-              <span className="endQuote">"</span>
-            </div>
+        <div className="container-md-fluid d-flex justify-content-end row mb-10">
+          <div className="container-sm d-flex flex-column align-items-end mt-5 mb-4">
+            <figure className="col align-self-end">
+              <h5 className="here20"> HERE WE GO</h5>
+              <h3 className="howTo">How to Become a Host</h3>
+              <button className="applyNow-2">
+                <a href="#">Apply Now</a>
+              </button>
+              <button className="host-guidelines1">
+                <a href="#">Host Guidelines</a>
+              </button>
+            </figure>
           </div>
-          <figure className="fig20">
-            <h5>① Apply to host Express</h5>
-            <p>
-              your interest through a simple form. It’s less about what you do
-              and more about how passionate you are about sharing your mission
-              with others.
-            </p>
-            <h5>② Create your profile</h5>
-            <p>
-              Once our team reviews and approves your application, you will be
-              invited to set set up your host profile.
-            </p>
-            <h5>③ Start hosting</h5>
-            <p>
-              Once your profile is live, shadowers will be able to browse and
-              request to book your experience immediately.
-            </p>
-          </figure>
-        </div>
-        <div className="row">
-          <figure className="fig30 align-self-center row">
-            <aside>YOLO empowers me to be an adventurer </aside>
-            <img className="kaixinn" src={kaixin} alt="" />
+          <div className="container-md-fluid row">
             <img
-              className="col order-1 offset-2 faces align-self-end"
-              src={faces}
-              alt=""
+              className="woman-smiling col-sm-4 align-self-center"
+              src={woman}
+              alt="photo of a smiling woman"
             />
-            <img className="openQuote" src={quotes} alt="" />
-          </figure>
-        </div>
-        <div className="subscriber">
-          <h4>Subscribe to Our Newsletter</h4>
-          <h6>stay tuned for our adventurous stories</h6>
+            <div className="quote1 col-sm-3 align-items-start">
+              <div className="quote1Inside">
+                <span className="begQuote">"</span>It means a lot to me to share
+                my insights on my job with young talents.{" "}
+                <span className="endQuote">"</span>
+              </div>
+            </div>
 
-          <input type="email" placeholder="ENTER EMAIL" />
-          <button>
-            <a href="#"></a>Subscribe
-          </button>
+            <figure className="fig20 col-4">
+              <h5>① Apply to host Express</h5>
+              <p>
+                your interest through a simple form. It’s less about what you do
+                and more about how passionate you are about sharing your mission
+                with others.
+              </p>
+              <h5>② Create your profile</h5>
+              <p>
+                Once our team reviews and approves your application, you will be
+                invited to set set up your host profile.
+              </p>
+              <h5>③ Start hosting</h5>
+              <p>
+                Once your profile is live, shadowers will be able to browse and
+                request to book your experience immediately.
+              </p>
+            </figure>
+          </div>
+        </div>
+        <div>
+          <Bottom />
         </div>
 
         <div className="footerpages">
