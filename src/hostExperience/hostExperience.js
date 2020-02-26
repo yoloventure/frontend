@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../commons/Navbar";
+import bottom from "../components/bottom";
 import FooterPage from "../commons/footer";
 import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
@@ -128,39 +129,7 @@ class hostExperience extends React.Component {
           </div>
         </div>
         {/* Third part */}
-        <div className="d-flex flex-column">
-          <div className="d-flex justify-content-center">
-            <img className="kaixinn" src={kaixin} alt="" />
-          </div>
-          <div className="d-flex flex-column">
-            <div className="d-flex justify-content-center">
-              <img className="openQuote " src={quotes} alt="" />
-            </div>
-            <div className="d-flex justify-content-center ">
-              <p className="aside ">YOLO empowers me to be an adventurer </p>
-            </div>
-          </div>
-          <div>
-            <img className="col faces align-self-center" src={faces} alt="" />
-          </div>
-        </div>
-
-        <div className="container-fluid subscriber">
-          <div className="row d-flex flex-column">
-            <div className="col d-flex justify-content-center">
-              <h4>Subscribe to Our Newsletter</h4>
-            </div>
-            <div className="col d-flex justify-content-center">
-              <h6>stay tuned for our adventurous stories</h6>
-            </div>
-            <div className="col d-flex justify-content-center">
-              <input type="email" placeholder="ENTER EMAIL" />
-              <button>
-                <a href="#"></a>Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
+        <bottom />
 
         <div className="footerpages">
           <FooterPage />
