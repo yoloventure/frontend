@@ -80,7 +80,7 @@ class about extends React.Component {
           </div>
         </div>
 
-        <div className="team d-flex flex-column">
+        <div className="team d-flex flex-column container">
           <div className="d-flex justify-content-end">
             <h3 className="our-team">OUR TEAM</h3>
           </div>
@@ -92,9 +92,19 @@ class about extends React.Component {
               <img src={carolina} alt="" className="ellipse" />
             </div>
           </div>
-          <img src={peiyu} alt="" className="ellipse" />
-          <img src={yawo} alt="" className="ellipse" />
-          <img src={may} alt="" className="ellipse" />
+          <div className="d-flex justify-content-between">
+            <div className="d-flex row justify-content-around">
+              <div className="d-flex justify-content-center">
+                <img src={peiyu} alt="" className="ellipse" />
+              </div>
+              <div className="d-flex justify-content-end">
+                <img src={yawo} alt="" className="ellipse" />
+              </div>
+              <div className="d-flex justify-content-end">
+                <img src={may} alt="" className="ellipse" />
+              </div>
+            </div>
+          </div>
         </div>
 
         <Bottom />
