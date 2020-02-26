@@ -35,8 +35,9 @@ class App extends React.Component {
 
     render() {
         return (
+            <div>
+                {this.state.user ? (
             <Router>
-                <div>{this.state.user ? (<div>
                     <Route
                         path="/explore"
                         exact
@@ -64,9 +65,7 @@ class App extends React.Component {
                             );
                         }}
                     />
-                </div>) : (<Login/>)}
-                </div>
-            </Router>
+            </Router>): (<Login/>)}</div>
         );
     }
 }

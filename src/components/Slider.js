@@ -19,7 +19,8 @@ export default class Slider extends Component {
         'A day shadowing an experienced orthodontist'
       ],
       body:[
-
+          'As a foreigner aspiring to become a “washoku” (Japanese food) chef, South Korean student Seo Dong-young landed an ideal job after shadowing a Japanese chef through YOLO. There is a huge difference between just learning basic skills in school and actually going out there to work with real pros,” said Seo, a student at Hattori Nutrition College in Tokyo. It’s only after you’ve had real working experience that you’ll be able to understand the certain way (Japanese people) act and think.',
+          'Alyssa went to a dental specialist’s office to observe procedures, learned terminology and techniques, observed different practice environments and asked the dental professional questions about her journey to practicing dentistry.We went through dental nomenclature, the small business, dental instruments, infection control and dental procedures to name a few.'
       ],
       currentIndex: 0,
       translateValue: 0
@@ -68,39 +69,42 @@ export default class Slider extends Component {
 
   render() {
     return (
-      <div className='FeatureStory'>
-      <div className='FeatureStoryTitle'>
-          <h2> {this.state.title[this.state.currentIndex]} </h2>
- 
+      <div className=''>
+      <div className='row'>
+            <div className='FeatureStoryTitle col-lg-6 col-md-4 col-sm-6 col-5 offset-1 offset-lg-1 pt-5  '>
+                 <h2 className="text-center">  {this.state.title[this.state.currentIndex]} </h2>
+                 <h3 className="text-center"> {this.state.body[this.state.currentIndex]} </h3>
+                 <button class="offset-lg-4 learnmore" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#FCFCFC', whiteSpace:'pre'}}>     Learn More   </button>
+            </div>
+
+
+            <div className="slider col-lg-5 col-md-6 col-sm-6 col-7 ">
+              <LeftArrow
+               prevSlide={this.goToPrevSlide}
+               coolButtons={false}
+              />
+
+              <RightArrow
+               goToNextSlide={this.goToNextSlide}
+               coolButtons= {false}
+              />
+              <div className="slider-wrapper"
+                style={{
+                  transform: `translateX(${this.state.translateValue}px)`,
+                  transition: 'transform ease-out 0.45s'
+                }}>
+                  {
+                    this.state.images.map((image, i) => (
+                      <Slide key={i} image={image}/>
+                    ))
+                  }
+              </div>
+
+
+            </div>
+
+
       </div>
-
-
-      <div className="slider">
-
-        <div className="slider-wrapper"
-          style={{
-            transform: `translateX(${this.state.translateValue}px)`,
-            transition: 'transform ease-out 0.45s'
-          }}>
-            {
-              this.state.images.map((image, i) => (
-                <Slide key={i} image={image}/>
-              ))
-            }
-        </div>
-
-        <LeftArrow
-         prevSlide={this.goToPrevSlide}
-         coolButtons={false}
-        />
-
-        <RightArrow
-         goToNextSlide={this.goToNextSlide}
-         coolButtons= {false}
-        />
-      </div>
-
-
       </div>
 
 
