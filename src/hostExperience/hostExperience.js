@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../commons/Navbar";
-import bottom from "../components/bottom";
+import Bottom from "../components/bottom";
 import FooterPage from "../commons/footer";
 import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
@@ -128,8 +128,9 @@ class hostExperience extends React.Component {
             </figure>
           </div>
         </div>
-        {/* Third part */}
-        <bottom />
+        <div>
+          <Bottom />
+        </div>
 
         <div className="footerpages">
           <FooterPage />

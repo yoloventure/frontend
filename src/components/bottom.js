@@ -4,7 +4,7 @@ import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
 import quotes from "../photos/quotes.png";
 
-class bottom extends React.Component {
+class Bottom extends React.Component {
   render() {
     return (
       <div className="">
@@ -46,4 +46,4 @@ class bottom extends React.Component {
   }
 }
 
-export default bottom;
+export default Bottom;
