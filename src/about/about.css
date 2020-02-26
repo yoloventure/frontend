@@ -15,6 +15,10 @@
     top: 144px;
 }
 
+.team {
+    background: #150433;
+}
+
 @media screen and (max-width: 800px) {
     .left,
     .main,
@@ -26,7 +30,7 @@
 
 .experience-fig h2 {
     /* Host An Experience */
-    position: absolute;
+    /* position: absolute; */
     width: 529px;
     height: 90px;
     left: 209px;
@@ -154,7 +158,7 @@
     height: 606px;
     left: -2px;
     top: 931px;
-    background: linear-gradient(138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background: linear-gradient( 138.53deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
     background-blend-mode: normal, normal, overlay;
     backdrop-filter: blur(30px);
 }
@@ -352,7 +356,7 @@ top: 1856px; */
     height: 618px;
     left: 763px;
     top: 1854px;
-    background: linear-gradient(137.97deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
+    background: linear-gradient( 137.97deg, rgba(117, 101, 160, 0.25) 2.82%, rgba(82, 119, 155, 0.25) 95.45%), linear-gradient(0deg, rgba(36, 41, 52, 0.3), rgba(36, 41, 52, 0.3)), rgba(255, 255, 255, 0.1);
     background-blend-mode: overlay, normal, normal, overlay;
     backdrop-filter: blur(30px);
 }
