@@ -1,0 +1,390 @@
+li {
+    list-style-type: none;
+}
+
+footer {
+    width: 100%;
+    height: 558px;
+    /* position: relative;
+left: 100px; */
+    background: #150433;
+}
+
+.logo {
+    width: 77px;
+    height: 43px;
+    position: relative;
+    top: 10%;
+    left: 10%;
+    /* position: relative;
+    left: 147px;
+    top: 126px; */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 43px;
+    /* identical to box height */
+    letter-spacing: 2px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.start {
+    position: relative;
+    height: 53px;
+    top: 10%;
+    left: 10%;
+    /* left: 147px;
+    top: 186px; */
+    /* Text/Small */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16.2px;
+    line-height: 26px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.title {
+    /* position: absolute; */
+    /* top: 126px; */
+    position: relative;
+    top: 10%;
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12.6px;
+    line-height: 26px;
+    /* identical to box height */
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.title1 {
+    width: 97px;
+    height: 27px;
+    /* left: 441px;
+    top: 126px; */
+    /* Title/Small */
+    /* Colors/White */
+    /* color: #FCFCFC; */
+}
+
+.title2 {
+    width: 143px;
+    height: 27px;
+    /* left: 735px; */
+}
+
+.title3 {
+    /* For HOST */
+    width: 114px;
+    height: 27px;
+    /* left: 974px; */
+}
+
+.title4 {
+    /* For shadower */
+    /* left: 1179px; */
+    width: 176px;
+    height: 27px;
+}
+
+.title5 {
+    left: 200%;
+    bottom: 50%;
+}
+
+.privacy {
+    /* position: absolute; */
+    width: 134px;
+    height: 85px;
+    position: relative;
+    top: 10%;
+    left: -15%;
+    /* left: 441px;
+    top: 181px; */
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.link {
+    /* position: absolute; */
+    position: relative;
+    width: 130px;
+    height: 29px;
+    /* left: 735px; */
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.link1 {
+    top: 25px;
+    right: 20%;
+}
+
+.phone {
+    top: 25px;
+    right: 20%;
+}
+
+.guidelines {
+    position: relative;
+    top: 20px;
+    right: 20%;
+    width: 115px;
+    height: 29px;
+    /* left: 972px;
+    top: 181px; */
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+a:visited,
+a {
+    color: white;
+}
+
+.apply {
+    /* Apply Now */
+    /* position: absolute; */
+    position: relative;
+    top: 20px;
+    right: 20%;
+    width: 76px;
+    height: 29px;
+    /* left: 973px;
+    top: 219px; */
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+.for-shadower {
+    /* position: absolute; */
+    width: 135px;
+    position: relative;
+    /* height: 29px;
+    left: 1185px; */
+    top: 20px;
+    right: 10%;
+    /* Text_Misc/Nav_Footer */
+    font-family: Mplus 1p Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12.6px;
+    line-height: 28px;
+    letter-spacing: 1px;
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+
+/* .l1 {
+    top: 181px;
+}
+.l2 {
+    top: 219px;
+} */
+
+.footer-copyright {
+    /* position: absolute; */
+    width: 178px;
+    height: 20px;
+    left: 60%;
+    /* top: 414px; */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11.7px;
+    line-height: 19px;
+    /* identical to box height */
+    /* Colors/White */
+    color: #fcfcfc;
+}
+
+
+/* // Extra small devices (portrait phones, less than 576px) */
+
+
+/* // Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 500px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 770px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/* // Medium devices (tablets, less than 992px) */
+
+@media (max-width: 991.98px) {
+    .logo {
+        top: 0;
+        left: 0;
+    }
+    .start {
+        top: 0;
+        left: 0;
+    }
+    .title {
+        top: 0;
+        left: 0;
+    }
+    .privacy {
+        top: 0;
+        left: 0;
+    }
+    .link {
+        top: 0;
+        left: 0;
+    }
+    .link1 {
+        top: 0;
+        left: 0;
+    }
+    .phone {
+        top: 0;
+        left: 0;
+    }
+    .guidelines {
+        top: 0;
+        left: 0;
+    }
+    .apply {
+        top: 0;
+        left: 0;
+    }
+    .for-shadower {
+        top: 0;
+        left: 0;
+    }
+    .footer-copyright {
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/* // Large devices (desktops, less than 1200px) */
+
+@media (max-width: 1199.98px) {}
