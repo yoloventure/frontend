@@ -17,22 +17,26 @@ jobs:
     env:
       CI_FIREBASE_MESSAGE: ${{ github.event.head_commit.message }} - ${{ github.event.head_commit.url }}/checks
 
-
     steps:
-      - uses: actions/checkout@v2
+      ## Checkout current branch
+      - uses: actions/checkout@v1
+
+      ## Setup node
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
-        env:
 
-
-
+      ## Install dependencies
+      - name: yarn install
+        run: |
+          yarn
+      ## Test
+      - name: Run tests
+        run: |
+          CI=true yarn test
       ## Build & Deploy
       - name: Build & Deploy
         run: |
-           npm run-script build
-           firebase deploy --only hosting --token ${{ SECRETS.CI_FIREBASE_TOKEN }} --message "$CI_FIREBASE_MESSAGE"
+          yarn build
+          firebase deploy --only hosting --token ${{ SECRETS.CI_FIREBASE_TOKEN }} --message "$CI_FIREBASE_MESSAGE"
