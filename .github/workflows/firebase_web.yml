@@ -35,5 +35,5 @@ jobs:
       ## Build & Deploy
       - name: Build & Deploy
         run: |
-          npm build
+          npm run-script build
           firebase deploy --only hosting --token ${{ SECRETS.CI_FIREBASE_TOKEN }} --message "$CI_FIREBASE_MESSAGE"
