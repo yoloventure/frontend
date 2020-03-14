@@ -28,15 +28,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       ## Install dependencies
-      - name: yarn install
+      - name: npm install
         run: |
-          yarn
-      ## Test
-      - name: Run tests
-        run: |
-          CI=true yarn test
+          npm install
+
       ## Build & Deploy
       - name: Build & Deploy
         run: |
-          yarn build
+          npm build
           firebase deploy --only hosting --token ${{ SECRETS.CI_FIREBASE_TOKEN }} --message "$CI_FIREBASE_MESSAGE"
