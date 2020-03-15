@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
-// import "./about.css";
+import "./about.css";
 import Navbar from "../commons/Navbar";
 import FooterPage from "../commons/footer";
 import Bottom from "../components/bottom";
@@ -17,11 +17,16 @@ class about extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
-        <Navbar />
+        <div className="nav">
+          <Navbar />
+        </div>
 
-        <figure className="experience-fig">
+        <div className="experience-fig-1 row align-items-center">
+          <div className="col-md-2"></div>
           <h2>About</h2>
-        </figure>
+        </div>
+        <br />
+        <br />
         <div className="container">
           <p className="text-left">
             Yolo is a job shadowing marketplace that connects locals and
@@ -32,11 +37,16 @@ class about extends React.Component {
             Yolo is a job shadowing marketplace for two parties to exchange work
             experience, culture and knowledge. 
           </p>
+          <br />
+          <br />
+
+          <div className="row align-items-center">
+            <h3 className="why-yolo col-4 text-center offset-3">Why Yolo</h3>
+          </div>
+          <br />
+          <br />
 
           <div className="row">
-            <div>
-              <h3 className="why-yolo">Why Yolo</h3>
-            </div>
             <div className="col">
               <h4>WHY HOST</h4>
 
@@ -79,8 +89,11 @@ class about extends React.Component {
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
 
-        <div className="team d-flex flex-column container">
+        <div className="team d-flex flex-column container-lg-fluid h-50 d-inline-block">
           <div className="d-flex justify-content-end">
             <h3 className="our-team">OUR TEAM</h3>
           </div>
@@ -88,35 +101,43 @@ class about extends React.Component {
             <div className="d-flex justify-content-center">
               <img src={shawn} alt="" className="ellipse" />
             </div>
-            <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-center">
               <img src={carolina} alt="" className="ellipse" />
             </div>
           </div>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between flex-wrap">
             <div className="d-flex row justify-content-around">
               <div className="d-flex justify-content-center">
                 <img src={peiyu} alt="" className="ellipse" />
               </div>
-              <div className="d-flex justify-content-end">
-                <img src={yawo} alt="" className="ellipse" />
-              </div>
-              <div className="d-flex justify-content-end">
-                <img src={may} alt="" className="ellipse" />
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className="ellipse  d-flex align-items-center">
+                <div className="d-flex flex-column">
+                  <h3 className="shell">Shelley Chen</h3>
+                  <p className="ceo">CEO</p>
+                  <p className="paragraph">
+                    Shelley serves as CEO of Yolo. She has participated in two
+                    business accelerator programs and has experience working as
+                    a venture capital analyst in Malaysia.
+                  </p>
+                </div>
               </div>
             </div>
+
+            <div className="d-flex justify-content-end">
+              <img src={yawo} alt="" className="ellipse" />
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-center">
+            <img src={may} alt="" className="ellipse" />
           </div>
         </div>
-
-        <Bottom />
-
-        <div className="subscribe">
-          <h4>Subscribe to Our Newsletter</h4>
-          <h6>stay tuned for our adventurous stories</h6>
-
-          <input type="email" placeholder="ENTER EMAIL" />
-          <button>
-            <a href="#"></a>Subscribe
-          </button>
+        <div>
+          <Bottom />
+          <br />
+          <br />
         </div>
 
         <div className="col offset-.5 footerpage">
