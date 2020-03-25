@@ -1,15 +1,20 @@
 /*jshint esversion: 6 */
 import React from "react";
 import ReactDOM from "react-dom";
-import Navbar from "../commons/Navbar";
+import Navbar from "../components/Navbar";
 import "./Explore.css";
 
-class Explore extends React.Component {
-  render() {
+import CardSlider from "../components/CardSlider";
+
+export default class Explore extends React.Component{
+
+  render(){
+
     return (
       <div>
-        <Navbar />
-        <section className="search">
+
+        <Navbar textColor={'black'} />
+
           <h1>Start Your next Journey </h1>
           <input
             type="text"
@@ -17,6 +22,7 @@ class Explore extends React.Component {
             placeholder="Search.."
             title="Start Your next Journey"
           />
+
           <ul id="subnav">
             <li>
               <a id="industry" href="#">
@@ -58,7 +64,7 @@ class Explore extends React.Component {
                 type="text"
                 placeholder="Dates."
                 id="myInput"
-                onkeyup="filterFunction()"
+                onKeyUp="filterFunction()"
               />
               <a href="#about">About</a>
               <a href="#base">Base</a>
@@ -69,7 +75,14 @@ class Explore extends React.Component {
               <a href="#tools">Tools</a>
             </div>
           </div>
-          {/* 
+
+
+
+          <div>
+            <CardSlider/>
+          </div>
+
+          {/*
           <a href="sub-page.php">
             <section>
               <img src="images/event1.jpg" alt="event1" />
@@ -111,10 +124,11 @@ class Explore extends React.Component {
           </a>
           */}
 
+          {/*
           <div className="row">
             <div className="card col">
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">JSON.parse(data,)</h5>
                 <p className="card-text">
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
@@ -225,8 +239,16 @@ class Explore extends React.Component {
           </footer>
         </section>
       </div>
-    );
-  }
-}
 
-export default Explore;
+      */}
+
+
+
+      </div>
+
+    );
+
+
+
+}
+}
