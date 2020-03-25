@@ -70,13 +70,17 @@ class hostExperience extends React.Component {
                 className="chefimage"
               />
             </div>
-            <div className="col-1 align-self-start">
-              <figure className="quotes">
+            <div className="col-1 quoteContainer">
+              <div className="quotes d-flex flex-column">
                 <img src={fquote} alt="" />
-                "YOLOers really inspire me! I’ve got different points of view on
-                the work I do."
+                <br />
+                <p style={{ width: "50%" }}>
+                  YOLOers really inspire me! I’ve got different points of view
+                  on the work I do.
+                </p>{" "}
+                <br />
                 <img src={bquote} alt="" />
-              </figure>
+              </div>
             </div>
           </div>
         </div>
@@ -100,10 +104,13 @@ class hostExperience extends React.Component {
               src={woman}
               alt="photo of a smiling woman"
             />
-            <div className="quote1 col-sm-3 align-items-start">
-              <div className="quote1Inside">
-                <span className="begQuote">"</span>It means a lot to me to share
-                my insights on my job with young talents.{" "}
+            <div className="quote1 col-sm-3 align-items-end">
+              <div className="quote1Inside d-flex flex-column align-items-center">
+                <span className="begQuote">"</span>
+                <p className="d-flex align-items-center">
+                  It means a lot to me to share my insights on my job with young
+                  talents.
+                </p>{" "}
                 <span className="endQuote">"</span>
               </div>
             </div>

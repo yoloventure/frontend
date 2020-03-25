@@ -28,14 +28,23 @@ class Bottom extends React.Component {
         <div className="container-fluid subscriber">
           <div className="row d-flex flex-column">
             <div className="col d-flex justify-content-center">
-              <h4>Subscribe to Our Newsletter</h4>
+              <h3 className="newsletter">Subscribe to Our Newsletter</h3>
             </div>
+            <br />
             <div className="col d-flex justify-content-center">
-              <h6>stay tuned for our adventurous stories</h6>
+              <h6 className="stay-tuned">
+                stay tuned for our adventurous stories
+              </h6>
             </div>
+            <br />
+            <br />
             <div className="col d-flex justify-content-center">
-              <input type="email" placeholder="ENTER EMAIL" />
-              <button>
+              <input
+                className="enter-email"
+                type="email"
+                placeholder="ENTER EMAIL"
+              />
+              <button className="subscribe">
                 <a href="#"></a>Subscribe
               </button>
             </div>
