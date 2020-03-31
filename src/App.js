@@ -39,7 +39,7 @@ class App extends React.Component {
                 {this.state.user ? (
             <Router>
                     <Route
-                        path="/explore"
+                        path="/Explore"
                         exact
                         render={() => {
                             return (

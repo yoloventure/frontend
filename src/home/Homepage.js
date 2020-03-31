@@ -62,18 +62,18 @@ export default class Homepage extends React.Component{
           <div className='row '>
                 <Slider/>
           </div>
-          
+
               <div className='' style={{background: "#150433"}} >
-                                  <div className='row offset-lg-5 offset-sm-5 offset-3 pt-5' >
-                                        <h3 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px",color: "#F61067", "lineHeight":"26px", textAlign:"center","letterSpacing":"6px","textTransform":"uppercase"}}
+                                  <div className='row d-flex justify-content-center' >
+                                        <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px",color: "#F61067", "lineHeight":"26px", textAlign:"center","letterSpacing":"6px","textTransform":"uppercase"}}
                                         > We are amazing </h3>
                                   </div>
-                                    <div className='row offset-sm-4  '>
-                                       <h2 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
-                                       >        Why Yolo </h2>
+                                    <div className='row d-flex justify-content-center  '>
+                                       <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
+                                        > Why Yolo </h2>
                                     </div>
-                                    <div className='row offset-lg-4 offset-sm-3  ' >
-                                        <h3 style={{fontSize:"18px", whiteSpace:"pre", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"800",lineHeight:"29px",textAlign:"center",color:"#FCFCFC"}}
+                                    <div className='row d-flex justify-content-center  ' >
+                                        <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"800",lineHeight:"29px",textAlign:"center",color:"#FCFCFC"}}
                                         >       YOLO empowers me to become an adventurer. </h3>
 
                                     </div>
