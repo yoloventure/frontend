@@ -48,12 +48,12 @@ class Navbar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="/Explore">
+              <a className="nav-link" style={styles} href="/explore">
                 Explore <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link" style={styles} href="#">
+              <a className="nav-link" style={styles} href="story">
                 Story
               </a>
             </li>
@@ -69,17 +69,17 @@ class Navbar extends React.Component {
            </div>
          </li> */}
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link " style={styles2} href="#">
+              <a className="nav-link " style={styles2} href="hostexperience">
                 Host an Experience
               </a>
             </li>
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link " style={styles} href="#">
+              <a className="nav-link " style={styles} href="about">
                 About
               </a>
             </li>
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link " style={styles2} href="#">
+              <a className="nav-link " style={styles2} href="contact">
                 Contact Us
               </a>
             </li>

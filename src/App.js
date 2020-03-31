@@ -37,53 +37,52 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                    <Route
-                        path="/explore"
-                        exact
-                        render={() => {
-                            return (
-                                <Explore/>
-                            );
-                        }}
-                    />
-                    <Route
-                        path="/hostexperience"
-                        exact
-                        render={() => {
-                            return (
-                                <HostExperience/>
-                            );
-                        }}
-                    />
-                    <Route
-                        path="/register"
-                        exact
-                        render={() => {
-                            return (
-                                <Register/>
-                            );
-                        }}
-                    />
-                    <Route
-                        path="/login"
-                        exact
-                        render={() => {
-                            return (
-                                <Login/>
-                            );
-                        }}
-                    />
-                    <Route
-                        path="/"
-                        exact
-                        render={() => {
-                            return (
-                                <Homepage/>
-                            );
-                        }}
-                    />
+                <Route
+                    path="/explore"
+                    exact
+                    render={() => {
+                        return (
+                            <Explore/>
+                        );
+                    }}
+                />
+                <Route
+                    path="/hostexperience"
+                    exact
+                    render={() => {
+                        return (
+                            <HostExperience/>
+                        );
+                    }}
+                />
+                <Route
+                    path="/register"
+                    exact
+                    render={() => {
+                        return (
+                            <Register/>
+                        );
+                    }}
+                />
+                <Route
+                    path="/login"
+                    exact
+                    render={() => {
+                        return (
+                            <Login/>
+                        );
+                    }}
+                />
+                <Route
+                    path="/"
+                    render={() => {
+                        return (
+                            <Homepage/>
+                        );
+                    }}
+                />
             </Router>
-        );
+        )
     }
 }
 
