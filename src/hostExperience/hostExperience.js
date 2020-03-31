@@ -22,6 +22,9 @@ class hostExperience extends React.Component {
         <div className="row align-items-center experience-fig1">
           <h2 className="col">Host an Experience</h2>
         </div>
+        <br />
+        <br />
+        <br />
         <div>
           <div className="row align-items-center">
             <figure>
@@ -32,7 +35,7 @@ class hostExperience extends React.Component {
                 <button className="applyNow-1">
                   <a href="#">Apply Now</a>
                 </button>
-                <button className="hostGuidelines">
+                <button className="applyNow-1">
                   <a href="#">Host Guidelines</a>
                 </button>
               </div>
