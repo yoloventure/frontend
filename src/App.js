@@ -5,6 +5,7 @@ import Explore from "./explore/Explore";
 import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience"
 import {BrowserRouter as Router, Route} from "react-router-dom";
+import Register from "./auth/register";
 
 class App extends React.Component {
     constructor(props) {
@@ -35,11 +36,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.user ? (
             <Router>
                     <Route
-                        path="/Explore"
+                        path="/explore"
                         exact
                         render={() => {
                             return (
@@ -57,6 +56,24 @@ class App extends React.Component {
                         }}
                     />
                     <Route
+                        path="/register"
+                        exact
+                        render={() => {
+                            return (
+                                <Register/>
+                            );
+                        }}
+                    />
+                    <Route
+                        path="/login"
+                        exact
+                        render={() => {
+                            return (
+                                <Login/>
+                            );
+                        }}
+                    />
+                    <Route
                         path="/"
                         exact
                         render={() => {
@@ -65,7 +82,7 @@ class App extends React.Component {
                             );
                         }}
                     />
-            </Router>): (<Login/>)}</div>
+            </Router>
         );
     }
 }

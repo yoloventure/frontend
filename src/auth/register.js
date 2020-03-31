@@ -13,15 +13,15 @@ class Register extends Component {
     email: "",
     password: ""
   };
-  login = e => {
+  register = e => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(res => {
         console.log("user at firebase", res);
       })
-      .catch(e => {
-        console.log("error", e);
+      .catch(err => {
+        console.log("error", err);
       });
   };
   passwordOn = e => {
@@ -33,7 +33,7 @@ class Register extends Component {
     this.setState({ email });
   };
   submitOn = e => {
-    this.login(e);
+    this.register(e);
   };
   nameOn = e => {
     let name = e.target.value;
