@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
-    <meta name="theme-color" content="#000000" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1 user-scalable=0">
+
 
     <meta name="description" content="Web site created using create-react-app" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -34,9 +35,17 @@
 
 
     <title>React App</title>
-</head>
 
-<body>
+  </head>
+<style>
+body::-webkit-scrollbar {
+  display: none;
+}
+body,html{
+  overflow-x:hidden;
+}
+</style>
+  <body>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
