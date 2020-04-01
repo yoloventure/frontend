@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from "react-dom";
 
 export default class Card extends React.Component {
-  render() {
 
+  
+
+
+  render() {
   return (
       <div className="card-body">
           <div className="row">
