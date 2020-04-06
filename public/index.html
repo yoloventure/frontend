@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no" />
-    <meta name="theme-color" content="#000000" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1 user-scalable=0">
+
 
     <meta name="description" content="Web site created using create-react-app" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -33,24 +34,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-    <title>React App</title>
-</head>
+    <title>YoloShadow</title>
 
-<body>
+  </head>
+<style>
+body::-webkit-scrollbar {
+  display: none;
+}
+body,html{
+  overflow-x:hidden;
+}
+</style>
+  <body>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.8.2/firebase-app.js"></script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="/__/firebase/7.8.2/firebase-analytics.js"></script>
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+   
+    <script  src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <script  src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script  src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    
+    <script  src="./init-firebase.js"></script>
 </body>
 
 </html>
