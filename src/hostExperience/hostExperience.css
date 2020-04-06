@@ -548,6 +548,9 @@ top: 4012px; */
     .app {
         width: 100%;
     }
+    .quotes {
+        width: 52%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -584,3 +587,9 @@ top: 4012px; */
     /* TextColors/Headers */
     color: #30233D;
 }
+
+
+/* body,
+html {
+    overflow-x: hidden
+} */

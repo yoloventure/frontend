@@ -21,7 +21,9 @@ class Navbar extends React.Component {
           <a className="About" href="/about">
             Story
           </a>
-          <a className="HostExp" href="/hostexperience">
+
+          <a className="HostExp" href="/hostExperience">
+
             Host An Experience
           </a>
           <a className="Contact" href="/contact">
