@@ -18,10 +18,10 @@ class Navbar extends React.Component {
           <a className="Story" href="#">
             Story
           </a>
-          <a className="About" href="#">
+          <a className="About" href="/about">
             Story
           </a>
-          <a className="HostExp" href="#">
+          <a className="HostExp" href="/hostExperience">
             Host An Experience
           </a>
           <a className="Contact" href="#">

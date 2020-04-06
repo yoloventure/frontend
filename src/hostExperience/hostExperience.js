@@ -28,7 +28,7 @@ class hostExperience extends React.Component {
         <div>
           <div className="row align-items-center">
             <figure>
-              <div className="col-10 align-self-start">
+              <div className="col-md-10 align-self-start">
                 <h5 className="here10"> HERE WE GO</h5>
                 <h3 className="whyHost">Why Host</h3>
 
@@ -43,11 +43,11 @@ class hostExperience extends React.Component {
           </div>
         </div>
 
-        <div className="">
+        <div className="container-fluid">
           <div className="row">
-            <div className="fig10 col-5 align-self-end row">
+            <div className="fig10 col-md-5 align-self-end row">
               <div className="insider row">
-                <div className="container align-self-center">
+                <div className="container  align-self-center">
                   <h5>Demonstrate your values</h5>
                   <p>
                     Show your openness, dedication to diversity & inclusion, and
@@ -66,14 +66,14 @@ class hostExperience extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-3 align-self-center">
+            <div className="col-md-3 align-self-center">
               <img
                 src={chef}
                 alt="photo of a smiling chef"
                 className="chefimage"
               />
             </div>
-            <div className="col-1 quoteContainer">
+            <div className="col-md-1 quoteContainer">
               <div className="quotes d-flex flex-column">
                 <img src={fquote} alt="" />
                 <br />
@@ -96,18 +96,16 @@ class hostExperience extends React.Component {
               <button className="applyNow-2">
                 <a href="#">Apply Now</a>
               </button>
-              <button className="host-guidelines1">
+              <button className="applyNow-2">
                 <a href="#">Host Guidelines</a>
               </button>
             </figure>
           </div>
-          <div className="container-md-fluid row">
-            <img
-              className="woman-smiling col-sm-4 align-self-center"
-              src={woman}
-              alt="photo of a smiling woman"
-            />
-            <div className="quote1 col-sm-3 align-items-end">
+          <div className="container-fluid row">
+            <div className="woman-smiling col-sm-4 align-self-center">
+              <img src={woman} alt="photo of a smiling woman" />
+            </div>
+            <div className="quote1 col-md-3 align-items-end">
               <div className="quote1Inside d-flex flex-column align-items-center">
                 <span className="begQuote">"</span>
                 <p className="d-flex align-items-center">
@@ -118,7 +116,7 @@ class hostExperience extends React.Component {
               </div>
             </div>
 
-            <figure className="fig20 col-4">
+            <figure className="fig20 col-md-4">
               <h5>① Apply to host Express</h5>
               <p>
                 your interest through a simple form. It’s less about what you do
