@@ -13,7 +13,10 @@ export default class Explore extends React.Component{
     super(props)
     let  Cards=[];
     this.state = {
-      Cards:Cards
+      Cards:Cards,
+      valueFromSearch:'',
+      valueFromStartDate: '',
+      valueFromEndDate: ''
     }
 
     for(var i=0; i<data.length;i+=2){
@@ -46,61 +49,6 @@ export default class Explore extends React.Component{
 
         <Navbar textColor={'black'} />
 
-          {/*
-          <ul id="subnav">
-            <li>
-              <a id="industry" href="#">
-                {" "}
-                Industry{" "}
-              </a>
-            </li>
-            <li>
-              <a className="subitem" href="#">
-                Education{" "}
-              </a>
-            </li>
-            <li>
-              <a className="subitem" href="#">
-                Engineering
-              </a>
-            </li>
-            <li>
-              <a className="subitem" href="#">
-                Arts & Design
-              </a>
-            </li>
-            <li>
-              <a className="subitem" href="#">
-                Healthcare
-              </a>
-            </li>
-            <li>
-              <a className="subitem" href="#">
-                Food
-              </a>
-            </li>
-          </ul>
-
-          <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
-              <input
-                type="text"
-                placeholder="Dates."
-                id="myInput"
-                onKeyUp="filterFunction()"
-              />
-              <a href="#about">About</a>
-              <a href="#base">Base</a>
-              <a href="#blog">Blog</a>
-              <a href="#contact">Contact</a>
-              <a href="#custom">Custom</a>
-              <a href="#support">Support</a>
-              <a href="#tools">Tools</a>
-            </div>
-          </div> */}
-
-
 
           <div className="row">
                 <div className="col">
@@ -114,6 +62,80 @@ export default class Explore extends React.Component{
                               </button>
                             </div>
                         </div>
+                        <div className='row pt-5'>
+                              <div className='col-lg-2 offset-1'>
+                                  <div class="btn-group">
+                                    <button style={{background:'#F2C94C'}} type="button" id="bvAtt" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Sort By Price
+                                    </button>
+                                    <div class="dropdown-menu" id="dd1">
+                                        <a className='dropdown-item' onclick='filterIndustry(event)'> Low to High </a>
+                                        <a className='dropdown-item' onclick='filterIndustry(event)'> High to Low </a>
+                  
+
+                                    </div>
+                                  </div>
+                              </div>
+                              <div className='col-lg-2'>
+                                <div class="btn-group">
+                                  <button style={{background:'#F2C94C'}} type="button" id="bvAtt" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Filter By Industry
+                                  </button>
+                                  <div class="dropdown-menu" id="dd1">
+                                      <a className='dropdown-item' onclick='filterIndustry(event)'> Education </a>
+                                      <a className='dropdown-item' onclick='filterIndustry(event)'> Engineering </a>
+                                      <a className='dropdown-item' onclick='filterIndustry(event)'> Art & Design </a>
+                                      <a className='dropdown-item' onclick='filterIndustry(event)'> Healthcare </a>
+                                      <a className='dropdown-item' onclick='filterIndustry(event)'> Food </a>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className='col-lg-3'>
+                                <div class="btn-group">
+                                  <button style={{background:'#F2C94C'}} type="button" id='bsAtt' class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     Filter By Duration
+                                  </button>
+                                  <div class="dropdown-menu" id="dd2">
+                                      <a className='dropdown-item' onclick='filterDuration(event)'> Less than 3 days </a>
+                                      <a className='dropdown-item' onclick='filterDuration(event)'> 3 to 5 days </a>
+                                      <a className='dropdown-item' onclick='filterDuration(event)'> 5 to 7 days </a>
+                                      <a className='dropdown-item' onclick='filterDuration(event)'> 7 to 9 days </a>
+                                      <a className='dropdown-item' onclick='filterDuration(event)'> Greater than 9 days </a>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                          </div>
+                          <div className='row pt-4'>
+                                <div className='col-lg-1 offset-1'>
+                                  <h3 style={{fontSize:"160%"}} className='pt-1 pr-5'>Date:</h3>
+                                </div>
+                                <div className='col-lg-3'>
+                                  <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroup-sizing-default">From</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                                    </div>
+                                </div>
+
+                                <div className='col-lg-3'>
+                                  <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroup-sizing-default">To</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
                     </div>
                     {this.state.Cards}
                 </div>
