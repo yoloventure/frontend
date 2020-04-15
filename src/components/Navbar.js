@@ -20,16 +20,18 @@ class Navbar extends React.Component {
       whiteSpace:"pre"
 
     };
-
+    let classVal=""
     if (this.props.textColor === "black") {
       styles.color = "black";
       styles2.color = "black";
+      classVal="navbar navbar-expand-lg navbar-light bg-transparent "
     } else {
       styles.color = "white";
       styles2.color = "white";
+      classVal="navbar navbar-expand-lg navbar-dark bg-transparent "
     }
     return (
-      <div className="navbar navbar-expand-lg navbar-dark bg-transparent ">
+      <div className={classVal}>
         <a className="navbar-brand" href="#" style={{ color: "#F2C94C" }}>
           YOLOSHADOW
         </a>
