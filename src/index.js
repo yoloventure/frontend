@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 
-import App from "./home/Homepage"
+import App from "./App"
 
 
 
