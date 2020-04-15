@@ -1,8 +1,17 @@
 .search{
-  position: absolute;
-width: 973px;
-height: 302px;
-left: 0px;
-top: 170px;
+width: 300%;
+height: 250px;
+
 background: linear-gradient(197.43deg, #FFD17F 0%, #B77FFF 101.17%);
+}
+.input-group{
+  margin-left:3%;
+  width:60%;
+  height:20px;
+  border-width:3px;
+  border-color:#000000
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
 }

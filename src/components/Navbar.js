@@ -7,16 +7,31 @@ import { BrowserRouter as Router } from "react-router-dom";
 class Navbar extends React.Component {
   render() {
     const styles = {
-      color: ""
-    };
+      color: "",
 
+    };
+    const styleLi = {
+      marginLeft:'15%',
+      marginRight:'15%'
+
+    };
+    const styles2 = {
+      color: "",
+      whiteSpace:"pre"
+
+    };
+    let classVal=""
     if (this.props.textColor === "black") {
-      styles.color = "white";
-    } else {
       styles.color = "black";
+      styles2.color = "black";
+      classVal="navbar navbar-expand-lg navbar-light bg-transparent "
+    } else {
+      styles.color = "white";
+      styles2.color = "white";
+      classVal="navbar navbar-expand-lg navbar-dark bg-transparent "
     }
     return (
-      <div className="navbar navbar-expand-lg navbar-dark bg-transparent ">
+      <div className={classVal}>
         <a className="navbar-brand" href="#" style={{ color: "#F2C94C" }}>
           YOLOSHADOW
         </a>
@@ -34,13 +49,13 @@ class Navbar extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" style={styles} href="/Explore">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link" style={styles} href="/explore">
                 Explore <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item active">
-              <a className="nav-link" style={styles} href="#">
+            <li className="nav-item active"  style={styleLi}>
+              <a className="nav-link" style={styles} href="story">
                 Story
               </a>
             </li>
@@ -55,18 +70,18 @@ class Navbar extends React.Component {
              <a className="dropdown-item" href="#">Something else here</a>
            </div>
          </li> */}
-            <li className="nav-item active">
-              <a className="nav-link " style={styles} href="#">
+            <li className="nav-item active"  style={styleLi}>
+              <a className="nav-link " style={styles2} href="hostexperience">
                 Host an Experience
               </a>
             </li>
-            <li className="nav-item active">
-              <a className="nav-link " style={styles} href="#">
+            <li className="nav-item active"  style={styleLi}>
+              <a className="nav-link " style={styles} href="about">
                 About
               </a>
             </li>
-            <li className="nav-item active">
-              <a className="nav-link " style={styles} href="#">
+            <li className="nav-item active"  style={styleLi}>
+              <a className="nav-link " style={styles2} href="contact">
                 Contact Us
               </a>
             </li>

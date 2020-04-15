@@ -1,7 +1,7 @@
 .FeatureStoryTitle{
   // position: absolute;
-width: 30%;
-height: 5%;
+//width: 30%;
+height: 650px;
 // left: 10%;
 // top: 120%;
 
@@ -20,7 +20,7 @@ color: #30233D;
 
 
 .learnmore{
- 
+
 width: 190px;
 height: 45px;
  left: 30%;
@@ -28,7 +28,7 @@ height: 45px;
 
 
 
-background: #5E239D;
+
 border-radius: 36px
 
 
@@ -58,8 +58,8 @@ border-radius: 36px
 }
 
 .right-arrow, .left-arrow {
-  height: 50px;
-  width: 50px;
+  height:25px;
+  width: 25px;
 
   /*display: flex;
   align-items: center;
@@ -75,40 +75,37 @@ border-radius: 36px
   }
 }
 
-.cool-buttons {
-  background: black;
-  border: 2px solid white;
-}
+
 
 .right-arrow {
-   position: absolute;
-   top: 50%;
-  right: 27%;
+   //position: absolute;
+  //  top: 50%;
+  // right: 27%;
   z-index: 999;
   color: red;
 
-  img {
-    transform: translate(50%, 40%);
-
-    &:focus {
-      outline: 0;
-    }
-  }
+  // img {
+  //   transform: translate(50%, 40%);
+  //
+  //   &:focus {
+  //     outline: 0;
+  //   }
+  // }
 }
 
 .left-arrow {
-  position: absolute;
-   top: 50%;
-   left: 2%;
+  // position: absolute;
+    // top: 50%;
+    // left: 500%;
 
   z-index: 999;
   color: red;
 
-  img {
-    transform: translate(29%,40%);
-
-    &:focus {
-      outline: 0;
-    }
-  }
+  // img {
+  //   transform: translate(29%,40%);
+  //
+  //   &:focus {
+  //     outline: 0;
+  //   }
+  // }
 }

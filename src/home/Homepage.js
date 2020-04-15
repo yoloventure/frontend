@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar"
 import midSectionHome from '../components/midSectionHome.js'
 import Slider from '../components/Slider'
 import homeArrow from '../photos/homeArrow.png'
+import ScrollArrow from '../photos/ScrollForMore.png'
 import Background from '../photos/CoverPhoto.png'
 import Bottom from "../components/bottom"
 import FooterPage from "../components/footer"
@@ -35,17 +36,23 @@ export default class Homepage extends React.Component{
 
                                   </div>
                                   <div className='row '>
-                                        <div className='offset-1 pt-4'>
+                                        <div className='col-lg-9 col-10 offset-1 pt-4'>
                                         <h4 className="" style={{color:"white"}}> Are You Ready? </h4>
-                                        </div>
-                                  </div>
-                                  <div className='row '>
-                                        <div className='offset-1 pt-4'>
+
                                         <h3 className='' style={{fontSize:'600%', color:"white"}}>Your next career<br/><span style={{color:"#F2C94C"}}> starts with an <br/> adventure </span>  </h3>
+                                        </div>
+                                        <div className='col-lg-2 col-2 pt-4' id="scrollForMore">
+
+                                          <h3 className='' style={{"position":"absolute", top:"50%","width":"272px","height":"28px","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#FCFCFC","transform":"rotate(90deg)"}}>
+                                          Scroll For More </h3>
+
+
+                                          <a href="#" style={{"position":"absolute", top:"77%", left:'53%'}}>  <img src={ScrollArrow}></img></a>
+
                                         </div>
                                   </div>
 
-                                  <div className='row pb-4 '>
+                                  <div className='row pb-5 '>
                                         <div className=' row offset-1 ' style={{background: "rgba(255, 255, 255, 0.31)",border: "5px solid #ffffff", height:"5%", width:"50%", boxSizing:"border-box"}}>
                                                    <div className="col-lg-10 col-sm-8 pt-1">
                                                     <a href="#" className='' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"32px","lineHeight":"163.35%","display":"flex","alignItems":"center","color":"#FCFCFC"}}
@@ -59,21 +66,18 @@ export default class Homepage extends React.Component{
                     </div>
 
 
-          <div className='row '>
+          <div className='row mt-5'>
                 <Slider/>
           </div>
-          
-              <div className='' style={{background: "#150433"}} >
-                                  <div className='row offset-lg-5 offset-sm-5 offset-3 pt-5' >
-                                        <h3 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px",color: "#F61067", "lineHeight":"26px", textAlign:"center","letterSpacing":"6px","textTransform":"uppercase"}}
-                                        > We are amazing </h3>
-                                  </div>
-                                    <div className='row offset-sm-4  '>
-                                       <h2 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
-                                       >        Why Yolo </h2>
+
+              <div className='pt-5' style={{background: "#150433"}} >
+
+                                    <div className='row d-flex justify-content-center pt-5 '>
+                                       <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
+                                        > Why Yolo </h2>
                                     </div>
-                                    <div className='row offset-lg-4 offset-sm-3  ' >
-                                        <h3 style={{fontSize:"18px", whiteSpace:"pre", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"800",lineHeight:"29px",textAlign:"center",color:"#FCFCFC"}}
+                                    <div className='row d-flex justify-content-center  ' >
+                                        <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"800",lineHeight:"29px",textAlign:"center",color:"#FCFCFC"}}
                                         >       YOLO empowers me to become an adventurer. </h3>
 
                                     </div>
@@ -106,7 +110,7 @@ export default class Homepage extends React.Component{
                                     </div>
 
                               <div className='container pt-3 pb-5  ' >
-                                  <div className="row">
+                                  <div className="row ">
                                     <div className="col-4">
                                     <img src={icon4} alt="logo4"/>
                                   <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#F67110"}}
@@ -139,11 +143,11 @@ export default class Homepage extends React.Component{
                     <div className='container'>
                                       <div className='row pt-5 d-flex justify-content-center'>
 
-                                          <h2 className="text-center" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
+                                          <h2 className="text-center  d-flex justify-content-center" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                                           > WHAT WE DO </h2>
                                       </div>
                                       <div className='row d-flex justify-content-center'>
-                                          <h3 className=" " style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"45px","lineHeight":"67px","color":"#30233D"}}
+                                          <h3 className=" text-center d-flex justify-content-center" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"45px","lineHeight":"67px","color":"#30233D"}}
                                           > What we do is more than you can imagine </h3>
                                       </div>
 
