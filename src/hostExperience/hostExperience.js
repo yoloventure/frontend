@@ -93,12 +93,16 @@ class hostExperience extends React.Component {
             <figure className="col align-self-end">
               <h5 className="here20"> HERE WE GO</h5>
               <h3 className="howTo">How to Become a Host</h3>
-              <button className="applyNow-2">
-                <a href="#">Apply Now</a>
-              </button>
-              <button className="applyNow-2">
-                <a href="#">Host Guidelines</a>
-              </button>
+              <a href="#">
+                <button className="applyNow-2">
+                  <a href="#">Apply Now</a>
+                </button>
+              </a>
+              <a href="#">
+                <button className="applyNow-2">
+                  <a href="#">Host Guidelines</a>
+                </button>
+              </a>
             </figure>
           </div>
           <div className="container-fluid row">
