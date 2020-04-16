@@ -68,7 +68,7 @@ class Register extends Component {
                   <span>First Name: </span>
                   <MDBInput type="text" />
                   <span>Last Name: </span>
-                  <MDBInput icon="envelope" type="text" />
+                  <MDBInput type="text" />
                   <span>Email address: </span>
                   <MDBInput
                     icon="envelope"
