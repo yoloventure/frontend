@@ -9,6 +9,9 @@ function Page7() {
           ... days
         </h3>
       </div>
+      <div className="row submit">
+        <input type="submit" value="Next Step" />
+      </div>
     </div>
   );
 }
