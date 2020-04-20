@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
-import Navbar from "../commons/Navbar";
+import Navbar from "../components/Navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../commons/footer";
 import chef from "../photos/chef.jpg";
@@ -17,7 +17,7 @@ class hostGuidelines extends React.Component {
     return (
       <div className="container-fluid app">
         <div className="nav">
-          <Navbar />
+          <Navbar textColor={"black"} />
         </div>
         <div className="row align-items-center experience-fig1">
           <h2 className="col">Host an Experience</h2>

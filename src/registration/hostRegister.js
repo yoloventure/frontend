@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./hostRegister.css";
-import Navbar from "../commons/Navbar";
+import Navbar from "../components/Navbar";
 import RegistrationFooter from "../components/RegistrationFooter";
 import ortho from "../photos/ortho.png";
 import Page1 from "../components/regFormComponents/page1";
@@ -53,7 +53,7 @@ class hostRegister extends React.Component {
     return (
       <div className="container-fluid app">
         <div className="nav">
-          <Navbar />
+          <Navbar textColor={"black"} />
         </div>
 
         <div className="constant">
