@@ -11,7 +11,7 @@ import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
 
-class hostRegister extends React.Component {
+class HostRegister extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,4 +96,4 @@ class hostRegister extends React.Component {
   }
 }
 
-export default hostRegister;
+export default HostRegister;

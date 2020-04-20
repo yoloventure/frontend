@@ -6,6 +6,12 @@ import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from "./auth/register";
+import HostRegister from "./registration/HostRegister";
+import P from "./api/APIUser";
+import FeatureStory from "./story/FeatureStory";
+import About from "./about/About";
+import hostGuidelines from "./hostExperience/hostGuidelines";
+import APIExperience from "./api/APIExperience";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,9 +28,9 @@ class App extends React.Component {
 
   authListener() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
       if (user) {
         this.setState({ user });
+        console.log(APIExperience.getAllExperiences());
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
@@ -51,10 +57,24 @@ class App extends React.Component {
           }}
         />
         <Route
+          path="/hostguidelines"
+          exact
+          render={() => {
+            return <hostGuidelines />;
+          }}
+        />
+        <Route
           path="/register"
           exact
           render={() => {
             return <Register />;
+          }}
+        />
+        <Route
+          path="/about"
+          exact
+          render={() => {
+            return <About />;
           }}
         />
         <Route
@@ -65,7 +85,22 @@ class App extends React.Component {
           }}
         />
         <Route
+          path="/story"
+          exact
+          render={() => {
+            return <FeatureStory />;
+          }}
+        />
+        <Route
+          path="/hostregister"
+          exact
+          render={() => {
+            return <HostRegister />;
+          }}
+        />
+        <Route
           path="/"
+          exact
           render={() => {
             return <Homepage />;
           }}
