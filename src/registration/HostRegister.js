@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
-import RegistrationFooter from "../components/RegistrationFooter";
+import RegistrationFooter from "../components/registrationFooter";
 import ortho from "../photos/ortho.png";
-import Page1 from "../components/regFormComponents/page1";
-import Page2 from "../components/regFormComponents/page2";
+import Page1 from "../components/regFormComponents/Page1";
+import Page2 from "../components/regFormComponents/Page2";
 import Page3 from "../components/regFormComponents/Page3";
-import Page4 from "../components/regFormComponents/page4";
+import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
