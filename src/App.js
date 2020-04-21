@@ -6,8 +6,7 @@ import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from "./auth/register";
-import HostRegister from "./registration/HostRegister";
-import P from "./api/APIUser";
+import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
 import hostGuidelines from "./hostExperience/hostGuidelines";
