@@ -34,7 +34,7 @@ class Page4 extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="container-fluid">
             <h3>Expertise</h3>
-            <div className="row">
+            <div className="row container">
               <p>
                 We love who you are as a person (a.k.a: no matter what skill
                 sets you have, we at Yolo will always love you). Please only
@@ -52,8 +52,11 @@ class Page4 extends React.Component {
                 />
               </div>
             </div>
-            <div className="row submit">
-              <input type="submit" value="Next Step" />
+            <div className="row mt-5 mb-4">
+              <div className="col"></div>
+              <div className="col">
+                <input class="btn btn-danger" type="submit" value="Next Step" />
+              </div>
             </div>
           </div>
         </form>

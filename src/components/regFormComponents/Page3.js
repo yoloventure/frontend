@@ -4,7 +4,13 @@ class Page3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offer: "Describe what you can offer to hostees",
+      offerOne: "e.g., Dentist-patient communication techniques",
+      offerTwo: "",
+      offerThree: "",
+      moreOne:
+        "e.g., I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients.",
+      moreTwo: "",
+      moreThree: "",
       otherAspects:
         "example: perks(company pets,coffee shop,drinks, nap space etc.)"
     };
@@ -40,12 +46,95 @@ class Page3 extends React.Component {
 
             <div className="container-fluid">
               <div className="row">
-                <textarea
-                  name="offer"
-                  value={this.state.offer}
-                  onChange={this.handleInputChange}
-                />
+                <div className="col">
+                  <p className="ellipse">1</p>
+                </div>
+                <div className="col">
+                  <p className="ellipse">2</p>
+                </div>
+                <div className="col">
+                  <p className="ellipse">3</p>
+                </div>
               </div>
+
+              <div className="row mb-n2">
+                <div className="col ">
+                  <p>One aspect you can offer</p>
+                </div>
+                <div className="col">
+                  <p>Another aspect you can offer</p>
+                </div>
+                <div className="col">
+                  <p>Another aspect you can offer</p>
+                </div>
+              </div>
+
+              <div className="row ">
+                <div className="col">
+                  <input
+                    type="text"
+                    name="offerOne"
+                    value={this.state.offerOne}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="col">
+                  <input
+                    type="text"
+                    name="offerTwo"
+                    value={this.state.offerTwo}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="col">
+                  <input
+                    type="text"
+                    name="offerThree"
+                    value={this.state.offerThree}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <p>Tell us more</p>
+                </div>
+                <div className="col">
+                  <p>Tell us more</p>
+                </div>
+                <div className="col">
+                  <p>Tell us more</p>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  <textarea
+                    type="text"
+                    name="moreOne"
+                    value={this.state.moreOne}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="col">
+                  <textarea
+                    type="text"
+                    name="moreTwo"
+                    value={this.state.moreTwo}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="col">
+                  <textarea
+                    type="text"
+                    name="moreThree"
+                    value={this.state.moreThree}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+              </div>
+
               <h6>What other aspects would you offer?</h6>
               <div className="row">
                 <textarea
@@ -55,8 +144,15 @@ class Page3 extends React.Component {
                 />
               </div>
 
-              <div className="row submit">
-                <input type="submit" value="Next Step" />
+              <div className="row mt-5 mb-4">
+                <div className="col"></div>
+                <div className="col">
+                  <input
+                    class="btn btn-danger"
+                    type="submit"
+                    value="Next Step"
+                  />
+                </div>
               </div>
             </div>
           </div>

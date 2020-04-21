@@ -19,10 +19,57 @@
 }
 
 textarea {
-    width: 100%;
+    width: 75%;
 }
 
+.join {
+    width: 1024px;
+    height: 65.78px;
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
 
-/* .insert {
-    height: 558px;
-} */
+.where {
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+h3 {
+    width: 1169px;
+    height: 72px;
+    /* Headers/H3 */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 45px;
+    line-height: 67px;
+    /* TextColors/Headers */
+    color: #30233d;
+}
+
+.ellipse {
+    background: rgba(246, 16, 103, 0.02);
+    width: 10%;
+    border: 1px solid #f61067;
+    box-sizing: border-box;
+    border-radius: 50%;
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 163.35%;
+    /* or 52px */
+    color: #f61067;
+}

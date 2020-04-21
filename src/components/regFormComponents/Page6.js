@@ -43,8 +43,11 @@ class Page6 extends React.Component {
               </label>
               <input type="password" />
             </div>
-            <div className="row submit">
-              <input type="submit" value="Next Step" />
+            <div className="row mt-5 mb-4">
+              <div className="col"></div>
+              <div className="col">
+                <input class="btn btn-danger" type="submit" value="Next Step" />
+              </div>
             </div>
           </div>
         </div>

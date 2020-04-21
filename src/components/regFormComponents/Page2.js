@@ -32,23 +32,25 @@ class Page2 extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="container-fluid">
             <div className="row">
-              <h3>Join a global community of hosts</h3>
+              <h3 className="join">Join a global community of hosts</h3>
             </div>
             <div className="row">
-              <div className="col-sm-4">
-                <h3>Where are you based?</h3>
-              </div>
+              <h3 className="where">Where are you based?</h3>
             </div>
             <div className="container-fluid">
               <textarea
                 name="location"
                 value={this.state.location}
                 onChange={this.handleInputChange}
+                className="mt-3"
               />
             </div>
 
-            <div className="row submit">
-              <input type="submit" value="Next Step" />
+            <div className="row mt-5 mb-4">
+              <div className="col"></div>
+              <div className="col">
+                <input class="btn btn-danger" type="submit" value="Next Step" />
+              </div>
             </div>
           </div>
         </form>

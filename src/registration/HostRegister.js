@@ -88,7 +88,7 @@ class HostRegister extends React.Component {
                 className="chefimage"
               />
             </div>
-            <div className="col apply">
+            <div className="col apply ml-5">
               <p>Apply To Be A Host</p>
             </div>
           </div>
