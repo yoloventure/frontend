@@ -96,7 +96,7 @@ class Page3 extends React.Component {
                 </div>
               </div>
 
-              <div className="row">
+              <div className="row mt-3 mb-n3">
                 <div className="col">
                   <p>Tell us more</p>
                 </div>
@@ -135,20 +135,24 @@ class Page3 extends React.Component {
                 </div>
               </div>
 
-              <h6>What other aspects would you offer?</h6>
-              <div className="row">
-                <textarea
-                  name="otherAspects"
-                  value={this.state.otherAspects}
-                  onChange={this.handleInputChange}
-                />
+              <div className="container mt-3">
+                <div className="row">
+                  <h6>What other aspects would you offer?</h6>
+                </div>
+                <div className="row">
+                  <textarea
+                    name="otherAspects"
+                    value={this.state.otherAspects}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
               </div>
 
               <div className="row mt-5 mb-4">
                 <div className="col"></div>
                 <div className="col">
                   <input
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     type="submit"
                     value="Next Step"
                   />

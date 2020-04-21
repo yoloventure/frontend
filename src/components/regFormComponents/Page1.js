@@ -51,11 +51,13 @@ class Page1 extends React.Component {
               <div className="col-sm-2">
                 <h6>Personal</h6>
               </div>
+              {/* 
               <div className="col-sm-2">
                 <i className="">insert icon</i>
               </div>
 
               <p>import from LinkedIn</p>
+              */}
             </div>
             <div className="container-fluid">
               <div className="row mb-n2">
@@ -183,7 +185,7 @@ class Page1 extends React.Component {
                 <div className="col"></div>
                 <div className="col">
                   <input
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     type="submit"
                     value="Next Step"
                   />

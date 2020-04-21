@@ -13,7 +13,7 @@ function Page7() {
       <div className="row mt-5 mb-4">
         <div className="col"></div>
         <div className="col">
-          <input class="btn btn-danger" type="submit" value="Next Step" />
+          <input className="btn btn-danger" type="submit" value="Next Step" />
         </div>
       </div>
     </div>

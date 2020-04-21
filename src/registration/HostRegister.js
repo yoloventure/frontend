@@ -21,56 +21,34 @@ class HostRegister extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleProgressBar = this.handleProgressBar.bind(this);
   }
 
   handleSubmit(event) {
-    if (this.state.counter == 1) {
-      this.setState({ progess: 0 });
-    } else if (this.state.counter == 2) {
-      this.setState({ progess: 25 });
-    } else if (this.state.counter == 3) {
-      this.setState({ progess: 50 });
-    } else if (this.state.counter == 4) {
-      this.setState({ progess: 75 });
-    } else if (this.state.counter == 5) {
-      this.setState({ progess: 95 });
-    } else {
-      this.setState({ progess: 100 });
-    }
-
     this.setState({ counter: this.state.counter + 1 });
+    if (this.state.progress < 100) {
+      this.setState({ progress: this.state.progress + 25 });
+    }
   }
 
   handlePageRender(counter) {
     if (counter == 1) {
-      console.log(this.props.progress);
       const pageToRender = <Page1 />;
-
       return pageToRender;
     } else if (counter == 2) {
-      // this.setState({ progress: 25 });
       return <Page2 />;
     } else if (counter == 3) {
       return <Page3 />;
     } else if (counter == 4) {
-      // this.setState({ checkCounter: 5 });
       return <Page4 />;
     } else if (counter == 5) {
-      // this.setState({ checkCounter: 6 });
       return <Page5 />;
     } else if (counter == 6) {
-      // this.setState({ checkCounter: 7 });
       return <Page6 />;
     } else {
       const pageToRender = <Page7 />;
       return pageToRender;
     }
   }
-
-  // handleProgressBar(counter) {
-
-  // }
 
   render() {
     return (
@@ -107,6 +85,7 @@ class HostRegister extends React.Component {
                 <div
                   className={"progress-bar w-" + this.state.progress}
                   role="progressbar"
+                  style={{ width: this.state.progress }}
                   aria-valuenow="0"
                   aria-valuemin="0"
                   aria-valuemax="100"
