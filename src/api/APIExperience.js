@@ -71,8 +71,4 @@ function deleteExperience(experienceId) {
 }
 
 
-<<<<<<< HEAD
 export default {getExperienceById, getAllExperiences, deleteExperience, editExperience, createNewExperience}
-=======
-export default {getExperienceById, getAllExperiences, deleteExperience, editExperience, createNewExperience}
->>>>>>> origin/master
