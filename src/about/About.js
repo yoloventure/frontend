@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./about.css";
-import Navbar from "../commons/Navbar";
+import Navbar from "../components/Navbar";
 import FooterPage from "../commons/footer";
 import Bottom from "../components/bottom";
 import faces from "../photos/Faces.png";
@@ -18,7 +18,7 @@ class About extends React.Component {
     return (
       <div className="container-fluid app">
         <div className="nav">
-          <Navbar />
+          <Navbar textColor={"black"} />
         </div>
 
         <div className="experience-fig-1 row align-items-center">
