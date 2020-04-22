@@ -4,7 +4,7 @@ import "./footer.css";
 
 const FooterPage = () => {
   return (
-    <footer className="row app">
+    <footer id="footerOfEachPage" className="row app">
       <div className="col-sm-2 ml-auto">
         <h5 className="logo ">YOLO</h5>
         <p className="start">Start your next adventure with us</p>

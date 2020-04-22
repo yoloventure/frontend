@@ -31,8 +31,8 @@ class Navbar extends React.Component {
       classVal="navbar navbar-expand-lg navbar-dark bg-transparent "
     }
     return (
-      <div className={classVal}>
-        <a className="navbar-brand" href="#" style={{ color: "#F2C94C" }}>
+      <div className={classVal} style={{position:'', zIndex:''}}>
+        <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
           YOLOSHADOW
         </a>
         <button
@@ -81,7 +81,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link " style={styles2} href="contact">
+              <a className="nav-link " style={styles2} href="#footerOfEachPage">
                 Contact Us
               </a>
             </li>

@@ -16,12 +16,15 @@ import icon3 from '../photos/Icon3.png'
 import icon4 from '../photos/Icon4.png'
 import icon5 from '../photos/Icon5.png'
 import icon6 from '../photos/Icon6.png'
+import  Link  from "react-router-dom";
+
 
 
 export default class Homepage extends React.Component{
 
   render(){
 
+    const Link = require("react-router-dom").Link;
 
   return(
 
@@ -47,12 +50,12 @@ export default class Homepage extends React.Component{
                                           Scroll For More </h3>
 
 
-                                          <a href="#" style={{"position":"absolute", top:"77%", left:'53%'}}>  <img src={ScrollArrow}></img></a>
+                                          <a href="#homepageSlider" style={{"position":"absolute", top:"77%", left:'53%'}}>  <img src={ScrollArrow}></img></a>
 
                                         </div>
                                   </div>
 
-                                  <div className='row pb-5 '>
+                                  <Link to="explore" className='row pb-5 '>
                                         <div className=' row offset-1 ' style={{background: "rgba(255, 255, 255, 0.31)",border: "5px solid #ffffff", height:"5%", width:"50%", boxSizing:"border-box"}}>
                                                    <div className="col-lg-10 col-sm-8 pt-1">
                                                     <a href="#" className='' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"32px","lineHeight":"163.35%","display":"flex","alignItems":"center","color":"#FCFCFC"}}
@@ -62,11 +65,11 @@ export default class Homepage extends React.Component{
                                                       <a href="#">  <img src={homeArrow}></img></a>
                                                   </div>
                                         </div>
-                                 </div>
+                                 </Link>
                     </div>
 
 
-          <div className='row mt-5'>
+          <div id="homepageSlider" className='row mt-5'>
                 <Slider/>
           </div>
 
