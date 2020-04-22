@@ -95,6 +95,26 @@
     color: #30233d;
 }
 
+.whyHost a {
+    /* position: absolute; */
+    width: 89px;
+    height: 21px;
+    /* left: 463px;
+top: 828px; */
+    /* Text_Misc/Button */
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13.5px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /* Colors/Secondary_100 */
+    color: #5E239D;
+}
+
 .applyNow-1 {
     color: white;
     /* position: absolute; */
@@ -130,6 +150,8 @@
     /* position: absolute; */
     width: 197px;
     height: 45px;
+    color: #5e239d;
+    background: #fcfcfc;
     /* left: 440px;
     top: 816px; */
     /* Colors/Secondary_100 */
@@ -142,6 +164,7 @@
     /* position: relative;
     left: 8px; */
     /* Text_Misc/Button */
+    color: #5e239d;
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: 500;
@@ -152,7 +175,6 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     /* Colors/Secondary_100 */
-    color: #5e239d;
 }
 
 .fig10 {
@@ -526,6 +548,9 @@ top: 4012px; */
     .app {
         width: 100%;
     }
+    .quotes {
+        width: 52%;
+    }
 }
 
 @media (min-width: 576px) {
@@ -552,3 +577,19 @@ top: 4012px; */
 /* Extra large devices (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {}
+
+.guide p {
+    font-family: Mplus 1p;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+    /* TextColors/Headers */
+    color: #30233D;
+}
+
+
+/* body,
+html {
+    overflow-x: hidden
+} */

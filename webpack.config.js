@@ -15,6 +15,15 @@ module.exports = (env, options) => {
     const isDevMode = options.mode === "development";
 
     return {
+        entry: './src/index.js',
+        output: {
+          path: path.resolve(__dirname, 'dist'),
+          filename: 'index_bundle.js',
+          publicPath: '/'
+        },
+        devServer: {
+          historyApiFallback: true,
+        },
         devtool: isDevMode ? "source-map" : false,
         resolve: {
             extensions: [".ts", ".tsx", ".js"],
