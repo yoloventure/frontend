@@ -27,8 +27,15 @@ class Page5 extends React.Component {
               <p>{this.props.applicationSummary}</p>
             </div>
 
-            <div className="row submit">
-              <input type="submit" value="Next Step" />
+            <div className="row mt-5 mb-4">
+              <div className="col"></div>
+              <div className="col">
+                <input
+                  className="btn btn-danger"
+                  type="submit"
+                  value="Next Step"
+                />
+              </div>
             </div>
           </div>
         </form>
