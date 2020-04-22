@@ -5,8 +5,9 @@ import Navbar from "../components/Navbar";
 import "./Explore.css";
 import data from "../explore/data.json";
 import Card from "../components/Card";
-import mapImage from "../photos/map.png"
-import searchArrow from "../photos/searchArrow.png"
+import mapImage from "../photos/map.png";
+import searchArrow from "../photos/searchArrow.png";
+import  Link  from "react-router-dom";
 
 export default class Explore extends React.Component{
   constructor(props) {
@@ -24,18 +25,18 @@ export default class Explore extends React.Component{
         Cards.push(
         <div class="row">
         <div className="card col">
-        <Card image={data[i].image} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
+        <Card image={data[i].image} id={data[i].id} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
         {console.log(data[i].image)}
         </div>
         <div className="card col">
-        <Card image={data[i+1].image} location={data[i+1].location} profession={data[i+1].profession} price={data[i+1].price} duration={data[i+1].duration}/>
+        <Card image={data[i+1].image} id={data[i+1].id} location={data[i+1].location} profession={data[i+1].profession} price={data[i+1].price} duration={data[i+1].duration}/>
         </div>
         </div>)
         }else{
           Cards.push(
           <div class="row">
           <div className="card col">
-          <Card image={data[i].image} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
+          <Card image={data[i].image} id={data[i].id} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
           </div>
           </div>)
         }
@@ -71,7 +72,7 @@ export default class Explore extends React.Component{
                                     <div class="dropdown-menu" id="dd1">
                                         <a className='dropdown-item' onclick='filterIndustry(event)'> Low to High </a>
                                         <a className='dropdown-item' onclick='filterIndustry(event)'> High to Low </a>
-                  
+
 
                                     </div>
                                   </div>

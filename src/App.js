@@ -2,6 +2,7 @@ import React from "react";
 import firebase from "./config/firebase";
 import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
+import ExperienceDetail from "./explore/ExperienceDetail";
 import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -49,6 +50,16 @@ class App extends React.Component {
           }}
         />
         <Route
+<<<<<<< HEAD
+          path='/ExperienceDetail/:handle'
+          exact
+          render={() => {
+            return <ExperienceDetail />;
+          }}
+        />
+        <Route
+=======
+>>>>>>> origin/master
           path="/hostexperience"
           exact
           render={() => {

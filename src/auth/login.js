@@ -1,4 +1,3 @@
-
 import React , {Component} from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn,MDBCard } from 'mdbreact';
 import firebase from "../config/firebase"

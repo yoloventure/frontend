@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import Slide from './Slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
-import img1 from "./slide_2.png"
-import img2 from "./slide_3.png"
+import img1 from "../photos/chef.jpg"
+import img2 from "../photos/ortho2.png"
 import img3 from "../photos/yawo.png"
 import "./style.scss"
+import bquote from "../photos/bquote.png";
+import fquote from "../photos/fquote.png";
 
 export default class Slider extends Component {
   constructor(props) {
@@ -80,35 +82,36 @@ export default class Slider extends Component {
     return (
       <div className=''>
             <div className='row'>
-                  <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 pt-5  '>
+                  <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"20%"}}>
                        <h2 className="" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
                        <h2 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
-                       >  {this.state.title[this.state.currentIndex]} </h2>
+                       >  {this.state.title[0]} </h2>
                        <h3 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
-                       > {this.state.body1[this.state.currentIndex]} </h3>
+                       > {this.state.body1[0]} </h3>
                        <h3 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
-                       > {this.state.body2[this.state.currentIndex]} </h3>
+                       > {this.state.body2[0]} </h3>
                        <button class="mt-5 offset-lg-4 learnmore d-flex justify-content-center" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
                   </div>
 
+                  <div className="col-md-3 align-self-center">
 
-                  <div className="slider col-lg-4 col-md-12 col-sm-12 col-12 " >
-
-                    <div>
-
-                         <img src={this.state.images[0]}/>
-
-                    </div>
-
-
+                      <img src={this.state.images[0]}
+                      alt="photo of a smiling chef"
+                      className="chefimage"
+                      />
                   </div>
-
-                  <div className=" col-lg-2 col-md-12 col-sm-12 col-12 " style={{background:'#F2C94F',marginTop:'5%', height:'300px'}}>
-
-                  <h3>"some quote stufff ff san ashfoahsf"</h3>
-
-
+                  <div className="col-md-1 quoteContainer">
+                    <div className="quotes d-flex flex-column">
+                      <img src={fquote} alt="" />
+                      <br />
+                      <p style={{ width: "50%" }}>
+                        YOLOers really inspire me! I’ve got different points of view
+                        on the work I do.
+                      </p>{" "}
+                      <br />
+                      <img src={bquote} alt="" />
+                    </div>
                   </div>
 
 
@@ -128,12 +131,12 @@ export default class Slider extends Component {
                   </div>
 
 
-                  <div className="slider col-lg-4 col-md-12 col-sm-12 col-12 ">
+                  <div className="slider col-lg-4 " >
 
-                    <div>
+                    <div >
 
 
-                            <Slide key={this.state.currentIndex} image={this.state.images[this.state.currentIndex]}/>
+                            <Slide key={this.state.currentIndex} image={this.state.images[this.state.currentIndex]} />
 
 
                     </div>
