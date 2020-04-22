@@ -3,7 +3,7 @@ import Slide from './Slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
 import img1 from "../photos/chef.jpg"
-import img2 from "../photos/ortho.png"
+import img2 from "../photos/ortho2.png"
 import img3 from "../photos/yawo.png"
 import "./style.scss"
 import bquote from "../photos/bquote.png";
