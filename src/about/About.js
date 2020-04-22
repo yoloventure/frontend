@@ -13,7 +13,7 @@ import carolina from "../photos/carolina.png";
 import peiyu from "../photos/peiyu.png";
 import may from "../photos/may.png";
 
-class about extends React.Component {
+class About extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
@@ -148,4 +148,4 @@ class about extends React.Component {
   }
 }
 
-export default about;
+export default About;

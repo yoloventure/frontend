@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import React from "react";
 import ReactDOM from "react-dom";
-
+import Navbar from "../commons/Navbar"
 import Slider from "../components/Slider";
 import "./FeatureStory.css";
 
@@ -10,6 +10,9 @@ export default class FeatureStory extends React.Component {
     return (
       <div className="FeatureStory">
         <div className="FeatureStoryTitle">
+          <div className="nav">
+            <Navbar />
+          </div>
           <h2>
             {" "}
             What is it like to <br />
