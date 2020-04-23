@@ -11,6 +11,8 @@ import kaixin from "../photos/kaixin.jpg";
 import fquote from "../photos/fquote.png";
 import quotes from "../photos/quotes.png";
 import bquote from "../photos/bquote.png";
+import begQuote from "../photos/begQuote.png";
+import endQuote from "../photos/endQuote.png";
 
 class hostExperience extends React.Component {
   render() {
@@ -89,7 +91,7 @@ class hostExperience extends React.Component {
         </div>
 
         <div className="container-md-fluid d-flex justify-content-end row mb-10">
-          <div className="container-sm d-flex flex-column align-items-end mt-5 mb-4">
+          <div className="container-sm d-flex flex-column align-items-end mt-5 mb-5">
             <figure className="col align-self-end">
               <h5 className="here20"> HERE WE GO</h5>
               <h3 className="howTo">How to Become a Host</h3>
@@ -106,17 +108,17 @@ class hostExperience extends React.Component {
             </figure>
           </div>
           <div className="container-fluid row">
-            <div className="woman-smiling col-sm-4 align-self-center">
+            <div className="woman-smiling col-sm-3 align-self-center">
               <img src={woman} alt="photo of a smiling woman" />
             </div>
             <div className="quote1 col-md-3 align-items-end">
               <div className="quote1Inside d-flex flex-column align-items-center">
-                <span className="begQuote">"</span>
-                <p className="d-flex align-items-center">
+                <img className="mb-5" src={fquote} alt="" />
+                <p className="d-flex align-items-center mb-5">
                   It means a lot to me to share my insights on my job with young
                   talents.
                 </p>{" "}
-                <span className="endQuote">"</span>
+                <img src={bquote} alt="" />
               </div>
             </div>
 
