@@ -5,8 +5,7 @@ class Page4 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expertise:
-        "What expertise do you have? List as many as possible. Examples can include: Artificial Intelligence, Geographic Information System, Woodmaking."
+      expertise: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,6 +46,7 @@ class Page4 extends React.Component {
               <div className="row">
                 <textarea
                   name="expertise"
+                  placeholder="What expertise do you have? List as many as possible. Examples can include: Artificial Intelligence, Geographic Information System, Woodmaking."
                   value={this.state.expertise}
                   onChange={this.handleInputChange}
                 />

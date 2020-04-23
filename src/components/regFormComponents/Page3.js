@@ -4,15 +4,13 @@ class Page3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offerOne: "e.g., Dentist-patient communication techniques",
+      offerOne: "",
       offerTwo: "",
       offerThree: "",
-      moreOne:
-        "e.g., I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients.",
+      moreOne: "",
       moreTwo: "",
       moreThree: "",
-      otherAspects:
-        "example: perks(company pets,coffee shop,drinks, nap space etc.)"
+      otherAspects: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -74,6 +72,7 @@ class Page3 extends React.Component {
                   <input
                     type="text"
                     name="offerOne"
+                    placeholder="e.g., Dentist-patient communication techniques"
                     value={this.state.offerOne}
                     onChange={this.handleInputChange}
                   />
@@ -111,6 +110,7 @@ class Page3 extends React.Component {
               <div className="row">
                 <div className="col">
                   <textarea
+                    placeholder="e.g., I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients."
                     type="text"
                     name="moreOne"
                     value={this.state.moreOne}
@@ -141,6 +141,7 @@ class Page3 extends React.Component {
                 </div>
                 <div className="row">
                   <textarea
+                    placeholder="example: perks(company pets,coffee shop,drinks, nap space etc.)"
                     name="otherAspects"
                     value={this.state.otherAspects}
                     onChange={this.handleInputChange}

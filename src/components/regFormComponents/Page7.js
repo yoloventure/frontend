@@ -13,7 +13,9 @@ function Page7() {
       <div className="row mt-5 mb-4">
         <div className="col"></div>
         <div className="col">
-          <input className="btn btn-danger" type="submit" value="Next Step" />
+          <a href="/">
+            <input className="btn btn-danger" type="submit" value="Done" />
+          </a>
         </div>
       </div>
     </div>
