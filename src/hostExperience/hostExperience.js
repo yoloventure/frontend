@@ -11,8 +11,6 @@ import kaixin from "../photos/kaixin.jpg";
 import fquote from "../photos/fquote.png";
 import quotes from "../photos/quotes.png";
 import bquote from "../photos/bquote.png";
-import begQuote from "../photos/begQuote.png";
-import endQuote from "../photos/endQuote.png";
 
 class hostExperience extends React.Component {
   render() {
@@ -77,7 +75,7 @@ class hostExperience extends React.Component {
             </div>
             <div className="col-md-1 quoteContainer">
               <div className="quotes d-flex flex-column">
-                <img src={fquote} alt="" />
+                <img className="mt-5" src={fquote} alt="" />
                 <br />
                 <p style={{ width: "50%" }}>
                   YOLOers really inspire me! I’ve got different points of view
@@ -113,7 +111,7 @@ class hostExperience extends React.Component {
             </div>
             <div className="quote1 col-md-3 align-items-end">
               <div className="quote1Inside d-flex flex-column align-items-center">
-                <img className="mb-5" src={fquote} alt="" />
+                <img className="mb-5 mt-5" src={fquote} alt="" />
                 <p className="d-flex align-items-center mb-5">
                   It means a lot to me to share my insights on my job with young
                   talents.
