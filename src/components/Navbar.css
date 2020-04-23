@@ -1,0 +1,11 @@
+@media (max-width: 65em) {
+  .navbar{
+    height:12%;
+  }
+}
+
+@media (min-width: 60em) {
+  .navbar{
+    height:10%;
+  }
+}

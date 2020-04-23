@@ -51,10 +51,10 @@ export default class Explore extends React.Component{
         <Navbar textColor={'black'} />
 
 
-          <div className="row">
+          <div className="row mt-3 pt-5">
                 <div className="col">
                     <div className="search">
-                        <h1 className="pl-5 pt-2" style={{color:"white", fontSize:"200%"}}>Start Your next Journey </h1>
+                        <h1 className="pl-5 pt-4" style={{color:"white", fontSize:"200%"}}>Start Your next Journey </h1>
                         <div class="input-group pt-2">
                             <input type="text" class="form-control" placeholder="Search"/>
                             <div class="input-group-append">

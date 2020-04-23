@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
+import {Helmet} from "react-helmet";
+import './Navbar.css'
 
 class Navbar extends React.Component {
   render() {
@@ -23,19 +25,24 @@ class Navbar extends React.Component {
     };
     let classVal=""
     let logoValue=[]
+    let navBackgroundStyle={}
     if (this.props.textColor === "black") {
       styles.color = "black";
       styles2.color = "black";
-      classVal="navbar navbar-expand-lg navbar-light bg-transparent "
+      classVal="navbar navbar-expand-lg fixed-top navbar-light bg "
       logoValue.push(<img src={logoColored} />)
+      navBackgroundStyle={background:'#ffffff'}
     } else {
       styles.color = "white";
       styles2.color = "white";
-      classVal="navbar navbar-expand-lg navbar-dark bg-transparent "
+      classVal="navbar navbar-expand-lg fixed-top navbar-dark bg "
       logoValue.push(<img src={logoWhite} />)
+      navBackgroundStyle={background:'#762D89'}
+
     }
     return (
-      <div className={classVal} style={{position:'', background:''}}>
+      <div id='nav' className={classVal} style={navBackgroundStyle}>
+
         <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
           {logoValue}
         </a>

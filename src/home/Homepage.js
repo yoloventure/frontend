@@ -26,13 +26,14 @@ export default class Homepage extends React.Component{
 
 
       <div className='pb-0 mb-0' >
+                  <Navbar textColor={"white"} />
                   <div style={{backgroundImage: "url(" + Background + ")"}}>
                                   <div className='col-12  pt-4 pl-5'>
 
-                                      <Navbar textColor={"white"}/>
+
 
                                   </div>
-                                  <div className='row '>
+                                  <div className='row pt-5 '>
                                         <div className='col-lg-9 col-10 offset-1 pt-4'>
                                         <h4 className="" style={{color:"white"}}> Are You Ready? </h4>
 

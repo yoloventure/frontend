@@ -13,7 +13,7 @@ export default class FeatureStory extends React.Component {
           <div className="nav">
             <Navbar textColor={'black'}/>
           </div>
-        <div className="FeatureStorySlider">
+        <div className="pt-5 mt-2">
           <Slider />
         </div>
         <FooterPage />
