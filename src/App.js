@@ -50,7 +50,7 @@ class App extends React.Component {
           }}
         />
         <Route
-<<<<<<< HEAD
+
           path='/ExperienceDetail/:handle'
           exact
           render={() => {
@@ -58,8 +58,6 @@ class App extends React.Component {
           }}
         />
         <Route
-=======
->>>>>>> origin/master
           path="/hostexperience"
           exact
           render={() => {

@@ -1,7 +1,8 @@
 /*jshint esversion: 6 */
 import React from "react";
 import ReactDOM from "react-dom";
-
+import logoWhite from "../photos/Logo_white.png";
+import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
 
 class Navbar extends React.Component {
@@ -21,19 +22,22 @@ class Navbar extends React.Component {
 
     };
     let classVal=""
+    let logoValue=[]
     if (this.props.textColor === "black") {
       styles.color = "black";
       styles2.color = "black";
       classVal="navbar navbar-expand-lg navbar-light bg-transparent "
+      logoValue.push(<img src={logoColored} />)
     } else {
       styles.color = "white";
       styles2.color = "white";
       classVal="navbar navbar-expand-lg navbar-dark bg-transparent "
+      logoValue.push(<img src={logoWhite} />)
     }
     return (
-      <div className={classVal}>
-        <a className="navbar-brand" href="#" style={{ color: "#F2C94C" }}>
-          YOLOSHADOW
+      <div className={classVal} style={{position:'', background:''}}>
+        <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
+          {logoValue}
         </a>
         <button
           className="navbar-toggler"
@@ -81,7 +85,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li className="nav-item active"  style={styleLi}>
-              <a className="nav-link " style={styles2} href="contact">
+              <a className="nav-link " style={styles2} href="#footerOfEachPage">
                 Contact Us
               </a>
             </li>

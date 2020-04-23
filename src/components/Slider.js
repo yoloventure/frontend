@@ -8,6 +8,9 @@ import img3 from "../photos/yawo.png"
 import "./style.scss"
 import bquote from "../photos/bquote.png";
 import fquote from "../photos/fquote.png";
+import ScrollArrow from '../photos/searchArrow.png'
+import  Link  from "react-router-dom";
+
 
 export default class Slider extends Component {
   constructor(props) {
@@ -79,6 +82,8 @@ export default class Slider extends Component {
   }
 
   render() {
+    const Link = require("react-router-dom").Link;
+
     return (
       <div className=''>
             <div className='row'>
@@ -91,7 +96,9 @@ export default class Slider extends Component {
                        > {this.state.body1[0]} </h3>
                        <h3 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
                        > {this.state.body2[0]} </h3>
-                       <button class="mt-5 offset-lg-4 learnmore d-flex justify-content-center" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
+                       <Link to='/explore'>
+                       <button class="mt-5  learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
+                       </Link>
                   </div>
 
                   <div className="col-md-3 align-self-center">
@@ -118,7 +125,7 @@ export default class Slider extends Component {
 
             </div>
             <div className='row mt-5'>
-                  <div className='FeatureStoryTitle col-lg-8 col-md-12 col-sm-12 col-12 ' style={{background: '#F2C94C', padding:'5%'}}>
+                  <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12 ' style={{background: '#F2C94C', padding:'5%'}}>
                        <h2 className=" offset-1" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
                        <h2 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
@@ -127,7 +134,6 @@ export default class Slider extends Component {
                        > {this.state.body1[this.state.currentIndex]} </h3>
                        <h3 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
                        > {this.state.body2[this.state.currentIndex]} </h3>
-                       <button class="mt-5 offset-lg-4 learnmore d-flex justify-content-center" onclick="/explore" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
                   </div>
 
 
@@ -146,7 +152,29 @@ export default class Slider extends Component {
 
 
 
+                  <div className='col-lg-2 col-2 pt-4' id="">
+
+                    <h3 className='' style={{"position":"absolute", top:"50%","width":"272px","height":"28px","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}>
+                    Scroll For More </h3>
+
+
+                    <a href="#whyYolo" style={{"position":"absolute", top:"67%", left:'49%', "transform":"rotate(90deg)"}}>  <img src={ScrollArrow}></img></a>
+
+                  </div>
+
+
             </div>
+
+            <div className='row' style={{background: '#F2C94C', padding:'0%'}}>
+                  <div className='col-2'>
+                  <Link to='/explore'>
+                  <button className="offset-6  mt-2 learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
+                  </Link>
+                  </div>
+                  <div className='col-2 offset-8' style={{background:'#150433'}}>
+                  </div>
+            </div>
+
             <div className='row'>
               <div className='col-10' style={{height:'100px',background:'#F2C94C'}}>
               </div>

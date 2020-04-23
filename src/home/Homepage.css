@@ -1,0 +1,21 @@
+.hoverButton{
+  background: rgba(255, 255, 255, 0.31);
+}
+.hoverButton:hover{
+  background-color: #9D42FF;
+}
+
+.learnmore{
+
+width: 190px;
+height: 45px;
+
+ padding-bottom: 0%;
+
+
+
+
+border-radius: 36px;
+
+
+}

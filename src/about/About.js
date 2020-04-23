@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./about.css";
 import Navbar from "../components/Navbar";
-import FooterPage from "../commons/footer";
+import FooterPage from "../components/footer";
 import Bottom from "../components/bottom";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";

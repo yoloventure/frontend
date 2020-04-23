@@ -13,11 +13,8 @@ function getUserById(userId){
     });
 }
 
-<<<<<<< HEAD
 //returns the infomations about the current user or null if not logged in
-=======
-//returns the infomations about the current user or null if not logged in 
->>>>>>> origin/master
+
 function getCurrentUser(){
     userRef.child(firebase.auth().currentUser.uid).once("value", (snapshot)=>{
         return  JSON.stringify(snapshot.val());
@@ -81,8 +78,5 @@ function deleteUser(userId) {
 }
 
 
-<<<<<<< HEAD
+
 export default {getUserById, getCurrentUser, getAllUsers, deleteUser, editUser, createNewUser}
-=======
-export default {getUserById, getCurrentUser, getAllUsers, deleteUser, editUser, createNewUser}
->>>>>>> origin/master
