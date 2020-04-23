@@ -81,7 +81,7 @@ class HostRegister extends React.Component {
                 <p>PROGRESS</p>
               </div>
 
-              <div className="col-sm-10 progress" style={{ height: "1px" }}>
+              <div className="col-sm-10 progress" style={{ height: "2px" }}>
                 <div
                   className={"progress-bar  w-" + this.state.progress}
                   role="progressbar"

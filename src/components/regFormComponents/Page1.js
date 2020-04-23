@@ -4,15 +4,14 @@ class Page1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "Full name",
-      contact: "Enter your contact information",
-      gender: "female",
-      title: "ex: Recruiter",
-      stage: "career stage",
-      company: "example: YoloShadow",
-      email: "user@gmail.com",
-      phone: "22-22-222",
-      website: "website url",
+      userName: "",
+      gender: "",
+      title: "",
+      stage: "",
+      company: "",
+      email: "",
+      phone: "",
+      website: "",
       category: "Health",
       description: "I work for the government"
     };
@@ -74,6 +73,7 @@ class Page1 extends React.Component {
                     <input
                       type="text"
                       name="userName"
+                      placeholder="Full name"
                       value={this.state.userName}
                       onChange={this.handleInputChange}
                     />
@@ -82,6 +82,7 @@ class Page1 extends React.Component {
                 <div className="col-sm-6">
                   <div className="row">
                     <input
+                      placeholder="user@email.com"
                       name="email"
                       value={this.state.email}
                       onChange={this.handleInputChange}
@@ -102,17 +103,20 @@ class Page1 extends React.Component {
               <div className="row">
                 <div className="col-sm-6">
                   <div className="row">
-                    <input
-                      name="gender"
+                    <select
                       value={this.state.gender}
-                      type="text"
-                      onChange={this.handleInputChange}
-                    />
+                      onChange={this.handleChange}
+                    >
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                      <option value="nonbinary">Non-binary</option>
+                    </select>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <div className="row">
                     <input
+                      placeholder="+1 222-222-2222"
                       name="phone"
                       value={this.state.phone}
                       type="tel"
@@ -128,6 +132,7 @@ class Page1 extends React.Component {
                 <input
                   type="text"
                   name="title"
+                  placeholder="ex: Recruiter"
                   value={this.state.title}
                   type="text"
                   onChange={this.handleInputChange}
@@ -136,11 +141,14 @@ class Page1 extends React.Component {
               <div className="row mt-3 mb-n2">
                 <div className="col">
                   <div className="row mb-n2">
-                    <label htmlFor="">Career Stage</label>
+                    <label htmlFor="">
+                      Years of experience in current industry
+                    </label>
                   </div>
                   <div className="row">
                     <input
                       type="text"
+                      placeholder="10+ years"
                       name="stage"
                       value={this.state.stage}
                       type="text"
@@ -156,6 +164,7 @@ class Page1 extends React.Component {
                     <input
                       type="text"
                       name="company"
+                      placeholder="ex: YoloShadow"
                       value={this.state.company}
                       type="text"
                       onChange={this.handleInputChange}
@@ -167,6 +176,7 @@ class Page1 extends React.Component {
                   <div className="row">
                     <input
                       type="text"
+                      placeholder="website url"
                       name="website"
                       value={this.state.website}
                       type="text"

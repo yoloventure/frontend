@@ -4,7 +4,7 @@ class Page2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: " City/State/Country"
+      location: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -39,6 +39,7 @@ class Page2 extends React.Component {
             </div>
             <div className="container-fluid">
               <textarea
+                placeholder=" City/State/Country"
                 name="location"
                 value={this.state.location}
                 onChange={this.handleInputChange}
