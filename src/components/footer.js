@@ -26,18 +26,18 @@ const FooterPage = () => {
         </ul>
       </div>
       <div className="col-sm-2">
-        <h5 className="title title2">
+        <h5 className="title title2 mb-5">
           <a href="#">CONTACT US</a>
         </h5>
         <ul>
           <li className="link link1 list-unstyled">
-            <a href="#!">contact@yolo.com</a>
+            <a href="#!">yoloshadower@gmail.com</a>
           </li>
-          <li className="link phone list-unstyled">567-845-9032</li>
+          <li className="link phone list-unstyled">+1 585-284-0150</li>
         </ul>
       </div>
       <div className="col-sm-2">
-        <h5 className="title title3">
+        <h5 className="title title3 mb-5">
           <a href="#">FOR HOST</a>
         </h5>
         <ul>
@@ -50,7 +50,7 @@ const FooterPage = () => {
         </ul>
       </div>
       <div className="col-sm-3">
-        <h5 className="title title4">
+        <h5 className="title title4 mb-5">
           <a href="#">FOR SHADOWER</a>
         </h5>
         <ul>
