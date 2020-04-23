@@ -3,7 +3,7 @@ import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../components/Navbar";
 import Bottom from "../components/bottom";
-import FooterPage from "../commons/footer";
+import FooterPage from "../components/footer";
 import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
