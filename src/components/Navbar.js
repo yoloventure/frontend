@@ -4,40 +4,50 @@ import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
+import firebase from "../config/firebase"
 import './Navbar.css'
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+
+  logout() {
+    firebase.auth().signOut();
+  }
+
   render() {
     const styles = {
       color: "",
 
     };
     const styleLi = {
-      marginLeft:'15%',
-      marginRight:'15%'
+      marginLeft: '15%',
+      marginRight: '15%'
 
     };
     const styles2 = {
       color: "",
-      whiteSpace:"pre"
+      whiteSpace: "pre"
 
     };
-    let classVal=""
-    let logoValue=[]
-    let navBackgroundStyle={}
+    let classVal = ""
+    let logoValue = []
+    let navBackgroundStyle = {}
     if (this.props.textColor === "black") {
       styles.color = "black";
       styles2.color = "black";
-      classVal="navbar navbar-expand-lg fixed-top navbar-light bg "
+      classVal = "navbar navbar-expand-lg fixed-top navbar-light bg "
       logoValue.push(<img src={logoColored} />)
-      navBackgroundStyle={background:'#ffffff'}
+      navBackgroundStyle = { background: '#ffffff' }
     } else {
       styles.color = "white";
       styles2.color = "white";
-      classVal="navbar navbar-expand-lg fixed-top navbar-dark bg "
+      classVal = "navbar navbar-expand-lg fixed-top navbar-dark bg "
       logoValue.push(<img src={logoWhite} />)
-      navBackgroundStyle={background:'#762D89'}
+      navBackgroundStyle = { background: '#762D89' }
 
     }
     return (
@@ -65,7 +75,7 @@ class Navbar extends React.Component {
                 Explore <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item active"  style={styleLi}>
+            <li className="nav-item active" style={styleLi}>
               <a className="nav-link" style={styles} href="story">
                 Story
               </a>
@@ -81,21 +91,55 @@ class Navbar extends React.Component {
              <a className="dropdown-item" href="#">Something else here</a>
            </div>
          </li> */}
-            <li className="nav-item active"  style={styleLi}>
+            <li className="nav-item active" style={styleLi}>
               <a className="nav-link " style={styles2} href="hostexperience">
                 Host an Experience
               </a>
             </li>
-            <li className="nav-item active"  style={styleLi}>
+            <li className="nav-item active" style={styleLi}>
               <a className="nav-link " style={styles} href="about">
                 About
               </a>
             </li>
-            <li className="nav-item active"  style={styleLi}>
+            <li className="nav-item active" style={styleLi}>
               <a className="nav-link " style={styles2} href="#footerOfEachPage">
                 Contact Us
               </a>
             </li>
+            {
+              !firebase.auth().currentUser ?
+                (
+
+                  <li className="nav-item active" style={styleLi}>
+                    <a className="nav-link " style={styles} href="login">
+                      Login
+                </a>
+                  </li>
+
+                ) : (
+
+                  <li className="nav-item active" style={styleLi}>
+                    <a className="nav-link " style={styles2} href="">
+                      {firebase.auth().currentUser.uid}
+                    </a>
+                  </li>
+                )
+            }{
+              !firebase.auth().currentUser ?
+                (
+                  <li className="nav-item active" style={styleLi}>
+                    <a className="nav-link " style={styles2} href="register">
+                      Register
+                    </a>
+                  </li>
+                ) : (
+                  <li className="nav-item active" style={styleLi}>
+                    <a className="nav-link " style={styles2} href="">
+                      {firebase.auth().currentUser.email}
+                    </a>
+                  </li>
+                )
+            }
           </ul>
           {/*} <div className="form-inline my-2 my-lg-0">
          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
