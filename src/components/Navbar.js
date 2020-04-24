@@ -119,8 +119,8 @@ class Navbar extends React.Component {
                 ) : (
 
                   <li className="nav-item active" style={styleLi}>
-                    <a className="nav-link " style={styles2} href="">
-                      {firebase.auth().currentUser.uid}
+                    <a className="nav-link " style={styles2} href="/" onClick = {this.logout}>
+                      Logout
                     </a>
                   </li>
                 )

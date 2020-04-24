@@ -33,10 +33,10 @@ class hostExperience extends React.Component {
                 <h3 className="whyHost">Why Host</h3>
 
                 <button className="applyNow-1">
-                  <a href="#">Apply Now</a>
+                  <a href="/hostregister">Apply Now</a>
                 </button>
                 <button className="applyNow-1">
-                  <a href="#">Host Guidelines</a>
+                  <a href="/hostguidelines">Host Guidelines</a>
                 </button>
               </div>
             </figure>
@@ -93,14 +93,14 @@ class hostExperience extends React.Component {
             <figure className="col align-self-end">
               <h5 className="here20"> HERE WE GO</h5>
               <h3 className="howTo">How to Become a Host</h3>
-              <a href="#">
+              <a href="/hostregister">
                 <button className="applyNow-2">
-                  <a href="#">Apply Now</a>
+                  Apply Now
                 </button>
               </a>
-              <a href="#">
+              <a href="/hostguidelines">
                 <button className="applyNow-2">
-                  <a href="#">Host Guidelines</a>
+                 Host Guidelines
                 </button>
               </a>
             </figure>

@@ -10,8 +10,7 @@ import Register from "./auth/register";
 import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
-import hostGuidelines from "./hostExperience/hostGuidelines";
-import APIExperience from "./api/APIExperience";
+import HostGuidelines from "./hostExperience/hostGuidelines";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,7 +29,6 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
-        console.log(APIExperience.getAllExperiences());
         localStorage.setItem("user", user.uid);
       } else {
         this.setState({ user: null });
@@ -41,7 +39,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
+      <Router >
         <Route
           path="/explore"
           exact
@@ -85,7 +83,7 @@ class App extends React.Component {
             return <About />;
           }}
         />
-        <Route
+        <Route 
           path="/login"
           exact
           render={() => {
@@ -104,6 +102,13 @@ class App extends React.Component {
           exact
           render={() => {
             return <HostRegister />;
+          }}
+        />
+        <Route
+          path="/hostguidelines"
+          exact
+          render={() => {
+            return <HostGuidelines />;
           }}
         />
         <Route

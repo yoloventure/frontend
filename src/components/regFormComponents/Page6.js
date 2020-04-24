@@ -32,9 +32,9 @@ class Page6 extends React.Component {
             <h3>Set up a password to track your application progress</h3>
             <div className="row">
               <label htmlFor="password1" onChange={this.handleInputChange}>
-                Password
+                Email
               </label>
-              <input type="password" />
+              <input type="text" />
             </div>
 
             <div className="row">

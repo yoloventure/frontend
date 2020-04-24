@@ -16,6 +16,14 @@ class HostRegister extends React.Component {
     super(props);
 
     this.state = {
+      host :{
+        name:'',
+        gender:'',
+        title: '',
+        years:'',
+        company:'',
+        description:'',
+      },
       counter: 1,
       progress: 0
     };

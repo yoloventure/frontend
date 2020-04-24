@@ -42,34 +42,30 @@ function getAllUsers(){
 
 //creates a new user in the system
 function createNewUser(User) {
-    var newUser = JSON.stringify({
+    var newUser = {
         userId: User.uid,
         fname: User.fname,
         lname: User.lname,
         email: User.email,
         hostId: false,
-        mname: User.mname || "",
         joinedSince: Date.now(),
         job_interests: User.job_interests,
-    });
+    };
 
-    userRef.child(User.uid).set({
-        newUser
-    });
+    return userRef.child(User.uid).set(newUser).then().catch();
 }
 
 function editUser(User) {
 
-    var newUser = JSON.stringify({
+    var newUser = {
         fname: User.fname,
         lname: User.lname,
         email: User.email,
         mname: User.mname,
         job_interests: User.job_interests,
-    });
-    userRef.child(User.uid).update({
-        newUser
-    });
+    };
+    return userRef.child(User.uid).update(newUser).then().catch();
+
 }
 
 

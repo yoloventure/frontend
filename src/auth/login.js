@@ -1,75 +1,105 @@
-import React , {Component} from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn,MDBCard } from 'mdbreact';
+import React, { Component } from "react";
+import { MDBContainer } from 'mdbreact';
 import firebase from "../config/firebase"
+import Navbar from "../components/Navbar";
+import FooterPage from "../components/footer";
+import { Link, Redirect, withRouter } from "react-router-dom";
 class Login extends Component {
-    state = {
-        email: '',
-        password : ''
-    }
-    login = (e) => {
-        firebase.auth().signInWithEmailAndPassword(this.state.email , this.state.password).then((res) => {
-            console.log("user at firebase",res);
+    constructor(props) {
+        super(props);
 
-        }).catch((e)=>{
-            console.log("error",e)
-        })
+        // reset login status
+       // firebase.auth().signOut();
+
+        this.state = {
+            email: '',
+            password: '',
+            submitted: false,
+            errorMessage: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    passwordOn = (e) => {
-        let password = e.target.value;
-        this.setState({password});
+
+    handleChange(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
     }
-    emailOn = (e) => {
-        let email = e.target.value;
-        this.setState({email});
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({ submitted: true });
+        const { email, password } = this.state;
+        if (email && password) {
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((res) => {
+            }).catch((e) => {
+            })
+            console.log(firebase.auth().currentUser);
+            if (firebase.auth().currentUser != null) {
+                this.props.history.push("/");
+            }
+            this.setState({ errorMessage: "Email or password incorrect" });
+        }
     }
-    submitOn = (e) => {
-        this.login(e);
-    }
-    nameOn = (e) => {
-        let name = e.target.value;
-        this.setState({name});
-    }
-    confirmEmailOn = (e) => {
-        let confirmEmail = e.target.value;
-        this.setState({confirmEmail});
-    }
-    render(){
-        return(
-            <MDBContainer >
-                <MDBRow style={{"textAlign":"center"}}>
-                    <MDBCard style = {{"width":"145%",'textAlign':"-webkit-center"}} className = "mt-5">
-                        <MDBCol md="4" className="col-md-offset-4">
-                            <form>
-                                <p className="h5 text-center mb-4" onClick = {()=>this.setState({toggle:!this.state.toggle})}>{this.state.toggle ? <span>LogIn to Your Application</span> : <span>LogIn</span> }</p>
-                                <span>Type your email</span>
-                                <div className="grey-text">
-                                    <MDBInput
-                                        icon="envelope"
-                                        group
-                                        type="email"
-                                        validate
-                                        error="wrong"
-                                        success="right"
-                                        onChange = {(e)=>this.emailOn(e)}
-                                    />
-                                    <span>Type your password</span>
-                                    <MDBInput
-                                        icon="lock"
-                                        group
-                                        type="password"
-                                        validate
-                                        onChange = {(e)=>this.passwordOn(e)}
-                                    />
-                                </div>
-                                <div className="text-center">
-                                    <MDBBtn onClick = {(e)=>this.submitOn(e)}><span>LogIn</span> </MDBBtn>
-                                </div>
-                            </form>
-                        </MDBCol>
-                    </MDBCard>
-                </MDBRow>
-            </MDBContainer>
+
+    render() {
+        const { loggingIn } = this.props;
+        const { email, password, submitted, errorMessage } = this.state;
+
+        return (
+            <div className="container-fluid app">
+                <div className="nav">
+                    <Navbar textColor={"black"} />
+                </div>
+
+                <div className="experience-fig-1 row align-items-center">
+                    <div className="col-md-2"></div>
+                    <h2><em>Login</em></h2>
+                </div>
+                <MDBContainer >
+
+                    <div className="col-md-6 col-md-offset-3">
+                        <p className="text-danger">{errorMessage}</p>
+
+                        <form name="form" onSubmit={this.handleSubmit}>
+                            <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+                                <label htmlFor="email">Email</label>
+                                <input type="text" className="form-control" name="email" value={email} onChange={this.handleChange} />
+                                {submitted && !email &&
+                                    <div className="help-block">Username is required</div>
+                                }
+                            </div>
+                            <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                                <label htmlFor="password">Password</label>
+                                <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
+                                {submitted && !password &&
+                                    <div className="help-block">Password is required</div>
+                                }
+                            </div>
+                            <div className="form-group">
+                                <button className="btn btn-primary">Login</button>
+                                {loggingIn &&
+                                    <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                }
+                                <Link to="/register" className="btn btn-warning">Register</Link>
+                            </div>
+                        </form>
+                    </div>
+                </MDBContainer>
+
+                <div className="col offset-.5 footerpage">
+                    <FooterPage />
+                </div>
+            </div>
         )
     }
 }
-export default Login;
+
+function mapState(state) {
+    const { loggingIn } = state.authentication;
+    return { loggingIn };
+}
+
+export default withRouter(Login);

@@ -1,104 +1,135 @@
 import React, { Component } from "react";
 import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-  MDBBtn,
-  MDBCard
+  MDBContainer
 } from "mdbreact";
-import firebase from "../config/firebase";
+import Navbar from "../components/Navbar";
+import FooterPage from "../components/footer";
+import APIUser from "../api/APIUser"
+import { Link, Redirect, withRouter } from "react-router-dom";
+import firebase from "../config/firebase"
 class Register extends Component {
-  state = {
-    email: "",
-    password: ""
-  };
-  register = e => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(res => {
-        console.log("user at firebase", res);
-      })
-      .catch(err => {
-        console.log("error", err);
-      });
-  };
-  passwordOn = e => {
-    let password = e.target.value;
-    this.setState({ password });
-  };
-  emailOn = e => {
-    let email = e.target.value;
-    this.setState({ email });
-  };
-  submitOn = e => {
-    this.register(e);
-  };
-  nameOn = e => {
-    let name = e.target.value;
-    this.setState({ name });
-  };
-  confirmEmailOn = e => {
-    let confirmEmail = e.target.value;
-    this.setState({ confirmEmail });
-  };
-  render() {
-    return (
-      <MDBContainer>
-        <MDBRow style={{ textAlign: "center" }}>
-          <MDBCard
-            style={{ width: "145%", textAlign: "-webkit-center" }}
-            className="mt-5"
-          >
-            <MDBCol md="4" className="col-md-offset-4">
-              <form>
-                <p
-                  className="h5 text-center mb-4"
-                  onClick={() => this.setState({ toggle: !this.state.toggle })}
-                >
-                  {this.state.toggle ? (
-                    <span>Join the YoloShadow family!</span>
-                  ) : (
-                    <span>Register</span>
-                  )}
-                </p>
+  constructor(props) {
+    super(props);
 
-                <div className="grey-text">
-                  <span>First Name: </span>
-                  <MDBInput type="text" />
-                  <span>Last Name: </span>
-                  <MDBInput type="text" />
-                  <span>Email address: </span>
-                  <MDBInput
-                    icon="envelope"
-                    group
-                    type="email"
-                    validate
-                    error="wrong"
-                    success="right"
-                    onChange={e => this.emailOn(e)}
-                  />
-                  <span>Password:</span>
-                  <MDBInput
-                    icon="lock"
-                    group
-                    type="password"
-                    validate
-                    onChange={e => this.passwordOn(e)}
-                  />
-                </div>
-                <div className="text-center">
-                  <MDBBtn onClick={e => this.submitOn(e)}>
-                    <span>Register</span>{" "}
-                  </MDBBtn>
-                </div>
-              </form>
-            </MDBCol>
-          </MDBCard>
-        </MDBRow>
-      </MDBContainer>
+    this.state = {
+        user: {
+            uid: '',
+            fname: '',
+            lname: '',
+            email: '',
+            password: '',
+            job_interests:'tech'
+        },
+        submitted: false,
+        errorMessage: ''
+
+      };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+handleChange(event) {
+    const { name, value } = event.target;
+    const { user } = this.state;
+    this.setState({
+        user: {
+            ...user,
+            [name]: value
+        }
+    });
+}
+
+handleSubmit(event) {
+
+    event.preventDefault();
+
+    this.setState({ submitted: true });
+    var user = this.state.user;
+    if (user.fname && user.lname && user.email && user.password) {
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then(function(result) {
+            user.uid = result.user.uid;
+            APIUser.createNewUser(user);
+            console.log("done");
+        }).catch(function(err) {
+ 
+        });
+
+        if ( firebase.auth().currentUser != null ){
+          this.props.history.push("/");            
+        } else {
+          this.setState({ errorMessage: "Email already exists" });
+        }  
+    }
+}
+
+  render() {
+    const { registering } = this.props;
+    const { user, submitted, errorMessage} = this.state;
+    return (
+      <div className="container-fluid app">
+        <div className="nav">
+          <Navbar textColor={"black"} />
+        </div>
+
+        <div className="experience-fig-1 row align-items-center">
+          <div className="col-md-2"></div>
+          <h2><em>Register</em></h2>
+        </div>
+        <MDBContainer >
+          <div className="col-md-6 col-md-offset-3">
+            <p className="text-danger">{errorMessage}</p>
+            <form name="form" onSubmit={this.handleSubmit}>
+              <div className={'form-group' + (submitted && !user.fname ? ' has-error' : '')}>
+                <label htmlFor="fname">First Name</label>
+                <input type="text" className="form-control" name="fname" value={user.fname} onChange={this.handleChange} />
+                {submitted && !user.fname &&
+                  <div className="help-block">First Name is required</div>
+                }
+              </div>
+              <div className={'form-group' + (submitted && !user.lname ? ' has-error' : '')}>
+                <label htmlFor="lname">Last Name</label>
+                <input type="text" className="form-control" name="lname" value={user.lname} onChange={this.handleChange} />
+                {submitted && !user.lname &&
+                  <div className="help-block">Last Name is required</div>
+                }
+              </div>
+              <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
+                <label htmlFor="email">Email</label>
+                <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
+                {submitted && !user.email &&
+                  <div className="help-block">Email is required</div>
+                }
+              </div>
+              <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
+                {submitted && !user.password &&
+                  <div className="help-block">Password is required</div>
+                }
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary">Register</button>
+                {registering &&
+                  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                }
+                <Link to="/login" className="btn btn-warning">Go to login</Link>
+              </div>
+            </form>
+          </div>
+        </MDBContainer >
+
+        <div className="col offset-.5 footerpage">
+          <FooterPage />
+        </div>
+      </div>
     );
   }
 }
-export default Register;
+
+function mapState(state) {
+  const { registering } = state.registration;
+  return { registering };
+}
+export default withRouter(Register);
