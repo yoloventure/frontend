@@ -4,33 +4,16 @@ class Page3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offerOne: "",
-      offerTwo: "",
-      offerThree: "",
-      moreOne: "",
-      moreTwo: "",
-      moreThree: "",
-      otherAspects: ""
+
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    var partialState = {};
-    partialState[name] = value;
-    this.setState(partialState);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
-    return data;
+;
+    return ;
   }
 
   render() {
@@ -73,24 +56,24 @@ class Page3 extends React.Component {
                     type="text"
                     name="offerOne"
                     placeholder="e.g., Dentist-patient communication techniques"
-                    value={this.state.offerOne}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.offerOne}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
                 <div className="col">
                   <input
                     type="text"
                     name="offerTwo"
-                    value={this.state.offerTwo}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.offerTwo}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
                 <div className="col">
                   <input
                     type="text"
                     name="offerThree"
-                    value={this.state.offerThree}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.offerThree}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
               </div>
@@ -113,24 +96,24 @@ class Page3 extends React.Component {
                     placeholder="e.g., I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients."
                     type="text"
                     name="moreOne"
-                    value={this.state.moreOne}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.moreOne}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
                 <div className="col">
                   <textarea
                     type="text"
                     name="moreTwo"
-                    value={this.state.moreTwo}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.moreTwo}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
                 <div className="col">
                   <textarea
                     type="text"
                     name="moreThree"
-                    value={this.state.moreThree}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.moreThree}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
               </div>
@@ -143,8 +126,8 @@ class Page3 extends React.Component {
                   <textarea
                     placeholder="example: perks(company pets,coffee shop,drinks, nap space etc.)"
                     name="otherAspects"
-                    value={this.state.otherAspects}
-                    onChange={this.handleInputChange}
+                    value={this.props.host.otherAspects}
+                    onChange={this.props.handleInputChange}
                   />
                 </div>
               </div>

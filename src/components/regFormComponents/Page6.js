@@ -5,24 +5,14 @@ class Page6 extends React.Component {
     super(props);
     this.state = {};
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
 
-    var partialState = {};
-    partialState[name] = value;
-    this.setState(partialState);
-  }
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
-    return data;
+    this.props.handleSubmit();
+    return ;
   }
   render() {
     return (
@@ -32,16 +22,19 @@ class Page6 extends React.Component {
             <h3>Set up a password to track your application progress</h3>
             <div className="row">
               <label htmlFor="password1" onChange={this.handleInputChange}>
-                Email
-              </label>
-              <input type="text" />
-            </div>
-
-            <div className="row">
-              <label htmlFor="password2" onChange={this.handleInputChange}>
                 Password
               </label>
               <input type="password" />
+            </div>
+
+            <div className="row">
+              <label htmlFor="password2">
+                Confirm Password
+              </label>
+              <input type="password" 
+              value={this.props.host.password}
+              onChange={this.props.handleInputChange}
+                                    />
             </div>
             <div className="row mt-5 mb-4">
               <div className="col"></div>
@@ -49,7 +42,7 @@ class Page6 extends React.Component {
                 <input
                   className="btn btn-danger"
                   type="submit"
-                  value="Next Step"
+                  value="submit"
                 />
               </div>
             </div>

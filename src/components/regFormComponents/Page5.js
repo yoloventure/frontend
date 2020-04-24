@@ -12,9 +12,7 @@ class Page5 extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
-    return data;
+    return;
   }
 
   render() {
@@ -24,7 +22,7 @@ class Page5 extends React.Component {
           <div className="container-fluid">
             <h3>Host Application Review/Summary</h3>
             <div className="row">
-              <p>{this.props.applicationSummary}</p>
+              <p>{JSON.stringify(this.props.host)}</p>
             </div>
 
             <div className="row mt-5 mb-4">

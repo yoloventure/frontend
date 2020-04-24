@@ -4,27 +4,15 @@ class Page2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: ""
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
 
-    var partialState = {};
-    partialState[name] = value;
-    this.setState(partialState);
-  }
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
-    return data;
+    return ;
   }
   render() {
     return (
@@ -41,8 +29,8 @@ class Page2 extends React.Component {
               <textarea
                 placeholder=" City/State/Country"
                 name="location"
-                value={this.state.location}
-                onChange={this.handleInputChange}
+                value={this.props.host.location}
+                onChange={this.props.handleInputChange}
                 className="mt-3"
               />
             </div>

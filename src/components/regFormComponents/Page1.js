@@ -4,38 +4,15 @@ class Page1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "",
-      gender: "",
-      title: "",
-      stage: "",
-      company: "",
-      email: "",
-      phone: "",
-      website: "",
-      category: "Health",
-      description: "I work for the government"
+
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    var partialState = {};
-    partialState[name] = value;
-    this.setState(partialState);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
     this.setState({ whatToRender: 2 });
-    return data;
+    return;
   }
 
   render() {
@@ -72,10 +49,10 @@ class Page1 extends React.Component {
                   <div className="row">
                     <input
                       type="text"
-                      name="userName"
+                      name="name"
                       placeholder="Full name"
-                      value={this.state.userName}
-                      onChange={this.handleInputChange}
+                      value={this.props.host.name}
+                      onChange={this.props.handleInputChange}
                     />
                   </div>
                 </div>
@@ -84,8 +61,8 @@ class Page1 extends React.Component {
                     <input
                       placeholder="user@email.com"
                       name="email"
-                      value={this.state.email}
-                      onChange={this.handleInputChange}
+                      value={this.props.host.email}
+                      onChange={this.props.handleInputChange}
                       type="email"
                     />
                   </div>
@@ -104,8 +81,9 @@ class Page1 extends React.Component {
                 <div className="col-sm-6">
                   <div className="row">
                     <select
-                      value={this.state.gender}
-                      onChange={this.handleChange}
+                      name="gender"
+                      value={this.props.host.gender}
+                      onChange={this.props.handleInputChange}
                     >
                       <option value="female">Female</option>
                       <option value="male">Male</option>
@@ -118,9 +96,9 @@ class Page1 extends React.Component {
                     <input
                       placeholder="+1 222-222-2222"
                       name="phone"
-                      value={this.state.phone}
+                      value={this.props.host.phone}
                       type="tel"
-                      onChange={this.handleInputChange}
+                      onChange={this.props.handleInputChange}
                     />
                   </div>
                 </div>
@@ -130,13 +108,12 @@ class Page1 extends React.Component {
               </div>
               <div className="row">
                 <input
-                  type="text"
                   name="title"
                   placeholder="ex: Recruiter"
-                  value={this.state.title}
+                  value={this.props.host.title}
                   type="text"
-                  onChange={this.handleInputChange}
-                />
+                  onChange={this.props.handleInputChange}
+                  />
               </div>
               <div className="row mt-3 mb-n2">
                 <div className="col">
@@ -147,12 +124,11 @@ class Page1 extends React.Component {
                   </div>
                   <div className="row">
                     <input
-                      type="text"
+                      type="number"
                       placeholder="10+ years"
                       name="stage"
-                      value={this.state.stage}
-                      type="text"
-                      onChange={this.handleInputChange}
+                      value={this.props.host.stage}
+                      onChange={this.props.handleInputChange}
                     />
                   </div>
                   <div className="row mt-3 mb-n3">
@@ -165,9 +141,8 @@ class Page1 extends React.Component {
                       type="text"
                       name="company"
                       placeholder="ex: YoloShadow"
-                      value={this.state.company}
-                      type="text"
-                      onChange={this.handleInputChange}
+                      value={this.props.host.company}
+                      onChange={this.props.handleInputChange}
                     />
                   </div>
                   <div className="row mt-3 mb-n2">
@@ -175,19 +150,21 @@ class Page1 extends React.Component {
                   </div>
                   <div className="row">
                     <input
-                      type="text"
                       placeholder="website url"
                       name="website"
-                      value={this.state.website}
+                      value={this.props.host.website}
                       type="text"
-                      onChange={this.handleInputChange}
+                      onChange={this.props.handleInputChange}
                     />
                   </div>
                   <div className="row"></div>
                 </div>
                 <div className="col">
                   <label htmlFor="">One line to describe what you do</label>
-                  <textarea></textarea>
+                  <textarea name="description"
+                      value={this.props.host.description}
+                      onChange={this.props.handleInputChange}
+                      ></textarea>
                 </div>
               </div>
 

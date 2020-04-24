@@ -5,27 +5,14 @@ class Page4 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expertise: ""
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    var partialState = {};
-    partialState[name] = value;
-    this.setState(partialState);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    var data = JSON.stringify(this.state);
-    console.log(data);
-    return data;
+    return ;
   }
   render() {
     return (
@@ -47,8 +34,8 @@ class Page4 extends React.Component {
                 <textarea
                   name="expertise"
                   placeholder="What expertise do you have? List as many as possible. Examples can include: Artificial Intelligence, Geographic Information System, Woodmaking."
-                  value={this.state.expertise}
-                  onChange={this.handleInputChange}
+                  value={this.props.host.expertise}
+                  onChange={this.props.handleInputChange}
                 />
               </div>
             </div>

@@ -10,25 +10,58 @@ import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
+import firebase from "../config/firebase"
+import APIUser from "../api/APIUser"
+import APIHost from "../api/APIHost"
+
 
 class HostRegister extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      host :{
-        name:'',
-        gender:'',
-        title: '',
-        years:'',
-        company:'',
-        description:'',
+      host : {
+        userId: "",
+        name: "",
+        gender: "",
+        title: "",
+        stage: "",
+        company: "",
+        email: "",
+        phone: "",
+        website: "",
+        category: "Health",
+        location: "",
+        description: "I work for the government",
+        offerOne: "",
+        offerTwo: "",
+        offerThree: "",
+        moreOne: "",
+        moreTwo: "",
+        moreThree: "",
+        otherAspects: "",
+        expertise: "",
+        password:""
       },
       counter: 1,
       progress: 0
     };
 
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+  }
+
+  handleInputChange(event) {
+    const { name, value } = event.target;
+    const { host } = this.state;
+    this.setState({
+        host: {
+            ...host,
+            [name]: value
+        }
+    });
+    console.log(this.state.host);
   }
 
   handleSubmit(event) {
@@ -36,24 +69,43 @@ class HostRegister extends React.Component {
     if (this.state.progress < 100) {
       this.setState({ progress: this.state.progress + 25 });
     }
+    var host = this.state.host;
+
+     firebase.auth().createUserWithEmailAndPassword(host.email, host.password)
+        .then(function(result) {
+            host.uid = result.user.uid;
+            var newUser = {
+              userId: host.uid,
+              fname: host.name,
+              lname: host.name,
+              email: host.email,
+              hostId: host.uid,
+              job_interests: "hosting",
+          };
+            APIUser.createNewUser(newUser);
+            APIHost.createNewHost(host);
+
+        }).catch(function(err) {
+          
+        });
   }
 
   handlePageRender(counter) {
     if (counter == 1) {
-      const pageToRender = <Page1 />;
+      const pageToRender = <Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
       return pageToRender;
     } else if (counter == 2) {
-      return <Page2 />;
+      return <Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
     } else if (counter == 3) {
-      return <Page3 />;
+      return <Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
     } else if (counter == 4) {
-      return <Page4 />;
+      return <Page4 handleInputChange={this.handleInputChange}c host={this.state.host}/>;
     } else if (counter == 5) {
-      return <Page5 />;
+      return <Page5 handleInputChange={this.handleInputChange} host={this.state.host}/>;
     } else if (counter == 6) {
-      return <Page6 />;
+      return <Page6 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} host={this.state.host}/>;
     } else {
-      const pageToRender = <Page7 />;
+      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
       return pageToRender;
     }
   }
