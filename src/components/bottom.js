@@ -79,11 +79,11 @@ class Bottom extends React.Component {
                 />
               </div>
         </div>
-        <div className='row ' style={{paddingTop:'10%'}}>
-          <div className="col-2 offset-1">
+        <div className='row offset-2' style={{paddingTop:'10%'}}>
+          <div className="col-1 offset-2">
               <img className="openQuote " src={quotes} alt="" />
           </div>
-            <div className="col-6 ">
+            <div className="col-7 ">
               <p className="aside ">YOLO empowers me to be an adventurer </p>
             </div>
         </div>
@@ -95,18 +95,20 @@ class Bottom extends React.Component {
             </div>
             <br />
             <div className="col d-flex justify-content-center">
-              <h6 className="stay-tuned">
-                stay tuned for our adventurous stories
-              </h6>
+              <h5 className="stay-tuned">
+                Stay Tuned for Yoloer's Adventurous Stories!
+              </h5>
             </div>
             <br />
             <br />
             <div className="col d-flex justify-content-center pb-5">
+            <div className='pr-2 pt-2'>
               <input
                 className="enter-email"
                 type="email"
                 placeholder="ENTER EMAIL"
               />
+              </div>
               <button className="subscribe">
                 <a href="#"></a>Subscribe
               </button>
