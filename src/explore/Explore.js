@@ -23,21 +23,29 @@ export default class Explore extends React.Component{
     for(var i=0; i<data.length;i+=2){
         if(i+1<data.length){
         Cards.push(
-        <div class="row">
-        <div className="card col">
+        <div className="row " >
+
+        <div className="card col-lg-4 col-sm-6" style={{padding:'2%'}}>
         <Card image={data[i].image} id={data[i].id} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
         {console.log(data[i].image)}
         </div>
-        <div className="card col">
+
+
+        <div className="card col-lg-4 col-sm-6 offset-1 " style={{padding:'2%'}}>
         <Card image={data[i+1].image} id={data[i+1].id} location={data[i+1].location} profession={data[i+1].profession} price={data[i+1].price} duration={data[i+1].duration}/>
         </div>
-        </div>)
+
+        </div>);
+
         }else{
           Cards.push(
-          <div class="row">
-          <div className="card col">
+          <div className="row ">
+          <div className="card col ">
+          <div className=''>
           <Card image={data[i].image} id={data[i].id} location={data[i].location} profession={data[i].profession} price={data[i].price} duration={data[i].duration}/>
           </div>
+          </div>
+
           </div>)
         }
     }
@@ -52,7 +60,7 @@ export default class Explore extends React.Component{
 
 
           <div className="row mt-3 pt-5">
-                <div className="col">
+                <div className="col-8">
                     <div className="search">
                         <h1 className="pl-5 pt-4" style={{color:"white", fontSize:"200%"}}>Start Your next Journey </h1>
                         <div class="input-group pt-2">
@@ -138,11 +146,14 @@ export default class Explore extends React.Component{
 
                             </div>
                     </div>
+                    <div style={{paddingLeft:'10%'}}>
                     {this.state.Cards}
+                    </div>
                 </div>
-                <div className="col offset-4">
-                     <img src={mapImage}/>
+                <div className='col-4'>
+                  <img src={mapImage} />
                 </div>
+
           </div>
 
 
