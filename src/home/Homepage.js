@@ -37,8 +37,8 @@ export default class Homepage extends React.Component{
                                         <div className='col-lg-9 col-10 offset-1 mt-2 pt-5'>
                                         <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>
 
-                                        <h3 className='pt-4' style={{fontSize:'600%', color:"white", fontWeight:'670'}}>Your next career <br/> </h3>
-                                        <h3 className='' style={{paddingBottom:'3%',fontSize:'600%',fontWeight:'670',color:"#F2C94C"}}> starts with an <br/> adventure </h3>
+                                        <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'600%', color:"white", fontWeight:'670'}}>Your next career <br/> </h3>
+                                        <h3 className='' style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'600%',fontWeight:'670',color:"#F2C94C"}}> starts with an <br/> adventure </h3>
                                         </div>
                                         <div className='col-lg-2 col-2 ' id="scrollForMore">
 
@@ -50,7 +50,7 @@ export default class Homepage extends React.Component{
 
                                         </div>
                                   </div>
-                                  <div className=' pt-4' style={{paddingBottom:'6%'}}>
+                                  <div className='  pt-4'  style={{paddingBottom:'6%'}}>
                                         <Link to="explore" className=' '>
                                         <div className=' row offset-1 hoverButton' style={{border: "5px solid #ffffff", height:"5%", width:"55%", boxSizing:"border-box"}}>
 
