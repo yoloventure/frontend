@@ -26,17 +26,17 @@ export default class Card extends React.Component {
               <img src={this.props.image}/>
             </div>
             <div className="row" style={{color:"black"}}>
-              <h3> {this.props.location} </h3>
+              <h3 style={{fontSize:'150%'}}> {this.props.location} </h3>
             </div>
             <div className="row" style={{color:"black"}}>
-              <h3> {this.props.profession} </h3>
+              <h3 style={{fontSize:'150%'}}> {this.props.profession} </h3>
             </div>
             <div className="row">
               <div className="col" style={{color:"black"}}>
-              <h3> {this.props.price} </h3>
+              <h3 style={{fontSize:'150%'}}> {this.props.price} </h3>
               </div>
               <div className="col" style={{color:"black"}}>
-              <h3> {this.props.duration} </h3>
+              <h3 style={{fontSize:'150%'}}> {this.props.duration} </h3>
               </div>
             </div>
           </span>

@@ -19,3 +19,8 @@ border-radius: 36px;
 
 
 }
+br {
+            display: block; /* makes it have a width */
+            content: ""; /* clears default height */
+            margin-top: 2rem; /* change this to whatever height you want it */
+}

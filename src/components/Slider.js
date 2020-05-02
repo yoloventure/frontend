@@ -92,10 +92,10 @@ export default class Slider extends Component {
                        > Featured Story </h2>
                        <h2 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
                        >  {this.state.title[0]} </h2>
-                       <h3 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
-                       > {this.state.body1[0]} </h3>
-                       <h3 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
+                       <h3 className="pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
                        > {this.state.body2[0]} </h3>
+                       <h3 className="pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"26px","lineHeight":"29px","color":"#30233D"}}
+                       > {this.state.body1[0]} </h3>
                        <Link to='/explore'>
                        <button class="mt-5  learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
                        </Link>
@@ -130,10 +130,10 @@ export default class Slider extends Component {
                        > Featured Story </h2>
                        <h2 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
                        >  {this.state.title[this.state.currentIndex]} </h2>
-                       <h3 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
-                       > {this.state.body1[this.state.currentIndex]} </h3>
-                       <h3 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
+                       <h3 className="offset-1 pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
                        > {this.state.body2[this.state.currentIndex]} </h3>
+                       <h3 className="offset-1 pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
+                       > {this.state.body1[this.state.currentIndex]} </h3>
                   </div>
 
 
