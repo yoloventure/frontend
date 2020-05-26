@@ -1,2 +1,9 @@
 # Default ignored files
 /workspace.xml
+.DS_Store
+node_modules/
+.env
+*.orig
+.idea/
+.vscode/
+

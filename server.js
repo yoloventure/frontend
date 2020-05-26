@@ -4,6 +4,7 @@ mongoose.Promise = Promise;
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -84,18 +85,10 @@ const sessionMiddleWare = session({
 
 app.use(sessionMiddleWare);
 
-//custom Middleware for logging the each request going to the API
-app.use((req,res,next) => {
-    if (req.body) log.info(req.body);
-    if (req.params) log.info(req.params);
-    if(req.query) log.info(req.query);
-    log.info(`Received a ${req.method} request from ${req.ip} for                ${req.url}`);
-  next();
-});
-
-
-app.get("/", (req, res) => { return res.send("index"); })
-
+app.use(express.static(path.join(__dirname, 'client/dist')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/dist'))
+})
 
 
 //@Route: Logout
