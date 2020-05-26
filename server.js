@@ -85,10 +85,9 @@ const sessionMiddleWare = session({
 
 app.use(sessionMiddleWare);
 
+
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/dist')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/dist'))
-})
 
 
 //@Route: Logout
@@ -105,6 +104,11 @@ app.get('/api/logout', (req, res) => {
 // Use API Routes
 app.use('/api/user', user);
 app.use('/api/email', email);
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/dist/index.html'))
+})
 
 // Defining our port
 const port = process.env.PORT || 5000;
