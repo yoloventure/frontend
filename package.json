@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false  cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cross-env NPM_CONFIG_PRODUCTION=false  cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,12 +20,13 @@
     "node-env-file": "^0.1.8",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.2",
-    "passport-jwt": "^4.0.0"
+    "nodemon": "^2.0.2"
   },
   "engines": {
     "node": "12.16.3"
