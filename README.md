@@ -1,4 +1,4 @@
-# Yolo Backend
+# Yolo Web App
 
 # Pre Requisites
 1. NPM and NodeJS
