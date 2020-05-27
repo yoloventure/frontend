@@ -1,78 +1,121 @@
-import firebase from "../config/firebase"
-
-
-const userRef = firebase.database().ref('users');
-
-//returns the infomations about the user with the given UID
-function getUserById(userId){
-    userRef.child(userId).once("value", (snapshot)=>{
-        return  JSON.stringify(snapshot.val());
-      }, (errorObject)=>{
-        console.log("The read failed: " + errorObject.code);
-        return null;
-    });
-}
-
-//returns the infomations about the current user or null if not logged in
-
+// @route   GET api/user/current
+// @desc    Returns current user logging in
+// @access  Private
 function getCurrentUser(){
-    userRef.child(firebase.auth().currentUser.uid).once("value", (snapshot)=>{
-        return  JSON.stringify(snapshot.val());
-      }, (errorObject) => {
-        console.log("The read failed: " + errorObject.code);
-        return null;
+    var path = "/api/user/current";
+    return fetch(path, {
+        method: 'get',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        credentials: "include"
+    }).then((response) => {
+        return response.json();
+    }).catch((err) => {
+        console.log(err);
     });
 }
 
-//returns the infomations about all the users in the system
+// @route   GET api/user/
+// @desc    get all users from database
+// @access  Private 
 function getAllUsers(){
-    var res = []
-    userRef.once("value", (snapshot) =>{
-        ;
-        snapshot.forEach(
-            (childVal)=>{
-                res.push(childVal.val());
-            }
-        )
-      },  (errorObject)=> {
-        console.log("The read failed: " + errorObject.code);
+    var path = "/api/user/";
+    return fetch(path, {
+        method: 'get',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        credentials: "include"
+    }).then((response) => {
+        return response.json();
+    }).catch((err) => {
+        console.log(err);
     });
-    return res;
 }
 
-//creates a new user in the system
+
+//CREATE - add new user to DB
+// @route   GET api/user/new
+// @desc    create new user
+// @access  Private
 function createNewUser(User) {
-    var newUser = {
-        userId: User.uid,
-        fname: User.fname,
-        lname: User.lname,
-        email: User.email,
-        hostId: false,
-        joinedSince: Date.now(),
-        job_interests: User.job_interests,
-    };
-
-    return userRef.child(User.uid).set(newUser).then().catch();
+    return fetch('/api/user/new', {
+        method: 'POST',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+            username: User.username,
+            fname: User.fname,
+            lname: User.lname,
+            phone: User.phone,
+            classYear: User.URStuClassYear,
+        }),
+        credentials: "include"
+    }).then((response) => {
+        return response.json();
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
-function editUser(User) {
-
-    var newUser = {
-        fname: User.fname,
-        lname: User.lname,
-        email: User.email,
-        mname: User.mname,
-        job_interests: User.job_interests,
-    };
-    return userRef.child(User.uid).update(newUser).then().catch();
-
+// SHOW - shows more info about one user
+// @route   GET api/user/:username/edit
+// @desc    get a user detail to edit
+// @access  Private
+function selectedUser(username) {
+    var path = "/api/user/"+username+"/edit";
+    return fetch(path, {
+        method: 'get',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        credentials: "include"
+    }).then((response) => {
+        return response.json();
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
-
-function deleteUser(userId) {
-
+// @route   PUT api/user/:username/edit
+// @desc    eit a user
+// @access  Private
+function editUser(username, User) {
+    var path = "/api/user/" + username + "/edit";
+    return fetch(path, {
+        method: 'put',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+            user: User
+    }),
+    credentials: "include"
+}).then((response) => {
+    return response.json();
+}).catch((err) => {
+    console.log(err);
+});
 }
 
+// @route   DELETE api/user/:username
+// @desc    delete a user
+// @access  Private
+function deleteUser(username) {
+    var path = "/api/user/" + username;
+    return fetch(path, {
+        method: 'DELETE',
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        credentials: "include"
+    }).then((response) => {
+        return response.json;
+    }).catch((err) => {
+        console.log(err);
+    });
+}
 
-
-export default {getUserById, getCurrentUser, getAllUsers, deleteUser, editUser, createNewUser}
+export default {getCurrentUser, getAllUsers, selectedUser, editUser, deleteUser, createNewUser};
