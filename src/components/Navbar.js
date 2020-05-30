@@ -6,16 +6,43 @@ import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
 import {Helmet} from "react-helmet";
 import './Navbar.css'
+import NavbarLoginOrProfile from './NavbarLoginOrProfile'
 
 class Navbar extends React.Component {
+  constructor(props) {
+   super(props);
+   this.state={
+     navBackgroundStyle: {}
+   }
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+  handleScroll = () => {
+    if (this.props.textColor === "black") {
+      this.setState(
+        { navBackgroundStyle: {background:'#ffffff'} },
+      )
+
+    } else {
+      this.setState(
+        { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888'} },
+      )
+    }
+
+  }
   render() {
     const styles = {
       color: "",
 
     };
     const styleLi = {
-      marginLeft:'15%',
-      marginRight:'15%'
+      marginLeft:'12%',
+      marginRight:'12%'
 
     };
     const styles2 = {
@@ -25,23 +52,21 @@ class Navbar extends React.Component {
     };
     let classVal=""
     let logoValue=[]
-    let navBackgroundStyle={}
     if (this.props.textColor === "black") {
       styles.color = "black";
       styles2.color = "black";
       classVal="navbar navbar-expand-lg fixed-top navbar-light bg "
       logoValue.push(<img src={logoColored} />)
-      navBackgroundStyle={background:'#ffffff'}
     } else {
       styles.color = "white";
       styles2.color = "white";
       classVal="navbar navbar-expand-lg fixed-top navbar-dark bg "
       logoValue.push(<img src={logoWhite} />)
-      navBackgroundStyle={background:'#762D89'}
-
     }
+
     return (
-      <div id='nav' className={classVal} style={navBackgroundStyle}>
+      <div>
+      <nav  id='nav' className={classVal} style={this.state.navBackgroundStyle}>
 
         <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
           {logoValue}
@@ -96,12 +121,49 @@ class Navbar extends React.Component {
                 Contact Us
               </a>
             </li>
-          </ul>
+
+            <li>
+
+            <NavbarLoginOrProfile auth={this.props.auth} textColor={this.props.textColor} />
+
+
+            </li>
+
+
+
+
+
+
+            </ul>
           {/*} <div className="form-inline my-2 my-lg-0">
          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
        </div>*/}
-        </div>
+
+
+             </div>
+
+      </nav>
+      <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3>Forgot password</h3>
+                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Reset your password..</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                      <button class="btn btn-primary">Save changes</button>
+                  </div>
+      </div>
+      </div>
+      </div>
+
+
+
       </div>
     );
   }

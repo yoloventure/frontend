@@ -8,6 +8,8 @@ import Card from "../components/Card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
 import  Link  from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class Explore extends React.Component{
   constructor(props) {
@@ -17,8 +19,11 @@ export default class Explore extends React.Component{
       Cards:Cards,
       valueFromSearch:'',
       valueFromStartDate: '',
-      valueFromEndDate: ''
+      valueFromEndDate: '',
+      startDate: new Date()
     }
+    this.handleChange = this.handleChange.bind(this);
+
 
     for(var i=0; i<data.length;i+=2){
         if(i+1<data.length){
@@ -51,12 +56,19 @@ export default class Explore extends React.Component{
     }
   }
 
+  handleChange = date => {
+  this.setState({
+    startDate: date
+  });
+  };
+
+
   render(){
 
     return (
       <div>
 
-        <Navbar textColor={'black'} />
+        <Navbar textColor={'black'} auth={this.props.auth}/>
 
 
           <div className="row mt-3 pt-5">
@@ -121,23 +133,22 @@ export default class Explore extends React.Component{
                           <div className='row pt-4'>
                                 <div className='col-lg-1 offset-1'>
                                   <h3 style={{fontSize:"160%"}} className='pt-1 pr-5'>Date:</h3>
+
                                 </div>
                                 <div className='col-lg-3'>
-                                  <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroup-sizing-default">From</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
-                                    </div>
+                                    <button type="button">From:</button>
+                                      <DatePicker
+                                       selected={this.state.startDate}
+                                       onChange={this.handleChange}
+                                     />
                                 </div>
 
                                 <div className='col-lg-3'>
-                                  <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="inputGroup-sizing-default">To</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/>
-                                    </div>
+                                      <button type="button">To:</button>
+                                      <DatePicker
+                                       selected={this.state.startDate}
+                                       onChange={this.handleChange}
+                                     />
                                 </div>
 
 
