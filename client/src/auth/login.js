@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { MDBContainer } from 'mdbreact';
-import firebase from "../config/firebase"
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/footer";
 import { Link, Redirect, withRouter } from "react-router-dom";
+import APIAuth from "../api/APIAuth";
 class Login extends Component {
     constructor(props) {
         super(props);
-
-        // reset login status
-       // firebase.auth().signOut();
 
         this.state = {
             email: '',
@@ -32,15 +29,19 @@ class Login extends Component {
 
         this.setState({ submitted: true });
         const { email, password } = this.state;
+        var currentUser = null;
         if (email && password) {
-            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((res) => {
-            }).catch((e) => {
-            })
-            console.log(firebase.auth().currentUser);
-            if (firebase.auth().currentUser != null) {
+            APIAuth.login(email, password).then(
+                data => {
+                    currentUser = data;
+                  }
+            )
+            console.log(currentUser);
+            if (currentUser != null) {
                 this.props.history.push("/");
+            }else{
+                this.setState({ errorMessage: "Email or password incorrect" });
             }
-            this.setState({ errorMessage: "Email or password incorrect" });
         }
     }
 

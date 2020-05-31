@@ -5,8 +5,8 @@ import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import firebase from "../config/firebase"
 import './Navbar.css'
+import APIAuth from "../api/APIAuth";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Navbar extends React.Component {
   }
 
   logout() {
-    firebase.auth().signOut();
+    APIAuth.logout().then();
   }
 
   render() {
@@ -107,7 +107,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             {
-              !firebase.auth().currentUser ?
+              true ?
                 (
 
                   <li className="nav-item active" style={styleLi}>
@@ -125,7 +125,7 @@ class Navbar extends React.Component {
                   </li>
                 )
             }{
-              !firebase.auth().currentUser ?
+              true ?
                 (
                   <li className="nav-item active" style={styleLi}>
                     <a className="nav-link " style={styles2} href="register">
@@ -135,7 +135,7 @@ class Navbar extends React.Component {
                 ) : (
                   <li className="nav-item active" style={styleLi}>
                     <a className="nav-link " style={styles2} href="">
-                      {firebase.auth().currentUser.email}
+                      Email
                     </a>
                   </li>
                 )

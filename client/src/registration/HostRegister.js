@@ -10,10 +10,7 @@ import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
-import firebase from "../config/firebase"
-import APIUser from "../api/APIUser"
-import APIHost from "../api/APIHost"
-
+import APIAuth from "../api/APIAuth";
 
 class HostRegister extends React.Component {
   constructor(props) {
@@ -70,24 +67,17 @@ class HostRegister extends React.Component {
       this.setState({ progress: this.state.progress + 25 });
     }
     var host = this.state.host;
-
-     firebase.auth().createUserWithEmailAndPassword(host.email, host.password)
-        .then(function(result) {
-            host.uid = result.user.uid;
-            var newUser = {
-              userId: host.uid,
-              fname: host.name,
-              lname: host.name,
-              email: host.email,
-              hostId: host.uid,
-              job_interests: "hosting",
-          };
-            APIUser.createNewUser(newUser);
-            APIHost.createNewHost(host);
-
-        }).catch(function(err) {
-          
-        });
+    var user = {
+      fname: host.fname,
+      lname: host.lname,
+      email: host.email,
+      password: host.password,
+      job_interests: host.job_interests
+    }
+    var newUser = null;
+    APIAuth.register(user).then(data => {
+      newUser = data;
+    });
   }
 
   handlePageRender(counter) {

@@ -4,21 +4,20 @@ import {
 } from "mdbreact";
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/footer";
-import APIUser from "../api/APIUser"
-import { Link, Redirect, withRouter } from "react-router-dom";
-import firebase from "../config/firebase"
+import APIAuth from "../api/APIAuth"
+import { Link, withRouter } from "react-router-dom";
+
 class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
         user: {
-            uid: '',
             fname: '',
             lname: '',
             email: '',
             password: '',
-            job_interests:'tech'
+            job_interests:[]
         },
         submitted: false,
         errorMessage: ''
@@ -47,17 +46,24 @@ handleSubmit(event) {
     this.setState({ submitted: true });
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
-        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-        .then(function(result) {
-            user.uid = result.user.uid;
-            APIUser.createNewUser(user);
-            console.log("done");
-        }).catch(function(err) {
- 
+        var newUser = null;
+        APIAuth.register(user)
+        .then((response) => {
+          if(!response.ok) throw new Error(response.status);
+          else return response.json();
+        })
+        .then((data) => {
+          newUser = data.response;
+          console.log(newUser);
+          this.props.history.push("/login");            
+        })
+        .catch((error) => {
+          console.log('error: ' + error);
+          this.setState({ errorMessage: "Email already exists" });
         });
+      
 
-        if ( firebase.auth().currentUser != null ){
-          this.props.history.push("/");            
+        if (true){
         } else {
           this.setState({ errorMessage: "Email already exists" });
         }  

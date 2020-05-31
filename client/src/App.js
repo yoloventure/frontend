@@ -1,5 +1,4 @@
 import React from "react";
-import firebase from "./config/firebase";
 import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
@@ -26,15 +25,8 @@ class App extends React.Component {
   }
 
   authListener() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem("user", user.uid);
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem("user");
-      }
-    });
+
+  
   }
 
   render() {
