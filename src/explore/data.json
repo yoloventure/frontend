@@ -1,9 +1,9 @@
 [
     {
       "id":1,
-      "location": "New York1",
+      "location": "New York",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Electrical Engineer",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
       "industry": "Engineering"
@@ -13,52 +13,52 @@
       "id":12,
       "location": "New York",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Mechincal Engineer",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
       "industry": "Engineering"
     },
     {
       "id":13,
-      "location": "New York",
+      "location": "San Francisco",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Software Developer",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
       "industry": "Engineering"
     },
     {
       "id":14,
-      "location": "New York",
+      "location": "Boston",
       "duration": "2 days",
       "profession": "Orthodonist",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering"
+      "industry": "Healthcare"
     },
     {
       "id":15,
-      "location": "New York",
+      "location": "Tokyo",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Chef",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering"
+      "industry": "Food"
     },
     {
       "id":16,
-      "location": "New York",
+      "location": "Chicago",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Painter",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering"
+      "industry": "Art and Design"
     },
     {
       "id":17,
-      "location": "New York",
+      "location": "Rochester",
       "duration": "2 days",
-      "profession": "Orthodonist",
+      "profession": "Chemical Engineer",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
       "industry": "Engineering"
@@ -70,13 +70,13 @@
       "profession": "Orthodonist",
       "price": "$5",
       "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering"
+      "industry": "Healthcare"
     },
         {
           "id":19,
           "location": "New York21",
           "duration": "2 days",
-          "profession": "Orthodonist",
+          "profession": "Professor",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
           "industry": "Education"
@@ -88,16 +88,16 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Healthcare"
         },
         {
           "id":21,
           "location": "New York23",
           "duration": "2 days",
-          "profession": "Orthodonist",
+          "profession": "Teacher",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Education"
         },
         {
           "id":22,
@@ -106,7 +106,7 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Healthcare"
         },
         {
           "id":23,
@@ -115,7 +115,7 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Healthcare"
         },
         {
           "id":25,
@@ -124,7 +124,7 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Healthcare"
         },
         {
           "id":26,
@@ -133,7 +133,7 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Education"
+          "industry": "Healthcare"
         },
         {
           "id":27,
@@ -142,7 +142,7 @@
           "profession": "Orthodonist",
           "price": "$5",
           "image": "http://via.placeholder.com/220x160" ,
-          "industry": "Engineering"
+          "industry": "Healthcare"
         }
 
 

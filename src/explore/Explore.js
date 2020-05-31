@@ -104,7 +104,7 @@ export default class Explore extends React.Component{
 
       const targetId = e.target.id;
       let newItem=document.getElementById(targetId).innerHTML
-      console.log(typeof(newItem))
+      console.log(newItem)
       console.log(data)
       let filteredData=(data.filter(dataElement => dataElement.industry.includes(newItem)))
       let Cards2=[]
@@ -126,7 +126,7 @@ export default class Explore extends React.Component{
           </div>);
 
           }else{
-            Cards.push(
+            Cards2.push(
             <div className="row ">
             <div className="card col ">
             <div className=''>
@@ -187,7 +187,7 @@ export default class Explore extends React.Component{
                                   <div class="dropdown-menu" id="dd1">
                                       <a id='i1' className='dropdown-item' onClick={this.filterIndustry}>Education</a>
                                       <a id='i2' className='dropdown-item' onClick={this.filterIndustry}>Engineering</a>
-                                      <a id='i3' className='dropdown-item' onClick={this.filterIndustry}>Art & Design</a>
+                                      <a id='i3' className='dropdown-item' onClick={this.filterIndustry}>Art and Design</a>
                                       <a id='i4' className='dropdown-item' onClick={this.filterIndustry}>Healthcare</a>
                                       <a id='i5' className='dropdown-item' onClick={this.filterIndustry}>Food</a>
 
