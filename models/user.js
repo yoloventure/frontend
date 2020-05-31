@@ -34,10 +34,11 @@ const userSchema = new mongoose.Schema({
     },
     icon:{
         type: String,
+        default: null
     },
     phone:{
         type: String,
-        unique: true,
+        default: null
     },
     isAdmin: {
         type: Boolean,

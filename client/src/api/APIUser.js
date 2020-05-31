@@ -35,30 +35,6 @@ function getAllUsers(){
 }
 
 
-//CREATE - add new user to DB
-// @route   GET api/user/new
-// @desc    create new user
-// @access  Private
-function createNewUser(User) {
-    return fetch('/api/user/new', {
-        method: 'POST',
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        }),
-        body: JSON.stringify({
-            username: User.username,
-            fname: User.fname,
-            lname: User.lname,
-            phone: User.phone,
-            classYear: User.URStuClassYear,
-        }),
-        credentials: "include"
-    }).then((response) => {
-        return response.json();
-    }).catch((err) => {
-        console.log(err);
-    });
-}
 
 // SHOW - shows more info about one user
 // @route   GET api/user/:username/edit
@@ -118,4 +94,4 @@ function deleteUser(username) {
     });
 }
 
-export default {getCurrentUser, getAllUsers, selectedUser, editUser, deleteUser, createNewUser};
+export default {getCurrentUser, getAllUsers, selectedUser, editUser, deleteUser};

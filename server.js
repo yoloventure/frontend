@@ -2,20 +2,23 @@ const express = require('express');
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 const bodyParser = require('body-parser');
-const passport = require('passport');
 const dotenv = require('dotenv');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+require('./config/passport');
 const User = require('./models/user');
+const passport = require('passport');
+
 
 // API Endpoints
 const user = require('./routes/user');
 const email = require('./routes/email');
+const auth = require('./routes/auth');
 
 const app = express();
+app.disable('x-powered-by')  //Hide Powered-By
+
 
 //dotenv vonfig
 dotenv.config({
@@ -49,61 +52,19 @@ mongoose
 app.use(passport.initialize());
 
 
-//JWT setUp
-
-var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = process.env.JWT_SECRET || 'secret';
-
-passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-    User.findOne({ id: jwt_payload.sub }, function (err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            return done(null, user);
-        } else {
-            return done(null, false);
-            // or you could create a new account
-        }
-    });
-}));
-
-// //session middleware
-const sessionMiddleWare = session({
-    secret: process.env.SESSION_SECRET || 'secret',
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-    resave: true,
-    saveUninitialized: true,
-    unset: 'destroy',
-    cookie: {
-        httpOnly: false,
-        maxAge: 1000 * 3600 * 24,
-        secure: false, // this need to be false if https is not used. Otherwise, cookie will not be sent.
-    }
-})
-
-app.use(sessionMiddleWare);
-
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/dist')))
 
 
-//@Route: Logout
-app.get('/api/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return console.log(err);
-        }
-        res.send(req.session);
-    });
-});
+
 
 
 // Use API Routes
 app.use('/api/user', user);
 app.use('/api/email', email);
+app.use('/api/auth', auth);
+
 
 
 app.get('*', (req, res) => {
