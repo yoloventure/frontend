@@ -1,7 +1,5 @@
-.search{
-width: 110%;
-height: 9%;
-
+.searchArea{
+height:'25%';
 background: linear-gradient(197.43deg, #FFD17F 0%, #B77FFF 101.17%);
 }
 .input-group{
