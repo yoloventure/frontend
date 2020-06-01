@@ -2,10 +2,6 @@
   "name": "yolo-backend",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false  cd client && npm install --only=dev && npm install && npm run build"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -24,6 +20,10 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false  cd client && npm install --only=dev && npm install && npm run build"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",

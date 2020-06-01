@@ -15,7 +15,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      auth:{userName: 'Kaixin', isAuthenticated: 1}
     };
     this.authListener = this.authListener.bind(this);
   }
@@ -26,7 +27,7 @@ class App extends React.Component {
 
   authListener() {
 
-  
+
   }
 
   render() {
@@ -36,7 +37,7 @@ class App extends React.Component {
           path="/explore"
           exact
           render={() => {
-            return <Explore />;
+            return <Explore auth={this.state.auth}/>;
           }}
         />
         <Route
@@ -44,56 +45,56 @@ class App extends React.Component {
           path='/ExperienceDetail/:handle'
           exact
           render={() => {
-            return <ExperienceDetail />;
+            return <ExperienceDetail auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/hostexperience"
           exact
           render={() => {
-            return <HostExperience />;
+            return <HostExperience auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/hostguidelines"
           exact
           render={() => {
-            return <hostGuidelines />;
+            return <hostGuidelines auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/register"
           exact
           render={() => {
-            return <Register />;
+            return <Register auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/about"
           exact
           render={() => {
-            return <About />;
+            return <About auth={this.state.auth}/>;
           }}
         />
-        <Route 
+        <Route
           path="/login"
           exact
           render={() => {
-            return <Login />;
+            return <Login auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/story"
           exact
           render={() => {
-            return <FeatureStory />;
+            return <FeatureStory auth={this.state.auth}/>;
           }}
         />
         <Route
           path="/hostregister"
           exact
           render={() => {
-            return <HostRegister />;
+            return <HostRegister auth={this.state.auth}/>;
           }}
         />
         <Route
@@ -107,12 +108,14 @@ class App extends React.Component {
           path="/"
           exact
           render={() => {
-            return <Homepage />;
+            return <Homepage auth={this.state.auth} />;
           }}
         />
       </Router>
     );
   }
 }
+
+
 
 export default App;

@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 
 
 import CardExpDetail from "../components/CardExpDetail";
+import CardExpDetailReview from "../components/CardExpDetailReview";
+
 import mapImage from "../photos/map.png"
 import searchArrow from "../photos/searchArrow.png"
 import data from "../explore/expDetailData.json";
@@ -25,36 +27,57 @@ export default class ExperienceDetail extends React.Component{
         CardsReview: CardsReview
       }
 
-      for(var i=0; i<data.length;i+=3){
-          if(i+2<data.length){
+      for(var i=0; i<data[0].expDetailTitles.length;i+=3){
+          if(i+2<data[0].expDetailTitles.length){
           CardsExpDetail.push(
-          <div class="row">
-          <div className="card col">
+          <div class="row " style={{paddingLeft:'7%'}}>
+          <div className=" col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
           </div>
-          <div className="card col">
+          <div className=" col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+1]} body={data[0].expDetailBodies[i+1]} />
           </div>
-          <div className="card col">
+          <div className=" col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+2]} body={data[0].expDetailBodies[i+2]} />
           </div>
           </div>)
-        }else if(i+1<data.length){
+        }else if(i+1<data[0].expDetailTitles.length){
           CardsExpDetail.push(
-          <div class="row">
-          <div className="card col">
+          <div class="row" style={{paddingLeft:'7%'}}>
+          <div className=" col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
           </div>
-          <div className="card col">
+          <div className=" col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+1]} body={data[0].expDetailBodies[i+1]} />
           </div>
           </div>)
         }else{
         //  console.log("here")
           CardsExpDetail.push(
-          <div class="row">
+          <div class="row" style={{paddingLeft:'7%'}}>
           <div className="card col">
           <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
+          </div>
+          </div>)
+        }
+      }
+      for(var i=0; i<data[0].reviewBodies.length;i+=2){
+        if(i+1<data[0].reviewBodies.length){
+          CardsReview.push(
+          <div class="row" style={{paddingLeft:'7%'}}>
+          <div className=" col">
+          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i]} footer={data[0].reviewFooters[i]} />
+          </div>
+          <div className=" col">
+          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i+1]} footer={data[0].reviewFooters[i+1]} />
+          </div>
+          </div>)
+        }else{
+        //  console.log("here")
+          CardsReview.push(
+          <div class="row" style={{paddingLeft:'7%'}}>
+          <div className="card col">
+          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i]} footer={data[0].reviewFooters[i]} />
           </div>
           </div>)
         }
@@ -67,7 +90,7 @@ export default class ExperienceDetail extends React.Component{
 
     return (
           <div>
-              <Navbar textColor={'black'} />
+              <Navbar textColor={'black'} auth={this.props.auth} />
 
                 <div className='row'>
                     <div className='col-4 offset-1' style={{width:'50%', height:"40%"}}>
@@ -91,14 +114,38 @@ export default class ExperienceDetail extends React.Component{
                     </div>
                 </div>
 
-                <div className='row offset-1 pt-5'>
+
+
+
+                <div className='row offset-1 ' style={{paddingTop:'10%'}}>
                   <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"22.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}> Expectations </h2>
                 </div>
-                <div className='row offset-1 pt-2'>
-                  <h3> What Can I Offer </h3>
+                <div className='row offset-1 pt-2 pb-5'>
+                  <h3 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"45px","lineHeight":"67px"}}> What I Can Offer </h3>
                 </div>
 
                 {this.state.CardsExpDetail}
+
+                <div className='container'>
+                  <div style={{width:'1000px', height:'700px', background:'#5E239D'}}>
+                    <div className='container pt-4'>
+
+                      <h3 style={{"fontFamily":"Noticia Text","fontStyle":"italic","fontWeight":"normal","fontSize":"22.5px","lineHeight":"200%","display":"flex","alignItems":"center","color":"#FCFCFC"}}>" I am Dr. Gail Schupak, and I look forward to meeting you if you want to learn more about our practice and the techniques we use to treat patients. We will be discussing your career goals and be your shadowing host for 2 days. But first let me tell you about my practice and how we can help you. I’ve been practicing and teaching orthodontics in Manhattan for over 30 years. During that time, my top priority has been to provide patients with the highest quality orthodontic care in a relaxed and upbeat environment. Dr. Movahedian and I recognize that every patient has different orthodontic requirements. We both listen very carefully to our patients to make sure they will be satisfied with their smile. We utilize the latest and most efficient technological advances, such as high-tech wires from SureSmile®, clear braces, Invisalign®, and the latest computer technology, such as digital imaging and advanced computer graphics, to ensure that our patients receive the most effective care possible. ”  </h3>
+                   </div>
+
+                  </div>
+                </div>
+
+
+
+                <div className='row offset-1 ' style={{paddingTop:'10%'}}>
+                  <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"22.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}> REVIEWS </h2>
+                </div>
+                <div className='row offset-1 pt-2 pb-5'>
+                  <h3 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"45px","lineHeight":"67px"}}> What Shadowers Say </h3>
+                </div>
+
+                {this.state.CardsReview}
 
 
 
