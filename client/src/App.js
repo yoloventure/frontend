@@ -1,7 +1,4 @@
-import React, {PropTypes} from "react";
-
-import firebase from "./config/firebase";
-
+import React from "react";
 import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
