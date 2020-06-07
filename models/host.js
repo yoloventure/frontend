@@ -32,6 +32,10 @@ const locationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  zip: {
+    type: Number,
+    required: true,
+  },
 });
 
 const hostSchema = new mongoose.Schema({
