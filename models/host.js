@@ -63,8 +63,8 @@ const hostSchema = new mongoose.Schema({
     required: true,
   },
   experiences: {
-    type: Array(String),
-    default: null,
+    type: Array(mongoose.Schema.Types.ObjectId),
+    default: [],
     required: true,
   },
   approval: {

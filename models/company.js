@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const location = require('./location');
+
 const companySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -8,7 +11,8 @@ const companySchema = new mongoose.Schema({
     required: false,
   },
   location: {
-    type: locationSchema,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: location,
     required: true,
   },
 });
