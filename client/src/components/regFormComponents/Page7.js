@@ -5,8 +5,8 @@ function Page7() {
     <div className="">
       <div className="container-fluid">
         <h3>
-          We are in the process of review your application We should email in
-          ... days
+          We are in the process of review your application. You'll hear back
+          from us soon!
         </h3>
       </div>
       <div className="row mt-5 mb-5"></div>

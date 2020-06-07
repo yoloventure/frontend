@@ -52,7 +52,7 @@ class Login extends Component {
         return (
             <div className="container-fluid app">
                 <div className="nav">
-                    <Navbar textColor={"black"} />
+                    <Navbar textColor={"black"} auth={this.props.auth}/>
                 </div>
 
                 <div className="experience-fig-1 row align-items-center">

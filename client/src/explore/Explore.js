@@ -1,43 +1,70 @@
 
 /*jshint esversion: 6 */
 import React from "react";
-import ReactDOM from "react-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter,
+  Link
+} from "react-router-dom";
+
+import PropTypes from "prop-types";
+
+
 import Navbar from "../components/Navbar";
 import "./Explore.css";
 import data from "../explore/data.json";
 import Card from "../components/Card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
-import  Link  from "react-router-dom";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import ExperienceDetail from '../explore/ExperienceDetail'
 
-export default class Explore extends React.Component{
-  // componentDidMount() {
-  //   this._isMounted=true
-  //   this.setState
-  // }
-  // componentWillUnmount() {
-  //   this._isMounted=false
-  //
-  // }
+
+class Explore extends React.Component{
+  componentDidMount() {
+    this._isMounted=true
+    this.setState
+  }
+  componentWillUnmount() {
+    this._isMounted=false
+
+  }
+
+  static propTypes = {
+    auth:PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props)
     this._isMounted=false
-    let  Cards=[];
+    let  cardArray=[];
+
+
+    const { match, location, history } = this.props;
+
+
     this.state = {
-      Cards:Cards,
+      cardArray:cardArray,
       valueFromSearch:'',
       valueFromStartDate: '',
       valueFromEndDate: '',
-      startDate: new Date()
+      startDate: new Date(),
+      match:match
     }
     this.handleChange = this.handleChange.bind(this);
     this.filterIndustry = this.filterIndustry.bind(this);
 
     for(var i=0; i<data.length;i+=2){
         if(i+1<data.length){
-        Cards.push(
+        cardArray.push(
+         <Link to={`${match.url}/`+data[i].id}>
         <div className="row " >
 
         <div className="card col-lg-4 col-sm-6" style={{padding:'2%'}}>
@@ -50,10 +77,13 @@ export default class Explore extends React.Component{
         <Card image={data[i+1].image} id={data[i+1].id} location={data[i+1].location} profession={data[i+1].profession} price={data[i+1].price} duration={data[i+1].duration}/>
         </div>
 
-        </div>);
+        </div>
+        </Link>
+        );
 
         }else{
-          Cards.push(
+          cardArray.push(
+          <Link to={`${match.url}/1`}>
           <div className="row ">
           <div className="card col ">
           <div className=''>
@@ -61,22 +91,26 @@ export default class Explore extends React.Component{
           </div>
           </div>
 
-          </div>)
+          </div>
+          </Link>
+
+         );
         }
     }
   }
+
 
   handleChange = date => {
   this.setState({
     startDate: date
   });
   };
-  // displayCards(e){
+  // displaycardArray(e){
   //     // Prevent button click from submitting form
   //    e.preventDefault();
   //
   //    // Create variables for our list, the item to add, and our form
-  //    let Cards = this.state.Cards;
+  //    let cardArray = this.state.cardArray;
   //    const newItem = document.getElementById("addInput");
   //    const form = document.getElementById("addItemForm");
   //
@@ -108,10 +142,10 @@ export default class Explore extends React.Component{
       console.log(newItem)
       console.log(data)
       let filteredData=(data.filter(dataElement => dataElement.industry.includes(newItem)))
-      let Cards2=[]
+      let cardArray2=[]
       for(var i=0; i<filteredData.length;i+=2){
           if(i+1<filteredData.length){
-          Cards2.push(
+          cardArray2.push(
           <div className="row " >
 
           <div className="card col-lg-4 col-sm-6" style={{padding:'2%'}}>
@@ -127,7 +161,7 @@ export default class Explore extends React.Component{
           </div>);
 
           }else{
-            Cards2.push(
+            cardArray2.push(
             <div className="row ">
             <div className="card col ">
             <div className=''>
@@ -138,10 +172,10 @@ export default class Explore extends React.Component{
             </div>)
           }
       }
-          console.log(Cards2)
+          console.log(cardArray2)
         // Then we use that to set the state for list
         this.setState({
-          Cards: Cards2
+          cardArray: cardArray2
         });
 
   }
@@ -161,7 +195,7 @@ export default class Explore extends React.Component{
                         <div class="input-group pt-2">
                             <input id="addInput" type="text" class="form-control" placeholder="Search"/>
                             <div class="input-group-append">
-                              <button class="btn btn-secondary" type="button" onClick="this.displayCards">
+                              <button class="btn btn-secondary" type="button" onClick="this.displaycardArray">
                                 <i class="fa fa-search"></i>
                               </button>
                             </div>
@@ -246,10 +280,11 @@ export default class Explore extends React.Component{
 
 
                 <div className='pt-5' style={{paddingLeft:'10%'}}>
-                {this.state.Cards}
+                {this.state.cardArray}
                 </div>
 
           </div>
+
 
 
 
@@ -263,3 +298,8 @@ export default class Explore extends React.Component{
 
 }
 }
+function Topic() {
+  // let { topicId } = useParams();
+  return <h3>Requested topic ID: </h3>;
+}
+export default withRouter(Explore)

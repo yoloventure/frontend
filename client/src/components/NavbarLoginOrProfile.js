@@ -1,14 +1,27 @@
 import React from 'react';
 import {Link} from 'react-router';
+import APIAuth from "../api/APIAuth";
 
 class NavbarLoginOrProfile extends React.Component {
   constructor(props) {
     super(props);
   }
+  logout() {
+    APIAuth.logout().then();
+  }
+
 
 
   render() {
+    const styleLi = {
+      marginLeft:'12%',
+      marginRight:'12%'
 
+    };
+    const styles2 = {
+      color: "",
+
+    };
     const loginOrProfile = (auth) => {
       let loginColorClass=""
       let userNameStyles={}
@@ -35,7 +48,7 @@ class NavbarLoginOrProfile extends React.Component {
                        <li class="px-3 py-2">
                            <form class="form" role="form">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Sign Out</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Sign I</button>
                                 </div>
 
                             </form>
@@ -51,32 +64,39 @@ class NavbarLoginOrProfile extends React.Component {
 
         :
 
-        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-        <li class="dropdown order-1">
-            <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Login <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right mt-2">
-               <li class="px-3 py-2">
-                   <form class="form" role="form">
-                        <div class="form-group">
-                            <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required=""/>
-                        </div>
-                        <div class="form-group">
-                            <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required=""/>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        </div>
-                        <div class="form-group text-center">
-                            <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
-                        </div>
-                    </form>
-                </li>
-            </ul>
 
 
 
-        </li>
-        </ul>
+                       <li className="nav-item active" style={styleLi}>
+                         <a className="nav-link " style={styles2} href="login">Login</a>
+                       </li>
+                       
+
+            {
+             //     ) : (
+             //
+             //       <li className="nav-item active" style={styleLi}>
+             //         <a className="nav-link " style={styles2} href="/" onClick = {this.logout}>
+             //           Logout
+             //         </a>
+             //       </li>
+             //     )
+             // }{
+             //   !firebase.auth().currentUser ?
+             //     (
+             }
+
+             {//     ) : (
+             //       <li className="nav-item active" style={styleLi}>
+             //         <a className="nav-link " style={styles2} href="">
+             //           {firebase.auth().currentUser.email}
+             //         </a>
+             //       </li>
+             //     )
+             // }
+            }
+
+
     };
 
 

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
 class Page1 extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
-
+      
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +29,7 @@ class Page1 extends React.Component {
               <div className="col-sm-2">
                 <h6>Personal</h6>
               </div>
-              {/* 
+              {/*
               <div className="col-sm-2">
                 <i className="">insert icon</i>
               </div>
