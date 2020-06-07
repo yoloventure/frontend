@@ -1,54 +1,16 @@
 const mongoose = require('mongoose');
-
-const companySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  website: {
-    type: String,
-    required: false,
-  },
-  location: {
-    type: locationSchema,
-    required: true,
-  },
-});
-
-const locationSchema = new mongoose.Schema({
-  street: {
-    type: String,
-    required: false,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  state: {
-    type: String,
-    required: false,
-  },
-  country: {
-    type: String,
-    required: true,
-  },
-  zip: {
-    type: Number,
-    required: true,
-  },
-});
+const company = require('./companySchema');
+const location = require('./locationSchema');
+const user = require('./user');
 
 const hostSchema = new mongoose.Schema({
+  user: {
+    //userID reference
+    type: mongoose.Schema.Types.ObjectId,
+    ref: user,
+    requird: true,
+  },
   //--------------------------page-1----------------------------
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   gender: {
     type: String,
     default: null,
@@ -65,7 +27,8 @@ const hostSchema = new mongoose.Schema({
   },
   company: {
     //company has both company name and website
-    type: companySchema,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: company,
     required: true,
   },
   description: {
@@ -76,7 +39,8 @@ const hostSchema = new mongoose.Schema({
   },
   //----------------page-3------------------------------------
   location: {
-    type: locationSchema,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: location,
     default: null,
   },
   //----------------page-4------------------------------------
@@ -98,8 +62,15 @@ const hostSchema = new mongoose.Schema({
     default: null,
     required: true,
   },
-  password: {
-    type: String,
+  experiences: {
+    type: Array(String),
+    default: null,
+    required: true,
+  },
+  approval: {
+    //host application approval stage
+    type: Boolean,
+    default: false,
     required: true,
   },
 });
