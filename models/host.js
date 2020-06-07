@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const company = require('./companySchema');
-const location = require('./locationSchema');
+const company = require('./company');
+const location = require('./location');
 const user = require('./user');
 
 const hostSchema = new mongoose.Schema({

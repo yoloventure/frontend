@@ -10,66 +10,58 @@ require('./config/passport');
 const User = require('./models/user');
 const passport = require('passport');
 
-
 // API Endpoints
 const user = require('./routes/user');
 const email = require('./routes/email');
 const auth = require('./routes/auth');
+const host = require('./routes/host');
 
 const app = express();
-app.disable('x-powered-by')  //Hide Powered-By
-
+app.disable('x-powered-by'); //Hide Powered-By
 
 //dotenv vonfig
 dotenv.config({
-    path: './.env'
+  path: './.env',
 });
 
 // BodyParser Middleware
 app.use(
-    bodyParser.urlencoded({
-        extended: false,
-    })
+  bodyParser.urlencoded({
+    extended: false,
+  })
 );
 app.use(bodyParser.json());
 
-
-
-// DB Config   
-const db = process.env.MONGODB_URI || 'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
+// DB Config
+const db =
+  process.env.MONGODB_URI ||
+  'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
 
 //Connect to MongoDB
 mongoose
-    .connect(db, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    })
-    .then(() => console.log('Connected to database...'))
-    .catch((err) => console.log(err));
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => console.log('Connected to database...'))
+  .catch((err) => console.log(err));
 
 // Passport Middleware
 app.use(passport.initialize());
 
-
-
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/dist')))
-
-
-
-
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Use API Routes
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/auth', auth);
-
-
+app.use('/api/host', host);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/dist/index.html'))
-})
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+});
 
 // Defining our port
 const port = process.env.PORT || 5000;
