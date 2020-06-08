@@ -10,6 +10,7 @@ import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
 import HostGuidelines from "./hostExperience/hostGuidelines";
+import Admin from "./admin/Admin";
 
 class App extends React.Component {
   constructor(props) {
@@ -33,6 +34,13 @@ class App extends React.Component {
   render() {
     return (
       <Router >
+        <Route
+          path="/admin"
+          exact
+          render={() => {
+            return <Admin auth={this.state.auth}/>;
+          }}
+        />
         <Route
           path="/explore"
           exact
