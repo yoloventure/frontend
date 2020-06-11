@@ -1,5 +1,6 @@
 // import React from "./node_modules/reacte_modules/react";
 import React, { Component } from "react";
+import {Button} from "reactstrap"
 
 class Page4 extends React.Component {
   constructor(props) {
@@ -8,11 +9,17 @@ class Page4 extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     return ;
+  }
+  handleClick(e){
+    let currentText=document.getElementById('textArea').innerHTML
+    currentText=currentText.concat(e.currentTarget.textContent+',')
+    document.getElementById('textArea').innerHTML=currentText
   }
   render() {
     return (
@@ -33,12 +40,16 @@ class Page4 extends React.Component {
               <div className="row">
                 <textarea
                   name="expertise"
+                  id="textArea"
                   placeholder="What expertise do you have? List as many as possible. Examples can include: Artificial Intelligence, Geographic Information System, Woodmaking."
                   value={this.props.host.expertise}
                   onChange={this.props.handleInputChange}
                 />
               </div>
             </div>
+            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Artificial Intelligence</Button>
+            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Woodmaking</Button>
+            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Cooking</Button>
             <div className="row mt-5 mb-4">
               <div className="col"></div>
               <div className="col">
@@ -49,6 +60,7 @@ class Page4 extends React.Component {
                 />
               </div>
             </div>
+
           </div>
         </form>
       </div>
