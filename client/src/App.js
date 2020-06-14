@@ -33,92 +33,99 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router >
-        <Route
-          path="/admin"
-          exact
-          render={() => {
-            return <Admin auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/explore"
-          exact
-          render={() => {
-            return <Explore auth={this.state.auth}/>;
-          }}
-        />
-        <Route
+      <Router>
+      <div>
+      <Switch>
+      <Route
+        path="/explore"
+        exact
+      >
+       <Explore auth={this.state.auth}/>;
+      </Route>
 
-          path='/ExperienceDetail/:handle'
-          exact
-          render={() => {
-            return <ExperienceDetail auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/hostexperience"
-          exact
-          render={() => {
-            return <HostExperience auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/hostguidelines"
-          exact
-          render={() => {
-            return <hostGuidelines auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/register"
-          exact
-          render={() => {
-            return <Register auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/about"
-          exact
-          render={() => {
-            return <About auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/login"
-          exact
-          render={() => {
-            return <Login auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/story"
-          exact
-          render={() => {
-            return <FeatureStory auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/hostregister"
-          exact
-          render={() => {
-            return <HostRegister auth={this.state.auth}/>;
-          }}
-        />
-        <Route
-          path="/hostguidelines"
-          exact
-          render={() => {
-            return <HostGuidelines />;
-          }}
-        />
-        <Route
-          path="/"
-          exact
-          render={() => {
-            return <Homepage auth={this.state.auth} />;
-          }}
-        />
+      <Route
+
+                path='/explore/:handle'
+                exact
+                render={() => {
+                  return <ExperienceDetail auth={this.state.auth}/>;
+                }}
+              />
+
+
+
+      <Route
+        path="/hostexperience"
+        exact
+        render={() => {
+          return <HostExperience auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/hostguidelines"
+        exact
+        render={() => {
+          return <HostGuidelines auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/register"
+        exact
+        render={() => {
+          return <Register auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/about"
+        exact
+        render={() => {
+          return <About auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/login"
+        exact
+        render={() => {
+          return <Login auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/story"
+        exact
+        render={() => {
+          return <FeatureStory auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/hostregister"
+        exact
+        render={() => {
+          return <HostRegister auth={this.state.auth}/>;
+        }}
+      />
+      <Route
+        path="/hostguidelines"
+        exact
+        render={() => {
+          return <HostGuidelines />;
+        }}
+      />
+      <Route
+        path="/"
+        exact
+        render={() => {
+          return <Homepage auth={this.state.auth} />;
+        }}
+      />
+      <Route
+        path="/admin"
+        exact
+        render={() => {
+          return <Admin auth={this.state.auth}/>;
+        }}
+      />
+       </Switch>
+       </div>
       </Router>
     );
   }
