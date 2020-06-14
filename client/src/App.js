@@ -119,6 +119,13 @@ class App extends React.Component {
           return <Homepage auth={this.state.auth} />;
         }}
       />
+      <Route
+        path="/hostdashboard"
+        exact
+        render={() => {
+          return <Dashboard auth={this.state.auth} />;
+        }}
+      />
 
       <Route
         path="/admin"
