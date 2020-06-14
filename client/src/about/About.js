@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./about.css";
 import Navbar from "../components/Navbar";
-import FooterPage from "../components/footer";
-import Bottom from "../components/bottom";
+import FooterPage from "../components/Footer";
+import Bottom from "../components/Bottom";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
 import quotes from "../photos/quotes.png";
@@ -16,7 +16,7 @@ import may from "../photos/may.png";
 class About extends React.Component {
   render() {
     return (
-      <div className="container-fluid app">
+      <div className="container-fluid app p-0 m-0">
         <div className="nav">
           <Navbar textColor={'black'} auth={this.props.auth} />
         </div>
@@ -140,7 +140,7 @@ class About extends React.Component {
           <br />
         </div>
 
-        <div className="col offset-.5 footerpage">
+        <div className="col offset-.5 footerpage p-0 m-0">
           <FooterPage />
         </div>
       </div>

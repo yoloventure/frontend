@@ -3,13 +3,15 @@ import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
 import Login from "./auth/login";
-import HostExperience from "./hostExperience/hostExperience";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import HostExperience from "./hostExperience/HostExperience";
+import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 import Register from "./auth/register";
 import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
-import HostGuidelines from "./hostExperience/hostGuidelines";
+import HostGuidelines from "./hostExperience/HostGuidelines";
+import Dashboard from './HostLoggedIn/Dashboard'
+import CreatHostExp from './HostLoggedIn/CreateHostExp.js'
 import Admin from "./admin/Admin";
 
 class App extends React.Component {
@@ -117,6 +119,14 @@ class App extends React.Component {
           return <Homepage auth={this.state.auth} />;
         }}
       />
+      <Route
+        path="/hostdashboard"
+        exact
+        render={() => {
+          return <Dashboard auth={this.state.auth} />;
+        }}
+      />
+
       <Route
         path="/admin"
         exact

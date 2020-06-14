@@ -28,11 +28,14 @@ class Navbar extends React.Component {
     window.removeEventListener('scroll', this.handleScroll)
   }
   handleScroll = () => {
-    if (this.props.textColor !== "black") {
-
-      this.setState(
-        { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888'} },
-      )
+    if(window.scrollY<0.1 && this.props.textColor !== "black"){
+        this.setState(
+          { navBackgroundStyle: {background:'transparent'} },
+        )
+    }else if (this.props.textColor !== "black") {
+          this.setState(
+            { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888'} },
+          )
     }
 
   }

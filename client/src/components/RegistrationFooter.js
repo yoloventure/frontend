@@ -2,7 +2,7 @@ import React from "react";
 // import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import "./footer.css";
 
-const registrationFooter = () => {
+const RegistrationFooter = () => {
   return (
     <footer className="app">
       <div className="row align-items-end">
@@ -15,4 +15,4 @@ const registrationFooter = () => {
   );
 };
 
-export default registrationFooter;
+export default RegistrationFooter;

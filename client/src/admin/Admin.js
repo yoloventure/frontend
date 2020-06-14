@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HostApplicationItem from "./HostApplicationItem";
 import Navbar from "../components/Navbar";
-import FooterPage from "../components/footer";
+import FooterPage from "../components/Footer";
 
 // Assuming as input
 import { getAllHosts, getHostById } from "../api/APIHost";
@@ -131,7 +131,7 @@ class Admin extends React.Component {
     let hostApps = this.state.hostApps.map((item, index) => <HostApplicationItem item={item} key={index} />);
 
     // TODO: check if user is an admin
-    
+
     return (
       <div className="container-fluid app">
         <Navbar textColor={'black'} auth={this.props.auth} />

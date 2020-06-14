@@ -3,7 +3,7 @@ import {
   MDBContainer
 } from "mdbreact";
 import Navbar from "../components/Navbar";
-import FooterPage from "../components/footer";
+import FooterPage from "../components/Footer";
 import APIAuth from "../api/APIAuth"
 import { Link, withRouter } from "react-router-dom";
 
@@ -74,7 +74,7 @@ handleSubmit(event) {
     const { registering } = this.props;
     const { user, submitted, errorMessage} = this.state;
     return (
-      <div className="container-fluid app">
+      <div className="container-fluid app p-0 m-0">
         <div className="nav">
           <Navbar textColor={"black"} auth={this.props.auth} />
         </div>
@@ -126,7 +126,7 @@ handleSubmit(event) {
           </div>
         </MDBContainer >
 
-        <div className="col offset-.5 footerpage">
+        <div className="col offset-.5 footerpage p-0 m-0">
           <FooterPage />
         </div>
       </div>

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 
 import CardExpDetail from "../components/CardExpDetail";
 import CardExpDetailReview from "../components/CardExpDetailReview";
-
+import Footer from '../components/Footer'
 import mapImage from "../photos/map.png"
 import searchArrow from "../photos/searchArrow.png"
 import data from "../explore/expDetailData.json";
@@ -148,7 +148,7 @@ export default class ExperienceDetail extends React.Component{
 
                 {this.state.CardsReview}
 
-
+                <Footer/>
 
           </div>
     );

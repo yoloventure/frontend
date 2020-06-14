@@ -8,17 +8,14 @@ import {
   withRouter,
   Link
 } from "react-router-dom";
-
+import Footer from '../components/Footer'
 import PropTypes from "prop-types";
-
-
 import Navbar from "../components/Navbar";
 import "./Explore.css";
 import data from "../explore/data.json";
 import Card from "../components/Card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ExperienceDetail from '../explore/ExperienceDetail'
@@ -286,6 +283,8 @@ class Explore extends React.Component{
           </div>
 
 
+          <Footer/>
+
 
 
 
@@ -298,8 +297,5 @@ class Explore extends React.Component{
 
 }
 }
-function Topic() {
-  // let { topicId } = useParams();
-  return <h3>Requested topic ID: </h3>;
-}
+
 export default withRouter(Explore)

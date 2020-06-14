@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
-import RegistrationFooter from "../components/registrationFooter";
+import RegistrationFooter from "../components/RegistrationFooter";
 import ortho from "../photos/ortho.png";
 import Page1 from "../components/regFormComponents/Page1";
 import Page2 from "../components/regFormComponents/Page2";
@@ -18,18 +18,22 @@ class HostRegister extends React.Component {
 
     this.state = {
       host : {
-        userId: "@example",
-        name: "John Example",
-        gender: "Male",
-        title: "government Worker",
+        userId: "",
+        fname: "",
+        lname:"",
+        gender: "",
+        title: "",
         stage: "",
         company: "",
         email: "",
         phone: "",
         website: "",
-        category: "Health",
-        location: "",
-        description: "I work for the government",
+        category: "",
+        street: '',
+        city: '',
+        state:'',
+        country:'',
+        description: "",
         offerOne: "",
         offerTwo: "",
         offerThree: "",
@@ -38,7 +42,8 @@ class HostRegister extends React.Component {
         moreThree: "",
         otherAspects: "",
         expertise: "",
-        password:""
+        password:"",
+        errorMessage:''
       },
       counter: 1,
       progress: 0
@@ -47,7 +52,9 @@ class HostRegister extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+
   }
+
 
   handleInputChange(event) {
     const { name, value } = event.target;
@@ -78,6 +85,8 @@ class HostRegister extends React.Component {
     APIAuth.register(user).then(data => {
       newUser = data;
     });
+    window.scrollTo(0, 0);
+
   }
 
   handlePageRender(counter) {
@@ -127,7 +136,7 @@ class HostRegister extends React.Component {
 
           <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
-              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
+              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
                 <p>PROGRESS</p>
               </div>
 
