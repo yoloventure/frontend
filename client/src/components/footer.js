@@ -2,9 +2,9 @@ import React from "react";
 // import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 import "./footer.css";
 
-const FooterPage = () => {
+const Footer = () => {
   return (
-    <footer id="footerOfEachPage" className="row app">
+    <footer id="footerOfEachPage" className="row app" style={{margin:'0px', padding:'0px'}}>
       <div className="col-sm-2 ml-auto">
         <h5 className="logo ">YOLO</h5>
         <p className="start">Start your next adventure with us</p>
@@ -63,7 +63,7 @@ const FooterPage = () => {
         </ul>
       </div>
 
-      <div className="row ">
+      <div className="row pb-0 mb-0 ">
         <h5 className="title title5 col-sm order-last ">
           <a href="#">FOLLOW US</a>
         </h5>
@@ -76,4 +76,4 @@ const FooterPage = () => {
   );
 };
 
-export default FooterPage;
+export default Footer;

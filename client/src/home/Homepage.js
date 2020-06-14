@@ -3,13 +3,12 @@ import React from "react"
 import ReactDOM from "react-dom"
 import "./Homepage.css"
 import Navbar from "../components/Navbar"
-import midSectionHome from '../components/midSectionHome.js'
 import Slider from '../components/Slider'
 import homeArrow from '../photos/homeArrow.png'
 import ScrollArrow from '../photos/ScrollForMore.png'
 import Background from '../photos/CoverPhoto.png'
-import Bottom from "../components/bottom"
-import FooterPage from "../components/footer"
+import Bottom from "../components/Bottom"
+import FooterPage from "../components/Footer"
 import  Link  from "react-router-dom";
 
 

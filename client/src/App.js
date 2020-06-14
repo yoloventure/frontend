@@ -10,12 +10,12 @@ import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
 import Login from "./auth/login";
-import HostExperience from "./hostExperience/hostExperience";
+import HostExperience from "./hostExperience/HostExperience";
 import Register from "./auth/register";
 import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
-import HostGuidelines from "./hostExperience/hostGuidelines";
+import HostGuidelines from "./hostExperience/HostGuidelines";
 import Dashboard from './HostLoggedIn/Dashboard'
 import CreatHostExp from './HostLoggedIn/CreateHostExp.js'
 class App extends React.Component {

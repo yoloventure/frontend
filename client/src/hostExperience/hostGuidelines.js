@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../components/Navbar";
-import Bottom from "../components/bottom";
-import FooterPage from "../components/footer";
+import Bottom from "../components/Bottom";
+import FooterPage from "../components/Footer";
 import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
@@ -12,7 +12,7 @@ import fquote from "../photos/fquote.png";
 import quotes from "../photos/quotes.png";
 import bquote from "../photos/bquote.png";
 
-class hostGuidelines extends React.Component {
+class HostGuidelines extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
@@ -143,4 +143,4 @@ class hostGuidelines extends React.Component {
   }
 }
 
-export default hostGuidelines;
+export default HostGuidelines;

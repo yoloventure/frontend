@@ -39,11 +39,10 @@
 
   </head>
 <style>
-body::-webkit-scrollbar {
-  display: none;
-}
-body,html{
+
+body{
   overflow-x:hidden;
+  overflow-y: scroll;
 }
 </style>
   <body>
@@ -52,4 +51,9 @@ body,html{
     <div id="root"></div>
 </body>
 
+<script>
+window.onbeforeunload = function () {
+  window.scrollTo(0,0);
+};
+</script>
 </html>

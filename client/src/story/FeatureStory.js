@@ -3,20 +3,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Navbar from "../components/Navbar"
 import Slider from "../components/Slider";
-import FooterPage from "../components/footer";
+import FooterPage from "../components/Footer";
 
 
 export default class FeatureStory extends React.Component {
   render() {
     return (
-      <div className="FeatureStory">
+      <div className="FeatureStory p-0 m-0">
           <div className="nav">
             <Navbar textColor={'black'} auth={this.props.auth}/>
           </div>
         <div className="pt-5 mt-2">
           <Slider />
         </div>
-        <FooterPage />
+        <FooterPage p-0 m-0 />
       </div>
     );
   }
