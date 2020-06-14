@@ -21,20 +21,30 @@ class Page6 extends React.Component {
           <div className="container-fluid">
             <h3>Set up a password to track your application progress</h3>
             <div className="row">
+              <div className='col-3'>
               <label htmlFor="password1" onChange={this.handleInputChange}>
                 Password
               </label>
+              </div>
+
+              <div className='col'>
               <input type="password" />
+              </div>
+
             </div>
 
-            <div className="row">
+            <div className="row pt-3">
+              <div className='col-3'>
               <label htmlFor="password2">
                 Confirm Password
               </label>
-              <input type="password" 
+              </div>
+              <div className='col'>
+              <input type="password"
               value={this.props.host.password}
-              onChange={this.props.handleInputChange}
-                                    />
+              onChange={this.props.handleInputChange}  />
+              </div>
+
             </div>
             <div className="row mt-5 mb-4">
               <div className="col"></div>

@@ -55,18 +55,18 @@ handleSubmit(event) {
         .then((data) => {
           newUser = data.response;
           console.log(newUser);
-          this.props.history.push("/login");            
+          this.props.history.push("/login");
         })
         .catch((error) => {
           console.log('error: ' + error);
           this.setState({ errorMessage: "Email already exists" });
         });
-      
+
 
         if (true){
         } else {
           this.setState({ errorMessage: "Email already exists" });
-        }  
+        }
     }
 }
 
@@ -76,7 +76,7 @@ handleSubmit(event) {
     return (
       <div className="container-fluid app">
         <div className="nav">
-          <Navbar textColor={"black"} />
+          <Navbar textColor={"black"} auth={this.props.auth} />
         </div>
 
         <div className="experience-fig-1 row align-items-center">

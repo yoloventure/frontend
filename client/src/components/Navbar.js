@@ -28,12 +28,8 @@ class Navbar extends React.Component {
     window.removeEventListener('scroll', this.handleScroll)
   }
   handleScroll = () => {
-    if (this.props.textColor === "black") {
-      this.setState(
-        { navBackgroundStyle: {background:'#ffffff'} },
-      )
+    if (this.props.textColor !== "black") {
 
-    } else {
       this.setState(
         { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888'} },
       )
@@ -64,6 +60,7 @@ class Navbar extends React.Component {
       styles.color = "black";
       styles2.color = "black";
       classVal = "navbar navbar-expand-lg fixed-top navbar-light bg "
+      this.state.navBackgroundStyle= {background:'#ffffff'}
       logoValue.push(<img src={logoColored} />)
     } else {
       styles.color = "white";
@@ -130,11 +127,13 @@ class Navbar extends React.Component {
               </a>
             </li>
 
-            <li>
+
 
             <NavbarLoginOrProfile auth={this.props.auth} textColor={this.props.textColor} />
 
 
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link " style={styles2} href="register">Register</a>
             </li>
 
 
@@ -143,10 +142,7 @@ class Navbar extends React.Component {
 
 
             </ul>
-          {/*} <div className="form-inline my-2 my-lg-0">
-         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-       </div>*/}
+
 
 
              </div>

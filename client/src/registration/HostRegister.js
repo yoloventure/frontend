@@ -18,10 +18,10 @@ class HostRegister extends React.Component {
 
     this.state = {
       host : {
-        userId: "",
-        name: "",
-        gender: "",
-        title: "",
+        userId: "@example",
+        name: "John Example",
+        gender: "Male",
+        title: "government Worker",
         stage: "",
         company: "",
         email: "",
@@ -103,11 +103,11 @@ class HostRegister extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
-        <div className="nav">
-          <Navbar textColor={"black"} />
+        <div className="nav pb-5">
+          <Navbar textColor={"black"} auth={this.props.auth} />
         </div>
 
-        <div className="container mt-5 mb-5">
+        <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
             <div className="col-md-4">
               <img
@@ -127,7 +127,7 @@ class HostRegister extends React.Component {
 
           <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
-              <div className="col-sm-2">
+              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
                 <p>PROGRESS</p>
               </div>
 
