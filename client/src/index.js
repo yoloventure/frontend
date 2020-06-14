@@ -7,7 +7,6 @@ import {
   Link
 } from "react-router-dom";
 import "./index.css";
-import * as serviceWorker from './serviceWorker';
 
 import App from "./App";
 
@@ -21,4 +20,3 @@ ReactDOM.render(
   , document.getElementById("root")
 
 );
-serviceWorker.unregister();
