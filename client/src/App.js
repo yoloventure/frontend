@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
 import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
 import Login from "./auth/login";
 import HostExperience from "./hostExperience/HostExperience";
+import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 import Register from "./auth/register";
 import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
@@ -18,12 +12,14 @@ import About from "./about/About";
 import HostGuidelines from "./hostExperience/HostGuidelines";
 import Dashboard from './HostLoggedIn/Dashboard'
 import CreatHostExp from './HostLoggedIn/CreateHostExp.js'
+import Admin from "./admin/Admin";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: null,
-      auth:{userName: 'Kaixin', isAuthenticated: 0}
+      auth:{userName: 'Kaixin', isAuthenticated: 1}
     };
     this.authListener = this.authListener.bind(this);
   }
@@ -125,28 +121,16 @@ class App extends React.Component {
       />
 
       <Route
-        path="/hostdashboard"
+        path="/admin"
         exact
         render={() => {
-          return <Dashboard auth={this.state.auth} />;
+          return <Admin auth={this.state.auth}/>;
         }}
       />
-
-      <Route
-
-                path='/hostdashboard/createhostexp'
-                exact
-                render={() => {
-                  return <CreatHostExp auth={this.state.auth}/>;
-                }}
-      />
-
-
        </Switch>
        </div>
       </Router>
     );
-
   }
 }
 
