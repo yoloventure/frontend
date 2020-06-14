@@ -298,8 +298,5 @@ class Explore extends React.Component{
 
 }
 }
-function Topic() {
-  // let { topicId } = useParams();
-  return <h3>Requested topic ID: </h3>;
-}
+
 export default withRouter(Explore)

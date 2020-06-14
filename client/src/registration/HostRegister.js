@@ -28,7 +28,10 @@ class HostRegister extends React.Component {
         phone: "",
         website: "",
         category: "Health",
-        location: "",
+        street: '',
+        city: '',
+        state:'',
+        country:'',
         description: "I work for the government",
         offerOne: "",
         offerTwo: "",
@@ -38,7 +41,8 @@ class HostRegister extends React.Component {
         moreThree: "",
         otherAspects: "",
         expertise: "",
-        password:""
+        password:"",
+        errorMessage:''
       },
       counter: 1,
       progress: 0
@@ -50,6 +54,7 @@ class HostRegister extends React.Component {
   }
 
   handleInputChange(event) {
+    console.log('yahan')
     const { name, value } = event.target;
     const { host } = this.state;
     this.setState({

@@ -15,7 +15,7 @@ const passport = require('passport');
 const user = require('./routes/user');
 const email = require('./routes/email');
 const auth = require('./routes/auth');
-
+const addressValidator=require('./routes/addressValidator')
 const app = express();
 app.disable('x-powered-by')  //Hide Powered-By
 
@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 
 
 
-// DB Config   
+// DB Config
 const db = process.env.MONGODB_URI || 'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
 
 //Connect to MongoDB
@@ -64,6 +64,8 @@ app.use(express.static(path.join(__dirname, 'client/dist')))
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/auth', auth);
+app.use('/api/addressValidator', addressValidator);
+
 
 
 

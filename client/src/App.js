@@ -16,7 +16,8 @@ import HostRegister from "./registration/HostRegister"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
 import HostGuidelines from "./hostExperience/hostGuidelines";
-
+import Dashboard from './HostLoggedIn/Dashboard'
+import CreatHostExp from './HostLoggedIn/CreateHostExp.js'
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -122,6 +123,25 @@ class App extends React.Component {
           return <Homepage auth={this.state.auth} />;
         }}
       />
+
+      <Route
+        path="/hostdashboard"
+        exact
+        render={() => {
+          return <Dashboard auth={this.state.auth} />;
+        }}
+      />
+
+      <Route
+
+                path='/hostdashboard/createhostexp'
+                exact
+                render={() => {
+                  return <CreatHostExp auth={this.state.auth}/>;
+                }}
+      />
+
+
        </Switch>
        </div>
       </Router>
