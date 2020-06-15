@@ -28,13 +28,13 @@ class Page3 extends React.Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col">
-                  <p className="ellipse">1</p>
+                  <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>1</p>
                 </div>
                 <div className="col">
-                  <p className="ellipse">2</p>
+                  <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>2</p>
                 </div>
                 <div className="col">
-                  <p className="ellipse">3</p>
+                  <p className="ellipse" style={{height:'75%', width:'30%', background:'transparent'}}>3</p>
                 </div>
               </div>
 

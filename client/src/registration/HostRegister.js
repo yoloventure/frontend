@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
-import RegistrationFooter from "../components/registrationFooter";
+import RegistrationFooter from "../components/RegistrationFooter";
 import ortho from "../photos/ortho.png";
 import Page1 from "../components/regFormComponents/Page1";
 import Page2 from "../components/regFormComponents/Page2";
@@ -19,7 +19,8 @@ class HostRegister extends React.Component {
     this.state = {
       host : {
         userId: "",
-        name: "",
+        fname: "",
+        lname:"",
         gender: "",
         title: "",
         stage: "",
@@ -27,9 +28,12 @@ class HostRegister extends React.Component {
         email: "",
         phone: "",
         website: "",
-        category: "Health",
-        location: "",
-        description: "I work for the government",
+        category: "",
+        street: '',
+        city: '',
+        state:'',
+        country:'',
+        description: "",
         offerOne: "",
         offerTwo: "",
         offerThree: "",
@@ -38,7 +42,8 @@ class HostRegister extends React.Component {
         moreThree: "",
         otherAspects: "",
         expertise: "",
-        password:""
+        password:"",
+        errorMessage:''
       },
       counter: 1,
       progress: 0
@@ -47,7 +52,9 @@ class HostRegister extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+
   }
+
 
   handleInputChange(event) {
     const { name, value } = event.target;
@@ -78,6 +85,8 @@ class HostRegister extends React.Component {
     APIAuth.register(user).then(data => {
       newUser = data;
     });
+    window.scrollTo(0, 0);
+
   }
 
   handlePageRender(counter) {
@@ -103,11 +112,11 @@ class HostRegister extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
-        <div className="nav">
-          <Navbar textColor={"black"} />
+        <div className="nav pb-5">
+          <Navbar textColor={"black"} auth={this.props.auth} />
         </div>
 
-        <div className="container mt-5 mb-5">
+        <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
             <div className="col-md-4">
               <img
@@ -127,7 +136,7 @@ class HostRegister extends React.Component {
 
           <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
-              <div className="col-sm-2">
+              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
                 <p>PROGRESS</p>
               </div>
 

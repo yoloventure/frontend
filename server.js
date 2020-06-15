@@ -15,7 +15,7 @@ const user = require('./routes/user');
 const email = require('./routes/email');
 const auth = require('./routes/auth');
 const host = require('./routes/host');
-
+const addressValidator=require('./routes/addressValidator');
 const app = express();
 app.disable('x-powered-by'); //Hide Powered-By
 
@@ -32,10 +32,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
+
+
 // DB Config
-const db =
-  process.env.MONGODB_URI ||
-  'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
+const db = process.env.MONGODB_URI || 'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
 
 //Connect to MongoDB
 mongoose
@@ -58,6 +58,7 @@ app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/auth', auth);
 app.use('/api/host', host);
+app.use('/api/addressValidator', addressValidator);
 
 // Error handling middleware
 app.use(function (err, req, res, next) {

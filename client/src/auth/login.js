@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MDBContainer } from 'mdbreact';
 import Navbar from "../components/Navbar";
-import FooterPage from "../components/footer";
+import FooterPage from "../components/Footer";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import APIAuth from "../api/APIAuth";
 class Login extends Component {
@@ -50,9 +50,9 @@ class Login extends Component {
         const { email, password, submitted, errorMessage } = this.state;
 
         return (
-            <div className="container-fluid app">
+            <div className="container-fluid app p-0 m-0">
                 <div className="nav">
-                    <Navbar textColor={"black"} />
+                    <Navbar textColor={"black"} auth={this.props.auth}/>
                 </div>
 
                 <div className="experience-fig-1 row align-items-center">
@@ -90,7 +90,7 @@ class Login extends Component {
                     </div>
                 </MDBContainer>
 
-                <div className="col offset-.5 footerpage">
+                <div className="col offset-.5 footerpage p-0 m-0">
                     <FooterPage />
                 </div>
             </div>

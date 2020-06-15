@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 class Page1 extends React.Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +29,7 @@ class Page1 extends React.Component {
               <div className="col-sm-2">
                 <h6>Personal</h6>
               </div>
-              {/* 
+              {/*
               <div className="col-sm-2">
                 <i className="">insert icon</i>
               </div>
@@ -38,25 +40,39 @@ class Page1 extends React.Component {
             <div className="container-fluid">
               <div className="row mb-n2">
                 <div className="col ml-n3 ">
-                  <label>Name</label>
+                  <label>First Name</label>
+                </div>
+                <div className="col ml-n3 ">
+                  <label>Last Name</label>
                 </div>
                 <div className="col ml-n3">
                   <label>Email</label>
                 </div>
               </div>
               <div className="row ">
-                <div className="col-sm-6">
+                <div className="col-sm-4">
                   <div className="row">
                     <input
                       type="text"
-                      name="name"
-                      placeholder="Full name"
-                      value={this.props.host.name}
+                      name="fname"
+                      placeholder="First Name"
+                      value={this.props.host.fname}
                       onChange={this.props.handleInputChange}
                     />
                   </div>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-4">
+                  <div className="row">
+                    <input
+                      type="text"
+                      name="lname"
+                      placeholder="Last Name"
+                      value={this.props.host.lname}
+                      onChange={this.props.handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-sm-4">
                   <div className="row">
                     <input
                       placeholder="user@email.com"
