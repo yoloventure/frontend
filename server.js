@@ -59,6 +59,12 @@ app.use('/api/email', email);
 app.use('/api/auth', auth);
 app.use('/api/host', host);
 
+// Error handling middleware
+app.use(function (err, req, res, next) {
+  console.log(err);
+  res.status(422).send({error: err.message});
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
