@@ -69,8 +69,9 @@ const hostSchema = new mongoose.Schema({
   },
   approval: {
     //host application approval stage
-    type: Boolean,
-    default: false,
+    //values: pending/approved/rejected
+    type: String,
+    default: 'pending',
     required: true,
   },
 });
