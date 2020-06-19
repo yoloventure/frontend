@@ -10,7 +10,7 @@ import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
-import APIAuth from "../api/APIAuth";
+import APIHostApp from "../api/APIHostApp";
 
 class HostRegister extends React.Component {
   constructor(props) {
@@ -74,17 +74,9 @@ class HostRegister extends React.Component {
       this.setState({ progress: this.state.progress + 25 });
     }
     var host = this.state.host;
-    var user = {
-      fname: host.fname,
-      lname: host.lname,
-      email: host.email,
-      password: host.password,
-      job_interests: host.job_interests
-    }
-    var newUser = null;
-    APIAuth.register(user).then(data => {
-      newUser = data;
-    });
+
+    submitApp(host);
+
     window.scrollTo(0, 0);
 
   }

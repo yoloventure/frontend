@@ -8,7 +8,7 @@ const hostSchema = new mongoose.Schema({
     //userID reference
     type: mongoose.Schema.Types.ObjectId,
     ref: user,
-    requird: true,
+    required: true,
   },
   //--------------------------page-1----------------------------
   gender: {
