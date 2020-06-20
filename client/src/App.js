@@ -11,7 +11,6 @@ import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
 import HostGuidelines from "./hostExperience/HostGuidelines";
 import Dashboard from './HostLoggedIn/Dashboard'
-import CreatHostExp from './HostLoggedIn/CreateHostExp.js'
 import Admin from "./admin/Admin";
 
 class App extends React.Component {
