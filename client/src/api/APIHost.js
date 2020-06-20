@@ -1,4 +1,4 @@
-import { getCurrentUser } from "./APIUser"
+import APIUser from "./APIUser"
 
 //returns the infomations about the Host with the given UID
 function getHostById(hostId){

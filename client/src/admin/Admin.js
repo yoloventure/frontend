@@ -3,19 +3,21 @@ import HostApplicationItem from "./HostApplicationItem";
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
 
-// Assuming as input
-import { getAllHosts, getHostById } from "../api/APIHost";
+import APIHost from "../api/APIHost";
+import APIUser from "../api/APIUser";
 
 class Admin extends React.Component {
   constructor(props) {
     super(props);
 
-    /* Only display unapproved hosts; consider adding a "pending approval" property to the model
-    let hostApps = getAllHosts().filter(host => {
-      return !host.approval;
+    //Only display hosts with pending approval
+    let hostApps = APIHost.getAllHosts().then((response) => {
+      return response.filter(host => {
+        return host.approval == 'pending';
+      });
     });
-    */
 
+    /*
     let hostApps = [
       // Sample applications
       // Discuss data model with Andrew
@@ -119,6 +121,7 @@ class Admin extends React.Component {
         approval: false,
       },
     ];
+    */
 
     this.state = {
       hostApps: hostApps,
@@ -130,7 +133,11 @@ class Admin extends React.Component {
   render() {
     let hostApps = this.state.hostApps.map((item, index) => <HostApplicationItem item={item} key={index} />);
 
-    // TODO: check if user is an admin
+    //Check if user is an admin
+    let user = APIUser.getCurrentUser();
+    if (!user.isAdmin) {
+      return "You don't have permission to view this page";
+    }
 
     return (
       <div className="container-fluid app">
