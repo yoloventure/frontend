@@ -31,7 +31,8 @@ class Dashboard extends React.Component{
           endDate: new Date(),
           key: 'selection'
         },
-        rangeTextboxes: new Array(40),
+        rangeTextboxes: new Array(100),
+        rangeObjects:new Array(100),
         textboxIdCount:0,
         rangeEditDisabled:true
 
@@ -67,6 +68,7 @@ class Dashboard extends React.Component{
 
    addRange=()=>{
      let rangesUpdated=this.state.rangeTextboxes
+     let rangesObjectsUpdated=this.state.rangeObjects
      let textId='textbox'+this.state.textboxIdCount
      let startDateArray=this.state.selectionRange.startDate.toString().split(" ")
      let endDateArray=this.state.selectionRange.endDate.toString().split(" ")
@@ -82,22 +84,28 @@ class Dashboard extends React.Component{
            </div>
        </div>
      )
+     rangesObjectsUpdated[this.state.textboxIdCount]={startDate: this.state.selectionRange.startDate, endDate: this.state.selectionRange.endDate}
 
      this.setState({
        rangeTextboxes: rangesUpdated,
-       textboxIdCount: this.state.textboxIdCount+1
+       textboxIdCount: this.state.textboxIdCount+1,
+       rangeObjects: rangesObjectsUpdated
      });
 
    }
 
    deleteRange(id){
      let rangesUpdated=this.state.rangeTextboxes
+     let rangesObjectsUpdated=this.state.rangeObjects
+
      let idToDelete=id.charAt(7);
-     console.log(this.state.textboxIdCount)
-     console.log(idToDelete)
      rangesUpdated[idToDelete]=null
+     rangesObjectsUpdated[idToDelete]=null
+
      this.setState({
-       rangeTextboxes: rangesUpdated
+       rangeTextboxes: rangesUpdated,
+       rangeObjects: rangesObjectsUpdated
+
      });
    }
 
@@ -106,12 +114,19 @@ class Dashboard extends React.Component{
         rangeEditDisabled: !prevState.rangeEditDisabled
       }));
    }
+
+   confirmRanges=()=>{
+     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+   }
+
   render() {
 
 
     let todayDate=  new Date(moment().format("MM-DD-YYYY"))
   //  todayDate.push( moment().format("MM-DD-YYYY"))
-  let veryDistantDate=new Date(moment().add(2,"years").format("MM-DD-YYYY"))
+  var distantDate =  new Date(moment().add(20, 'year').calendar());
+  console.log(distantDate)
+
   return(
     <div>
     <Navbar className='mb-5' textColor={"black"} auth={this.props.auth}/>
@@ -128,14 +143,15 @@ class Dashboard extends React.Component{
           <div className='col-5 offset-1'>
               <div className='row' >
                     <div className='col-8 mt-5' style={{background: '#FFFFFF'}}>
-                        <h5 className='mt-2' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}> My Availability <button onClick={this.enableRangeEdit}><MDBIcon  icon="edit" fixed /></button></h5>
+                        <h5 className='mt-2' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}>{this.state.rangeEditDisabled? 'My Availability (click icon to activate calendar)': 'My Availability'} <button onClick={this.enableRangeEdit}><MDBIcon  icon="edit" fixed /></button></h5>
                           <DateRange
                            ranges={[this.state.selectionRange]}
                            onChange={this.handleSelect}
                            moveRangeOnFirstSelection={true}
+                           minDate={this.state.rangeEditDisabled ? distantDate: todayDate}
                            scroll={{enabled:true}}
-                           minDate={todayDate}
-                           maxDate={this.state.rangeEditDisabled? todayDate: null}
+                           // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+
 
                          />
 
@@ -144,9 +160,10 @@ class Dashboard extends React.Component{
                     <div className='col-4 mt-5' style={{background: '#FFFFFF'}}>
                         <MDBBtn color={this.state.rangeEditDisabled? "primary disabled":'primary'} onClick={this.addRange}>Add Range </MDBBtn>
 
-                        <div style={{height:'400px', width:'110%',overflowY:'auto', overflowX:'hidden'}}>
+                        <div style={{height:'350px', width:'110%',overflowY:'auto', overflowX:'hidden'}}>
                         {this.state.rangeTextboxes}
                         </div>
+                        <MDBBtn color={this.state.rangeEditDisabled? "primary disabled":'primary'} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
 
 
                     </div>

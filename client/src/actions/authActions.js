@@ -82,7 +82,9 @@ export const register = ({ name, email, password}) => (dispatch) => {
 export const login = ({ email, password }) => (dispatch) => {
     const config = {
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
+            
         }
     };
 
