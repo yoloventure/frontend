@@ -75,7 +75,7 @@ class HostRegister extends React.Component {
     }
     var host = this.state.host;
 
-    submitApp(host);
+    APIHostApp.submitApp(host);
 
     window.scrollTo(0, 0);
 

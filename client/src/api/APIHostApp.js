@@ -36,7 +36,7 @@ function approveApp(hostId) {
   var host = APIHost.getHostById(hostId);
   var user = APIUser.selectedUser(host.user); // change host model to store username instead of ObjectId?
 
-  user.hostId = host.id; // link user to host
+  user.hostId = host._id; // link user to host
   APIUser.editUser(host.user, user);
 
   host.approval = 'approved'; // update host status

@@ -5,9 +5,6 @@ function getHostById(hostId){
   var path = "/api/host/" + hostId;
   return fetch(path, {
       method: 'get',
-      headers: new Headers({
-          'Content-Type': 'application/json'
-      }),
       credentials: "include"
   }).then((response) => {
       return response.json();
@@ -32,9 +29,6 @@ function getAllHosts(){
   var path = "/api/host/";
   return fetch(path, {
       method: 'get',
-      headers: new Headers({
-          'Content-Type': 'application/json'
-      }),
       credentials: "include"
   }).then((response) => {
       return response.json();
