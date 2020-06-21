@@ -12,6 +12,8 @@ import About from "./about/About";
 import HostGuidelines from "./hostExperience/HostGuidelines";
 import Dashboard from './HostLoggedIn/Dashboard'
 import Admin from "./admin/Admin";
+import store from './store';
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <Provider store={store}>
       <Router>
       <div>
       <Switch>
@@ -136,6 +139,8 @@ class App extends React.Component {
        </Switch>
        </div>
       </Router>
+      </Provider>
+
     );
   }
 }

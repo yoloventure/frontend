@@ -6,6 +6,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {Button} from "reactstrap"
 import PropTypes from "prop-types";
+// import './Dashboard.css'
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,7 +33,7 @@ class Dashboard extends React.Component{
         },
         rangeTextboxes: new Array(40),
         textboxIdCount:0,
-        rangeEditDisabled:false
+        rangeEditDisabled:true
 
     }
       this.handleSelect = this.handleSelect.bind(this);
@@ -99,6 +100,12 @@ class Dashboard extends React.Component{
        rangeTextboxes: rangesUpdated
      });
    }
+
+   enableRangeEdit=()=>{
+     this.setState(prevState => ({
+        rangeEditDisabled: !prevState.rangeEditDisabled
+      }));
+   }
   render() {
 
 
@@ -109,7 +116,7 @@ class Dashboard extends React.Component{
     <div>
     <Navbar className='mb-5' textColor={"black"} auth={this.props.auth}/>
     <div className='pt-5 mt-5'>
-        <div className='row'  style={{background: '#F5F6F8'}}>
+        <div className='row' >
           <div className='col-4 offset-1'>
               <div className='row' >
                   <div className='col-12 mt-5' style={{background: '#FFFFFF'}}>
@@ -121,7 +128,7 @@ class Dashboard extends React.Component{
           <div className='col-5 offset-1'>
               <div className='row' >
                     <div className='col-8 mt-5' style={{background: '#FFFFFF'}}>
-                        <h5 className='mt-2' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}> My Availability <MDBIcon icon="edit" fixed /></h5>
+                        <h5 className='mt-2' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}> My Availability <button onClick={this.enableRangeEdit}><MDBIcon  icon="edit" fixed /></button></h5>
                           <DateRange
                            ranges={[this.state.selectionRange]}
                            onChange={this.handleSelect}
