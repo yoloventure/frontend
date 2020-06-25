@@ -34,7 +34,7 @@ class Navbar extends React.Component {
         )
     }else if (this.props.textColor !== "black") {
           this.setState(
-            { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888'} },
+            { navBackgroundStyle: {background:'#150433', opacity:'92%',  boxShadow: '0px 3px #888888', height:'12%'} },
           )
     }
 
@@ -48,13 +48,15 @@ class Navbar extends React.Component {
 
     };
     const styleLi = {
-      marginLeft:'12%',
-      marginRight:'12%'
+      marginLeft:'9%',
+      marginRight:'9%',
+      marginTop:'3%'
 
     };
     const styles2 = {
-      color: "",
-      whiteSpace: "pre"
+        marginLeft:'12%',
+        marginRight:'12%',
+        whiteSpace:'pre'
 
     };
     let classVal=""
@@ -71,6 +73,19 @@ class Navbar extends React.Component {
       classVal = "navbar navbar-expand-lg fixed-top navbar-dark bg "
       logoValue.push(<img src={logoWhite} />)
     }
+
+    let loginColorClass=""
+    let userNameStyles={}
+    if (this.props.textColor === "black") {
+      loginColorClass="btn btn-outline-dark dropdown-toggle"
+      userNameStyles={color:'black',marginTop:'65%',marginLeft:"120%","fontSize":"15px","opacity":"0.75"}
+    } else {
+      loginColorClass="btn btn-outline-light dropdown-toggle"
+      userNameStyles={color:'white',marginTop:'65%',marginLeft:"120%",fontSize:'15px',"opacity":"0.75"}
+
+    }
+
+
 
     return (
       <div>
@@ -95,7 +110,7 @@ class Navbar extends React.Component {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active" style={styleLi}>
               <a className="nav-link" style={styles} href="/explore">
-                Explore <span className="sr-only">(current)</span>
+                Explore
               </a>
             </li>
             <li className="nav-item active" style={styleLi}>
@@ -129,15 +144,55 @@ class Navbar extends React.Component {
                 Contact Us
               </a>
             </li>
+            {this.props.auth.isAuthenticated===0 ?
+              <React.Fragment>
+
+              <li className="nav-item active" style={styleLi}>
+                <a className="nav-link "  href="login">Login</a>
+              </li>
+              <li className="nav-item active" style={styleLi}>
+                <a className="nav-link " href="register">Register</a>
+              </li>
+              </React.Fragment>
+
+              :
+                <React.Fragment>
+                <li  className="nav-item active" style={styleLi}>
+                <img style={{borderRadius: '50%'}} src='http://via.placeholder.com/60x60'/>
+                </li>
+
+                <li  className="nav-item active" style={{marginTop:'3%'}}>
+
+
+                      <li class="dropdown order-1">
+                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>{this.props.auth.userName} <span class="caret"></span></button>
+                          <ul class="dropdown-menu dropdown-menu-right mt-2">
+                             <li class="px-3 py-2">
+                                 <form class="form" role="form">
+                                      <div class="form-group">
+                                          <button type="submit" class="btn btn-primary btn-block">Sign Out</button>
+                                      </div>
+
+                                  </form>
+                              </li>
+
+                          </ul>
+
+                        </li>
+
+
+                </li>
 
 
 
-            <NavbarLoginOrProfile auth={this.props.auth} textColor={this.props.textColor} />
 
 
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="register">Register</a>
-            </li>
+              </React.Fragment>
+            }
+
+
+
+
 
 
 
