@@ -91,6 +91,11 @@ export default class ExperienceDetail extends React.Component{
 
     return (
           <div>
+
+            <Helmet>
+                <title>Experience details | YoloShadow</title> // insert dynamic title
+            </Helmet>
+
             <Navbar textColor={'black'} auth={this.props.auth} />
 
                 <div className='row'>

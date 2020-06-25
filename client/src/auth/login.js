@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import { MDBContainer } from 'mdbreact';
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
@@ -51,6 +52,11 @@ class Login extends Component {
 
         return (
             <div className="container-fluid app p-0 m-0">
+
+                <Helmet>
+                    <title>Login | YoloShadow</title>
+                </Helmet>
+
                 <div className="nav">
                     <Navbar textColor={"black"} auth={this.props.auth}/>
                 </div>

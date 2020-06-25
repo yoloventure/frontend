@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
 import RegistrationFooter from "../components/RegistrationFooter";
@@ -103,6 +104,11 @@ class HostRegister extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
+
+        <Helmet>
+            <title>Apply to be a host | YoloShadow</title>
+        </Helmet>
+
         <div className="nav pb-5">
           <Navbar textColor={"black"} auth={this.props.auth} />
         </div>

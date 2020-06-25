@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import HostApplicationItem from "./HostApplicationItem";
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
@@ -35,6 +36,11 @@ class Admin extends React.Component {
 
     return (
       <div className="container-fluid app">
+
+        <Helmet>
+            <title>Admin | YoloShadow</title> // insert dynamic title
+        </Helmet>
+
         <Navbar textColor={'black'} auth={this.props.auth} />
 
         <div className="row mt-3 pt-5 align-items-center">

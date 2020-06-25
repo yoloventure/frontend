@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import { Calendar, DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
@@ -129,6 +130,11 @@ class Dashboard extends React.Component{
 
   return(
     <div>
+
+    <Helmet>
+        <title>Dashboard | YoloShadow</title>
+    </Helmet>
+
     <Navbar className='mb-5' textColor={"black"} auth={this.props.auth}/>
     <div className='pt-5 mt-5'>
         <div className='row' >
