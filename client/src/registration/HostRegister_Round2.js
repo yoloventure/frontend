@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
+import "../components/regFormComponents/imgSubmit.css";
 import Navbar from "../components/Navbar";
 import RegistrationFooter from "../components/RegistrationFooter";
 import ortho from "../photos/ortho.png";
-import Page1 from "../components/regFormComponents/Page1";
-import Page2 from "../components/regFormComponents/Page2";
-import Page3 from "../components/regFormComponents/Page3";
-import Page4 from "../components/regFormComponents/Page4";
-import Page5 from "../components/regFormComponents/Page5";
-import Page6 from "../components/regFormComponents/Page6";
+import Round2_Page1 from "../components/regFormComponents/Round2_Page1";
+import Round2_Page2 from "../components/regFormComponents/Round2_Page2";
+import Round2_Page3 from "../components/regFormComponents/Round2_Page3";
+import Round2_Page4 from "../components/regFormComponents/Round2_Page4";
 import Page7 from "../components/regFormComponents/Page7";
 import APIHostApp from "../api/APIHostApp";
 
@@ -18,43 +17,14 @@ class HostRegister extends React.Component {
     super(props);
 
     this.state = {
-      host : {
-        userId: "",
-        fname: "",
-        lname:"",
-        gender: "",
-        title: "",
-        stage: "",
-        company: "",
-        email: "",
-        phone: "",
-        website: "",
-        category: "",
-        street: '',
-        city: '',
-        state:'',
-        description: "",
-        offerOne: "",
-        offerTwo: "",
-        offerThree: "",
-        moreOne: "",
-        moreTwo: "",
-        moreThree: "",
-        otherAspects: "",
-        expertise: "",
-        password:"",
-        errorMessage:''
-      },
+      host: null,
       counter: 1,
-      progress: 0
+      progress: 25
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-
   }
-
 
   handleInputChange(event) {
     const { name, value } = event.target;
@@ -65,7 +35,7 @@ class HostRegister extends React.Component {
             [name]: value
         }
     });
-    console.log(this.state.host);
+    //console.log(this.state.host);
   }
 
   handleSubmit(event) {
@@ -73,30 +43,23 @@ class HostRegister extends React.Component {
     if (this.state.progress < 100) {
       this.setState({ progress: this.state.progress + 25 });
     }
-    var host = this.state.host;
 
-    APIHostApp.submitApp(host);
+    var host = this.state.host;
+    //APIHostApp.submitApp(host);
 
     window.scrollTo(0, 0);
-
   }
 
   handlePageRender(counter) {
     if (counter == 1) {
-      const pageToRender = <Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      const pageToRender = <Round2_Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
       return pageToRender;
     } else if (counter == 2) {
-      return <Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Round2_Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
     } else if (counter == 3) {
-      return <Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
-    } else if (counter == 4) {
-      return <Page4 handleInputChange={this.handleInputChange}c host={this.state.host}/>;
-    } else if (counter == 5) {
-      return <Page5 handleInputChange={this.handleInputChange} host={this.state.host}/>;
-    } else if (counter == 6) {
-      return <Page6 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} host={this.state.host}/>;
+      return <Round2_Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
     } else {
-      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
+      const pageToRender = <Round2_Page4 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
       return pageToRender;
     }
   }

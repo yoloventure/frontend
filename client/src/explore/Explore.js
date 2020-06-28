@@ -1,6 +1,7 @@
 
 /*jshint esversion: 6 */
 import React from "react";
+import { Helmet } from 'react-helmet';
 import {
   BrowserRouter as Router,
   Switch,
@@ -181,6 +182,10 @@ class Explore extends React.Component{
 
     return (
       <div>
+
+        <Helmet>
+            <title>Explore | YoloShadow</title>
+        </Helmet>
 
         <Navbar textColor={'black'} auth={this.props.auth}/>
 
