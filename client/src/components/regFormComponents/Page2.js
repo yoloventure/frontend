@@ -101,7 +101,7 @@ class Page2 extends React.Component {
                         <div className="col"></div>
                         <div className="col">
                           <input
-                            className="btn btn-danger"
+                            className="btn nextBtn"
                             type="submit"
                             value="Next Step"
                           />

@@ -7,6 +7,7 @@ import HostExperience from "./hostExperience/HostExperience";
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 import Register from "./auth/register";
 import HostRegister from "./registration/HostRegister"
+import HostRegister_Round2 from "./registration/HostRegister_Round2"
 import FeatureStory from "./story/FeatureStory";
 import About from "./about/About";
 import HostGuidelines from "./hostExperience/HostGuidelines";
@@ -107,6 +108,15 @@ class App extends React.Component {
           return <HostRegister auth={this.state.auth}/>;
         }}
       />
+
+      <Route
+        path="/hostregister/round2"
+        exact
+        render={() => {
+          return <HostRegister_Round2 auth={this.state.auth}/>;
+        }}
+      />
+
       <Route
         path="/hostguidelines"
         exact
