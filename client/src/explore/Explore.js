@@ -1,6 +1,7 @@
 
 /*jshint esversion: 6 */
 import React from "react";
+import { Helmet } from 'react-helmet';
 import {
   BrowserRouter as Router,
   Switch,
@@ -183,6 +184,7 @@ class Explore extends React.Component{
       <div>
 
         <Navbar textColor={'black'} />
+
 
 
           <div className=" row mt-3 pt-5">

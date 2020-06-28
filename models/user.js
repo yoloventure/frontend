@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+//const host = require('./host');
 
 const userSchema = new mongoose.Schema({
     fname:{
@@ -15,8 +16,10 @@ const userSchema = new mongoose.Schema({
         unique: true,
     },
     hostId:{
+        //type: mongoose.Schema.Types.ObjectId,
+        //ref: host,
         type: String,
-        default: null
+        default: null,
     },
     job_interest:{
         type: Array,

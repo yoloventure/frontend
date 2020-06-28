@@ -136,6 +136,7 @@ class Page3 extends React.Component {
                       value="Next Step"
                     />
                   </div>
+
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import { Calendar, DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
@@ -130,6 +131,7 @@ class Dashboard extends React.Component{
   return(
     <div>
     <Navbar className='mb-5' textColor={"black"} />
+
     <div className='pt-5 mt-5'>
         <div className='row' >
           <div className='col-4 offset-1'>

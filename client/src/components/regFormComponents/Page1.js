@@ -186,7 +186,7 @@ class Page1 extends React.Component {
                 <div className="col"></div>
                 <div className="col">
                   <input
-                    className="btn btn-danger"
+                    className="btn nextBtn"
                     type="submit"
                     onClick={this.props.setNextTrue}
                     value="Next Step"

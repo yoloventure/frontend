@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../components/Navbar";
@@ -16,6 +17,11 @@ class HostGuidelines extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
+
+        <Helmet>
+            <title>Host an experience | YoloShadow</title>
+        </Helmet>
+
         <div className="nav">
           <Navbar textColor={"black"}/>
         </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -10,7 +11,7 @@ import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
-import APIAuth from "../api/APIAuth";
+import APIHostApp from "../api/APIHostApp";
 
 class HostRegister extends React.Component {
   constructor(props) {
@@ -87,17 +88,9 @@ class HostRegister extends React.Component {
       this.setState({ progress: this.state.progress + 25 });
     }
     var host = this.state.host;
-    var user = {
-      fname: host.fname,
-      lname: host.lname,
-      email: host.email,
-      password: host.password,
-      job_interests: host.job_interests
-    }
-    var newUser = null;
-    APIAuth.register(user).then(data => {
-      newUser = data;
-    });
+
+    APIHostApp.submitApp(host);
+
     window.scrollTo(0, 0);
 
   }
@@ -139,6 +132,7 @@ class HostRegister extends React.Component {
   render() {
     return (
       <div className="m-0 p-0">
+
         <div className="nav pb-5">
           <Navbar textColor={"black"}  />
         </div>

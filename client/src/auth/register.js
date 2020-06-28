@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from 'react-helmet';
 import {
   MDBContainer
 } from "mdbreact";
@@ -78,6 +79,11 @@ handleSubmit(event) {
     const { user, submitted, errorMessage} = this.state;
     return (
       <div className="container-fluid app p-0 m-0">
+
+        <Helmet>
+            <title>Register | YoloShadow</title>
+        </Helmet>
+
         <div className="nav">
           <Navbar textColor={"black"}  />
         </div>

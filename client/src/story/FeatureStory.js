@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 import React from "react";
 import ReactDOM from "react-dom";
+import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar"
 import Slider from "../components/Slider";
 import FooterPage from "../components/Footer";
@@ -10,6 +11,11 @@ export default class FeatureStory extends React.Component {
   render() {
     return (
       <div className="FeatureStory p-0 m-0">
+
+          <Helmet>
+              <title>Story | YoloShadow</title> // insert dynamic title
+          </Helmet>
+
           <div className="nav">
             <Navbar textColor={'black'} />
           </div>

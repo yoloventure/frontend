@@ -93,6 +93,7 @@ export default class ExperienceDetail extends React.Component{
           <div>
             <Navbar textColor={'black'}  />
 
+
                 <div className='row'>
                     <div className='col-4 offset-1' style={{width:'50%', height:"40%"}}>
                       <img src='http://via.placeholder.com/425x425' />
