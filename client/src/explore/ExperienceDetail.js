@@ -91,7 +91,7 @@ export default class ExperienceDetail extends React.Component{
 
     return (
           <div>
-            <Navbar textColor={'black'} auth={this.props.auth} />
+            <Navbar textColor={'black'}  />
 
                 <div className='row'>
                     <div className='col-4 offset-1' style={{width:'50%', height:"40%"}}>

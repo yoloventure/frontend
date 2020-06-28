@@ -17,7 +17,7 @@ class HostGuidelines extends React.Component {
     return (
       <div className="container-fluid app">
         <div className="nav">
-          <Navbar textColor={"black"} auth={this.props.auth}/>
+          <Navbar textColor={"black"}/>
         </div>
         <div className="row align-items-center experience-fig1">
           <h2 className="col">Host an Experience</h2>

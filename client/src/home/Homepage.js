@@ -25,7 +25,7 @@ export default class Homepage extends React.Component{
 
 
       <div className='pb-0 mb-0' >
-                  <Navbar textColor={"white"} auth={this.props.auth}/>
+                  <Navbar textColor={"white"} />
                   <div style={{backgroundImage: "url(" + Background + ")"}}>
                                   <div className='col-12  pt-4 pl-5'>
 

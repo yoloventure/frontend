@@ -54,8 +54,7 @@ class Navbar extends React.Component {
     };
     const styleLi = {
       marginLeft:'9%',
-      marginRight:'9%',
-      marginTop:'3%'
+      marginRight:'9%'
 
     };
     const styles2 = {

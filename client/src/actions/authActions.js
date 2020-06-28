@@ -33,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
     // });
 
     axios
-        .get('/api/auth/user', tokenConfig(getState))
+        .get('/api/user/current', tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: USER_LOADED,

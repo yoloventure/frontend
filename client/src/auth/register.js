@@ -79,7 +79,7 @@ handleSubmit(event) {
     return (
       <div className="container-fluid app p-0 m-0">
         <div className="nav">
-          <Navbar textColor={"black"} auth={this.props.auth} />
+          <Navbar textColor={"black"}  />
         </div>
 
         <div className="experience-fig-1 row align-items-center">

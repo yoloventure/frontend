@@ -40,7 +40,7 @@ class Page2 extends React.Component {
               console.log(items);
               items.forEach((element)=>{
                 tempArray.push(
-                  <p>{element.text}</p>
+                  <button onClick={(e)=>this.selectAddress(e)}>{element.text}</button>
                 )
                 this.setState({addressResults:tempArray})
               })
@@ -49,6 +49,15 @@ class Page2 extends React.Component {
             console.log(err)
 
           });
+  }
+  selectAddress=(e)=>{
+    console.log(e.target.innerHTML)
+    var addressArray=e.target.innerHTML.split(', ')
+    var street=addressArray[0]
+    var cityState=addressArray[1].split(' ')
+    console.log('street:'+street + "city:"+cityState[0]+"cityState:"+cityState[1])
+    this.props.updateStateAddress(street,cityState[0],cityState[1])
+
   }
 
 
@@ -98,17 +107,26 @@ class Page2 extends React.Component {
                       {this.state.addressResults}
                     </div>
                   <div className="row mt-5 mb-4">
-                        <div className="col"></div>
-                        <div className="col">
+                        <div className="col-4 offset-4">
                           <input
                             className="btn btn-danger"
                             type="submit"
+                            onClick={this.props.setNextFalse}
+                            value="Previous Step"
+                          />
+                        </div>
+                        <div className="col-4">
+                          <input
+                            className="btn btn-danger"
+                            type="submit"
+                            onClick={this.props.setNextTrue}
                             value="Next Step"
                           />
                         </div>
                   </div>
           </div>
         </form>
+
       </div>
     );
   }

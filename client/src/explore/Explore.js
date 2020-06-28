@@ -182,7 +182,7 @@ class Explore extends React.Component{
     return (
       <div>
 
-        <Navbar textColor={'black'} auth={this.props.auth}/>
+        <Navbar textColor={'black'} />
 
 
           <div className=" row mt-3 pt-5">

@@ -11,7 +11,7 @@ export default class FeatureStory extends React.Component {
     return (
       <div className="FeatureStory p-0 m-0">
           <div className="nav">
-            <Navbar textColor={'black'} auth={this.props.auth}/>
+            <Navbar textColor={'black'} />
           </div>
         <div className="pt-5 mt-2">
           <Slider />
