@@ -8,7 +8,7 @@ const hostSchema = new mongoose.Schema({
     //userID reference
     type: mongoose.Schema.Types.ObjectId,
     ref: user,
-    requird: true,
+    required: true,
   },
   //--------------------------page-1----------------------------
   gender: {
@@ -69,8 +69,9 @@ const hostSchema = new mongoose.Schema({
   },
   approval: {
     //host application approval stage
-    type: Boolean,
-    default: false,
+    //values: pending/approved/rejected
+    type: String,
+    default: 'pending',
     required: true,
   },
 });
