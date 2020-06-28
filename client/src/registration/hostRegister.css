@@ -1,8 +1,3 @@
-.footerpages {
-    width: 100%;
-    height: 558px;
-    background: #150433;
-}
 
 .apply p {
     width: 675px;
@@ -74,28 +69,4 @@ h3 {
     line-height: 163.35%;
     /* or 52px */
     color: #f61067;
-}
-
-.nextBtn {
-  margin-left: auto;
-  margin-right: auto;
-
-  width: 134px;
-  height: 39px;
-
-  background: #F61067;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  font-family: Mplus 1p;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 163.35%;
-  /* or 21px */
-
-  text-align: center;
-
-  color: #FFFFFF;
 }

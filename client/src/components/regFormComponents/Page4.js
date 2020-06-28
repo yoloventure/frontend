@@ -51,14 +51,23 @@ class Page4 extends React.Component {
             <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Woodmaking</Button>
             <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Cooking</Button>
             <div className="row mt-5 mb-4">
-              <div className="col"></div>
-              <div className="col">
-                <input
-                  className="btn nextBtn"
-                  type="submit"
-                  value="Next Step"
-                />
-              </div>
+                    <div className="col-4 offset-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextFalse}
+                        value="Previous Step"
+                      />
+                    </div>
+                    <div className="col-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextTrue}
+                        value="Next Step"
+                      />
+                    </div>
+
             </div>
 
           </div>

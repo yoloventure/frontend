@@ -17,7 +17,7 @@ export default class FeatureStory extends React.Component {
           </Helmet>
 
           <div className="nav">
-            <Navbar textColor={'black'} auth={this.props.auth}/>
+            <Navbar textColor={'black'} />
           </div>
         <div className="pt-5 mt-2">
           <Slider />

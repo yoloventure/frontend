@@ -82,12 +82,34 @@ class Page5 extends React.Component {
           <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>8</p>
           </div>
           <div className='col-6'>
+          <p> street: {obj.street} </p>
+          </div>
+        </div><div className="row">
+          <div className='col-3'>
+          <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>9</p>
+          </div>
+          <div className='col-6'>
+          <p> city: {obj.city} </p>
+          </div>
+        </div><div className="row">
+          <div className='col-3'>
+          <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>10</p>
+          </div>
+          <div className='col-6'>
+          <p> state: {obj.state} </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className='col-3'>
+          <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>11</p>
+          </div>
+          <div className='col-6'>
           <p> website: {obj.website} </p>
           </div>
         </div>
         <div className="row">
           <div className='col-3'>
-          <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>9</p>
+          <p className="ellipse" style={{height:'75%', width:'30%',background:'transparent'}}>12</p>
           </div>
           <div className='col-6'>
           <p> description: {obj.description} </p>
@@ -110,14 +132,23 @@ class Page5 extends React.Component {
             </div>
 
             <div className="row mt-5 mb-4">
-              <div className="col"></div>
-              <div className="col">
-                <input
-                  className="btn nextBtn"
-                  type="submit"
-                  value="Next Step"
-                />
-              </div>
+                    <div className="col-4 offset-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextFalse}
+                        value="Previous Step"
+                      />
+                    </div>
+                    <div className="col-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextTrue}
+                        value="Next Step"
+                      />
+                    </div>
+
             </div>
           </div>
         </form>

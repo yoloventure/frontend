@@ -23,7 +23,7 @@ class HostExperience extends React.Component {
         </Helmet>
 
         <div className="nav">
-          <Navbar textColor={"black"} auth={this.props.auth} />
+          <Navbar textColor={"black"}  />
         </div>
         <div className="p-3">
               <div className="row align-items-center experience-fig1">

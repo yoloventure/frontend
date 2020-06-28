@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/Navbar";
-import RegistrationFooter from "../components/RegistrationFooter";
+import Footer from "../components/Footer";
 import ortho from "../photos/ortho.png";
 import Page1 from "../components/regFormComponents/Page1";
 import Page2 from "../components/regFormComponents/Page2";
@@ -46,16 +46,24 @@ class HostRegister extends React.Component {
         errorMessage:''
       },
       counter: 1,
+      goNext:true,
       progress: 0
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.updateStateAddress=this.updateStateAddress.bind(this);
 
   }
+  setNextTrue=()=>{
+    console.log('tt called')
+    this.setState({goNext:true})
+  }
+  setNextFalse=()=>{
+    console.log('f called')
 
-
+    this.setState({goNext:false})
+  }
   handleInputChange(event) {
     const { name, value } = event.target;
     const { host } = this.state;
@@ -69,7 +77,13 @@ class HostRegister extends React.Component {
   }
 
   handleSubmit(event) {
+    if(this.state.goNext){
     this.setState({ counter: this.state.counter + 1 });
+    }else{
+      this.setState({ counter: this.state.counter - 1 });
+
+    }
+
     if (this.state.progress < 100) {
       this.setState({ progress: this.state.progress + 25 });
     }
@@ -81,36 +95,46 @@ class HostRegister extends React.Component {
 
   }
 
+  updateStateAddress(street, city, state){
+    var host = this.state.host;
+
+    this.setState({
+        host: {
+            ...host,
+            street:street,
+            city: city,
+            state:state
+        }
+      }
+    )
+  }
+
   handlePageRender(counter) {
     if (counter == 1) {
-      const pageToRender = <Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      const pageToRender = <Page1 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
       return pageToRender;
     } else if (counter == 2) {
-      return <Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Page2 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} updateStateAddress={this.updateStateAddress}/>;
     } else if (counter == 3) {
-      return <Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Page3 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
     } else if (counter == 4) {
-      return <Page4 handleInputChange={this.handleInputChange}c host={this.state.host}/>;
+      return <Page4 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
     } else if (counter == 5) {
-      return <Page5 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Page5 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
     } else if (counter == 6) {
-      return <Page6 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} host={this.state.host}/>;
+      return <Page6 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host}/>;
     } else {
-      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
+      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}   host={this.state.host}/>;
       return pageToRender;
     }
   }
 
   render() {
     return (
-      <div className="container-fluid app">
-
-        <Helmet>
-            <title>Apply to be a host | YoloShadow</title>
-        </Helmet>
+      <div className="m-0 p-0">
 
         <div className="nav pb-5">
-          <Navbar textColor={"black"} auth={this.props.auth} />
+          <Navbar textColor={"black"}  />
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
@@ -133,18 +157,18 @@ class HostRegister extends React.Component {
 
           <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
-              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
-                <p>PROGRESS</p>
-              </div>
+                    <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
+                      <p>PROGRESS</p>
+                    </div>
 
-              <div className="col-sm-10 progress" style={{ height: "2px" }}>
-                <div
-                  className={"progress-bar  w-" + this.state.progress}
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
+                    <div className="col-sm-10 progress" style={{ height: "2px" }}>
+                      <div
+                        className={"progress-bar  w-" + this.state.progress}
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                      ></div>
+                    </div>
             </div>
             {/*Components go here: replace with components */}
 
@@ -154,8 +178,8 @@ class HostRegister extends React.Component {
           </div>
         </div>
 
-        <div className="footerpages">
-          <RegistrationFooter />
+        <div className="m-0 p-0">
+          <Footer />
         </div>
       </div>
     );

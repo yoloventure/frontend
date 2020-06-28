@@ -183,11 +183,8 @@ class Explore extends React.Component{
     return (
       <div>
 
-        <Helmet>
-            <title>Explore | YoloShadow</title>
-        </Helmet>
+        <Navbar textColor={'black'} />
 
-        <Navbar textColor={'black'} auth={this.props.auth}/>
 
 
           <div className=" row mt-3 pt-5">

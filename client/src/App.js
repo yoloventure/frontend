@@ -13,31 +13,30 @@ import About from "./about/About";
 import HostGuidelines from "./hostExperience/HostGuidelines";
 import Dashboard from './HostLoggedIn/Dashboard'
 import Admin from "./admin/Admin";
-import store from './store';
+import {persistor,store} from './store';
 import { Provider } from 'react-redux';
+// import { loadUser } from './actions/authActions';
+import { PersistGate } from 'redux-persist/integration/react'
 
 class App extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      auth:{userName: 'Kaixin', isAuthenticated: 1}
-    };
-    this.authListener = this.authListener.bind(this);
+     super(props);
+    // this.state = {
+    //   user: null,
+    //   auth:{userName: 'Kaixin', isAuthenticated: 1}
+    // };
+    // this.authListener = this.authListener.bind(this);
   }
 
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-
-
-  }
+//   componentDidMount() { //Load user every time App is rendered
+//   store.dispatch(loadUser());
+// }
 
   render() {
     return (
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+
       <Router>
       <div>
       <Switch>
@@ -45,7 +44,7 @@ class App extends React.Component {
         path="/explore"
         exact
       >
-       <Explore auth={this.state.auth}/>;
+       <Explore   />;
       </Route>
 
       <Route
@@ -53,7 +52,7 @@ class App extends React.Component {
                 path='/explore/:handle'
                 exact
                 render={() => {
-                  return <ExperienceDetail auth={this.state.auth}/>;
+                  return <ExperienceDetail   />;
                 }}
               />
 
@@ -63,49 +62,49 @@ class App extends React.Component {
         path="/hostexperience"
         exact
         render={() => {
-          return <HostExperience auth={this.state.auth}/>;
+          return <HostExperience   />;
         }}
       />
       <Route
         path="/hostguidelines"
         exact
         render={() => {
-          return <HostGuidelines auth={this.state.auth}/>;
+          return <HostGuidelines   />;
         }}
       />
       <Route
         path="/register"
         exact
         render={() => {
-          return <Register auth={this.state.auth}/>;
+          return <Register   />;
         }}
       />
       <Route
         path="/about"
         exact
         render={() => {
-          return <About auth={this.state.auth}/>;
+          return <About   />;
         }}
       />
       <Route
         path="/login"
         exact
         render={() => {
-          return <Login auth={this.state.auth}/>;
+          return <Login   />;
         }}
       />
       <Route
         path="/story"
         exact
         render={() => {
-          return <FeatureStory auth={this.state.auth}/>;
+          return <FeatureStory   />;
         }}
       />
       <Route
         path="/hostregister"
         exact
         render={() => {
-          return <HostRegister auth={this.state.auth}/>;
+          return <HostRegister   />;
         }}
       />
 
@@ -128,14 +127,14 @@ class App extends React.Component {
         path="/"
         exact
         render={() => {
-          return <Homepage auth={this.state.auth} />;
+          return <Homepage    />;
         }}
       />
       <Route
         path="/hostdashboard"
         exact
         render={() => {
-          return <Dashboard auth={this.state.auth} />;
+          return <Dashboard    />;
         }}
       />
 
@@ -143,12 +142,13 @@ class App extends React.Component {
         path="/admin"
         exact
         render={() => {
-          return <Admin auth={this.state.auth}/>;
+          return <Admin   />;
         }}
       />
        </Switch>
        </div>
       </Router>
+        </PersistGate>
       </Provider>
 
     );

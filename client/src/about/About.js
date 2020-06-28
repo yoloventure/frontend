@@ -24,7 +24,7 @@ class About extends React.Component {
         </Helmet>
 
         <div className="nav">
-          <Navbar textColor={'black'} auth={this.props.auth} />
+          <Navbar textColor={'black'} />
         </div>
 
         <div className="experience-fig-1 row align-items-center">

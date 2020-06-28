@@ -130,12 +130,8 @@ class Dashboard extends React.Component{
 
   return(
     <div>
+    <Navbar className='mb-5' textColor={"black"} />
 
-    <Helmet>
-        <title>Dashboard | YoloShadow</title>
-    </Helmet>
-
-    <Navbar className='mb-5' textColor={"black"} auth={this.props.auth}/>
     <div className='pt-5 mt-5'>
         <div className='row' >
           <div className='col-4 offset-1'>

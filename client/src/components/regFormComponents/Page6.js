@@ -47,14 +47,23 @@ class Page6 extends React.Component {
 
             </div>
             <div className="row mt-5 mb-4">
-              <div className="col"></div>
-              <div className="col">
-                <input
-                  className="btn nextBtn"
-                  type="submit"
-                  value="submit"
-                />
-              </div>
+                    <div className="col-4 offset-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextFalse}
+                        value="Previous Step"
+                      />
+                    </div>
+                    <div className="col-4">
+                      <input
+                        className="btn btn-danger"
+                        type="submit"
+                        onClick={this.props.setNextTrue}
+                        value="Next Step"
+                      />
+                    </div>
+
             </div>
           </div>
         </div>
