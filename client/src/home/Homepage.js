@@ -10,7 +10,8 @@ import Background from '../photos/CoverPhoto.png'
 import Bottom from "../components/Bottom"
 import FooterPage from "../components/Footer"
 import  Link  from "react-router-dom";
-
+import BrandImage from '../photos/brand_image.png';
+import { Helmet } from 'react-helmet';
 
 
 export default class Homepage extends React.Component{
