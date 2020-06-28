@@ -22,7 +22,10 @@ export default class Homepage extends React.Component{
   return(
 
 
-
+    <Helmet>
+          <title>YoloShadow</title>
+          <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
+      </Helmet>
 
       <div className='pb-0 mb-0' >
                   <Navbar textColor={"white"} />
