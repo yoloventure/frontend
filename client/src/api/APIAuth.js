@@ -10,7 +10,9 @@ function login(username, password) {
         }),
         credentials: "include"
     }).then((response) => {
-        return response.json();
+        response.json().then((data)=>{
+
+        });
     }).catch((err) => {
         console.log(err);
     });

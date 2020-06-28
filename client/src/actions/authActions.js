@@ -14,7 +14,23 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({
         type: USER_LOADING
     }); //set user to loading state
-
+    // var path = "/api/auth/user/current";
+    // return fetch(path, {
+    //     method: 'get',
+    //     headers: new Headers(tokenConfig(getState))
+    // }).then((response) => {
+    //     response.json().then((data)=>{
+    //         dispatch({
+    //             type: USER_LOADED,
+    //             payload: data.token
+    //         })
+    //     });
+    // }).catch((err) => {
+    //           dispatch(returnErrors(err.response.data, err.response.status)); //dispatch to error reducer
+    //           dispatch({
+    //               type: AUTH_ERROR
+    //           })
+    // });
 
     axios
         .get('/api/auth/user', tokenConfig(getState))
@@ -40,70 +56,106 @@ export const tokenConfig = (getState) => {
 
      //headers
      const config = {
-         headers: {
+
              "Content-type": "application/json"
-         }
+
      }
 
      //if token then add to headers
      if(token) {
-         config.headers['x-auth-token'] = token;
+         config['x-auth-token'] = token;
      }
 
      return config;
 };
 
-export const register = ({ name, email, password}) => (dispatch) => {
-    const config = {
-        headers: {
-            "Content-type": "application/json"
-        }
-    };
+export const register = (user) => (dispatch) => {
+  var path = "/api/auth/register";
+  var userInfo=user;
+  return fetch(path, {
+      method: 'post',
+      headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + new Buffer(user.email + ':' + user.password).toString('base64')
+      }),
+      body: JSON.stringify({
+          username: user.email,
+          fname: user.fname,
+          lname: user.lname,
+          job_interest: user.job_interest,
+          email: user.email
+      }),
+      credentials: "include"
+  }).then((res) => {
+            if (res.status===200){
+                        var email=userInfo.email
+                        var password=userInfo.password
+                        var path2 = "/api/auth/login";
+                        return fetch(path2, {
+                            method: 'post',
+                            headers: new Headers({
+                                'Authorization': 'Basic ' + new Buffer(email + ':' + password).toString('base64')
+                            }),
+                            credentials: "include"
+                        }).then((response) => {
+                            response.json().then((data)=>{
+                                dispatch({
+                                    type: LOGIN_SUCCESS,
+                                    payload: data
+                                })
+                            });
+                        }).catch((err) => {
+                            console.log(err);
+                        });
 
-    //Request body
-    const body = JSON.stringify({ name, email, password});
+            }
+  })
+  .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')); //dispatch to error reducer
+      dispatch({
+          type: REGISTER_FAIL
+      })
+  });
 
-    axios
-        .post('/api/users', body, config)
-        .then((res) => {
-            dispatch({
-                type: REGISTER_SUCCESS,
-                payload: res.data
-            })
-        })
-        .catch((err) => {
-            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')); //dispatch to error reducer
-            dispatch({
-                type: REGISTER_FAIL
-            })
-        });
+    //
+    // axios
+    //     .post('/api/users', body, config)
+    //     .then((res) => {
+    //         dispatch({
+    //             type: REGISTER_SUCCESS,
+    //             payload: res.data
+    //         })
+    //     })
+    //     .catch((err) => {
+    //         dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')); //dispatch to error reducer
+    //         dispatch({
+    //             type: REGISTER_FAIL
+    //         })
+    //     });
 }
 
 export const login = ({ email, password }) => (dispatch) => {
-    const config = {
-        headers: {
-            "Content-type": "application/json",
-            'Authorization': 'Basic ' + new Buffer(username + ':' + password).toString('base64')
-            
-        }
-    };
 
-    //Request body
-    const body = JSON.stringify({ email, password });
-
-    axios
-        .post('/api/auth', body, config)
-        .then((res) => {
+  console.log("login called")
+    var path = "/api/auth/login";
+    return fetch(path, {
+        method: 'post',
+        headers: new Headers({
+            'Authorization': 'Basic ' + new Buffer(email + ':' + password).toString('base64')
+        }),
+        credentials: "include"
+    }).then((response) => {
+        response.json().then((data)=>{
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: res.data
-            })
-        })
-        .catch((err) => {
-            dispatch({
-                type: LOGIN_FAIL
+                payload: data
             })
         });
+    }).catch((err) => {
+        console.log(err);
+    });
+
+
 }
 export const logout = () => (dispatch) => {
     dispatch({

@@ -4,22 +4,24 @@ import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import './Navbar.css'
-import NavbarLoginOrProfile from './NavbarLoginOrProfile'
-import APIAuth from "../api/APIAuth";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logout } from '../actions/authActions';
+
+// import APIAuth from "../api/APIAuth";
 
 class Navbar extends React.Component {
   constructor(props) {
    super(props);
-   this.logout = this.logout.bind(this);
+   // this.logout = this.logout.bind(this);
    this.state={
      navBackgroundStyle: {}
    }
   }
-  logout() {
-    APIAuth.logout().then();
-  }
+  // logout() {
+  //   APIAuth.logout().then();
+  // }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
   }
@@ -40,9 +42,12 @@ class Navbar extends React.Component {
 
   }
 
-
+  logout=()=>{
+    this.props.logout()
+  }
 
   render() {
+     const { isAuthenticated, user } = this.props.auth;
     const styles = {
       color: "",
 
@@ -144,7 +149,7 @@ class Navbar extends React.Component {
                 Contact Us
               </a>
             </li>
-            {this.props.auth.isAuthenticated===0 ?
+            {!isAuthenticated ?
               <React.Fragment>
 
               <li className="nav-item active" style={styleLi}>
@@ -165,12 +170,12 @@ class Navbar extends React.Component {
 
 
                       <li class="dropdown order-1">
-                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>{this.props.auth.userName} <span class="caret"></span></button>
+                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span class="caret"></span></button>
                           <ul class="dropdown-menu dropdown-menu-right mt-2">
                              <li class="px-3 py-2">
                                  <form class="form" role="form">
                                       <div class="form-group">
-                                          <button type="submit" class="btn btn-primary btn-block">Sign Out</button>
+                                          <button type="submit" onClick={this.logout} class="btn btn-primary btn-block">Sign Out</button>
                                       </div>
 
                                   </form>
@@ -231,4 +236,12 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+
+Navbar.propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+export default connect(mapStateToProps, {logout})(Navbar);

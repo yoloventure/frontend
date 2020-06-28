@@ -3,7 +3,13 @@ import { MDBContainer } from 'mdbreact';
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
 import { Link, Redirect, withRouter } from "react-router-dom";
-import APIAuth from "../api/APIAuth";
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import PropTypes from 'prop-types';
+import { login } from '../actions/authActions';
+import { clearErrors } from '../actions/errorActions';
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -29,30 +35,22 @@ class Login extends Component {
 
         this.setState({ submitted: true });
         const { email, password } = this.state;
-        var currentUser = null;
-        if (email && password) {
-            APIAuth.login(email, password).then(
-                data => {
-                    currentUser = data;
-                  }
-            )
-            console.log(currentUser);
-            if (currentUser != null) {
-                this.props.history.push("/");
-            }else{
-                this.setState({ errorMessage: "Email or password incorrect" });
-            }
-        }
+
+         const user = {
+             email,
+             password
+         }
+
+         this.props.login(user);
     }
 
     render() {
-        const { loggingIn } = this.props;
         const { email, password, submitted, errorMessage } = this.state;
 
         return (
             <div className="container-fluid app p-0 m-0">
                 <div className="nav">
-                    <Navbar textColor={"black"} auth={this.props.auth}/>
+                    <Navbar textColor={"black"}  />
                 </div>
 
                 <div className="experience-fig-1 row align-items-center">
@@ -81,7 +79,7 @@ class Login extends Component {
                             </div>
                             <div className="form-group">
                                 <button className="btn btn-primary">Login</button>
-                                {loggingIn &&
+                                {
                                     <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 }
                                 <Link to="/register" className="btn btn-warning">Register</Link>
@@ -98,9 +96,21 @@ class Login extends Component {
     }
 }
 
-function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
+
+
+Login.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    error: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
 }
 
-export default withRouter(Login);
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated, //item represents the entire state
+    error: state.error
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps,  {login, clearErrors})
+)(Login);
