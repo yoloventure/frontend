@@ -22,7 +22,7 @@ export default class Homepage extends React.Component{
 
   return(
 
-
+    <div>
     <Helmet>
           <title>YoloShadow</title>
           <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
@@ -201,6 +201,7 @@ export default class Homepage extends React.Component{
 
       </div>
 
+      </div>
 
 
 
