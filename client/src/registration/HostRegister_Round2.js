@@ -12,7 +12,7 @@ import Round2_Page4 from "../components/regFormComponents/Round2_Page4";
 import Page7 from "../components/regFormComponents/Page7";
 import APIHostApp from "../api/APIHostApp";
 
-class HostRegister extends React.Component {
+class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
 
@@ -73,7 +73,7 @@ class HostRegister extends React.Component {
         </Helmet>
 
         <div className="nav pb-5">
-          <Navbar textColor={"black"} auth={this.props.auth} />
+          <Navbar textColor={"black"} />
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
@@ -125,4 +125,4 @@ class HostRegister extends React.Component {
   }
 }
 
-export default HostRegister;
+export default HostRegister_Round2;

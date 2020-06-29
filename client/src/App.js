@@ -112,7 +112,7 @@ class App extends React.Component {
         path="/hostregister/round2"
         exact
         render={() => {
-          return <HostRegister_Round2 auth={this.state.auth}/>;
+          return <HostRegister_Round2 />;
         }}
       />
 

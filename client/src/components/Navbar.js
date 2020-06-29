@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 import './Navbar.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -52,11 +52,6 @@ class Navbar extends React.Component {
       color: "",
 
     };
-    const styleLi = {
-      marginLeft:'9%',
-      marginRight:'9%'
-
-    };
     const styles2 = {
         marginLeft:'12%',
         marginRight:'12%',
@@ -95,9 +90,9 @@ class Navbar extends React.Component {
       <div>
       <nav  id='nav' className={classVal} style={this.state.navBackgroundStyle}>
 
-        <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
+        <Link className="navbar-brand" to="/" style={{ color: "#F2C94C" }}>
           {logoValue}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -112,15 +107,15 @@ class Navbar extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="/explore">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/explore">
                 Explore
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="story">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/story">
                 Story
-              </a>
+              </NavLink>
             </li>
             {/*   <li className="nav-item dropdown">
            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -133,39 +128,39 @@ class Navbar extends React.Component {
              <a className="dropdown-item" href="#">Something else here</a>
            </div>
          </li> */}
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="hostexperience">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="/hostexperience">
                 Host an Experience
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles} href="about">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles} to="/about">
                 About
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="#footerOfEachPage">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="#footerOfEachPage">
                 Contact Us
-              </a>
+              </NavLink>
             </li>
             {!isAuthenticated ?
               <React.Fragment>
 
-              <li className="nav-item active" style={styleLi}>
-                <a className="nav-link "  href="login">Login</a>
+              <li className="nav-item styleLi">
+                <NavLink activeClassName="activeLink" className="nav-link "  to="/login">Login</NavLink>
               </li>
-              <li className="nav-item active" style={styleLi}>
-                <a className="nav-link " href="register">Register</a>
+              <li className="nav-item styleLi">
+                <NavLink activeClassName="activeLink" className="nav-link " to="/register">Register</NavLink>
               </li>
               </React.Fragment>
 
               :
                 <React.Fragment>
-                <li  className="nav-item active" style={styleLi}>
+                <li  className="nav-item styleLi">
                 <img style={{borderRadius: '50%'}} src='http://via.placeholder.com/60x60'/>
                 </li>
 
-                <li  className="nav-item active" style={{marginTop:'3%'}}>
+                <li  className="nav-item" style={{marginTop:'3%'}}>
 
 
                       <li class="dropdown order-1">

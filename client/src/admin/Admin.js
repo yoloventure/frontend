@@ -41,7 +41,7 @@ class Admin extends React.Component {
             <title>Admin | YoloShadow</title> // insert dynamic title
         </Helmet>
 
-        <Navbar textColor={'black'} auth={this.props.auth} />
+        <Navbar textColor={'black'} />
 
         <div className="row mt-3 pt-5 align-items-center">
           <div className="col">
