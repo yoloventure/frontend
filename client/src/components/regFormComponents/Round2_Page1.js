@@ -68,6 +68,7 @@ class Round2_Page1 extends React.Component {
                   className="btn nextBtn"
                   type="submit"
                   value="Next Step"
+                  onClick={this.props.goNext}
                 />
               </div>
             </div>

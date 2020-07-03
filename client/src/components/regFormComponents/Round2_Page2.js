@@ -40,7 +40,7 @@ class Round2_Page2 extends React.Component {
             <div className="row mt-5 mb-5">
               <div className="col">
                 <label className="imgSubmit">
-                  <input type="file" name="file_photoId" onChange={this.handleFileUpload} />
+                  <input type="file" name="file_photoId" accept="image/*" onChange={this.handleFileUpload} />
                   <div className="box">
                     <div className="hl"></div>
                     <div className="vl"></div>
@@ -53,7 +53,16 @@ class Round2_Page2 extends React.Component {
                 <input
                   className="btn nextBtn"
                   type="submit"
+                  value="Previous Step"
+                  onClick={this.props.goPrev}
+                />
+              </div>
+              <div className="col text-center">
+                <input
+                  className="btn nextBtn"
+                  type="submit"
                   value="Next Step"
+                  onClick={this.props.goNext}
                 />
               </div>
             </div>

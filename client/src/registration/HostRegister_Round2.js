@@ -19,11 +19,19 @@ class HostRegister_Round2 extends React.Component {
     this.state = {
       host: null,
       counter: 1,
-      progress: 25
+      progress: 25,
+      goNext: true,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  goNext = () => {
+    this.setState({goNext:true})
+  }
+  goPrev = () => {
+    this.setState({goNext:false})
   }
 
   handleInputChange(event) {
@@ -39,9 +47,16 @@ class HostRegister_Round2 extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({ counter: this.state.counter + 1 });
-    if (this.state.progress < 100) {
-      this.setState({ progress: this.state.progress + 25 });
+    if (this.state.goNext) {
+      this.setState({ counter: this.state.counter + 1 });
+      if (this.state.progress < 100) {
+        this.setState({ progress: this.state.progress + 25 });
+      }
+    } else {
+      this.setState({ counter: this.state.counter - 1 });
+      if (this.state.progress > 25) {
+        this.setState({ progress: this.state.progress - 25 });
+      }
     }
 
     var host = this.state.host;
@@ -52,14 +67,14 @@ class HostRegister_Round2 extends React.Component {
 
   handlePageRender(counter) {
     if (counter == 1) {
-      const pageToRender = <Round2_Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      const pageToRender = <Round2_Page1 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
       return pageToRender;
     } else if (counter == 2) {
-      return <Round2_Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Round2_Page2 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
     } else if (counter == 3) {
-      return <Round2_Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
+      return <Round2_Page3 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
     } else {
-      const pageToRender = <Round2_Page4 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
+      const pageToRender = <Round2_Page4 handleInputChange={this.handleInputChange} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
       return pageToRender;
     }
   }
