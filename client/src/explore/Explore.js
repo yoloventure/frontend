@@ -191,21 +191,21 @@ class Explore extends React.Component{
                 <div className=" searchArea col-12" >
                     <div className="search">
                         <h1 className="pl-5 pt-4" style={{color:"white", fontSize:"200%"}}>Start Your next Journey </h1>
-                        <div class="input-group pt-2">
-                            <input id="addInput" type="text" class="form-control" placeholder="Search"/>
-                            <div class="input-group-append">
-                              <button class="btn btn-secondary" type="button" onClick="this.displaycardArray">
-                                <i class="fa fa-search"></i>
+                        <div className="input-group pt-2">
+                            <input id="addInput" type="text" className="form-control" placeholder="Search"/>
+                            <div className="input-group-append">
+                              <button className="btn btn-secondary" type="button" onClick="this.displaycardArray">
+                                <i className="fa fa-search"></i>
                               </button>
                             </div>
                         </div>
                         <div className='row pt-5'>
                               <div className='col-lg-2 offset-1'>
-                                  <div class="btn-group">
-                                    <button style={{background:'#F2C94C'}} type="button" id="bvAtt" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <div className="btn-group">
+                                    <button style={{background:'#F2C94C'}} type="button" id="bvAtt" className="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Sort By Price
                                     </button>
-                                    <div class="dropdown-menu" id="dd1">
+                                    <div className="dropdown-menu" id="dd1">
                                         <a className='dropdown-item' onClick='this.filterIndustry'> Low to High </a>
                                         <a className='dropdown-item' onClick='this.filterIndustry'> High to Low </a>
 
@@ -214,11 +214,11 @@ class Explore extends React.Component{
                                   </div>
                               </div>
                               <div className='col-lg-2'>
-                                <div class="btn-group">
-                                  <button style={{background:'#F2C94C'}} type="button" id="bvAtt" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="btn-group">
+                                  <button style={{background:'#F2C94C'}} type="button" id="bvAtt" className="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Filter By Industry
                                   </button>
-                                  <div class="dropdown-menu" id="dd1">
+                                  <div className="dropdown-menu" id="dd1">
                                       <a id='i1' className='dropdown-item' onClick={this.filterIndustry}>Education</a>
                                       <a id='i2' className='dropdown-item' onClick={this.filterIndustry}>Engineering</a>
                                       <a id='i3' className='dropdown-item' onClick={this.filterIndustry}>Art and Design</a>
@@ -230,16 +230,16 @@ class Explore extends React.Component{
                               </div>
 
                               <div className='col-lg-3'>
-                                <div class="btn-group">
-                                  <button style={{background:'#F2C94C'}} type="button" id='bsAtt' class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="btn-group">
+                                  <button style={{background:'#F2C94C'}} type="button" id='bsAtt' className="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                      Filter By Duration
                                   </button>
-                                  <div class="dropdown-menu" id="dd2">
-                                      <a className='dropdown-item' onclick='filterDuration(event)'> Less than 3 days </a>
-                                      <a className='dropdown-item' onclick='filterDuration(event)'> 3 to 5 days </a>
-                                      <a className='dropdown-item' onclick='filterDuration(event)'> 5 to 7 days </a>
-                                      <a className='dropdown-item' onclick='filterDuration(event)'> 7 to 9 days </a>
-                                      <a className='dropdown-item' onclick='filterDuration(event)'> Greater than 9 days </a>
+                                  <div className="dropdown-menu" id="dd2">
+                                      <a className='dropdown-item' onClick='filterDuration(event)'> Less than 3 days </a>
+                                      <a className='dropdown-item' onClick='filterDuration(event)'> 3 to 5 days </a>
+                                      <a className='dropdown-item' onClick='filterDuration(event)'> 5 to 7 days </a>
+                                      <a className='dropdown-item' onClick='filterDuration(event)'> 7 to 9 days </a>
+                                      <a className='dropdown-item' onClick='filterDuration(event)'> Greater than 9 days </a>
                                   </div>
                                 </div>
                               </div>

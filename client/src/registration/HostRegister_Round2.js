@@ -17,65 +17,85 @@ class HostRegister_Round2 extends React.Component {
     super(props);
 
     this.state = {
-      host: null,
+      data: {dateRange: null, files: []},
       counter: 1,
       progress: 25,
-      goNext: true,
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDateRange = this.handleDateRange.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   goNext = () => {
-    this.setState({goNext:true})
+    this.setState(prevState => {
+      return {
+        counter: prevState.counter + 1,
+        progress: prevState.progress + 25,
+        goNext: false
+      }
+    }, this.handleSubmit);
   }
   goPrev = () => {
-    this.setState({goNext:false})
+    this.setState(prevState => {
+      return {
+        counter: prevState.counter - 1,
+        progress: prevState.progress - 25,
+        goPrev: false
+      }
+    }, this.handleSubmit);
   }
 
-  handleInputChange(event) {
-    const { name, value } = event.target;
-    const { host } = this.state;
-    this.setState({
-        host: {
-            ...host,
-            [name]: value
+  handleDateRange(dateRange) {
+    this.setState(prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            dateRange: dateRange
+          }
         }
+    }, () => {
+      console.log(this.state.data);
     });
-    //console.log(this.state.host);
   }
 
-  handleSubmit(event) {
-    if (this.state.goNext) {
-      this.setState({ counter: this.state.counter + 1 });
-      if (this.state.progress < 100) {
-        this.setState({ progress: this.state.progress + 25 });
-      }
-    } else {
-      this.setState({ counter: this.state.counter - 1 });
-      if (this.state.progress > 25) {
-        this.setState({ progress: this.state.progress - 25 });
-      }
+  handleFileUpload(file, index) {
+    this.setState(prevState => {
+        prevState.data.files[index] = file;
+        return {
+          data: {
+            ...prevState.data,
+          }
+        }
+    }, () => {
+      console.log(this.state.data);
+    });
+  }
+
+  handleSubmit() {
+    if (this.state.counter == 4) {
+      console.log("Submit API called");
+
+      let data = this.state.data;
+      console.log(data);
+      //APIHostApp.submitApp(data);
     }
-
-    var host = this.state.host;
-    //APIHostApp.submitApp(host);
-
-    window.scrollTo(0, 0);
   }
 
   handlePageRender(counter) {
-    if (counter == 1) {
-      const pageToRender = <Round2_Page1 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
-      return pageToRender;
-    } else if (counter == 2) {
-      return <Round2_Page2 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
-    } else if (counter == 3) {
-      return <Round2_Page3 handleInputChange={this.handleInputChange} handleSubmit={this.handleSubmit} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
-    } else {
-      const pageToRender = <Round2_Page4 handleInputChange={this.handleInputChange} goNext={this.goNext} goPrev={this.goPrev} host={this.state.host}/>;
-      return pageToRender;
+    switch(counter) {
+      case 1:
+        return <Round2_Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 2:
+        return <Round2_Page2 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 3:
+        return <Round2_Page3 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 4:
+        return <Round2_Page4 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
     }
   }
 

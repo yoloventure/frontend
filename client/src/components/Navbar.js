@@ -163,13 +163,13 @@ class Navbar extends React.Component {
                 <li  className="nav-item" style={{marginTop:'3%'}}>
 
 
-                      <li class="dropdown order-1">
-                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span class="caret"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-right mt-2">
-                             <li class="px-3 py-2">
-                                 <form class="form" role="form">
-                                      <div class="form-group">
-                                          <button type="submit" onClick={this.logout} class="btn btn-primary btn-block">Sign Out</button>
+                      <li className="dropdown order-1">
+                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span className="caret"></span></button>
+                          <ul className="dropdown-menu dropdown-menu-right mt-2">
+                             <li className="px-3 py-2">
+                                 <form className="form" role="form">
+                                      <div className="form-group">
+                                          <button type="submit" onClick={this.logout} className="btn btn-primary btn-block">Sign Out</button>
                                       </div>
 
                                   </form>
@@ -205,19 +205,19 @@ class Navbar extends React.Component {
              </div>
 
       </nav>
-      <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
+      <div id="modalPassword" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+              <div className="modal-content">
+                  <div className="modal-header">
                       <h3>Forgot password</h3>
-                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+                      <button type="button" className="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                       <p>Reset your password..</p>
                   </div>
-                  <div class="modal-footer">
-                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                      <button class="btn btn-primary">Save changes</button>
+                  <div className="modal-footer">
+                      <button className="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                      <button className="btn btn-primary">Save changes</button>
                   </div>
       </div>
       </div>

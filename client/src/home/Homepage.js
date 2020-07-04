@@ -136,7 +136,7 @@ export default class Homepage extends React.Component{
                   </div>
 
                   <Link to='/explore' style={{paddingTop:'7%', paddingLeft:'40%'}}>
-                    <button class="mt-5  learnmore d-flex justify-content-center" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#FCFCFC'}}>     Learn More   </button>
+                    <button className="mt-5  learnmore d-flex justify-content-center" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#FCFCFC'}}>     Learn More   </button>
                   </Link>
 
 

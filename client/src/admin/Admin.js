@@ -18,13 +18,17 @@ class Admin extends React.Component {
   }
 
   componentDidMount() {
-    //Only display hosts with pending approval
-    let hostApps = APIHost.getAllHosts()
-      .then(response => response.filter(host => {
-          return host.approval == 'pending';
-        })
-      )
-      .then(data => this.setState({hostApps: data}));
+    try {
+      //Only display hosts with pending approval
+      let hostApps = APIHost.getAllHosts()
+        .then(response => response.filter(host => {
+            return host.approval == 'pending';
+          })
+        )
+        .then(data => this.setState({hostApps: data}));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
