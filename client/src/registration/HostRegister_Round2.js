@@ -9,15 +9,15 @@ import Round2_Page1 from "../components/regFormComponents/Round2_Page1";
 import Round2_Page2 from "../components/regFormComponents/Round2_Page2";
 import Round2_Page3 from "../components/regFormComponents/Round2_Page3";
 import Round2_Page4 from "../components/regFormComponents/Round2_Page4";
-import Page7 from "../components/regFormComponents/Page7";
 import APIHostApp from "../api/APIHostApp";
+import APIUser from "../api/APIUser";
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: {dateRange: null, files: []},
+      data: {hostId: null, dateRange: null, files: []},
       counter: 1,
       progress: 25,
     };
@@ -25,6 +25,18 @@ class HostRegister_Round2 extends React.Component {
     this.handleDateRange = this.handleDateRange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    let user = APIUser.getCurrentUser();
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          hostId: user.hostId
+        }
+      }
+    });
   }
 
   goNext = () => {
@@ -78,7 +90,10 @@ class HostRegister_Round2 extends React.Component {
 
       let data = this.state.data;
       console.log(data);
-      //APIHostApp.submitApp(data);
+
+      data.hostId = 'test123'; // overwrite hostId for testing
+
+      APIHostApp.submitAppRound2(data);
     }
   }
 
