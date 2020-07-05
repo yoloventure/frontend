@@ -7,7 +7,7 @@ import andrew from "../photos/andrew.png";
 import kaixin from "../photos/kaixin.jpg";
 import abdoul from "../photos/abdoul.png";
 import maxim from "../photos/maxim.jpeg";
-import vanishka from "../photos/vanishka.jpg";
+import vanishka from "../photos/vanishka.JPG";
 
 class Team extends React.Component {
   constructor(props) {
