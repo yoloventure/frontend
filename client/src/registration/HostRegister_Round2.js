@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./hostRegister.css";
 import "../components/regFormComponents/imgSubmit.css";
 import Navbar from "../components/Navbar";
@@ -28,7 +30,7 @@ class HostRegister_Round2 extends React.Component {
   }
 
   componentDidMount() {
-    let user = APIUser.getCurrentUser();
+    const user = APIUser.getCurrentUser();
     this.setState(prevState => {
       return {
         data: {
@@ -37,6 +39,8 @@ class HostRegister_Round2 extends React.Component {
         }
       }
     });
+
+    toast.configure();
   }
 
   goNext = () => {
@@ -85,7 +89,7 @@ class HostRegister_Round2 extends React.Component {
   }
 
   handleSubmit() {
-    if (this.state.counter == 4) {
+    if (this.state.counter == 4 && this.formValidation()) {
       console.log("Submit API called");
 
       let data = this.state.data;
@@ -95,6 +99,29 @@ class HostRegister_Round2 extends React.Component {
 
       APIHostApp.submitAppRound2(data);
     }
+  }
+
+  formValidation() {
+    const data = this.state.data;
+    let success = true;
+
+    if (!data.dateRange) {
+      toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
+    }
+    if (!data.files[0]) {
+      toast.error("You need to upload an ID", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
+    }
+    if (!data.files[1]) {
+      toast.error("You need to upload a picture of you at work", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
+    }
+
+    return success;
   }
 
   handlePageRender(counter) {
