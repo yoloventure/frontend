@@ -54,28 +54,16 @@ class Login extends Component {
          //
          // }
     }
-    // componentWillMount(){
-    //   if(this.props.isAuthenticated){
-    //     this.setState({errorMessage:"", redirect:true})
-    //
-    //
-    //   }else{
-    //     console.log('authenticated fail')
-    //
-    //     this.setState({errorMessage:"There is already a user associated with this email."})
-    //
-    //   }
-    //
-    // }
+
     componentWillReceiveProps(nextprops){
-      if(nextprops.isAuthenticated){
+      if(nextprops.auth.isAuthenticated){
         this.setState({errorMessage:"", redirect:true})
 
 
       }else{
         console.log('authenticated fail')
 
-        this.setState({errorMessage:"There is already a user associated with this email."})
+        this.setState({errorMessage:"Username or Password was incorrect."})
 
       }
     }
@@ -147,14 +135,13 @@ class Login extends Component {
 
 
 Login.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
     login: PropTypes.func.isRequired,
-    error:PropTypes.string.isRequired
+    auth: PropTypes.object.isRequired
+
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    error:state.auth.error //item represents the entire state
+    auth:state.auth //item represents the entire state
 });
 
 export default compose(

@@ -12,7 +12,6 @@ import { compose } from 'redux';
 
 import PropTypes from 'prop-types';
 import { register } from '../actions/authActions';
-import { clearErrors } from '../actions/errorActions';
 
 class Register extends Component {
   constructor(props) {
@@ -55,7 +54,6 @@ handleSubmit(event) {
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
         this.props.register(user);
-        setTimeout(this.setState({errorMessage:"Username or Password was incorrect"}), 4000)
 
    }
 
@@ -64,7 +62,7 @@ handleSubmit(event) {
 
 
 componentWillReceiveProps(nextprops){
-  if(nextprops.isAuthenticated){
+  if(nextprops.auth.isAuthenticated){
     this.setState({errorMessage:"", redirect:true})
 
 
@@ -154,19 +152,19 @@ renderRedirect = () => {
 
 
 
+
+
 Register.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    auth: PropTypes.object.isRequired
+
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated, //item represents the entire state
-    error: state.error
+    auth:state.auth //item represents the entire state
 });
 
 export default compose(
   withRouter,
-  connect(mapStateToProps,  {register, clearErrors})
+  connect(mapStateToProps,  {register})
 )(Register);
