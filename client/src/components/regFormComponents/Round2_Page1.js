@@ -7,14 +7,20 @@ import moment from "moment";
 class Round2_Page1 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectionRange: {
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection'
-      },
-      textboxIdCount: 0,
-    };
+
+    if (props.data.dateRange) {
+      this.state = {
+        selectionRange: props.data.dateRange
+      };
+    } else {
+      this.state = {
+        selectionRange: {
+          startDate: new Date(),
+          endDate: new Date(),
+          key: 'selection'
+        },
+      };
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
@@ -22,15 +28,16 @@ class Round2_Page1 extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleSubmit();
   }
 
-  handleSelect(ranges){
+  handleSelect(ranges) {
     this.setState({selectionRange: {
       startDate: ranges.selection.startDate,
       endDate: ranges.selection.endDate,
       key: 'selection'
-    }});
+    }}, () => {
+      this.props.handleDateRange(this.state.selectionRange);
+    });
   }
 
   render() {
@@ -68,6 +75,7 @@ class Round2_Page1 extends React.Component {
                   className="btn nextBtn"
                   type="submit"
                   value="Next Step"
+                  onClick={this.props.goNext}
                 />
               </div>
             </div>

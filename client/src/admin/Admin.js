@@ -11,27 +11,34 @@ class Admin extends React.Component {
   constructor(props) {
     super(props);
 
-    //Only display hosts with pending approval
-    let hostApps = APIHost.getAllHosts().then((response) => {
-      return response.filter(host => {
-        return host.approval == 'pending';
-      });
-    });
-
     this.state = {
-      hostApps: hostApps,
+      hostApps: [],
     };
 
   }
 
+  componentDidMount() {
+    try {
+      //Only display hosts with pending approval
+      let hostApps = APIHost.getAllHosts()
+        .then(response => response.filter(host => {
+            return host.approval == 'pending';
+          })
+        )
+        .then(data => this.setState({hostApps: data}));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
-    let hostApps = this.state.hostApps.map((item, index) => <HostApplicationItem item={item} key={index} />);
+    console.log(this.state.hostApps);
 
     //Check if user is an admin
     let user = APIUser.getCurrentUser();
     if (!user.isAdmin) {
-      return "You don't have permission to view this page";
+      //return "You don't have permission to view this page";
+      //don't forget to uncomment
     }
 
     return (
@@ -41,18 +48,22 @@ class Admin extends React.Component {
             <title>Admin | YoloShadow</title> // insert dynamic title
         </Helmet>
 
-        <Navbar textColor={'black'} auth={this.props.auth} />
+        <div className="nav pb-5">
+          <Navbar textColor={'black'} />
+        </div>
 
-        <div className="row mt-3 pt-5 align-items-center">
-          <div className="col">
-            <h2>Admin page</h2>
+        <div className="container">
+          <div className="row mt-3 pt-5 align-items-center">
+            <div className="col">
+              <h2>Admin page</h2>
+            </div>
           </div>
         </div>
 
-        <br />
-
         <div className="container">
-          {hostApps}
+          {this.state.hostApps.map((item, index) =>
+            <HostApplicationItem item={item} key={index} />
+          )}
         </div>
 
         <br />

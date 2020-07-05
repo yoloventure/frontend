@@ -97,7 +97,7 @@ export default class Slider extends Component {
                        <h3 className="pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"26px","lineHeight":"29px","color":"#30233D"}}
                        > {this.state.body1[0]} </h3>
                        <Link to='/explore'>
-                       <button class="mt-5  learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
+                       <button className="mt-5  learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
                        </Link>
                   </div>
 

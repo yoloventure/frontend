@@ -10,6 +10,35 @@
   }
 }
 
+
 a:hover {
     text-decoration: underline !important;
+}
+
+.styleLi {
+  margin-left: 9%;
+  margin-right: 9%;
+}
+
+.nav-item {
+  /* Text_Misc/Nav */
+
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14.4px;
+  line-height: 30px;
+  /* identical to box height */
+
+  letter-spacing: 2px;
+
+  /* TextColors/Headers */
+
+  color: #30233D;
+  opacity: 0.8;
+}
+
+.activeLink {
+  opacity: initial;
+  /* add underline? */
 }

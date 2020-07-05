@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Round2_Page4 extends React.Component {
   render() {
@@ -13,11 +14,7 @@ class Round2_Page4 extends React.Component {
         <div className="row mt-5 mb-5"></div>
         <div className="row mt-5 mb-4">
           <div className="col text-center">
-            <input
-              className="btn nextBtn"
-              type="submit"
-              value="Done"
-            />
+            <Link className="btn nextBtn" to="/">Done</Link>
           </div>
         </div>
       </div>
