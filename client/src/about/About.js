@@ -5,14 +5,7 @@ import "./about.css";
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
 import Bottom from "../components/Bottom";
-import faces from "../photos/Faces.png";
-import kaixin from "../photos/kaixin.jpg";
-import quotes from "../photos/quotes.png";
-import yawo from "../photos/yawo.png";
-import shawn from "../photos/shawn.png";
-import carolina from "../photos/carolina.png";
-import peiyu from "../photos/peiyu.png";
-import may from "../photos/may.png";
+import Team from "../components/Team";
 
 class About extends React.Component {
   render() {
@@ -24,17 +17,18 @@ class About extends React.Component {
         </Helmet>
 
         <div className="nav">
-          <Navbar textColor={'black'} />
+          <Navbar textColor={"black"} auth={this.props.auth} />
         </div>
 
         <div className="experience-fig-1 row align-items-center">
           <div className="col-md-2"></div>
           <h2>About</h2>
         </div>
+
         <br />
         <br />
         <div className="container">
-          <p className="text-left">
+          <p className="text-left mt-5 mb-5">
             Yolo is a job shadowing marketplace that connects locals and
             travelers for authentic job shadow experiences. Locals can earn
             extra income for hosting job shadow experiences that are unique to
@@ -47,7 +41,9 @@ class About extends React.Component {
           <br />
 
           <div className="row align-items-center">
-            <h3 className="why-yolo col-4 text-center offset-3">Why Yolo</h3>
+            <h3 className="why-yolo col-4 text-center offset-3 mb-1 mt-2">
+              Why Yolo
+            </h3>
           </div>
           <br />
           <br />
@@ -55,12 +51,13 @@ class About extends React.Component {
           <div className="row">
             <div className="col">
               <h4>WHY HOST</h4>
-
-              <strong>Demonstrate your values</strong>
-              <p>
-                Show your openness, dedication to diversity & inclusion, and
-                willingness to give back.
-              </p>
+              <div className="mt-3 mb-3">
+                <strong>Demonstrate your values</strong>
+                <p>
+                  Show your openness, dedication to diversity & inclusion, and
+                  willingness to give back.
+                </p>
+              </div>
 
               <strong>Get a new perspective</strong>
               <p>
@@ -103,6 +100,9 @@ class About extends React.Component {
           <div className="d-flex justify-content-end">
             <h3 className="our-team">OUR TEAM</h3>
           </div>
+
+          <Team />
+          {/* 
           <div className="d-flex row justify-content-around">
             <div className="d-flex justify-content-center">
               <img src={shawn} alt="" className="ellipse" />
@@ -111,6 +111,8 @@ class About extends React.Component {
               <img src={carolina} alt="" className="ellipse" />
             </div>
           </div>
+          */}
+          {/*
           <div className="d-flex justify-content-between flex-wrap">
             <div className="d-flex row justify-content-around">
               <div className="d-flex justify-content-center">
@@ -134,11 +136,11 @@ class About extends React.Component {
             <div className="d-flex justify-content-end">
               <img src={yawo} alt="" className="ellipse" />
             </div>
-          </div>
-
+          </div>*/}
+          {/* 
           <div className="d-flex justify-content-center">
             <img src={may} alt="" className="ellipse" />
-          </div>
+          </div>*/}
         </div>
         <div>
           <Bottom />

@@ -6,10 +6,9 @@
 }
 
 .experience-fig-1 {
-    background: #f0cc01;
-    background: url(../photos//hostbackground.jpg);
+    background: rgba(101, 32, 175, 0.76);
+    background: url(../photos//aboutbackground.jpg);
     mix-blend-mode: hard-light;
-    opacity: 0.8;
     width: 100%;
     height: 360px;
 }
@@ -20,9 +19,7 @@
 }
 
 @media screen and (max-width: 800px) {
-    .left,
-    .main,
-    .right {
+    .left, .main, .right {
         width: 100%;
         /* The width is 100%, when the viewport is 800px or smaller */
     }
@@ -53,11 +50,14 @@
     font-size: 54px;
     line-height: 80px;
     /* Colors/Secondary_200 */
-    color: #3a0475;
+    color: white;
 }
 
-.here1,
-.here2 {
+h2 {
+    color: #fcfcfc;
+}
+
+.here1, .here2 {
     /* Title/Small */
     font-family: Mplus 1p;
     font-style: normal;
@@ -125,8 +125,7 @@
     background: #5e239d;
 }
 
-.apply-now-1 a,
-.apply-now-2 a {
+.apply-now-1 a, .apply-now-2 a {
     /* position: relative;
     bottom: 2px;
     left: 30px; */
@@ -177,7 +176,7 @@
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: normal;
-    /* font-size: 18px; */
+    font-size: 18px;
     line-height: 29px;
     /* Colors/White */
     color: #fcfcfc;
