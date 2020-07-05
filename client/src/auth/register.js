@@ -5,7 +5,7 @@ import {
 } from "mdbreact";
 import Navbar from "../components/Navbar";
 import FooterPage from "../components/Footer";
-import { Link, withRouter } from "react-router-dom";
+import { Link, Redirect,withRouter } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -27,7 +27,8 @@ class Register extends Component {
             job_interests:[]
         },
         submitted: false,
-        errorMessage: ''
+        errorMessage: '',
+        redirect:false
 
       };
 
@@ -54,27 +55,33 @@ handleSubmit(event) {
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
         this.props.register(user);
-        // var newUser = null;
-        // APIAuth.register(user)
-        // .then((response) => {
-        //   if(!response.ok) throw new Error(response.status);
-        //   else return response.json();
-        // })
-        // .then((data) => {
-        //   newUser = data.response;
-        //   console.log(newUser);
-        //   this.props.history.push("/login");
-        // })
-        // .catch((error) => {
-        //   console.log('error: ' + error);
-        //   this.setState({ errorMessage: "Email already exists" });
-        // });
+        setTimeout(this.setState({errorMessage:"Username or Password was incorrect"}), 4000)
+
+   }
 
 
-
-    }
 }
 
+
+componentWillReceiveProps(nextprops){
+  if(nextprops.isAuthenticated){
+    this.setState({errorMessage:"", redirect:true})
+
+
+  }else{
+    console.log('authenticated fail')
+
+    this.setState({errorMessage:"There is already a user associated with this email."})
+
+  }
+}
+renderRedirect = () => {
+  if (this.state.redirect) {
+      var link="/";
+      return <Redirect to={link}/>
+  }
+
+};
   render() {
     const { user, submitted, errorMessage} = this.state;
     return (
@@ -83,7 +90,7 @@ handleSubmit(event) {
         <Helmet>
             <title>Register | YoloShadow</title>
         </Helmet>
-
+        {this.renderRedirect()}
         <div className="nav">
           <Navbar textColor={"black"}  />
         </div>
@@ -125,10 +132,12 @@ handleSubmit(event) {
                 }
               </div>
               <div className="form-group">
+
                 <button className="btn btn-primary">Register</button>
-                {
+
+                {/*
                   <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                }
+                */}
                 <Link to="/login" className="btn btn-warning">Go to login</Link>
               </div>
             </form>
