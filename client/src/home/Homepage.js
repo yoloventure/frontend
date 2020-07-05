@@ -10,7 +10,8 @@ import Background from '../photos/CoverPhoto.png'
 import Bottom from "../components/Bottom"
 import FooterPage from "../components/Footer"
 import  Link  from "react-router-dom";
-
+import BrandImage from '../photos/brand_image.png';
+import { Helmet } from 'react-helmet';
 
 
 export default class Homepage extends React.Component{
@@ -21,11 +22,14 @@ export default class Homepage extends React.Component{
 
   return(
 
-
-
+    <div>
+    <Helmet>
+          <title>YoloShadow</title>
+          <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
+      </Helmet>
 
       <div className='pb-0 mb-0' >
-                  <Navbar textColor={"white"} auth={this.props.auth}/>
+                  <Navbar textColor={"white"} />
                   <div style={{backgroundImage: "url(" + Background + ")"}}>
                                   <div className='col-12  pt-4 pl-5'>
 
@@ -197,6 +201,7 @@ export default class Homepage extends React.Component{
 
       </div>
 
+      </div>
 
 
 

@@ -14,7 +14,7 @@ function Page7() {
         <div className="col"></div>
         <div className="col">
           <a href="/">
-            <input className="btn btn-danger" type="submit" value="Done" />
+            <input className="btn nextBtn" type="submit" value="Done" />
           </a>
         </div>
       </div>

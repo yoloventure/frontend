@@ -3,19 +3,7 @@ import React, { Component } from "react";
 class Page1 extends React.Component {
 
 
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({ whatToRender: 2 });
-    return;
-  }
 
   render() {
     return (
@@ -45,55 +33,57 @@ class Page1 extends React.Component {
                 <div className="col ml-n3 ">
                   <label>Last Name</label>
                 </div>
-                <div className="col ml-n3">
-                  <label>Email</label>
-                </div>
+
               </div>
+
               <div className="row ">
-                <div className="col-sm-4">
-                  <div className="row">
-                    <input
-                      type="text"
-                      name="fname"
-                      placeholder="First Name"
-                      value={this.props.host.fname}
-                      onChange={this.props.handleInputChange}
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="row">
-                    <input
-                      type="text"
-                      name="lname"
-                      placeholder="Last Name"
-                      value={this.props.host.lname}
-                      onChange={this.props.handleInputChange}
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-4">
-                  <div className="row">
-                    <input
-                      placeholder="user@email.com"
-                      name="email"
-                      value={this.props.host.email}
-                      onChange={this.props.handleInputChange}
-                      type="email"
-                    />
-                  </div>
-                </div>
+                    <div className="col-sm-6">
+                      <div className="row">
+                        <input
+                          type="text"
+                          name="fname"
+                          placeholder="First Name"
+                          value={this.props.host.fname}
+                          onChange={this.props.handleInputChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <div className="row">
+                        <input
+                          type="text"
+                          name="lname"
+                          placeholder="Last Name"
+                          value={this.props.host.lname}
+                          onChange={this.props.handleInputChange}
+                        />
+                      </div>
+                    </div>
+
               </div>
               <div className="row mt-3 mb-n2">
-                <div className="col-sm-6 ml-n3">
-                  <label>Gender</label>
-                </div>
-                <div className="col-sm-6">
-                  <label>Phone</label>
-                </div>
+                    <div className="col sm-6 ml-n3">
+                      <label>Email</label>
+                    </div>
+
+                  <div className="col-sm-6 ml-n3">
+                    <label>Gender</label>
+                  </div>
+
               </div>
 
               <div className="row">
+                  <div className="col-sm-6">
+                    <div className="row">
+                      <input
+                        placeholder="user@email.com"
+                        name="email"
+                        value={this.props.host.email}
+                        onChange={this.props.handleInputChange}
+                        type="email"
+                      />
+                    </div>
+                  </div>
                 <div className="col-sm-6">
                   <div className="row">
                     <select
@@ -107,22 +97,30 @@ class Page1 extends React.Component {
                     </select>
                   </div>
                 </div>
-                <div className="col-sm-6">
-                  <div className="row">
-                    <input
-                      placeholder="+1 222-222-2222"
-                      name="phone"
-                      value={this.props.host.phone}
-                      type="tel"
-                      onChange={this.props.handleInputChange}
-                    />
-                  </div>
-                </div>
+
               </div>
+
+
               <div className="row mt-3 mb-n2">
-                <label htmlFor="title">Title</label>
+                  <div className="col-sm-6">
+                    <label>Phone</label>
+                  </div>
+                  <label htmlFor="title">Title</label>
               </div>
+
+
               <div className="row">
+                  <div className="col-sm-6">
+                    <div className="row">
+                      <input
+                        placeholder="+1 222-222-2222"
+                        name="phone"
+                        value={this.props.host.phone}
+                        type="tel"
+                        onChange={this.props.handleInputChange}
+                      />
+                    </div>
+                  </div>
                 <input
                   name="title"
                   placeholder="ex: Recruiter"
@@ -188,8 +186,9 @@ class Page1 extends React.Component {
                 <div className="col"></div>
                 <div className="col">
                   <input
-                    className="btn btn-danger"
+                    className="btn nextBtn"
                     type="submit"
+                    onClick={this.props.setNextTrue}
                     value="Next Step"
                   />
                 </div>
