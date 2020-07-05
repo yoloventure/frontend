@@ -6,7 +6,7 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
 } from './types';
 import { returnErrors } from './errorActions';
 //load user from token
@@ -108,13 +108,16 @@ export const register = (user) => (dispatch) => {
                             console.log(err);
                         });
 
+            }else{
+              console.log('errore ')
+
+              dispatch({
+                  type: REGISTER_FAIL
+              })
             }
   })
   .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')); //dispatch to error reducer
-      dispatch({
-          type: REGISTER_FAIL
-      })
+
   });
 
     //
@@ -136,7 +139,6 @@ export const register = (user) => (dispatch) => {
 
 export const login = ({ email, password }) => (dispatch) => {
 
-  console.log("login called")
     var path = "/api/auth/login";
     return fetch(path, {
         method: 'post',
@@ -145,14 +147,24 @@ export const login = ({ email, password }) => (dispatch) => {
         }),
         credentials: "include"
     }).then((response) => {
+        if(response.status===200){
         response.json().then((data)=>{
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: data
             })
         });
+      }else{
+        console.log('first'+err)
+        dispatch({
+            type:LOGIN_FAIL
+        })
+      }
     }).catch((err) => {
-        console.log(err);
+      console.log('first'+err)
+      dispatch({
+          type:LOGIN_FAIL
+      })
     });
 
 
