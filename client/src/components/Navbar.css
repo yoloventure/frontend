@@ -1,11 +1,15 @@
 @media (max-width: 65em) {
   .navbar{
-    height:12%;
+    /* height:12%; */
   }
 }
 
 @media (min-width: 60em) {
   .navbar{
-    height:10%;
+    /* height:10%; */
   }
+}
+
+a:hover {
+    text-decoration: underline !important;
 }

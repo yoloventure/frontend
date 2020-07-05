@@ -1,6 +1,7 @@
 const express = require('express');
-var addressValidator = require('address-validator');
-var Address = addressValidator.Address;
+const SmartyStreetsSDK = require("smartystreets-javascript-sdk");
+const SmartyStreetsCore = SmartyStreetsSDK.core;
+const Lookup = SmartyStreetsSDK.usAutocomplete.Lookup;
 var _ = require('underscore');
 const router = express.Router();
 
@@ -9,52 +10,47 @@ router.post('/', (req, res) => {
 
 
 //any of the props in this object are optional, also spelling does not have to be exact.
-var address = new Address({
-    street: req.body.street,
-    city: req.body.city,
-    state: req.body.state,
-    country: req.body.country
-});
+// var lookup = new Lookup( req.body.street +','+ req.body.city +','+ req.body.state+','+req.body.country);
+let lookup = new Lookup();
+lookup.prefix=req.body.street
+lookup.city=req.body.city
+lookup.state=req.body.state
+lookup.maxSuggestions=10
+console.log(lookup)
 
-//the passed in address does not need to be an address object it can be a string. (address objects will give you a better likelihood of finding an exact match)
-// address = '100 North Washington St, Boston, MA, US';
+// for client-side requests (browser/mobile), use this code:
+let key=8387849530931884
 
-//`addressValidator.match.streetAddress` -> tells the validator that you think the input should be a street address. This data makes the validator more accurate.
-// But, sometimes you dont know.. in that cause you should use `addressValidator.match.unknown`
-addressValidator.validate(address, addressValidator.match.streetAddress, function(err, exact, inexact){
-    console.log('input: ', address.toString())
-    console.log('match: ', _.map(exact, function(a) {
-      return a.toString();
-    }));
-    console.log('did you mean: ', _.map(inexact, function(a) {
-      return a.toString();
-    }));
+let  credentials = new SmartyStreetsCore.SharedCredentials(key);
+credentials.hostName='localhost'
+console.log(credentials)
+let client = SmartyStreetsCore.buildClient.usAutocomplete(credentials);
 
-    //access some props on the exact match
-    var first = exact[0];
-    if(first){
-      
-      res.status(200).json({
+// Documentation for input fields can be found at:
+// https://smartystreets.com/docs/cloud/us-autocomplete-api#http-request-input-fields
 
-        street: first.street,
-        city: first.city,
-        state: first.state,
-        country: first.country
-      });
-      console.log(first.streetNumber + ' '+ first.street);
-    }else{
-      console.log('inexact entered')
-      res.status(200).json({
-        street: inexact.street,
-        city: inexact.city,
-        state: inexact.state,
-        country: inexact.country
-      });
-      console.log('did you mean: ', _.map(inexact, function(a) {
-        return inexact.streetNumber + ' '+ inexact.street;
-      }));
-    }
-});
+// let lookup = new Lookup("4770 Lincoln Ave O");
+
+client.send(lookup)
+	.then(logSuggestions)
+	.catch(console.log);
+
+// lookup.maxSuggestions = 10;
+//
+// lookup.cityFilter = ["Ogden"];
+// lookup.stateFilter = ["IL"];
+// lookup.prefer = ["Ogden, IL"];
+// lookup.preferRatio = 0.33333333;
+//
+// client.send(lookup)
+// 	.then(logSuggestions)
+// 	.catch(console.log);
+
+function logSuggestions(response) {
+	console.log(response.result);
+  return res.status(200).json(response.result);
+	console.log("*********************");
+}
 
 });
 module.exports = router;
