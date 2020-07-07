@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
 import './Navbar.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -52,11 +52,6 @@ class Navbar extends React.Component {
       color: "",
 
     };
-    const styleLi = {
-      marginLeft:'9%',
-      marginRight:'9%'
-
-    };
     const styles2 = {
         marginLeft:'12%',
         marginRight:'12%',
@@ -95,9 +90,9 @@ class Navbar extends React.Component {
       <div>
       <nav  id='nav' className={classVal} style={this.state.navBackgroundStyle}>
 
-        <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
+        <Link className="navbar-brand" to="/" style={{ color: "#F2C94C" }}>
           {logoValue}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -112,15 +107,15 @@ class Navbar extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="/explore">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/explore">
                 Explore
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="story">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/story">
                 Story
-              </a>
+              </NavLink>
             </li>
             {/*   <li className="nav-item dropdown">
            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -133,48 +128,48 @@ class Navbar extends React.Component {
              <a className="dropdown-item" href="#">Something else here</a>
            </div>
          </li> */}
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="hostexperience">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="/hostexperience">
                 Host an Experience
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles} href="about">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles} to="/about">
                 About
-              </a>
+              </NavLink>
             </li>
-            <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="#footerOfEachPage">
+            <li className="nav-item styleLi">
+              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="#footerOfEachPage">
                 Contact Us
-              </a>
+              </NavLink>
             </li>
             {!isAuthenticated ?
               <React.Fragment>
 
-              <li className="nav-item active" style={styleLi}>
-                <a className="nav-link "  href="login">Login</a>
+              <li className="nav-item styleLi">
+                <NavLink activeClassName="activeLink" className="nav-link "  to="/login">Login</NavLink>
               </li>
-              <li className="nav-item active" style={styleLi}>
-                <a className="nav-link " href="register">Register</a>
+              <li className="nav-item styleLi">
+                <NavLink activeClassName="activeLink" className="nav-link " to="/register">Register</NavLink>
               </li>
               </React.Fragment>
 
               :
                 <React.Fragment>
-                <li  className="nav-item active" style={styleLi}>
+                <li  className="nav-item styleLi">
                 <img style={{borderRadius: '50%'}} src='http://via.placeholder.com/60x60'/>
                 </li>
 
-                <li  className="nav-item active" style={{marginTop:'3%'}}>
+                <li  className="nav-item" style={{marginTop:'3%'}}>
 
 
-                      <li class="dropdown order-1">
-                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span class="caret"></span></button>
-                          <ul class="dropdown-menu dropdown-menu-right mt-2">
-                             <li class="px-3 py-2">
-                                 <form class="form" role="form">
-                                      <div class="form-group">
-                                          <button type="submit" onClick={this.logout} class="btn btn-primary btn-block">Sign Out</button>
+                      <li className="dropdown order-1">
+                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span className="caret"></span></button>
+                          <ul className="dropdown-menu dropdown-menu-right mt-2">
+                             <li className="px-3 py-2">
+                                 <form className="form" role="form">
+                                      <div className="form-group">
+                                          <button type="submit" onClick={this.logout} className="btn btn-primary btn-block">Sign Out</button>
                                       </div>
 
                                   </form>
@@ -210,19 +205,19 @@ class Navbar extends React.Component {
              </div>
 
       </nav>
-      <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
+      <div id="modalPassword" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+              <div className="modal-content">
+                  <div className="modal-header">
                       <h3>Forgot password</h3>
-                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+                      <button type="button" className="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                       <p>Reset your password..</p>
                   </div>
-                  <div class="modal-footer">
-                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                      <button class="btn btn-primary">Save changes</button>
+                  <div className="modal-footer">
+                      <button className="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                      <button className="btn btn-primary">Save changes</button>
                   </div>
       </div>
       </div>

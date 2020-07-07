@@ -74,6 +74,11 @@ const hostSchema = new mongoose.Schema({
     default: 'pending',
     required: true,
   },
+
+  availability: {
+    type: Array(Date),
+    default: null,
+  },
 });
 
 module.exports = mongoose.model('Host', hostSchema);

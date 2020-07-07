@@ -16,8 +16,12 @@ const email = require('./routes/email');
 const auth = require('./routes/auth');
 const host = require('./routes/host');
 const addressValidator=require('./routes/addressValidator');
+
 const app = express();
 app.disable('x-powered-by'); //Hide Powered-By
+
+var multer = require('multer')
+var cors = require('cors');
 
 //dotenv vonfig
 dotenv.config({
@@ -65,6 +69,32 @@ app.use(function (err, req, res, next) {
   console.log(err);
   res.status(422).send({error: err.message});
 });
+
+// File upload
+// Todo: customize destination based on hostId
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname)
+    }
+});
+var upload = multer({ storage: storage }).single('file');
+app.post('/api/file/upload', cors(), function(req, res) {
+
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err)
+    } else if (err) {
+      return res.status(500).json(err)
+    }
+    return res.status(200).send(req.file)
+
+  });
+
+});
+// End file upload
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
