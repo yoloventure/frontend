@@ -23,7 +23,7 @@ export default class Homepage extends React.Component{
     return(
       <div>
         <Helmet>
-          <title>YoloShadow</title>
+          <title>YoloShadow | Your Next Career Starts with an Adventure</title>
           <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
         </Helmet>
 
