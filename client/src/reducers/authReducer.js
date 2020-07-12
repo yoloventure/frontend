@@ -25,6 +25,8 @@ export default function(state=initialState, action) {
                 isLoading: true
             };
         case USER_LOADED:
+        console.log('userload'+action.payload)
+
             return {
                 ...state,
                 isAuthenticated: true,
@@ -33,6 +35,8 @@ export default function(state=initialState, action) {
             };
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            console.log(action.payload.token)
+
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,

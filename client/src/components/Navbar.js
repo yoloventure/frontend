@@ -48,6 +48,15 @@ class Navbar extends React.Component {
 
   render() {
      const { isAuthenticated, user } = this.props.auth;
+     let fname='noOne'
+     try {
+       console.log('innav'+user+user.fname)
+        fname=user.fname
+
+      }
+      catch(err) {
+          // console.log(err)
+      }
     const styles = {
       color: "",
 
@@ -169,7 +178,7 @@ class Navbar extends React.Component {
 
 
                       <li class="dropdown order-1">
-                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>Abdul <span class="caret"></span></button>
+                          <button type="button" id="dropdownMenu1" data-toggle="dropdown" className={loginColorClass}>{fname} <span class="caret"></span></button>
                           <ul class="dropdown-menu dropdown-menu-right mt-2">
                              <li class="px-3 py-2">
                                  <form class="form" role="form">
