@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
-import { BrowserRouter as Router, Link, NavLink } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import './Navbar.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -50,7 +50,7 @@ class Navbar extends React.Component {
      const { isAuthenticated, user } = this.props.auth;
      let fname='noOne'
      try {
-       console.log('innav'+user+user.fname)
+
         fname=user.fname
 
       }
@@ -59,6 +59,11 @@ class Navbar extends React.Component {
       }
     const styles = {
       color: "",
+
+    };
+    const styleLi = {
+      marginLeft:'7%',
+      marginRight:'7%'
 
     };
     const styles2 = {
@@ -99,9 +104,9 @@ class Navbar extends React.Component {
       <div>
       <nav  id='nav' className={classVal} style={this.state.navBackgroundStyle}>
 
-        <Link className="navbar-brand" to="/" style={{ color: "#F2C94C" }}>
+        <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
           {logoValue}
-        </Link>
+        </a>
         <button
           className="navbar-toggler"
           type="button"
@@ -116,15 +121,15 @@ class Navbar extends React.Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item styleLi">
-              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/explore">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link" style={styles} href="/explore">
                 Explore
-              </NavLink>
+              </a>
             </li>
-            <li className="nav-item styleLi">
-              <NavLink activeClassName="activeLink" className="nav-link" style={styles} to="/story">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link" style={styles} href="story">
                 Story
-              </NavLink>
+              </a>
             </li>
             {/*   <li className="nav-item dropdown">
            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,39 +142,39 @@ class Navbar extends React.Component {
              <a className="dropdown-item" href="#">Something else here</a>
            </div>
          </li> */}
-            <li className="nav-item styleLi">
-              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="/hostexperience">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link " style={styles2} href="hostexperience">
                 Host an Experience
-              </NavLink>
+              </a>
             </li>
-            <li className="nav-item styleLi">
-              <NavLink activeClassName="activeLink" className="nav-link " style={styles} to="/about">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link " style={styles} href="about">
                 About
-              </NavLink>
+              </a>
             </li>
-            <li className="nav-item styleLi">
-              <NavLink activeClassName="activeLink" className="nav-link " style={styles2} to="#footerOfEachPage">
+            <li className="nav-item active" style={styleLi}>
+              <a className="nav-link " style={styles2} href="#footerOfEachPage">
                 Contact Us
-              </NavLink>
+              </a>
             </li>
             {!isAuthenticated ?
               <React.Fragment>
 
-              <li className="nav-item styleLi">
-                <NavLink activeClassName="activeLink" className="nav-link "  to="/login">Login</NavLink>
+              <li className="nav-item active" style={styleLi}>
+                <a className="nav-link "  href="login">Login</a>
               </li>
-              <li className="nav-item styleLi">
-                <NavLink activeClassName="activeLink" className="nav-link " to="/register">Register</NavLink>
+              <li className="nav-item active" style={styleLi}>
+                <a className="nav-link " href="register">Register</a>
               </li>
               </React.Fragment>
 
               :
                 <React.Fragment>
-                <li  className="nav-item styleLi">
+                <li  className="nav-item active" style={styleLi}>
                 <img style={{borderRadius: '50%'}} src='http://via.placeholder.com/60x60'/>
                 </li>
 
-                <li  className="nav-item" style={{marginTop:'3%'}}>
+                <li  className="nav-item active" style={{marginTop:'3%'}}>
 
 
                       <li class="dropdown order-1">
@@ -214,19 +219,19 @@ class Navbar extends React.Component {
              </div>
 
       </nav>
-      <div id="modalPassword" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div className="modal-dialog">
-              <div className="modal-content">
-                  <div className="modal-header">
+      <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
                       <h3>Forgot password</h3>
-                      <button type="button" className="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
+                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">×</button>
                   </div>
-                  <div className="modal-body">
+                  <div class="modal-body">
                       <p>Reset your password..</p>
                   </div>
-                  <div className="modal-footer">
-                      <button className="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                      <button className="btn btn-primary">Save changes</button>
+                  <div class="modal-footer">
+                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                      <button class="btn btn-primary">Save changes</button>
                   </div>
       </div>
       </div>
