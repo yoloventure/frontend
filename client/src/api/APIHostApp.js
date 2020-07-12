@@ -1,6 +1,7 @@
 import APIAuth from "./APIAuth";
 import APIHost from "./APIHost";
 import APIUser from "./APIUser";
+import axios from 'axios';
 
 function submitApp(hostApp) {
   var user = {
@@ -50,4 +51,25 @@ function rejectApp(hostId) {
   APIHost.editHost(hostId, host);
 }
 
-export default { submitApp, approveApp, rejectApp }
+function submitAppRound2(hostApp) {
+  // update host availability
+  var hostId = hostApp.hostId;
+  var host = APIHost.getHostById(hostId);
+  host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
+  APIHost.editHost(hostId, host);
+
+  // upload images
+  for (var i=0; i<hostApp.files.length; i++) {
+    const data = new FormData();
+    data.append('file', hostApp.files[i]);
+    data.append('hostId', hostId);
+
+    axios.post("/api/file/upload", data, {
+        })
+        .then(res => {
+          console.log(res.statusText)
+        });
+  }
+}
+
+export default { submitApp, approveApp, rejectApp, submitAppRound2 }

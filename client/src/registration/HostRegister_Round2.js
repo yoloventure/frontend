@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./hostRegister.css";
 import "../components/regFormComponents/imgSubmit.css";
 import Navbar from "../components/Navbar";
@@ -9,58 +11,133 @@ import Round2_Page1 from "../components/regFormComponents/Round2_Page1";
 import Round2_Page2 from "../components/regFormComponents/Round2_Page2";
 import Round2_Page3 from "../components/regFormComponents/Round2_Page3";
 import Round2_Page4 from "../components/regFormComponents/Round2_Page4";
-import Page7 from "../components/regFormComponents/Page7";
 import APIHostApp from "../api/APIHostApp";
+import APIUser from "../api/APIUser";
 
-class HostRegister extends React.Component {
+class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      host: null,
+      data: {hostId: null, dateRange: null, files: []},
       counter: 1,
-      progress: 25
+      progress: 25,
     };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleDateRange = this.handleDateRange.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleInputChange(event) {
-    const { name, value } = event.target;
-    const { host } = this.state;
-    this.setState({
-        host: {
-            ...host,
-            [name]: value
+  componentDidMount() {
+    const user = APIUser.getCurrentUser();
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          hostId: user.hostId
         }
+      }
     });
-    //console.log(this.state.host);
+
+    toast.configure();
   }
 
-  handleSubmit(event) {
-    this.setState({ counter: this.state.counter + 1 });
-    if (this.state.progress < 100) {
-      this.setState({ progress: this.state.progress + 25 });
+  goNext = () => {
+    this.setState(prevState => {
+      return {
+        counter: prevState.counter + 1,
+        progress: prevState.progress + 25,
+        goNext: false
+      }
+    }, this.handleSubmit);
+  }
+  goPrev = () => {
+    this.setState(prevState => {
+      return {
+        counter: prevState.counter - 1,
+        progress: prevState.progress - 25,
+        goPrev: false
+      }
+    }, this.handleSubmit);
+  }
+
+  handleDateRange(dateRange) {
+    this.setState(prevState => {
+        return {
+          data: {
+            ...prevState.data,
+            dateRange: dateRange
+          }
+        }
+    }, () => {
+      console.log(this.state.data);
+    });
+  }
+
+  handleFileUpload(file, index) {
+    this.setState(prevState => {
+        prevState.data.files[index] = file;
+        return {
+          data: {
+            ...prevState.data,
+          }
+        }
+    }, () => {
+      console.log(this.state.data);
+    });
+  }
+
+  handleSubmit() {
+    if (this.state.counter == 4 && this.formValidation()) {
+      console.log("Submit API called");
+
+      let data = this.state.data;
+      console.log(data);
+
+      data.hostId = 'test123'; // overwrite hostId for testing
+
+      APIHostApp.submitAppRound2(data);
+    }
+  }
+
+  formValidation() {
+    const data = this.state.data;
+    let success = true;
+
+    if (!data.dateRange) {
+      toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
+    }
+    if (!data.files[0]) {
+      toast.error("You need to upload an ID", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
+    }
+    if (!data.files[1]) {
+      toast.error("You need to upload a picture of you at work", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
+      success = false;
     }
 
-    var host = this.state.host;
-    //APIHostApp.submitApp(host);
-
-    window.scrollTo(0, 0);
+    return success;
   }
 
   handlePageRender(counter) {
-    if (counter == 1) {
-      const pageToRender = <Round2_Page1 handleInputChange={this.handleInputChange} host={this.state.host}/>;
-      return pageToRender;
-    } else if (counter == 2) {
-      return <Round2_Page2 handleInputChange={this.handleInputChange} host={this.state.host}/>;
-    } else if (counter == 3) {
-      return <Round2_Page3 handleInputChange={this.handleInputChange} host={this.state.host}/>;
-    } else {
-      const pageToRender = <Round2_Page4 handleInputChange={this.handleInputChange}  host={this.state.host}/>;
-      return pageToRender;
+    switch(counter) {
+      case 1:
+        return <Round2_Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 2:
+        return <Round2_Page2 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 3:
+        return <Round2_Page3 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
+      case 4:
+        return <Round2_Page4 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        break;
     }
   }
 
@@ -73,7 +150,7 @@ class HostRegister extends React.Component {
         </Helmet>
 
         <div className="nav pb-5">
-          <Navbar textColor={"black"} auth={this.props.auth} />
+          <Navbar textColor={"black"} />
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
@@ -125,4 +202,4 @@ class HostRegister extends React.Component {
   }
 }
 
-export default HostRegister;
+export default HostRegister_Round2;

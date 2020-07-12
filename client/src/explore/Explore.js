@@ -579,6 +579,7 @@ class Explore extends React.Component{
           <div className=" row mt-3 pt-5 " style={{'marginTop':'10%'}}>
                 <div className=" searchArea col-12" >
                     <div className="search">
+
                         <h1 className="pl-5 pt-4" style={{color:"white", fontSize:"200%", fontWeight:'500',"textTransform":"uppercase"}}>Start Your next Journey </h1>
                         <div class="input-group pt-2">
                             <input id="addInput" type="text" class="form-control" value={this.state.searchValue} name="searchValue" onChange={this.handleInputChange} placeholder="Search"/>
@@ -606,7 +607,6 @@ class Explore extends React.Component{
                                       <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateDurationFilters(e)} >2 Days</Button>
                                        <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateDurationFilters(e)} >3 Days+</Button>
                         </div>
-
 
 
                           <div className='row pt-4 mt-4'>

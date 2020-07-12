@@ -109,7 +109,7 @@ class Page2 extends React.Component {
                   <div className="row mt-5 mb-4">
                         <div className="col-4 offset-4">
                           <input
-                            className="btn btn-danger"
+                            className="btn nextBtn"
                             type="submit"
                             onClick={this.props.setNextFalse}
                             value="Previous Step"
