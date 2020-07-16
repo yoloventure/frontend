@@ -14,38 +14,34 @@ export const loadUser = () => (dispatch, getState) => {
     dispatch({
         type: USER_LOADING
     }); //set user to loading state
-    // var path = "/api/auth/user/current";
-    // return fetch(path, {
-    //     method: 'get',
-    //     headers: new Headers(tokenConfig(getState))
-    // }).then((response) => {
-    //     response.json().then((data)=>{
-    //         dispatch({
-    //             type: USER_LOADED,
-    //             payload: data.token
-    //         })
-    //     });
-    // }).catch((err) => {
-    //           dispatch(returnErrors(err.response.data, err.response.status)); //dispatch to error reducer
-    //           dispatch({
-    //               type: AUTH_ERROR
-    //           })
-    // });
+    var path = "/api/user/userInfoFromToken";
+    console.log('lu'+localStorage.getItem('token'))
+    console.log(JSON.stringify({token:localStorage.getItem('token').split(' ')[1]}))
+    return fetch(path, {
+        method: 'post',
+        headers: new Headers({
+            'Content-Type':'application/json'
+        }),
+        body: JSON.stringify({token:localStorage.getItem('token').split(' ')[1]})
 
-    axios
-        .get('/api/user/current', tokenConfig(getState))
-        .then(res => {
+    }).then((response) => {
+      console.log('sahi jaga'+response)
+
+      response.json().then((data)=>{
+
             dispatch({
                 type: USER_LOADED,
-                payload: res.data
+                payload: data
             })
-        })
-        .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status)); //dispatch to error reducer
-            dispatch({
-                type: AUTH_ERROR
-            })
-        });
+      })
+    }).catch((err) => {
+              console.log('galat jaga'+err)
+              dispatch({
+                  type: AUTH_ERROR
+              })
+    });
+
+
 }
 
 //Set up config/header and token
