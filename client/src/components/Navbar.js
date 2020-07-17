@@ -127,7 +127,7 @@ class Navbar extends React.Component {
               </a>
             </li>
             <li className="nav-item active" style={styleLi}>
-              <a className="nav-link" style={styles} href="story">
+              <a className="nav-link" style={styles} href="/story">
                 Story
               </a>
             </li>
@@ -143,12 +143,12 @@ class Navbar extends React.Component {
            </div>
          </li> */}
             <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles2} href="hostexperience">
+              <a className="nav-link " style={styles2} href="/hostexperience">
                 Host an Experience
               </a>
             </li>
             <li className="nav-item active" style={styleLi}>
-              <a className="nav-link " style={styles} href="about">
+              <a className="nav-link " style={styles} href="/about">
                 About
               </a>
             </li>
@@ -161,10 +161,10 @@ class Navbar extends React.Component {
               <React.Fragment>
 
               <li className="nav-item active" style={styleLi}>
-                <a className="nav-link "  href="login">Login</a>
+                <a className="nav-link "  href="/login">Login</a>
               </li>
               <li className="nav-item active" style={styleLi}>
-                <a className="nav-link " href="register">Register</a>
+                <a className="nav-link " href="/register">Register</a>
               </li>
               </React.Fragment>
 
