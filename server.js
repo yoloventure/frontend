@@ -52,20 +52,7 @@ mongoose
   })
   .then(() => console.log('Connected to database...'))
   .catch((err) => console.log(err));
-const exp1=new Experience({  "fname":"John",
-"lname":"Doe2",
-"city": "Boston",
-  "durationDays": 3,
-  "profession": "Orthodonist",
-  "price": "$15",
-  "image": "http://via.placeholder.com/220x160" ,
-  "industry": "Healthcare",
-  "availableFrom":"7/22/2020",
-  "availableTill":"7/23/2020",
-  "whatICanOffer":[{"title":"Dentist patient communication technologies", "body":"lorem ipsum"} ],
-  "reviews":[{"author":"Faisal", "body":"lorem ipsum", "publishDate":"5/12/2018"} ]
-  });
-  exp1.save();
+
 // Passport Middleware
 app.use(passport.initialize());
 
@@ -74,7 +61,7 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Use API Routes
 app.use('/api/user', user);
-// app.use('/api/experience', experience)
+app.use('/api/experience', experience);
 app.use('/api/email', email);
 app.use('/api/auth', auth);
 app.use('/api/host', host);
