@@ -6,10 +6,9 @@ import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import CardExpDetail from "../components/CardExpDetail";
 import CardExpDetailReview from "../components/CardExpDetailReview";
-import Footer from '../components/Footer'
-import mapImage from "../photos/map.png"
-import searchArrow from "../photos/searchArrow.png"
-import data from "../explore/expDetailData.json";
+import Footer from '../components/Footer';
+import mapImage from "../photos/map.png";
+import searchArrow from "../photos/searchArrow.png";
 
 import APIExperience from "../api/APIExperience";
 
@@ -17,70 +16,25 @@ import "./ExperienceDetail.css";
 
 export default class ExperienceDetail extends React.Component{
     constructor(props) {
-      super(props)
-      let  CardsExpDetail=[];
-      let CardsReview=[];
+      super(props);
       this.state = {
-        CardsExpDetail:CardsExpDetail,
-        CardsReview: CardsReview,
-        experience: null,
-      }
-
-      for(var i=0; i<data[0].expDetailTitles.length;i+=3){
-          if(i+2<data[0].expDetailTitles.length){
-          CardsExpDetail.push(
-          <div class="row " style={{paddingLeft:'7%'}}>
-          <div className=" col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
-          </div>
-          <div className=" col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+1]} body={data[0].expDetailBodies[i+1]} />
-          </div>
-          <div className=" col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+2]} body={data[0].expDetailBodies[i+2]} />
-          </div>
-          </div>)
-        }else if(i+1<data[0].expDetailTitles.length){
-          CardsExpDetail.push(
-          <div class="row" style={{paddingLeft:'7%'}}>
-          <div className=" col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
-          </div>
-          <div className=" col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i+1]} body={data[0].expDetailBodies[i+1]} />
-          </div>
-          </div>)
-        }else{
-        //  console.log("here")
-          CardsExpDetail.push(
-          <div class="row" style={{paddingLeft:'7%'}}>
-          <div className="card col">
-          <CardExpDetail  id={data[0].id} title={data[0].expDetailTitles[i]} body={data[0].expDetailBodies[i]} />
-          </div>
-          </div>)
-        }
-      }
-      for(var i=0; i<data[0].reviewBodies.length;i+=2){
-        if(i+1<data[0].reviewBodies.length){
-          CardsReview.push(
-          <div class="row" style={{paddingLeft:'7%'}}>
-          <div className=" col">
-          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i]} footer={data[0].reviewFooters[i]} />
-          </div>
-          <div className=" col">
-          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i+1]} footer={data[0].reviewFooters[i+1]} />
-          </div>
-          </div>)
-        }else{
-        //  console.log("here")
-          CardsReview.push(
-          <div class="row" style={{paddingLeft:'7%'}}>
-          <div className="card col">
-          <CardExpDetailReview  id={data[0].id} body={data[0].reviewBodies[i]} footer={data[0].reviewFooters[i]} />
-          </div>
-          </div>)
-        }
-      }
+        expId: this.props.match.params.id,
+        experience: {
+          fname: "",
+          lname: "",
+          durationDays: null,
+          city: "",
+          profession: "",
+          price: "",
+          image: "",
+          industry: "",
+          availableFrom: null,
+          availableTill: null,
+          whatICanOffer: [],
+          perks: [],
+          reviews: [],
+        },
+      };
 
     }
 
@@ -88,10 +42,9 @@ export default class ExperienceDetail extends React.Component{
       console.log(this.props);
 
       try {
-        let expId = this.props.match.params.id;
+        let expId = this.state.expId;
         let experience = APIExperience.getExperienceById(expId)
           .then(data => this.setState({
-            expId: expId,
             experience: data,
           }));
         } catch (error) {
@@ -104,7 +57,7 @@ export default class ExperienceDetail extends React.Component{
           <div>
 
             <Helmet>
-              <title>Experience title | YoloShadow</title>
+              <title>Shadow an experienced {this.state.experience.profession} | YoloShadow</title>
             </Helmet>
 
             <div className="nav pb-5">
@@ -116,25 +69,25 @@ export default class ExperienceDetail extends React.Component{
 
               <div className='row'>
                   <div className='col-4 offset-1 name'>
-                    <img src='http://via.placeholder.com/425x425' />
+                    <img src={this.state.experience.image} />
                     <div className="d-flex pt-5">
-                      <h3> Rachel </h3>
+                      <h3> {this.state.experience.fname} </h3>
                     </div>
                     <div className="d-flex pt-2">
                       <button id="btn-message" onclick="#">Message</button>
                     </div>
                   </div>
                   <div className='col-7 overview'>
-                      <div className="d-flex pt-5">
-                        <h3> Shadow an experienced Orthodonist </h3>
+                      <div className="d-flex pt-5 title">
+                        <h1> Shadow an experienced {this.state.experience.profession} </h1>
                       </div>
 
-                      <div className='d-flex pt-5'>
-                        <h5> New York </h5>
+                      <div className='d-flex pt-5 location'>
+                        <span> {this.state.experience.city} </span>
                       </div>
-                      <div className='d-flex pt-1'>
-                        <h5> 2 days </h5>
-                        <h5> $56 </h5>
+                      <div className='d-flex pt-1 params'>
+                        <span> {this.state.experience.durationDays} days </span>
+                        <span> {this.state.experience.price} </span>
                       </div>
 
                       <div className='d-flex pt-1 controls'>
@@ -153,7 +106,11 @@ export default class ExperienceDetail extends React.Component{
                 <h3> What I Can Offer </h3>
               </div>
 
-              {this.state.CardsExpDetail}
+              <div className='row offset-1'>
+                {this.state.experience.whatICanOffer.map((item, index) =>
+                  <CardExpDetail item={item} key={index} />
+                )}
+              </div>
 
               <div className='container pt-4 quote'>
                   <blockquote>
@@ -173,7 +130,11 @@ export default class ExperienceDetail extends React.Component{
                 <h3> What Shadowers Say </h3>
               </div>
 
-              {this.state.CardsReview}
+              <div className='row offset-1'>
+                {this.state.experience.reviews.map((item, index) =>
+                  <CardExpDetailReview item={item} key={index} />
+                )}
+              </div>
 
             </div>
 
