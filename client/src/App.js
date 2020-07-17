@@ -40,115 +40,95 @@ class App extends React.Component {
       <Router>
       <div>
       <Switch>
+
       <Route
         path="/explore"
         exact
-      >
-       <Explore   />;
-      </Route>
+        component={Explore}
+      />
 
       <Route
-
-                path='/explore/:handle'
-                exact
-                render={() => {
-                  return <ExperienceDetail   />;
-                }}
-              />
-
-
+        path='/explore/:id'
+        exact
+        component={ExperienceDetail}
+      />
 
       <Route
         path="/hostexperience"
         exact
-        render={() => {
-          return <HostExperience   />;
-        }}
+        component={HostExperience}
       />
+
       <Route
         path="/hostguidelines"
         exact
-        render={() => {
-          return <HostGuidelines   />;
-        }}
+        component={HostGuidelines}
       />
+
       <Route
         path="/register"
         exact
-        render={() => {
-          return <Register   />;
-        }}
+        component={Register}
       />
+
       <Route
         path="/about"
         exact
-        render={() => {
-          return <About   />;
-        }}
+        component={About}
       />
+
       <Route
         path="/login"
         exact
-        render={() => {
-          return <Login   />;
-        }}
+        component={Login}
       />
+
       <Route
         path="/story"
         exact
-        render={() => {
-          return <FeatureStory   />;
-        }}
+        component={FeatureStory}
       />
+
       <Route
         path="/hostregister"
         exact
-        render={() => {
-          return <HostRegister   />;
-        }}
+        component={HostRegister}
       />
 
       <Route
         path="/hostregister/round2"
         exact
-        render={() => {
-          return <HostRegister_Round2 />;
-        }}
+        component={HostRegister_Round2}
       />
 
       <Route
         path="/hostguidelines"
         exact
-        render={() => {
-          return <HostGuidelines />;
-        }}
+        component={HostGuidelines}
       />
+
       <Route
         path="/"
         exact
-        render={() => {
-          return <Homepage    />;
-        }}
+        component={Homepage}
       />
+
       <Route
         path="/hostdashboard"
         exact
-        render={() => {
-          return <Dashboard    />;
-        }}
+        component={Dashboard}
       />
 
       <Route
         path="/admin"
         exact
-        render={() => {
-          return <Admin   />;
-        }}
+        component={Admin}
       />
+
        </Switch>
        </div>
       </Router>
-        </PersistGate>
+      </PersistGate>
       </Provider>
 
     );

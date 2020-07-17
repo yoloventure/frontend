@@ -11,21 +11,19 @@ import mapImage from "../photos/map.png"
 import searchArrow from "../photos/searchArrow.png"
 import data from "../explore/expDetailData.json";
 
+import APIExperience from "../api/APIExperience";
+
 import "./ExperienceDetail.css";
 
 export default class ExperienceDetail extends React.Component{
-// componentDidMount(){
-//   console.log("lora")
-//   console.log(this.props.location.profession)
-//   const profession=this.props.location.profession
-// }
     constructor(props) {
       super(props)
       let  CardsExpDetail=[];
       let CardsReview=[];
       this.state = {
         CardsExpDetail:CardsExpDetail,
-        CardsReview: CardsReview
+        CardsReview: CardsReview,
+        experience: null,
       }
 
       for(var i=0; i<data[0].expDetailTitles.length;i+=3){
@@ -86,15 +84,27 @@ export default class ExperienceDetail extends React.Component{
 
     }
 
+    componentDidMount() {
+      console.log(this.props);
 
-  render(){
+      try {
+        let expId = this.props.match.params.id;
+        let experience = APIExperience.getExperienceById(expId)
+          .then(data => this.setState({
+            expId: expId,
+            experience: data,
+          }));
+        } catch (error) {
+          console.log(error);
+        }
+    }
 
-
-    return (
+    render() {
+      return (
           <div>
 
             <Helmet>
-              <title>Experience title</title>
+              <title>Experience title | YoloShadow</title>
             </Helmet>
 
             <div className="nav pb-5">
