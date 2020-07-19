@@ -3,61 +3,44 @@ const mongoose = require('mongoose');
 //const host = require('./host');
 
 const experienceSchema = new mongoose.Schema({
-    fname:{
+    hostId:{
         type: String,
         required: true,
     },
-    lname:{
-
-          type: String,
-          required: true,
-      },
 
     durationDays:{
         type: Number,
         required: true,
     },
-    city:{
-        type: String,
-        required: true,
-    },
-    profession:{
-        type: String,
-        required: true,
-    },
+
     price:{//in the form: $112   that is dollar sign followed by number
         type: String,
         required: true
     },
     image:{
-      type: String,
+      type: Array,// list of image ids
       required: true
     },
-    industry:{
-      type: String,
-      required: true
-    },
-    availableFrom:{
-        type: Date,
+
+    availabeRanges:{
+        type: Array, //array of dates, in pairs [from, to, from,to...]
         required: true,
     },
-    availableTill:{
-      type: Date,
-      required: true,
-    },
+
     whatICanOffer:{
       type: Array,
-      required: false,
       default: []
     },
     perks:{
       type: Array,
-      required: false,
       default: []
     },
+    quote:{
+      type:String,
+      required:false
+    },
     reviews:{
-      type: Array,
-      required: false,
+      type: Array,//array of ids , reviews will have separrate schema
       default: []
     }
 
