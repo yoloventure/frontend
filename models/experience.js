@@ -28,11 +28,11 @@ const experienceSchema = new mongoose.Schema({
     },
 
     whatICanOffer:{
-      type: Array,
+      type: Array(String),
       default: []
     },
     perks:{
-      type: Array,
+      type: Array(String),
       default: []
     },
     quote:{
