@@ -15,8 +15,6 @@ export const loadUser = () => (dispatch, getState) => {
         type: USER_LOADING
     }); //set user to loading state
     var path = "/api/user/userInfoFromToken";
-    console.log('lu'+localStorage.getItem('token'))
-    console.log(JSON.stringify({token:localStorage.getItem('token').split(' ')[1]}))
     return fetch(path, {
         method: 'post',
         headers: new Headers({
