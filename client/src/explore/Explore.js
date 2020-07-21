@@ -13,7 +13,7 @@ import Footer from '../components/Footer'
 import PropTypes from "prop-types";
 import Navbar from "../components/Navbar";
 import "./Explore.css";
-import data from "../explore/data.json";
+// import data from "../explore/data.json";
 import Card from "../components/Card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
@@ -40,7 +40,7 @@ class Explore extends React.Component{
   static propTypes = {
     auth:PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
+    city: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
   };
 
@@ -50,26 +50,48 @@ class Explore extends React.Component{
     let  cardArray=['something'];
 
 
-    const { match, location, history } = this.props;
-
+    const { match, city, history } = this.props;
 
     this.state = {
       searchValue:'',
       cardArray:cardArray,
-      currentData:JSON.parse(JSON.stringify(data)),
-      currentFilteredData:JSON.parse(JSON.stringify(data)),
-
-
-      data:JSON.parse(JSON.stringify(data)),
+      currentData:{},
+      currentFilteredData:{},
+      data:{},
       valueFromSearch:'',
       industryFilters:[],
-      durationFilters:[],
+      durationDaysFilters:[],
       startDate: new Date(),
       endDate: new Date(),
       sortHTML:'Sort By',
       sortSelection:'N',
-      match:match
+      match:match,
+
     }
+
+
+     fetch('/api/experience/', {
+        method: 'get',
+        headers: new Headers({
+            'Content-Type':'application/json'
+        }),
+
+    }).then((response) => {
+
+      response.json().then((data)=>{
+            this.setState({
+                currentData:JSON.parse(JSON.stringify(data)),
+                currentFilteredData:JSON.parse(JSON.stringify(data)),
+                data:JSON.parse(JSON.stringify(data))
+
+            })
+      })
+    }).catch((err) => {
+              console.log(err)
+
+    });
+
+
 
 
 
@@ -116,17 +138,17 @@ class Explore extends React.Component{
 
       }
 
-      if(this.state.durationFilters.length!==0){
+      if(this.state.durationDaysFilters.length!==0){
 
 
       filteredData= filteredData.filter(dataElement => {
 
             let bool=false
-              this.state.durationFilters.forEach(duration=>{
-                   if(duration.localeCompare('3 Days+')===0 &&  parseInt(dataElement.duration.substring(0,1))>2   ){
+              this.state.durationDaysFilters.forEach(durationDays=>{
+                   if(durationDays>3 &&  dataElement.durationDays>2   ){
                      bool=true
                    }
-                   else if(dataElement.duration.includes(duration)){
+                   else if(dataElement.durationDays==durationDays){
                     bool=true;
                   }
               })
@@ -143,9 +165,8 @@ class Explore extends React.Component{
             let bool=false
             console.log(startDate)
             console.log(endDate)
-            let from=new Date(dataElement.from)
-            let to=new Date(dataElement.to)
-            console.log(from)
+            let from=new Date(dataElement.availableFrom)
+            let to=new Date(dataElement.availableTill)
             if(from.getTime()>=startDate.getTime() &&endDate.getTime()>=to.getTime()){
                 console.log('dates true')
                bool=true
@@ -174,13 +195,13 @@ class Explore extends React.Component{
           <div className="row " >
 
           <div className="card col-lg-4 offset-lg-1" style={{padding:'2%'}}>
-          <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+          <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
           {console.log(filteredData[i].image)}
           </div>
 
 
           <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
-          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} location={filteredData[i+1].location} profession={filteredData[i+1].profession} price={filteredData[i+1].price} duration={filteredData[i+1].duration}/>
+          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
           </div>
 
           </div>
@@ -193,7 +214,7 @@ class Explore extends React.Component{
             <div className="row ">
             <div className="card col-lg-4  offset-lg-1 ">
             <div className=''>
-            <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+            <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
             </div>
             </div>
 
@@ -229,14 +250,14 @@ class Explore extends React.Component{
     var found=false
     let tempArr=this.state.industryFilters
     tempArr.forEach((filter,i)=>{
-        if (filter.localeCompare(e.target.innerHTML)===0){
+        if (filter.localeCompare(e.target.innerHTML.substring(0,1))===0){
           console.log("here")
             found=true
             tempArr.splice(i,1)
         }
     })
     if(found===false){
-       tempArr.push(e.target.innerHTML)
+       tempArr.push(e.target.innerHTML.substring(0,1))
     }
     this.setState({industryFilters:tempArr}, ()=> {this.filter()})
 
@@ -266,13 +287,13 @@ class Explore extends React.Component{
           <div className="row " >
 
           <div className="card col-lg-4 offset-lg-1" style={{padding:'2%'}}>
-          <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+          <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
           {console.log(filteredData[i].image)}
           </div>
 
 
           <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
-          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} location={filteredData[i+1].location} profession={filteredData[i+1].profession} price={filteredData[i+1].price} duration={filteredData[i+1].duration}/>
+          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
           </div>
 
           </div>
@@ -285,7 +306,7 @@ class Explore extends React.Component{
             <div className="row ">
             <div className="card col-lg-4  offset-lg-1 ">
             <div className=''>
-            <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+            <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
             </div>
             </div>
 
@@ -336,13 +357,13 @@ class Explore extends React.Component{
             <div className="row " >
 
             <div className="card col-lg-4 offset-lg-1" style={{padding:'2%'}}>
-            <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+            <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
             {console.log(filteredData[i].image)}
             </div>
 
 
             <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
-            <Card image={filteredData[i+1].image} id={filteredData[i+1].id} location={filteredData[i+1].location} profession={filteredData[i+1].profession} price={filteredData[i+1].price} duration={filteredData[i+1].duration}/>
+            <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
             </div>
 
             </div>
@@ -355,7 +376,7 @@ class Explore extends React.Component{
               <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
               <div className=''>
-              <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+              <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
               </div>
               </div>
 
@@ -400,13 +421,13 @@ class Explore extends React.Component{
           <div className="row " >
 
           <div className="card col-lg-4 offset-lg-1" style={{padding:'2%'}}>
-          <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+          <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
           {console.log(filteredData[i].image)}
           </div>
 
 
           <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
-          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} location={filteredData[i+1].location} profession={filteredData[i+1].profession} price={filteredData[i+1].price} duration={filteredData[i+1].duration}/>
+          <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
           </div>
 
           </div>
@@ -419,7 +440,7 @@ class Explore extends React.Component{
             <div className="row ">
             <div className="card col-lg-4  offset-lg-1 ">
             <div className=''>
-            <Card image={filteredData[i].image} id={filteredData[i].id} location={filteredData[i].location} profession={filteredData[i].profession} price={filteredData[i].price} duration={filteredData[i].duration}/>
+            <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
             </div>
             </div>
 
@@ -457,7 +478,7 @@ class Explore extends React.Component{
     keys: [
       'industry',
       'profession',
-      'location'
+      'city'
     ]
     });
 
@@ -484,18 +505,16 @@ class Explore extends React.Component{
      }
 
      var found=false
-     let tempArr=this.state.durationFilters
+     let tempArr=this.state.durationDaysFilters
      tempArr.forEach((filter,i)=>{
-         if (filter.localeCompare(e.target.innerHTML)===0){
-           console.log("here")
+       if (filter===parseInt(e.target.innerHTML)){
              found=true
-             tempArr.splice(i,1)
          }
      })
      if(found===false){
-        tempArr.push(e.target.innerHTML)
+        tempArr.push(parseInt(e.target.innerHTML))
      }
-     this.setState({durationFilters:tempArr}, ()=> {this.filter()})
+     this.setState({durationDaysFilters:tempArr}, ()=> {this.filter()})
      console.log(tempArr)
 
    }
@@ -512,13 +531,13 @@ class Explore extends React.Component{
          <div className="row " >
 
          <div className="card col-lg-4 offset-lg-1" style={{padding:'2%'}}>
-         <Card image={dataToDisplay[i].image} id={dataToDisplay[i].id} location={dataToDisplay[i].location} profession={dataToDisplay[i].profession} price={dataToDisplay[i].price} duration={dataToDisplay[i].duration}/>
+         <Card image={dataToDisplay[i].image} id={dataToDisplay[i].id} city={dataToDisplay[i].city} profession={dataToDisplay[i].profession} price={dataToDisplay[i].price} durationDays={dataToDisplay[i].durationDays}/>
          {console.log(dataToDisplay[i].image)}
          </div>
 
 
          <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
-         <Card image={dataToDisplay[i+1].image} id={dataToDisplay[i+1].id} location={dataToDisplay[i+1].location} profession={dataToDisplay[i+1].profession} price={dataToDisplay[i+1].price} duration={dataToDisplay[i+1].duration}/>
+         <Card image={dataToDisplay[i+1].image} id={dataToDisplay[i+1].id} city={dataToDisplay[i+1].city} profession={dataToDisplay[i+1].profession} price={dataToDisplay[i+1].price} durationDays={dataToDisplay[i+1].durationDays}/>
          </div>
 
          </div>
@@ -531,7 +550,7 @@ class Explore extends React.Component{
            <div className="row ">
            <div className="card col-lg-4  offset-lg-1 ">
            <div className=''>
-           <Card image={dataToDisplay[i].image} id={dataToDisplay[i].id} location={dataToDisplay[i].location} profession={dataToDisplay[i].profession} price={dataToDisplay[i].price} duration={dataToDisplay[i].duration}/>
+           <Card image={dataToDisplay[i].image} id={dataToDisplay[i].id} city={dataToDisplay[i].city} profession={dataToDisplay[i].profession} price={dataToDisplay[i].price} durationDays={dataToDisplay[i].durationDays}/>
            </div>
            </div>
 
