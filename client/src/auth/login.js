@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import PropTypes from 'prop-types';
-import { login } from '../actions/authActions';
+import { login,loadUser } from '../actions/authActions';
 
 
 
@@ -58,7 +58,7 @@ class Login extends Component {
     componentWillReceiveProps(nextprops){
       if(nextprops.auth.isAuthenticated){
         this.setState({errorMessage:"", redirect:true})
-
+         this.props.loadUser();
 
       }else{
         console.log('authenticated fail')
@@ -146,5 +146,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withRouter,
-  connect(mapStateToProps,  {login})
+  connect(mapStateToProps,  {login, loadUser})
 )(Login);

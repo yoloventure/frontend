@@ -1,26 +1,32 @@
 [
     {
-      "id":1,
-      "location": "New York",
-      "duration": "3 Days",
-      "profession": "Electrical Engineer",
-      "price": "$115",
-      "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering",
-      "from":"7/22/2020",
-      "to":"7/23/2020"
+      "fname":"John",
+      "lname":"Doe"
+      "city": "New York",
+        "durationDays": 3,
+        "profession": "Electrical Engineer",
+        "price": "$115",
+        "image": "http://via.placeholder.com/220x160" ,
+        "industry": "Engineering",
+        "availableFrom":"7/22/2020",
+        "availableTill":"7/23/2020",
+        "whatICanOffer":[{"title":"Dentist patient communication technologies", "body":"lorem ipsum"} ],
+        "reviews":[{"author":"Faisal", "body":"lorem ipsum", "publishDate":"5/12/2018"} ]
 
       },
     {
-      "id":12,
-      "location": "New York",
-      "duration": "3 Days",
-      "profession": "Mechincal Engineer",
-      "price": "$25",
-      "image": "http://via.placeholder.com/220x160" ,
-      "industry": "Engineering",
-      "from":"7/22/2020",
-      "to":"7/23/2020"
+      "fname":"John",
+      "lname":"Doe2"
+      "city": "Boston",
+        "durationDays": 3,
+        "profession": "Orthodonist",
+        "price": "$15",
+        "image": "http://via.placeholder.com/220x160" ,
+        "industry": "Healthcare",
+        "availableFrom":"7/22/2020",
+        "availableTill":"7/23/2020",
+        "whatICanOffer":[{"title":"Dentist patient communication technologies", "body":"lorem ipsum"} ],
+        "reviews":[{"author":"Faisal", "body":"lorem ipsum", "publishDate":"5/12/2018"} ]
     },
     {
       "id":13,
