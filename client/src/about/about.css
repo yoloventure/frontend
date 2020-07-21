@@ -125,6 +125,16 @@ h2 {
     background: #5e239d;
 }
 
+.ellipser {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    /* border: 1px solid red; */
+    text-align: center;
+    vertical-align: middle;
+    background: #5e239d;
+}
+
 .apply-now-1 a, .apply-now-2 a {
     /* position: relative;
     bottom: 2px;
@@ -176,7 +186,7 @@ h2 {
     font-family: Mplus 1p;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 12px;
     line-height: 29px;
     /* Colors/White */
     color: #fcfcfc;
