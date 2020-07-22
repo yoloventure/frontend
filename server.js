@@ -8,6 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 require("./config/passport");
 const User = require("./models/user");
+const Experience = require("./models/experience");
 const passport = require("passport");
 
 // API Endpoints
@@ -15,8 +16,9 @@ const user = require("./routes/user");
 const email = require("./routes/email");
 const auth = require("./routes/auth");
 const host = require("./routes/host");
-const addressValidator = require("./routes/addressValidator");
+const experience = require("./routes/experience");
 const emailList = require("./routes/emailList");
+const addressValidator = require("./routes/addressValidator");
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By

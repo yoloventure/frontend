@@ -1,0 +1,27 @@
+[
+    {
+      "id":1,
+      "fname": "Abdul",
+      "job_interest": "Electrical Engineer",
+      "timeStamp":"12:06pm"
+
+      },
+      {
+        "id":2,
+        "fname": "Andrew",
+        "job_interest": "Mechincal Engineer",
+        "timeStamp":"2:25pm"
+
+
+        },
+         {
+            "id":3,
+            "fname": "John",
+            "job_interest": "Dentistry",
+            "timeStamp":"1:06pm"
+
+            }
+
+
+
+]

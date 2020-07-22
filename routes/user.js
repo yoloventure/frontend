@@ -3,9 +3,40 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
+const User = require('../models/user');
+var jwtDecode = require('jwt-decode');
 
+router.post(
+	'/userInfoFromToken',
 
+	(req, res) => {
+		console.log(req.body)
+		console.log(jwtDecode(req.body.token).username)
+									let userWeWant=User.findOne({
+																		username:	jwtDecode(req.body.token).username
 
+																	}).then((user) => {
+																					if(user){
+																						console.log(user)
+																						return res.status(200).json({
+																							fname: user.fname,
+																							lname: user.lname,
+																							job_interest:user.job_interest,
+																							joinedSince:user.joinedSince,
+																							phone:user.phone
+																						})
+
+																					}else{
+																						errors =
+																							'There is no user associated with this email.';
+																						return res.status(400).json({
+																							error: errors
+																						});
+																					}
+
+																	}	);
+					    	}
+);
 // @route   GET user/current
 // @desc    Returns current user logging in
 // @access  Private
