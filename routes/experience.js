@@ -4,14 +4,40 @@ const Experience = require('../models/experience');
 
 //Get all experiences
 router.get('/', function (req, res) {
-  Experience.find({}).then(function (experiences) {
+  Experience.find()
+  .populate({
+    path: 'host',
+    populate: { path: 'user' }
+  })
+  .populate({
+    path: 'host',
+    populate: { path: 'company', populate: { path: 'location' } }
+  })
+  // .populate({
+  //   path: 'host',
+  //   populate: { path: 'location' }
+  // })
+  .then(function (experiences) {
     res.send(experiences);
   });
 });
 
 //Retrive experience by Id
 router.get('/:id', function (req, res, next) {
-  Experience.findById({_id: req.params.id}).then(function (experience) {
+  Experience.findById({_id: req.params.id})
+  .populate({
+    path: 'host',
+    populate: { path: 'user' }
+  })
+  .populate({
+    path: 'host',
+    populate: { path: 'company', populate: { path: 'location' } }
+  })
+  // .populate({
+  //   path: 'host',
+  //   populate: { path: 'location' }
+  // })
+  .then(function (experience) {
     res.send(experience);
   });
 });
