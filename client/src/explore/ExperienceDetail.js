@@ -67,7 +67,7 @@ export default class ExperienceDetail extends React.Component{
                         </div>
 
                         <div className='d-flex pt-5 location'>
-                          <span> {this.state.experience.host.company.location.city} </span>
+                          <span> {this.state.experience.host.company.city}, {this.state.experience.host.company.state} </span>
                         </div>
                         <div className='d-flex pt-1 params'>
                           <span> {this.state.experience.durationDays} days </span>

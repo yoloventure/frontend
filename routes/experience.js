@@ -11,12 +11,8 @@ router.get('/', function (req, res) {
   })
   .populate({
     path: 'host',
-    populate: { path: 'company', populate: { path: 'location' } }
+    populate: { path: 'company' }
   })
-  // .populate({
-  //   path: 'host',
-  //   populate: { path: 'location' }
-  // })
   .then(function (experiences) {
     res.send(experiences);
   });
@@ -31,12 +27,8 @@ router.get('/:id', function (req, res, next) {
   })
   .populate({
     path: 'host',
-    populate: { path: 'company', populate: { path: 'location' } }
+    populate: { path: 'company' }
   })
-  // .populate({
-  //   path: 'host',
-  //   populate: { path: 'location' }
-  // })
   .then(function (experience) {
     res.send(experience);
   });

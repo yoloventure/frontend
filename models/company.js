@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const location = require('./location');
 
 const companySchema = new mongoose.Schema({
   name: {
@@ -10,9 +9,24 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: location,
+  street: {
+    type: String,
+    required: false,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: false,
+  },
+  country: {
+    type: String,
+    required: true,
+  },
+  zip: {
+    type: Number,
     required: true,
   },
 });

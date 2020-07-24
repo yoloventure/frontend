@@ -14,7 +14,6 @@ const User = require('./models/user');
 const Experience=require('./models/experience')
 const Host=require('./models/host')
 const Company=require('./models/company')
-const Location=require('./models/location')
 
 // API Endpoints
 const user = require('./routes/user');
@@ -22,6 +21,7 @@ const email = require('./routes/email');
 const auth = require('./routes/auth');
 const host = require('./routes/host');
 const experience = require('./routes/experience');
+const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 
 const app = express();
@@ -106,10 +106,11 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Use API Routes
 app.use('/api/user', user);
-app.use('/api/experience', experience);
 app.use('/api/email', email);
 app.use('/api/auth', auth);
 app.use('/api/host', host);
+app.use('/api/experience', experience);
+app.use('/api/company', company);
 app.use('/api/addressValidator', addressValidator);
 
 // Error handling middleware

@@ -1,6 +1,6 @@
-//returns the infomations about the experience with the given UID
-function getExperienceById(experienceId){
-  var path = "/api/experience/" + experienceId;
+//returns the infomations about the company with the given UID
+function getCompanyById(companyId){
+  var path = "/api/company/" + companyId;
   return fetch(path, {
       method: 'get',
       credentials: "include"
@@ -11,9 +11,9 @@ function getExperienceById(experienceId){
   });
 }
 
-//returns the infomations about all the experiences in the system
-function getAllExperiences(){
-  var path = "/api/experience/";
+//returns the infomations about all the companies in the system
+function getAllCompanies(){
+  var path = "/api/company/";
   return fetch(path, {
       method: 'get',
       credentials: "include"
@@ -24,16 +24,16 @@ function getAllExperiences(){
   });
 }
 
-//creates a new experience in the system
-function createExperience(Experience) {
-  var path = "/api/experience/";
+//creates a new company in the system
+function createCompany(Company) {
+  var path = "/api/company/";
   return fetch(path, {
     method: 'post',
     headers: new Headers({
         'Content-Type': 'application/json'
     }),
     body: JSON.stringify({
-        experience: Experience
+        company: Company
     }),
     credentials: "include"
   }).then((response) => {
@@ -43,16 +43,16 @@ function createExperience(Experience) {
   });
 }
 
-//updatees an experience in the system
-function editExperience(experienceId, Experience) {
-  var path = "/api/experience/" + experienceId;
+//updatees an company in the system
+function editCompany(companyId, Company) {
+  var path = "/api/company/" + companyId;
   return fetch(path, {
     method: 'put',
     headers: new Headers({
         'Content-Type': 'application/json'
     }),
     body: JSON.stringify({
-        experience: Experience
+        company: Company
     }),
     credentials: "include"
   }).then((response) => {
@@ -62,9 +62,9 @@ function editExperience(experienceId, Experience) {
   });
 }
 
-//deletes an experience in the system
-function deleteExperience(experienceId) {
-  var path = "/api/experience/" + experienceId;
+//deletes an company in the system
+function deleteCompany(companyId) {
+  var path = "/api/company/" + companyId;
   return fetch(path, {
       method: 'DELETE',
       headers: new Headers({
@@ -79,4 +79,4 @@ function deleteExperience(experienceId) {
 }
 
 
-export default {getExperienceById, getAllExperiences, deleteExperience, editExperience, createExperience}
+export default {getCompanyById, getAllCompanies, deleteCompany, editCompany, createCompany}
