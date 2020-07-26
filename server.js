@@ -1,15 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
-const path = require("path");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-require("./config/passport");
-const User = require("./models/user");
-const Experience = require("./models/experience");
-const passport = require("passport");
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+require('./config/passport');
+const User = require('./models/user');
+const Experience=require('./models/experience')
+const Host=require('./models/host')
+const Company=require('./models/company')
+const Location=require('./models/location')
+const passport = require('passport');
+
 
 // API Endpoints
 const user = require("./routes/user");
@@ -53,6 +57,34 @@ mongoose
   })
   .then(() => console.log("Connected to database..."))
   .catch(err => console.log(err));
+
+
+// const host1=new Host({
+//   user:  "5ed390d9f49cf627001cb8b4",
+//   gender: "Male"  ,
+//   phone:   12343,
+//   title: 'exampleHost'  ,
+//   description:     'i am an example host',
+//   company:"5f14ab6b0bd9a615a218238f"
+//     })
+//     host1.save()
+
+
+
+// const location1=new Location({
+//   city:'example',
+//   country:'USA',
+//   zip:'1234'
+// })
+// location1.save()
+// const company1=new Company({
+//   name:'example company',
+//   location:'5f14ab3059bfc1f635d2b0d2'
+// })
+// company1.save()
+
+
+
 
 // Passport Middleware
 app.use(passport.initialize());

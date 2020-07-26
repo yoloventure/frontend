@@ -18,21 +18,21 @@ const experienceSchema = new mongoose.Schema({
         required: true
     },
     image:{
-      type: Array,// list of image ids
+      type: Array(String),// list of image ids
       required: true
     },
 
     availabeRanges:{
-        type: Array, //array of dates, in pairs [from, to, from,to...]
+        type: Array(Date), //array of dates, in pairs [from, to, from,to...]
         required: true,
     },
 
     whatICanOffer:{
-      type: Array,
+      type: Array(String),
       default: []
     },
     perks:{
-      type: Array,
+      type: Array(String),
       default: []
     },
     quote:{
@@ -40,7 +40,7 @@ const experienceSchema = new mongoose.Schema({
       required:false
     },
     reviews:{
-      type: Array,//array of ids , reviews will have separrate schema
+      type: Array(String),//array of ids , reviews will have separrate schema
       default: []
     }
 
