@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const company = require('./company');
-const location = require('./location');
 const user = require('./user');
 
 const hostSchema = new mongoose.Schema({
@@ -38,11 +37,11 @@ const hostSchema = new mongoose.Schema({
     required: true,
   },
   //----------------page-3------------------------------------
-  location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: location,
-    default: null,
-  },
+  // location: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: location,
+  //   default: null,
+  // },
   //----------------page-4------------------------------------
   offering: {
     //what they can offer - String array

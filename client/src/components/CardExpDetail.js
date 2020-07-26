@@ -1,24 +1,28 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
+import "./CardExpDetail.css";
+
 export default class CardExpDetail extends React.Component {
 
-
-
-
   render() {
-
-  return (
-      <div className="container">
-            <div className="row">
-              <h3  style={{color:"black", "fontStyle":"normal","fontWeight":"500","fontSize":"30px","lineHeight":"100%"}}> {this.props.title} </h3>
-            </div>
-            <div className="row" >
-              <h3 style={{color:"black", "fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"300","fontSize":"22px","lineHeight":"163.35%"}}> {this.props.body} </h3>
-            </div>
-
-      </div>
-
-  );
-}
+    if (this.props.key % 3 == 0) {
+      return (
+        <div>
+          <div className="col-4">
+            <h4> {this.props.item.title} </h4>
+            <p> {this.props.item.body} </p>
+          </div>
+          <div class="w-100"></div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="col-4">
+          <h4> {this.props.item.title} </h4>
+          <p> {this.props.item.body} </p>
+        </div>
+      );
+    }
+  }
 }

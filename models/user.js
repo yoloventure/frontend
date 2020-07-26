@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
         unique: true,
     },
     hostId:{
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: host,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Host',
         type: String,
         default: null,
     },

@@ -1,0 +1,35 @@
+
+.text {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 163.35%;
+  /* or 26px */
+
+  color: #776C82;
+}
+
+.name {
+  /* Text/Regular_Bold */
+  font-family: 'Mplus 1p';
+  font-style: bold;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 29px;
+
+  /* Colors/Primary */
+  color: #F61067;
+}
+
+.date {
+  /* Text/Regular_Bold */
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 29px;
+
+  /* Colors/Primary */
+  color: #30233D;
+}

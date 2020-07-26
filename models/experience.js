@@ -1,18 +1,16 @@
-
 const mongoose = require('mongoose');
 //const host = require('./host');
 
 const experienceSchema = new mongoose.Schema({
-    hostId:{
-        type: String,
+    host:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Host',
         required: true,
     },
-
     durationDays:{
         type: Number,
         required: true,
     },
-
     price:{//in the form: $112   that is dollar sign followed by number
         type: String,
         required: true
@@ -21,12 +19,10 @@ const experienceSchema = new mongoose.Schema({
       type: Array(String),// list of image ids
       required: true
     },
-
     availabeRanges:{
         type: Array(Date), //array of dates, in pairs [from, to, from,to...]
         required: true,
     },
-
     whatICanOffer:{
       type: Array(String),
       default: []
@@ -36,7 +32,7 @@ const experienceSchema = new mongoose.Schema({
       default: []
     },
     quote:{
-      type:String,
+      type: String,
       required:false
     },
     reviews:{

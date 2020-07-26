@@ -1,24 +1,34 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-export default class CardExpDetail extends React.Component {
+import "./CardExpDetailReview.css";
 
-
-
+export default class CardExpDetailReview extends React.Component {
 
   render() {
-
-  return (
-      <div className="container">
-            <div className="row">
-              <h3  style={{color:"black", "fontStyle":"normal","fontWeight":"500","fontSize":"30px","lineHeight":"100%"}}> {this.props.body} </h3>
-            </div>
-            <div className="row" >
-              <h3 style={{color:"black", "fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"300","fontSize":"22px","lineHeight":"163.35%"}}> {this.props.footer} </h3>
-            </div>
-
-      </div>
-
-  );
-}
+    if (this.props.key % 2 == 0) {
+      return (
+        <div>
+          <div className="col-6">
+            <p className="text"> {this.props.item.body} </p>
+            <p>
+              <span className="name"> {this.props.item.author} </span>
+              <span className="date"> &#8212; {this.props.item.publishDate} </span>
+            </p>
+          </div>
+          <div class="w-100"></div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="col-6">
+          <p className="text"> {this.props.item.body} </p>
+          <p>
+            <span className="name"> {this.props.item.author} </span>
+            <span className="date"> &#8212; {this.props.item.publishDate} </span>
+          </p>
+        </div>
+      );
+    }
+  }
 }

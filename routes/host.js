@@ -4,14 +4,24 @@ const Host = require('../models/host');
 
 //Get all host applications
 router.get('/', function (req, res) {
-  Host.find({}).then(function (hosts) {
+  Host.find()
+  // .populate('user')
+  // .populate('company')
+  // .populate('location')
+  // .populate('experiences')
+  .then(function (hosts) {
     res.send(hosts);
   });
 });
 
 //Retrive application by Id
 router.get('/:id', function (req, res, next) {
-  Host.findById({_id: req.params.id}).then(function (host) {
+  Host.findById({_id: req.params.id})
+  // .populate('user')
+  // .populate('company')
+  // .populate('location')
+  // .populate('experiences')
+  .then(function (host) {
     res.send(host);
   });
 });
