@@ -1,5 +1,5 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
@@ -25,38 +25,38 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 
 const app = express();
-app.disable('x-powered-by'); //Hide Powered-By
+app.disable("x-powered-by"); //Hide Powered-By
 
-var multer = require('multer')
-var cors = require('cors');
+var multer = require("multer");
+var cors = require("cors");
 
 //dotenv vonfig
 dotenv.config({
-  path: './.env',
+  path: "./.env"
 });
 
 // BodyParser Middleware
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: false
   })
 );
 app.use(bodyParser.json());
 
-
-
 // DB Config
-const db = process.env.MONGODB_URI || 'mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority';
+const db =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
 //Connect to MongoDB
 mongoose
   .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   })
-  .then(() => console.log('Connected to database...'))
-  .catch((err) => console.log(err));
+  .then(() => console.log("Connected to database..."))
+  .catch(err => console.log(err));
 
 // Insert Experience object
   // const exp1=new Experience({
@@ -102,7 +102,9 @@ mongoose
 app.use(passport.initialize());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, "client/dist")));
+
+app.use(cors());
 
 // Use API Routes
 app.use('/api/user', user);
@@ -114,39 +116,36 @@ app.use('/api/company', company);
 app.use('/api/addressValidator', addressValidator);
 
 // Error handling middleware
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.log(err);
-  res.status(422).send({error: err.message});
+  res.status(422).send({ error: err.message });
 });
 
 // File upload
 // Todo: customize destination based on hostId
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads')
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + '-' + file.originalname)
-    }
+  destination: function(req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  }
 });
-var upload = multer({ storage: storage }).single('file');
-app.post('/api/file/upload', cors(), function(req, res) {
-
-  upload(req, res, function (err) {
+var upload = multer({ storage: storage }).single("file");
+app.post("/api/file/upload", cors(), function(req, res) {
+  upload(req, res, function(err) {
     if (err instanceof multer.MulterError) {
-      return res.status(500).json(err)
+      return res.status(500).json(err);
     } else if (err) {
-      return res.status(500).json(err)
+      return res.status(500).json(err);
     }
-    return res.status(200).send(req.file)
-
+    return res.status(200).send(req.file);
   });
-
 });
 // End file upload
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
 // Defining our port

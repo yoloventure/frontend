@@ -21,7 +21,6 @@ class Team extends React.Component {
   }
 
   onClick(event, name, position, description) {
-    console.log(event.target, name, position, description);
     this.setState({
       name: name
     });
@@ -100,11 +99,13 @@ class Team extends React.Component {
 
           <div className="row d-flex justify-content-center">
             <div className="col">
-              <div className="ellipse  d-flex align-items-center">
-                <div className="d-flex flex-column">
+              <div className="ellipse  d-flex flex-wrap align-items-center">
+                <div className="d-flex flex-column flex-wrap">
                   <h3 className="shell">{this.state.name}</h3>
                   <p className="ceo">{this.state.position}</p>
-                  <p className="paragraph">{this.state.imageDescription}</p>
+                  <p className="paragraph d-flex flex-row flex-wrap">
+                    {this.state.imageDescription}
+                  </p>
                 </div>
               </div>
             </div>
