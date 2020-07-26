@@ -7,6 +7,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('./config/passport');
+
 const passport = require('passport');
 
 // Models
