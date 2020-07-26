@@ -38,9 +38,17 @@ class Bottom extends React.Component {
       }
     })
       .then(response => {
+        console.log(response.status);
+        if (response.ok) {
+          alert("You have successfully subscribed to our Newsletter.");
+          this.setState({ email: "" });
+        } else if (response.status === 422) {
+          alert("You have already subscribed to our Newsletter. Thank you!");
+          this.setState({ email: "" });
+        }
         return response;
       })
-      .catch(error => errror);
+      .catch(error => error);
   }
 
   goToPrevSlide = () => {

@@ -21,7 +21,6 @@ class Team extends React.Component {
   }
 
   onClick(event, name, position, description) {
-    console.log(event.target, name, position, description);
     this.setState({
       name: name
     });
