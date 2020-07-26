@@ -38,7 +38,6 @@ class Bottom extends React.Component {
       }
     })
       .then(response => {
-        console.log(response.status);
         if (response.ok) {
           alert("You have successfully subscribed to our Newsletter.");
           this.setState({ email: "" });
