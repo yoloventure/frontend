@@ -15,7 +15,6 @@ import Dashboard from './HostLoggedIn/Dashboard'
 import Admin from "./admin/Admin";
 import {persistor,store} from './store';
 import { Provider } from 'react-redux';
-// import { loadUser } from './actions/authActions';
 import { PersistGate } from 'redux-persist/integration/react'
 
 class App extends React.Component {
@@ -148,7 +147,7 @@ class App extends React.Component {
        </Switch>
        </div>
       </Router>
-        </PersistGate>
+      </PersistGate>
       </Provider>
 
     );
