@@ -10,7 +10,7 @@ class AboutImage extends React.Component {
   render() {
     return (
       <div>
-        <img src={this.props.path} className="rounded-circle ellipse" />
+        <img src={this.props.path} className="rounded-circle ellipser" />
       </div>
     );
   }
