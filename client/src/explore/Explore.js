@@ -75,10 +75,10 @@ class Explore extends React.Component{
         headers: new Headers({
             'Content-Type':'application/json'
         }),
-
     }).then((response) => {
 
       response.json().then((data)=>{
+            console.log(data)
             this.setState({
                 currentData:JSON.parse(JSON.stringify(data)),
                 currentFilteredData:JSON.parse(JSON.stringify(data)),

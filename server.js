@@ -15,6 +15,8 @@ const User = require('./models/user');
 const Experience=require('./models/experience')
 const Host=require('./models/host')
 const Company=require('./models/company')
+const Review=require('./models/review')
+
 
 // API Endpoints
 const user = require('./routes/user');
@@ -22,6 +24,7 @@ const email = require('./routes/email');
 const auth = require('./routes/auth');
 const host = require('./routes/host');
 const experience = require('./routes/experience');
+const review = require('./routes/review');
 const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 
@@ -98,6 +101,15 @@ mongoose
   // })
   // exp1.save()
 
+  // 
+  // const review1=new Review({
+  //   author:'5ef660a01c7b54239095e6c5',
+  //   host:'5f14aba6e1d046aa0894f3c3',
+  // rating:4,
+  //   body:'it was great and ljads faschuksa casguaksh casoafgausf basohdalsc cbascosacnac gafaoshc nncasohcoac nacshcoahc ',
+  //   publishDate: "5/12/2018"
+  // })
+  // review1.save()
 
 // Passport Middleware
 app.use(passport.initialize());
@@ -114,6 +126,7 @@ app.use('/api/auth', auth);
 app.use('/api/host', host);
 app.use('/api/experience', experience);
 app.use('/api/company', company);
+app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
 
 // Error handling middleware
