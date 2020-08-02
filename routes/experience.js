@@ -33,7 +33,22 @@ router.get('/:id', function (req, res, next) {
     res.send(experience);
   });
 });
-
+//Retrive experience by host Id
+router.get('/host/:id', function (req, res, next) {
+  Experience.findOne({host: req.params.id})
+  .populate({
+    path: 'host',
+    populate: { path: 'user' }
+  })
+  .populate({
+    path: 'host',
+    populate: { path: 'company' }
+  })
+  .then(function (experience) {
+    console.log(experience)
+    res.send(experience);
+  });
+});
 //Create and save new experience instance
 router.post('/', function (req, res, next) {
   Experience.create(req.body)

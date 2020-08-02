@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createRef} from "react";
 import { Helmet } from 'react-helmet';
 import Navbar from "../components/Navbar";
 import { DateRange } from 'react-date-range';
@@ -29,7 +29,9 @@ class Dashboard extends React.Component{
 
   constructor(props){
     super(props)
+    this.Ref = createRef()
     const { match, location, history } = this.props;
+
 
       //setup shadow requests
       let tempArray=[]
@@ -39,22 +41,28 @@ class Dashboard extends React.Component{
                       <div className='col-9 offset-1'>
                             <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {request.fname} sent you a shadowing request </h3>
                       </div>
-                      <div className='col-1'>
+                      <div className='col-2'>
                             <p> {request.timeStamp}</p>
                       </div>
-                        <div className='col-1 offset-1' >
-                              <p style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}> {request.fname} </p>
+                      <div className='col-1 offset-1'>
+                         <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
+                      </div>
+                        <div className='col-3' >
+                              <p
+                              >
+                               {request.fname}
+                               </p>
                         </div>
-                        <div className='col-3 offset-2'>
+                        <div className='col-3 offset-1'>
 
 
-                              <button style={{"background":"#2ED47A","borderRadius":"4px"}}> Accept </button>
+                              <button style={{"background":"#2ED47A","borderRadius":"4px", border:'transparent', fontSize:'90%'}}> Accept </button>
 
                         </div>
                         <div className='col-3'>
 
 
-                              <button style={{"background":"#F7685B","borderRadius":"4px"}}> Reject </button>
+                              <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%'}}> Reject </button>
 
                        </div>
             </div>
@@ -69,24 +77,19 @@ class Dashboard extends React.Component{
                       <div className='col-6 offset-1'>
                             <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {notification.fname} wrote me a review </h3>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-4 offset-1'>
                             <p> {notification.reviewDate}</p>
                       </div>
                         <div className='col-4 offset-1' >
                               <h5 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>Shadowing Dates: </h5>
                         </div>
-                        <div className='col-3'>
+                        <div className='col-6 '>
 
 
-                              <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}> {notification.shadowStartDate} - </h5>
+                              <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}> {notification.shadowStartDate} - {notification.shadowEndDate} </h5>
 
                         </div>
-                        <div className='col-4'>
 
-
-                              <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}> {notification.shadowEndDate} </h5>
-
-                       </div>
 
 
                        <div className='col-11 offset-1'>
@@ -105,9 +108,14 @@ class Dashboard extends React.Component{
                               <p>{notification.reviewContent}</p>
                           </ShowMoreText>
                        </div>
-
-                       <div className='col-2'>
+                       <div className='col-1 offset-1'>
+                          <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
+                       </div>
+                       <div className='col-3'>
                           <p> {notification.fname}</p>
+                       </div>
+                       <div className='col-3 offset-4'>
+                          <button style={{color:'#C4C4C4', borderRadius:'4px', border:'1px solid #C4C4C4'}}>Completed</button>
                        </div>
 
             </div>
@@ -116,38 +124,11 @@ class Dashboard extends React.Component{
 
 
 
-        //setup my myReviews
-        let tempArray3=[]
-        reviewNotifications.forEach(notification=>{
-                  tempArray3.push(
-                    <React.Fragment>
-                    <div className='col-11 ml-2 mb-2' >
-                        <p style={{fontSize:'90%',lineHeight:'10px',fontWeight:'500'}}> {notification.reviewDate} </p>
-                        <ShowMoreText
-                        /* Default options */
-                           lines={1}
-                           more='+more'
-                           less='-less'
-                           anchorClass='moreClass'
-                           onClick={this.executeOnClick}
-                           expanded={false}
-                           width={280}
-                           color='black'
 
-                       >
-                          <p style={{fontSize:'80%'}}>{notification.reviewContent}</p>
-                      </ShowMoreText>
-                    </div>
-
-                    </React.Fragment>
-
-                  )
-
-          })
 
           let currentTemp=[];
           let currentTemp2=[];
-          let currentTemp3=[];
+
           try{
             currentTemp=tempArray.slice(0,1)
           }catch(e){
@@ -164,13 +145,9 @@ class Dashboard extends React.Component{
 
           }
 
-          try{
-            currentTemp3=tempArray3.slice(0,1)
-          }catch(e){
 
-          }
-
-
+          console.log(tempArray3)
+          console.log(currentTemp3)
           this.state={
             counter:1,
             selectionRange:{
@@ -182,18 +159,105 @@ class Dashboard extends React.Component{
               rangeObjects:new Array(100),
               textboxIdCount:0,
               rangeEditDisabled:true,
+              editExperience:false,
               shadowRequests:tempArray,
               currentShadowRequests:currentTemp,
               reviewNotifications:tempArray2,
               currentReviewNotifications:currentTemp2,
               myHistoryButton:'Show More',
-              myReviewsAll:tempArray3,
-              myReviewsCurrent:currentTemp3,
-              myReviewButton:'Show More'
+              myReviewsAll:[],
+              myReviewsCurrent:[],
+              myReviewButton:'Show More',
+              imgNames:[],
+              selectedImages:[],
+              showRequests:true,
+              showCompleted:true,
+              notificationFilters:[]
 
 
 
           }
+
+          let tempArray3=[]
+          let currentTemp3=[]
+          fetch('/api/review/', {
+             method: 'get',
+             headers: new Headers({
+                 'Content-Type':'application/json'
+             }),
+         }).then((response) => {
+
+           response.json().then((reviewsData)=>{
+             //setup my myReviews
+             reviewsData.forEach(review=>{
+                       tempArray3.push(
+                         <React.Fragment>
+                         <div className='col-11 ml-2 mb-2' >
+                             <p style={{fontSize:'90%',lineHeight:'10px',fontWeight:'500'}}> {review.publishDate} </p>
+                             <ShowMoreText
+                             /* Default options */
+                                lines={1}
+                                more='+more'
+                                less='-less'
+                                anchorClass='moreClass'
+                                onClick={this.executeOnClick}
+                                expanded={false}
+                                width={280}
+                                color='black'
+
+                            >
+                               <p style={{fontSize:'80%'}}>{review.body}</p>
+                           </ShowMoreText>
+                         </div>
+
+                         </React.Fragment>
+
+                       )
+
+               })
+               try{
+                 currentTemp3=tempArray3.slice(0,1)
+               }catch(e){
+
+               }
+               this.setState({myReviewsAll:tempArray3,myReviewsCurrent:currentTemp3})
+           })
+         }).catch((err) => {
+                   console.log(err)
+
+         });
+
+
+
+         fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type':'application/json'
+            }),
+        }).then((response) => {
+
+          response.json().then((experience)=>{
+            console.log(experience)
+                let tempPerks=[]
+                experience.perks.forEach((perk,i)=>{
+                  if(i===experience.perks.length-1){
+                    tempPerks.push(perk+'.')
+                  }else{
+                    tempPerks.push(perk+", ")
+
+                  }
+                })
+               this.setState({perks:tempPerks, whatCanIOffer:experience.whatICanOffer})
+
+
+          })
+        }).catch((err) => {
+                  console.log(err)
+
+        });
+
+
+
   }
 
 
@@ -232,11 +296,17 @@ class Dashboard extends React.Component{
      let htmlForTextbox= startDateArray[0]+ " " +startDateArray[1]+" "+startDateArray[2]+" "+startDateArray[3] + " - " + endDateArray[0]+ " "+endDateArray[1]+" "+endDateArray[2]+" "+endDateArray[3]
      rangesUpdated[this.state.textboxIdCount]=(
        <div className='row'>
-           <button id={textId} className='col-2 mt-4 close' type="button" aria-label="Close" onClick={this.deleteRange.bind(this,textId )}>
-             <span aria-hidden="true">&times;</span>
-           </button>
+
+           <div className='col-2 mt-4'    onClick={this.deleteRange.bind(this,textId )}>
+
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+               <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+               </svg>
+             </div>
+
            <div className='col-10 mt-4'>
-           <textarea   class="sm-textarea form-control" rows="3">{htmlForTextbox}</textarea>
+           <p>{htmlForTextbox}</p>
            </div>
        </div>
      )
@@ -270,7 +340,11 @@ class Dashboard extends React.Component{
         rangeEditDisabled: !prevState.rangeEditDisabled
       }));
    }
-
+   toggleExperienceEdit=()=>{
+     this.setState(prevState => ({
+        editExperience: !prevState.editExperience
+      }));
+   }
    confirmRanges=()=>{
      //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
    }
@@ -380,7 +454,91 @@ class Dashboard extends React.Component{
       }
    }
 
+
+   handleFileUpload=(event)=> {
+     if(event===null){
+       this.Ref.current.value = ""
+       return
+     }
+     let tempNames=this.state.imgNames
+     let tempSelectedImages=this.state.selectedImages
+     if(tempNames.length!==0){
+       tempNames.push(" , ")
+     }
+     console.log('called')
+     console.log(event.target.files[0].name)
+     console.log(this.state.imgNames)
+     tempNames.push(event.target.files[0].name)
+     tempSelectedImages.push(event.target.files[0])
+     this.setState({
+       selectedImages: tempSelectedImages,
+       imgNames: tempNames
+     })
+   }
+
+   handleInputChange=(event)=> {
+     const { name, value } = event.target;
+     this.setState(prevState=>{
+        return({
+             ...prevState,
+             [name]: value
+           })
+     });
+   }
+
+   updateNotificationFilters=(e)=>{
+     if(e.target.classList.contains('disabled')){
+       console.log(e.target.classList)
+       e.target.classList.remove('disabled')
+
+     }else{
+       e.target.classList.add('disabled')
+
+     }
+
+     if(e.target.innerHTML.localeCompare('Requests')===0){
+       this.setState(prevState=> ({...prevState, showRequests:!prevState.showRequests}) )
+     }
+     if(e.target.innerHTML.localeCompare('Completed')===0){
+       this.setState(prevState=> ({...prevState, showCompleted:!prevState.showCompleted}) )
+     }
+     let found=false
+     let temp=this.state.notificationFilters
+     temp.forEach((notification,i)=>{
+       if(notification.localeCompare(e.target.innerHTML)===0){
+         temp[i]=''
+         found=true
+       }
+     })
+     if(!found){
+       temp.push(e.target.innerHTML)
+     }
+     this.setState({notificationFilters:temp})
+
+
+   }
+
+
   render() {
+
+    let showRequests=false
+    let showCompleted=false
+    let filterSelected=false
+    this.state.notificationFilters.forEach(notification=>{
+      if(notification.localeCompare('')!==0){
+        filterSelected=true
+        if(notification.localeCompare('Requests')===0){
+          showRequests=true
+        }else if(notification.localeCompare('Completed')===0){
+          showCompleted=true
+
+        }
+      }
+    })
+    if(!filterSelected){
+      showRequests=true;
+      showCompleted=true;
+    }
 
 
     let todayDate=  new Date(moment().format("MM-DD-YYYY"))
@@ -410,10 +568,10 @@ class Dashboard extends React.Component{
                         <div className='col-4  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
-                                  <h5 className='' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}> My Hosting History</h5>
+                                  <h5 className='' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Hosting Progress</h5>
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
-                                    <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDate.toDateString()}</p>
+                                    <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDateArr[2]} {todayDateArr[1]}, <span style={{color:' #707683'}}>{todayDateArr[0]}</span></p>
 
                                     <div className='row'>
                                     <p className='col-1'>{weekDaysToDisplay[0]}</p>
@@ -435,11 +593,34 @@ class Dashboard extends React.Component{
                                     </div>
 
                                  </div>
+
+
+                                  <div className='row '>
+                                              <p className='col-lg-2 col-3 ' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
+                                              >Show :</p>
+                                              <Button className='col-lg-2 col-3  mr-2' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >
+                                                Requests
+                                              </Button>
+                                              <Button className='col-lg-2 col-3  mr-2 pr-4' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#FE8D86'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >
+                                                Upcoming
+                                              </Button>
+                                              <Button className='col-lg-2 col-3  mr-2 pr-2' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                               >
+                                                Ongoing
+                                               </Button>
+                                              <Button className='col-lg-2 col-3  mr-2 pr-5' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >
+                                                Completed
+                                              </Button>
+                                  </div>
+
                                 <div className='col-12' >
-                                  {this.state.currentShadowRequests}
-                                  {this.state.currentReviewNotifications}
+                                  {showRequests?this.state.currentShadowRequests:null}
+                                  {showCompleted?this.state.currentReviewNotifications:null}
                                 </div>
-                                <div className='col-12 mt-5 d-flex justify-content-center' >
+                                <div className='col-12 mt-2 d-flex justify-content-center' >
                                   <button onClick={this.changeCards} style={{color:'#109CF1', background:'none', border:'none'}}> {this.state.myHistoryButton} </button>
                                 </div>
                             </div>
@@ -449,12 +630,15 @@ class Dashboard extends React.Component{
                             <div className='row' >
                                                   <div className='col-12 ' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                         <div className='row'>
-                                                              <h5 className='mt-1' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}>My Availability <button onClick={this.enableRangeEdit} style={{border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button></h5>
+                                                              <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
+                                                                >My Availability
+                                                                 <button onClick={this.enableRangeEdit} style={{border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+                                                               </h5>
 
                                                               {!this.state.rangeEditDisabled?
                                                                     <React.Fragment>
-                                                                    <MDBBtn color={this.state.rangeEditDisabled? "primary disabled":'primary'} size='sm' onClick={this.addRange}>Add Range </MDBBtn>
-                                                                    <MDBBtn color={this.state.rangeEditDisabled? "primary disabled ml-3":'primary ml-3'} size='sm' onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1'}} onClick={this.addRange}>Add Range </MDBBtn>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
                                                                     <DateRange
                                                                      ranges={[this.state.selectionRange]}
                                                                      onChange={this.handleSelect}
@@ -493,39 +677,110 @@ class Dashboard extends React.Component{
 
                                               <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='col-12' >
+                                                          <div className='row'>
+                                                            <h5
+                                                            className='mt-2 col-5' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
+                                                            >
+                                                              My Experience Page
+                                                              <button onClick={this.toggleExperienceEdit} style={{border:'transparent',background:'#ffffff'}}>
+                                                              <MDBIcon icon="edit" fixed />
+                                                              </button>
 
-                                                        <h5 className='mt-2' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}> My Experience Page <MDBIcon icon="edit" fixed /></h5>
+                                                            </h5>
+                                                            <div className='col-6'>
+                                                            <Link>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+                                                            </Link>
+                                                            </div>
+                                                         </div>
 
                                                     </div>
                                                     <div className='row m-1 mt-1'>
                                                           <div className='col-4 ' >
-                                                                <h5 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>What Can I Offer: </h5>
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >What Can I Offer:
+                                                                </h5>
                                                           </div>
                                                           <div className='col-8'>
-
-
-                                                                <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>Dentistry, Medicine </h5>
+                                                              {this.state.editExperience?
+                                                                <input
+                                                                  type="text"
+                                                                  name="perks"
+                                                                  placeholder=""
+                                                                  value={this.state.whatCanIOffer}
+                                                                  onChange={this.handleInputChange}
+                                                                />
+                                                                :
+                                                                <h5
+                                                                style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >{this.state.whatCanIOffer}
+                                                                </h5>
+                                                              }
 
                                                           </div>
                                                           <div className='col-2 ' >
-                                                                <h5 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>Perks: </h5>
+                                                                <h5
+                                                                 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                 >Perks:
+                                                                 </h5>
                                                           </div>
                                                           <div className='col-10'>
 
+                                                                {this.state.editExperience?
+                                                                  <input
+                                                                    type="text"
+                                                                    name="perks"
+                                                                    placeholder=""
+                                                                    value={this.state.perks}
+                                                                    onChange={this.handleInputChange}
+                                                                  />
+                                                                  :
+                                                                  <h5
+                                                                  style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                  >
+                                                                  {this.state.perks}
+                                                                  </h5>
 
-                                                                <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>Coffee Shop, Career handbook </h5>
+                                                                }
 
                                                           </div>
 
                                                           <div className='col-2 ' >
-                                                                <h5 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>Photos: </h5>
-                                                          </div>
-                                                          <div className='col-10'>
-
-
-                                                                <h5 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>/imagesgohere </h5>
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >Photos:
+                                                                </h5>
 
                                                           </div>
+                                                          <div className='col-2' >
+                                                            <label  className="imgSubmit">
+                                                              <input  type="file" ref={this.Ref} name="file_photoId" accept="image/*"  onChange={(e)=>this.handleFileUpload(e)} />
+                                                                <div className='box m-1 p-1' style={{height:'5rem',width:'5rem'}}>
+                                                                <div className="hl"></div>
+                                                                <div className="vl"></div>
+                                                                </div>
+                                                            </label>
+                                                            <p>{this.state.imgNames}</p>
+
+                                                          </div>
+                                                          <div className='col-12 pb-1' >
+                                                            {this.state.imgNames.length!==0?
+                                                              <a onClick={  ()=>{  this.setState({imgNames:[], selectedImages:[]}, this.handleFileUpload(null) )  } }
+                                                              >
+                                                              Clear Image Selections
+                                                              </a>
+                                                              :null
+                                                            }
+                                                          </div>
+                                                          {this.state.editExperience?
+                                                          <div className='col-12' >
+                                                            <button> Confirm Changes </button>
+                                                          </div>
+                                                          :null
+                                                          }
+
+
                                                     </div>
 
 
@@ -536,13 +791,13 @@ class Dashboard extends React.Component{
 
                                               <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='row' >
-                                                        <div className='col-3 mt-2'>
+                                                        <div className='col-2 mt-2 ml-1'>
                                                             <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
                                                         </div>
                                                         <div className='col-6 mt-2'>
 
                                                             <Link>
-                                                                <p style={{color:'black', fontSize:'80%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
                                                             </Link>
                                                          </div>
 
@@ -551,14 +806,24 @@ class Dashboard extends React.Component{
                                                     <div className='row m-1'>
 
                                                                 <div className='col-4 mt-2'>
-                                                                <p  style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}>My Review Score: </p>
+                                                                <p
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >My Review Score:
+                                                                </p>
                                                                 </div>
-                                                                <div className='col-1' style={{borderRadius:'15px', opacity:'0.6', background:'#192A3E', fontSize:'80%'}}> <p className='text-center d-flex justify-content-center mt-2' style={{color:'white'}}>4.8</p>
+                                                                <div className='col-1' style={{borderRadius:'15px', opacity:'0.6', background:'#192A3E', fontSize:'80%'}}>
+                                                                  <p
+                                                                   className='text-center d-flex justify-content-center mt-2' style={{color:'white'}}
+                                                                  >
+                                                                  4.8
+                                                                  </p>
                                                                 </div>
                                                                 {this.state.myReviewsCurrent}
 
                                                                 <div className='col-12 d-flex justify-content-center' >
-                                                                  <button onClick={this.changeMyReviewCards} style={{color:'#109CF1', background:'none', border:'none'}}> {this.state.myReviewButton} </button>
+                                                                  <button onClick={this.changeMyReviewCards} style={{color:'#109CF1', background:'none', border:'none'}}>
+                                                                  {this.state.myReviewButton}
+                                                                  </button>
                                                                 </div>
                                                     </div>
 
