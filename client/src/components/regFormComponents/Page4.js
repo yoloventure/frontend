@@ -8,23 +8,39 @@ class Page4 extends React.Component {
     this.state = {
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+  handleSubmitPage4Next=()=>{
+    // let host=this.props.host
+    // if(!host.street|| !host.city ||!host.state){
+    //   this.setState({submittedPage2:true, errorPage1:"Please fill all required fields"})
+    // }else{
+      this.props.setNextTrue()
 
-  handleSubmit(event) {
-    event.preventDefault();
-    return ;
+    // }
   }
+  handleSubmitPage4Back=()=>{
+    // let host=this.props.host
+    // if(!host.street|| !host.city ||!host.state){
+    //   this.setState({submittedPage2:true, errorPage1:"Please fill all required fields"})
+    // }else{
+      this.props.setNextFalse()
+
+    // }
+  }
+
   handleClick(e){
     let currentText=document.getElementById('textArea').innerHTML
     currentText=currentText.concat(e.currentTarget.textContent+',')
     document.getElementById('textArea').innerHTML=currentText
+    let event={}
+    event['target']={'name':'expertise','value':currentText}
+    this.props.handleInputChange(event)
   }
   render() {
     return (
       <div className="">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div className="container-fluid">
             <h3>Expertise</h3>
             <div className="row container">
@@ -54,16 +70,17 @@ class Page4 extends React.Component {
                     <div className="col-4 offset-4">
                       <input
                         className="btn nextBtn"
-                        type="submit"
-                        onClick={this.props.setNextFalse}
+                        onClick={this.handleSubmitPage4Back}
+
                         value="Previous Step"
                       />
                     </div>
                     <div className="col-4">
                       <input
-                        className="btn nextBtn"
-                        type="submit"
-                        onClick={this.props.setNextTrue}
+                      className="btn nextBtn"
+
+                      onClick={this.handleSubmitPage4Next}
+
                         value="Next Step"
                       />
                     </div>

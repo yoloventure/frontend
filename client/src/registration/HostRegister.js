@@ -13,6 +13,10 @@ import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
 import APIHostApp from "../api/APIHostApp";
 
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
+
 class HostRegister extends React.Component {
   constructor(props) {
     super(props);
@@ -24,15 +28,15 @@ class HostRegister extends React.Component {
         lname:"",
         gender: "",
         title: "",
-        stage: "",
+        yearsExp: "",
         company: "",
         email: "",
         phone: "",
         website: "",
         category: "",
-        street: '',
-        city: '',
-        state:'',
+        street: "",
+        city: "",
+        state:"",
         description: "",
         offerOne: "",
         offerTwo: "",
@@ -43,11 +47,12 @@ class HostRegister extends React.Component {
         otherAspects: "",
         expertise: "",
         password:"",
+        confirmPassword:"",
         errorMessage:''
       },
-      counter: 1,
-      goNext:true,
-      progress: 0
+      counter: 6,
+      progress: 0,
+      registered:false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -57,15 +62,17 @@ class HostRegister extends React.Component {
   }
   setNextTrue=()=>{
     console.log('tt called')
-    this.setState({goNext:true})
+    this.setState({counter: this.state.counter + 1,progress: this.state.progress + 25},()=>{this.handleSubmit()})
   }
   setNextFalse=()=>{
     console.log('f called')
 
-    this.setState({goNext:false})
+    this.setState({counter: this.state.counter - 1,progress: this.state.progress - 25},()=>{this.handleSubmit()})
   }
   handleInputChange(event) {
     const { name, value } = event.target;
+    console.log(name, value)
+
     const { host } = this.state;
     this.setState({
         host: {
@@ -76,24 +83,77 @@ class HostRegister extends React.Component {
     console.log(this.state.host);
   }
 
-  handleSubmit(event) {
-    if(this.state.goNext){
-    this.setState({ counter: this.state.counter + 1 });
-    }else{
-      this.setState({ counter: this.state.counter - 1 });
+  handleSubmit() {
+
+
+
+    console.log(this.state.counter+'submittsa')
+    if(this.state.counter===7){
+      console.log('registering host')
+      var user = {
+        fname: "test",
+        lname: "test",
+        email: "test@abdul",
+        password: "test",
+        job_interests: "nil"
+      }
+      console.log('here')
+      var newUser = null;
+      this.props.register(user)
+
+      //       this.props.loadUser()
+      //
+      //
+      // }
+
+      // var host = {
+      //   user: newUser._id,
+      //   gender: host.gender,
+      //   phone: host.phone,
+      //   title: host.title,
+      //   //company: createCompany(), //ref
+      //   description: host.description,
+      //   //location: createLocation(), //ref
+      //   offering: [host.offerOne, host.offerTwo, host.offerThree],
+      //   moreOffering: [host.moreOne, host.moreTwo, host.moreThree],
+      //   expertise: host.expertise,
+      //   //experiences: createExperience(), //ref
+      //   approval: 'pending',
+      // }
 
     }
-
-    if (this.state.progress < 100) {
-      this.setState({ progress: this.state.progress + 25 });
-    }
-    var host = this.state.host;
-
-    APIHostApp.submitApp(host);
 
     window.scrollTo(0, 0);
 
   }
+  // static getDerivedStateFromProps(nextProps, prevState){
+  //  if(nextProps.auth.isAuthenticated){
+  //    return {registered:true}
+  // }  else return null;
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.registered) {
+  //     this.props.loadUser()
+  //     var host = {
+  //       user: this.props.auth.user._id,
+  //       category: "",
+  //       title:"",
+  //       street: "",
+  //       city: "",
+  //       state:"",
+  //       description: "",
+  //       offering: ["","",""],
+  //
+  //
+  //       expertise:"",
+  //       // experiences: createExperience(), //ref
+  //       approval: 'pending',
+  //     }
+  //
+  //     APIHost.createNewHost(host);
+  //   }
+  // }
 
   updateStateAddress(street, city, state){
     var host = this.state.host;
@@ -111,20 +171,20 @@ class HostRegister extends React.Component {
 
   handlePageRender(counter) {
     if (counter == 1) {
-      const pageToRender = <Page1 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
+      const pageToRender = <Page1 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
       return pageToRender;
     } else if (counter == 2) {
-      return <Page2 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} updateStateAddress={this.updateStateAddress}/>;
+      return <Page2 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} updateStateAddress={this.updateStateAddress} handleSubmit={this.handleSubmit}/>;
     } else if (counter == 3) {
-      return <Page3 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
+      return <Page3 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else if (counter == 4) {
-      return <Page4 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
+      return <Page4 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else if (counter == 5) {
-      return <Page5 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host}/>;
+      return <Page5 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else if (counter == 6) {
-      return <Page6 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host}/>;
+      return <Page6 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else {
-      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}   host={this.state.host}/>;
+      const pageToRender = <Page7 handleInputChange={this.handleInputChange}  setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}   host={this.state.host} handleSubmit={this.handleSubmit}/>;
       return pageToRender;
     }
   }
@@ -155,7 +215,6 @@ class HostRegister extends React.Component {
         <div className="main container">
           {/*Progress Bar*/}
 
-          <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
                     <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
                       <p>PROGRESS</p>
@@ -176,7 +235,6 @@ class HostRegister extends React.Component {
               {this.handlePageRender(this.state.counter)}
             </div>
           </div>
-        </div>
 
         <div className="m-0 p-0">
           <Footer />
@@ -186,4 +244,15 @@ class HostRegister extends React.Component {
   }
 }
 
-export default HostRegister;
+HostRegister.propTypes = {
+    register: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+
+}
+
+const mapStateToProps = (state) => ({
+    auth:state.auth //item represents the entire state
+});
+
+export default connect(mapStateToProps,  {register,loadUser})(HostRegister)
