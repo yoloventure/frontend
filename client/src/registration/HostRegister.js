@@ -11,7 +11,9 @@ import Page4 from "../components/regFormComponents/Page4";
 import Page5 from "../components/regFormComponents/Page5";
 import Page6 from "../components/regFormComponents/Page6";
 import Page7 from "../components/regFormComponents/Page7";
-import APIHostApp from "../api/APIHostApp";
+import APIHost from "../api/APIHost";
+import APICompany from "../api/APICompany";
+
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,7 +25,7 @@ class HostRegister extends React.Component {
 
     this.state = {
       host : {
-        userId: "",
+        user: "",
         fname: "",
         lname:"",
         gender: "",
@@ -37,7 +39,9 @@ class HostRegister extends React.Component {
         street: "",
         city: "",
         state:"",
-        description: "",
+        country:"USA",
+        zip:'111',
+        description: " ",
         offerOne: "",
         offerTwo: "",
         offerThree: "",
@@ -52,6 +56,7 @@ class HostRegister extends React.Component {
       },
       counter: 1,
       progress: 0,
+      firstLoad:true,
       registered:false
     };
 
@@ -87,73 +92,48 @@ class HostRegister extends React.Component {
 
 
 
-    console.log(this.state.counter+'submittsa')
     if(this.state.counter===7){
-      console.log('registering host')
-      var user = {
-        fname: "test",
-        lname: "test",
-        email: "test@abdul",
-        password: "test",
-        job_interests: "nil"
+      let host=this.state.host
+      let user = {
+        fname: host.fname,
+        lname: host.lname,
+        email: host.email,
+        password: host.password,
+        job_interests: host.job_interests
       }
-      console.log('here')
-      var newUser = null;
       this.props.register(user)
 
-      //       this.props.loadUser()
-      //
-      //
-      // }
-
-      // var host = {
-      //   user: newUser._id,
-      //   gender: host.gender,
-      //   phone: host.phone,
-      //   title: host.title,
-      //   //company: createCompany(), //ref
-      //   description: host.description,
-      //   //location: createLocation(), //ref
-      //   offering: [host.offerOne, host.offerTwo, host.offerThree],
-      //   moreOffering: [host.moreOne, host.moreTwo, host.moreThree],
-      //   expertise: host.expertise,
-      //   //experiences: createExperience(), //ref
-      //   approval: 'pending',
-      // }
 
     }
 
     window.scrollTo(0, 0);
 
   }
-  // static getDerivedStateFromProps(nextProps, prevState){
-  //  if(nextProps.auth.isAuthenticated){
-  //    return {registered:true}
-  // }  else return null;
-  // }
+  static getDerivedStateFromProps(nextProps, prevState){
+   if(nextProps.auth.user &&prevState.firstLoad){
+     return {registered:true}
+  }  else return null;
+  }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.registered) {
-  //     this.props.loadUser()
-  //     var host = {
-  //       user: this.props.auth.user._id,
-  //       category: "",
-  //       title:"",
-  //       street: "",
-  //       city: "",
-  //       state:"",
-  //       description: "",
-  //       offering: ["","",""],
-  //
-  //
-  //       expertise:"",
-  //       // experiences: createExperience(), //ref
-  //       approval: 'pending',
-  //     }
-  //
-  //     APIHost.createNewHost(host);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.firstLoad && this.state.registered) {
+      console.log(this.props.auth.user)
+
+      APICompany.createCompany({
+         name:this.state.host.company,
+         website:this.state.host.website,
+         street:this.state.host.street,
+         city:this.state.host.city,
+         state:this.state.host.state,
+         country:this.state.host.country,
+         zip:this.state.host.zip
+      }).then( response=>this.setState({host.company:response._id, host.user:this.props.auth.user._id},()=>{
+          console.log(this.state.host)
+          APIHost.createNewHost(this.state.host);
+          this.setState({firstLoad:false})
+        }))
+        }
+  }
 
   updateStateAddress(street, city, state){
     var host = this.state.host;

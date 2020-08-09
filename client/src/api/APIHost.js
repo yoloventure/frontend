@@ -38,16 +38,15 @@ function getAllHosts(){
 }
 
 //creates a new Host in the system
-function createNewHost(Host) {
+function createNewHost(host) {
+  console.log(JSON.stringify(host))
   var path = "/api/host/";
   return fetch(path, {
     method: 'post',
     headers: new Headers({
         'Content-Type': 'application/json'
     }),
-    body: JSON.stringify({
-        host: Host
-    }),
+    body: JSON.stringify(host),
     credentials: "include"
   }).then((response) => {
     return response.json();
