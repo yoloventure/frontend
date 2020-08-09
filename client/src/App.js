@@ -2,6 +2,7 @@ import React from "react";
 import Homepage from "./home/Homepage";
 import Explore from "./explore/Explore";
 import ExperienceDetail from "./explore/ExperienceDetail";
+import ShadowerReservation from "./bookExperience/ShadowerReservation";
 import Login from "./auth/login";
 import HostExperience from "./hostExperience/HostExperience";
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
@@ -50,6 +51,12 @@ class App extends React.Component {
         path='/explore/:id'
         exact
         component={ExperienceDetail}
+      />
+
+      <Route
+        path='/reserve/:id'
+        exact
+        component={ShadowerReservation}
       />
 
       <Route

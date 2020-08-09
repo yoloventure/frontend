@@ -1,0 +1,28 @@
+import React from "react";
+
+class Page7 extends React.Component {
+  render() {
+    return (
+      <div>
+        <div className="container-fluid">
+          <h3>
+            Reservation fee
+          </h3>
+        </div>
+        <div className="row mt-5 mb-5"></div>
+        <div className="row mt-5 mb-4">
+          <div className="col text-center">
+            <input
+              className="btn nextBtn"
+              type="submit"
+              value="Next Step"
+              onClick={this.props.goNext}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Page7;
