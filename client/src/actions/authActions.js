@@ -108,36 +108,7 @@ export const register = (user) => {
                                           payload: data
                                       })
                                       //Start to Load User Now
-                                                            dispatch({
-                                                                type: USER_LOADING
-                                                            }); //set user to loading state
-                                                            console.log("load called")
-
-                                                            var path = "/api/user/userInfoFromToken";
-                                                            return fetch(path, {
-                                                                method: 'post',
-                                                                headers: new Headers({
-                                                                    'Content-Type':'application/json'
-                                                                }),
-                                                                body: JSON.stringify({token:localStorage.getItem('token').split(' ')[1]})
-
-                                                            }).then((response) => {
-                                                              console.log('sahi jaga'+response)
-
-                                                              response.json().then((data)=>{
-
-                                                                    dispatch({
-                                                                        type: USER_LOADED,
-                                                                        payload: data
-                                                                    })
-                                                              })
-                                                            }).catch((err) => {
-                                                                      console.log('galat jaga'+err)
-                                                                      dispatch({
-                                                                          type: AUTH_ERROR
-                                                                      })
-                                                            });
-
+                                      dispatch(loadUser())
 
 
                             });

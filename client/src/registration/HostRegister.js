@@ -50,7 +50,7 @@ class HostRegister extends React.Component {
         confirmPassword:"",
         errorMessage:''
       },
-      counter: 6,
+      counter: 1,
       progress: 0,
       registered:false
     };
