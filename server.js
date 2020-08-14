@@ -27,6 +27,7 @@ const experience = require('./routes/experience');
 const review = require('./routes/review');
 const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
+const fileUpload = require('./routes/fileUpload');
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
@@ -128,6 +129,7 @@ app.use('/api/experience', experience);
 app.use('/api/company', company);
 app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
+app.use('api/fileUpload', fileUpload);
 
 // Error handling middleware
 app.use(function(err, req, res, next) {
@@ -136,7 +138,7 @@ app.use(function(err, req, res, next) {
 });
 
 // File upload
-// Todo: customize destination based on hostId
+/*
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "uploads");
@@ -156,7 +158,7 @@ app.post("/api/file/upload", cors(), function(req, res) {
     return res.status(200).send(req.file);
   });
 });
-// End file upload
+*/
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist/index.html"));

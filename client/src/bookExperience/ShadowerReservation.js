@@ -27,9 +27,10 @@ class ShadowReservation extends React.Component {
         user: null,
         exp: null,
         dateRange: null,
-        aspects: [],
+        aspects: {},
         otherAspects: "",
-        accomodations: [],
+        whatMakesGood: "",
+        accomodations: "",
         files: []
       },
       loaded: false,
@@ -38,6 +39,10 @@ class ShadowReservation extends React.Component {
     };
 
     this.handleDateRange = this.handleDateRange.bind(this);
+    this.handleAspectSelect = this.handleAspectSelect.bind(this);
+    this.handleOtherAspects = this.handleOtherAspects.bind(this);
+    this.handleWhatMakesGood = this.handleWhatMakesGood.bind(this);
+    this.handleAccomodations = this.handleAccomodations.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -110,6 +115,58 @@ class ShadowReservation extends React.Component {
     });
   }
 
+  handleAspectSelect(aspects) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          aspects: aspects
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleOtherAspects(otherAspects) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          otherAspects: otherAspects
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleWhatMakesGood(whatMakesGood) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          whatMakesGood: whatMakesGood
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleAccomodations(accomodations) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          accomodations: accomodations
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
   handleFileUpload(file, index) {
     this.setState(prevState => {
         prevState.data.files[index] = file;
@@ -165,13 +222,13 @@ class ShadowReservation extends React.Component {
         return <Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 2:
-        return <Page2 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page2 handleAspectSelect={this.handleAspectSelect} handleOtherAspects={this.handleOtherAspects} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 3:
-        return <Page3 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page3 handleWhatMakesGood={this.handleWhatMakesGood} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 4:
-        return <Page4 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page4 handleAccomodations={this.handleAccomodations} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 5:
         return <Page5 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Page7 extends React.Component {
   render() {
@@ -11,13 +12,8 @@ class Page7 extends React.Component {
         </div>
         <div className="row mt-5 mb-5"></div>
         <div className="row mt-5 mb-4">
-          <div className="col text-center">
-            <input
-              className="btn nextBtn"
-              type="submit"
-              value="Next Step"
-              onClick={this.props.goNext}
-            />
+         <div className="col text-center">
+            <Link className="btn nextBtn" to="/">Done</Link>
           </div>
         </div>
       </div>

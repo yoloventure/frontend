@@ -6,28 +6,40 @@ class Page2 extends React.Component {
     super(props);
 
     this.state = {
-      aspects: props.data.aspects
+      aspects: props.data.aspects,
+      otherAspects: props.data.otherAspects
     };
 
-
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAspectSelect = this.handleAspectSelect.bind(this);
+    this.handleOtherAspects = this.handleOtherAspects.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
   }
 
-  handleAspectSelect(event) {
-    /*
-    this.setState({
-      selectedFile: event.target.files[0],
-      fileName: event.target.files[0].name,
-      //loaded: 0,
+  handleAspectSelect(key, event) {
+    const {checked} = event.target;
+    const key_val = key;
+    this.setState(prevState => {
+      prevState.aspects[key_val] = checked;
+      return {
+        aspects: prevState.aspects
+      }
     }, () => {
-      //console.log(event.target.files[0]);
-      this.props.handleFileUpload(this.state.selectedFile, 0);
+      this.props.handleAspectSelect(this.state.aspects);
     });
-    */
+  }
+
+  handleOtherAspects(event) {
+    const {value} = event.target;
+    this.setState(
+      {
+        otherAspects: value
+      }, () => {
+      this.props.handleOtherAspects(this.state.otherAspects);
+    });
   }
 
   render() {
@@ -44,15 +56,15 @@ class Page2 extends React.Component {
             </div>
             <div className='row offset-1'>
               {this.props.data.exp.whatICanOffer.map((item, index) =>
-                <CardExpDetail item={item} key={index} handleSelect={this.handleAspectSelect} />
+                <CardExpDetail item={item} key={index} id={index} handleAspectSelect={this.handleAspectSelect} aspects={this.state.aspects} />
               )}
             </div>
-            <div className="row mt-5 mb-4">
+            <div className="row mt-5 mb-5">
               <div className="col">
                 <p>
                   What other aspects do you want to learn?
                 </p>
-                <textarea name="otherAspects"></textarea>
+                <textarea name="otherAspects" onChange={this.handleOtherAspects}>{this.state.otherAspects}</textarea>
               </div>
             </div>
             <div className="row mt-5 mb-4">

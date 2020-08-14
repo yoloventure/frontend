@@ -15,7 +15,7 @@ class Page6 extends React.Component {
             <input
               className="btn nextBtn"
               type="submit"
-              value="Next Step"
+              value="Payment"
               onClick={this.props.goNext}
             />
           </div>
