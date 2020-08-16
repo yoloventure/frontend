@@ -104,6 +104,20 @@ class HostRegister extends React.Component {
       this.props.register(user)
 
 
+    }else if(this.state.counter===6 && this.props.auth.isAuthenticated){
+      APICompany.createCompany({
+         name:this.state.host.company,
+         website:this.state.host.website,
+         street:this.state.host.street,
+         city:this.state.host.city,
+         state:this.state.host.state,
+         country:this.state.host.country,
+         zip:this.state.host.zip
+      }).then( response=>this.setState({  host:{...this.state.host,company:response._id, user:this.props.auth.user._id}  } ,()=>{
+          console.log(this.state.host)
+          APIHost.createNewHost(this.state.host);
+          this.setState({firstLoad:false})
+        }))
     }
 
     window.scrollTo(0, 0);
@@ -127,12 +141,11 @@ class HostRegister extends React.Component {
          state:this.state.host.state,
          country:this.state.host.country,
          zip:this.state.host.zip
-      }).then( response=>this.setState({host.company:response._id, host.user:this.props.auth.user._id},()=>{
+      }).then( response=>this.setState({  host:{...this.state.host,company:response._id, user:this.props.auth.user._id}, firstLoad:false  } ,()=>{
           console.log(this.state.host)
           APIHost.createNewHost(this.state.host);
-          this.setState({firstLoad:false})
         }))
-        }
+    }
   }
 
   updateStateAddress(street, city, state){
@@ -160,9 +173,13 @@ class HostRegister extends React.Component {
     } else if (counter == 4) {
       return <Page4 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else if (counter == 5) {
-      return <Page5 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
-    } else if (counter == 6) {
-      return <Page6 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host} handleSubmit={this.handleSubmit}/>;
+        return <Page5 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
+     }else if (counter == 6 && !this.props.auth.isAuthenticated) {
+      return <Page6 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}  host={this.state.host} handleSubmit={this.handleSubmit}/>;
+    } else if (counter == 6 && this.props.auth.isAuthenticated) {
+      return <Page7 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host} handleSubmit={this.handleSubmit}/>;
+    }  else if (counter == 7 && !this.props.auth.isAuthenticated) {
+      return <Page7 handleInputChange={this.handleInputChange} setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse} handleSubmit={this.handleSubmit} host={this.state.host} handleSubmit={this.handleSubmit}/>;
     } else {
       const pageToRender = <Page7 handleInputChange={this.handleInputChange}  setNextTrue={this.setNextTrue} setNextFalse={this.setNextFalse}   host={this.state.host} handleSubmit={this.handleSubmit}/>;
       return pageToRender;

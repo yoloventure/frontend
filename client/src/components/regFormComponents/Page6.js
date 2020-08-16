@@ -23,7 +23,7 @@ class Page6 extends React.Component {
   }
   handleSubmitPage6Back=()=>{
 
-    this.props.setNextBack()
+    this.props.setNextFalse()
 
 
   }
