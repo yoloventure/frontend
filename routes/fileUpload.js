@@ -9,18 +9,11 @@ const
     , getStream = require('into-stream')
 ;
 
-const { DefaultAzureCredential } = require("@azure/identity");
-const { BlobServiceClient } = require("@azure/storage-blob");
- 
-const account = process.env.HDRIVE_AZURE_STORAGE;
-const defaultAzureCredential = new DefaultAzureCredential();
- 
-const blobServiceClient = new BlobServiceClient(
-  `https://${account}.blob.core.windows.net`,
-  defaultAzureCredential
-);
- 
-const containerName = process.env.HDRIVE_AZURE_CONTAINER;
+const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");
+const account = process.env.ACCOUNT_NAME;
+const accountKey = process.env.ACCOUNT_KEY;
+
+const containerName = 'yolo';
 
 const handleError = (err, res) => {
     res.status(500);
@@ -32,21 +25,34 @@ const getBlobName = originalName => {
     const identifier = Date.now();
     return '${identifier}-${originalName}';
 };
-
-router.post('/', uploadStrategy, (req, res) => {
-    const containerClient = blobServiceClient.getContainerClient(containerName);
  
-    //const content = "Hello world!";
-    const blobName = getBlobName(req.file.originalname);
-    const stream = getStream(req.file.buffer);
-    const streamLength = req.file.buffer.length;
+try {
+    // Use StorageSharedKeyCredential with storage account and account key
+    const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey);
+    const blobServiceClient = new BlobServiceClient(
+    `https://${account}.blob.core.windows.net`,
+    sharedKeyCredential
+    );
 
-    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-    blockBlobClient.uploadStream(stream, streamLength)
-    .then(response => {
-        res.send('Upload block blob ${blobName} successfully (requestId=${response.requestId})');
+    router.post('/', uploadStrategy, (req, res) => {
+        const containerClient = blobServiceClient.getContainerClient(containerName);
+    
+        //const content = "Hello world!";
+        const blobName = getBlobName(req.file.originalname);
+        const stream = getStream(req.file.buffer);
+        const streamLength = req.file.buffer.length;
+
+        const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+        blockBlobClient.uploadStream(stream, streamLength)
+        .then(response => {
+            res.send('Upload block blob ${blobName} successfully (requestId=${response.requestId})');
+        });
+
     });
 
-});
+} catch {
+    console.log("fileUpload.js: Error while connecting to Azure (check env variables)");
+}
+
 
 module.exports = router;

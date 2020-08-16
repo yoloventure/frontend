@@ -17,6 +17,9 @@ import APIUser from "../api/APIUser";
 import APIExperience from "../api/APIExperience";
 import APIReservation from "../api/APIReservation";
 
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
 
 class ShadowReservation extends React.Component {
   constructor(props) {
@@ -48,20 +51,6 @@ class ShadowReservation extends React.Component {
   }
 
   componentWillMount() {
-    try {
-      let user = APIUser.getCurrentUser()
-        .then(user => this.setState(prevState => {
-          return {
-            data: {
-              ...prevState.data,
-              user: user,
-            }
-          }
-        }));
-    } catch (error) {
-      console.log(error);
-    }
-
     try {
       APIExperience.getExperienceById(this.props.match.params.id)
         .then(experience => this.setState(prevState => {
@@ -187,6 +176,8 @@ class ShadowReservation extends React.Component {
       availableRanges.push(data.availableRanges.startDate);
       availableRanges.push(data.availableRanges.endDate);
       data.availableRanges = availableRanges;
+
+      data.user = this.props.auth.user._id;
 
       APIReservation.createReservation(data)
         .then((function (res) {
@@ -323,4 +314,14 @@ class ShadowReservation extends React.Component {
   }
 }
 
-export default ShadowReservation;
+ShadowReservation.propTypes = {
+  register: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth:state.auth //item represents the entire state
+});
+
+export default connect(mapStateToProps,  {register,loadUser})(ShadowReservation)
