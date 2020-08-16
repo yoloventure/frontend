@@ -79,6 +79,12 @@ class Explore extends React.Component{
 
       response.json().then((data)=>{
             console.log(data)
+            data.forEach(element=>{
+              element.availableFrom=element.availableRanges[0]
+              element.availableTill=element.availableRanges[element.availableRanges.length-1]
+            })
+
+
             this.setState({
                 currentData:JSON.parse(JSON.stringify(data)),
                 currentFilteredData:JSON.parse(JSON.stringify(data)),

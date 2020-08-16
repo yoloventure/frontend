@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
-import { BrowserRouter as Router } from "react-router-dom";
+import {Link, BrowserRouter as Router } from "react-router-dom";
 import './Navbar.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -182,10 +182,11 @@ class Navbar extends React.Component {
                           <ul class="dropdown-menu dropdown-menu-right mt-2">
                              <li class="px-3 py-2">
                                  <form class="form" role="form">
-                                      <div class="form-group">
-                                          <button type="submit" onClick={this.logout} class="btn btn-primary btn-block">Sign Out</button>
-                                      </div>
-
+                                      <Link to="/">
+                                        <div class="form-group">
+                                            <button type="submit" onClick={this.logout} class="btn btn-primary btn-block">Sign Out</button>
+                                        </div>
+                                      </Link>
                                   </form>
                               </li>
 

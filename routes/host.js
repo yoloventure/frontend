@@ -28,11 +28,23 @@ router.get('/:id', function (req, res, next) {
 
 //create and save new host application instance
 router.post('/', function (req, res, next) {
-  Host.create(req.body)
-    .then(function (host) {
-      res.send(host); //send back info to client
-    })
-    .catch(next);
+  Host.findOne({user:req.body.user}).then(host=>{
+        if (host) {
+          errors =
+            'There is already a host associated with this account.';
+          return res.status(400).json({
+            success: false,
+            error: errors
+          });
+        } else {
+          Host.create(req.body)
+            .then(function (host) {
+              res.send(host); //send back info to client
+            })
+            .catch(next);
+        }
+  })
+
 });
 
 //edit application using put requests

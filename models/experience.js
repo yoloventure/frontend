@@ -19,12 +19,13 @@ const experienceSchema = new mongoose.Schema({
       type: Array(String),// list of image ids
       required: true
     },
-    availabeRanges:{
+    availableRanges:{
         type: Array(Date), //array of dates, in pairs [from, to, from,to...]
         required: true,
     },
     whatICanOffer:{
-      type: Array,
+
+      type: Array(Object),
       default: []
     },
     perks:{

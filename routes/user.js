@@ -19,11 +19,7 @@ router.post(
 																					if(user){
 																						console.log(user)
 																						return res.status(200).json({
-																							fname: user.fname,
-																							lname: user.lname,
-																							job_interest:user.job_interest,
-																							joinedSince:user.joinedSince,
-																							phone:user.phone
+																						      user
 																						})
 
 																					}else{

@@ -25,16 +25,14 @@ function getAllCompanies(){
 }
 
 //creates a new company in the system
-function createCompany(Company) {
+function createCompany(company) {
   var path = "/api/company/";
   return fetch(path, {
     method: 'post',
     headers: new Headers({
         'Content-Type': 'application/json'
     }),
-    body: JSON.stringify({
-        company: Company
-    }),
+    body: JSON.stringify(company),
     credentials: "include"
   }).then((response) => {
     return response.json();

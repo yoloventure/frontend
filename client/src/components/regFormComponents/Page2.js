@@ -10,7 +10,9 @@ class Page2 extends React.Component {
     super(props)
 
     this.state={
-      addressResults:new Array(11)
+      addressResults:new Array(11),
+      errorPage2:"",
+      submittedPage2:false
     }
   }
 
@@ -38,6 +40,11 @@ class Page2 extends React.Component {
               const items=res.data
               let tempArray=[]
               console.log(items);
+              tempArray.push(
+                <div className='row'>
+                 Click on an address to submit it
+                </div>
+              )
               items.forEach((element)=>{
                 tempArray.push(
                   <button onClick={(e)=>this.selectAddress(e)}>{element.text}</button>
@@ -57,24 +64,39 @@ class Page2 extends React.Component {
     var cityState=addressArray[1].split(' ')
     console.log('street:'+street + "city:"+cityState[0]+"cityState:"+cityState[1])
     this.props.updateStateAddress(street,cityState[0],cityState[1])
-
+    this.props.setNextTrue()
   }
 
+  handleSubmitPage2Next=()=>{
+    let host=this.props.host
+    if(!host.street|| !host.city ||!host.state){
+      this.setState({submittedPage2:true, errorPage2:"Please fill all required fields"})
+    }else{
+      this.props.setNextTrue()
 
+    }
+  }
+  handleSubmitPage2Back=()=>{
+
+      this.props.setNextFalse()
+
+  }
 
   render() {
 
 
     return (
       <div className="">
-        <form onSubmit={this.handleSubmit}>
+        <form >
                     <div className="container-fluid">
                         <div className="row">
                           <h3 className="join">Join a global community of hosts</h3>
                         </div>
-                        <div className="row">
-                          <h3 className="where">Where are you based?</h3>
+                        <div className="row mt-2">
+                          <h3 className="">Where are you based?</h3>
                         </div>
+                        <p className="text-danger">{this.state.errorPage2}</p>
+
                         <div className="container-fluid pt-5">
                           <label>Street</label>
                           <textarea
@@ -84,6 +106,10 @@ class Page2 extends React.Component {
                             onChange={this.props.handleInputChange}
                             className="mt-0"
                           />
+                          {this.state.submittedPage2 && !this.props.host.street?
+                              <div className="row">Street is required</div>
+                              :null
+                          }
                           <label>City</label>
                           <textarea
                             placeholder=""
@@ -92,6 +118,10 @@ class Page2 extends React.Component {
                             onChange={this.props.handleInputChange}
                             className="mt-0"
                           />
+                          {this.state.submittedPage2 && !this.props.host.city?
+                              <div className="row">City is required</div>
+                              :null
+                          }
                           <label>State</label>
                           <textarea
                             placeholder=""
@@ -100,6 +130,10 @@ class Page2 extends React.Component {
                             onChange={this.props.handleInputChange}
                             className="mt-0"
                           />
+                          {this.state.submittedPage2 && !this.props.host.state?
+                              <div className="row">State is required</div>
+                              :null
+                          }
 
                     </div>
                     <Button className='ml-3 mt-3' onClick={this.handleSubmitAddress}>Search For This Address</Button>
@@ -110,16 +144,14 @@ class Page2 extends React.Component {
                         <div className="col-4 offset-4">
                           <input
                             className="btn nextBtn"
-                            type="submit"
-                            onClick={this.props.setNextFalse}
+                            onClick={this.handleSubmitPage2Back}
                             value="Previous Step"
                           />
                         </div>
                         <div className="col-4">
                           <input
                             className="btn nextBtn"
-                            type="submit"
-                            onClick={this.props.setNextTrue}
+                            onClick={this.handleSubmitPage2Next}
                             value="Next Step"
                           />
                         </div>

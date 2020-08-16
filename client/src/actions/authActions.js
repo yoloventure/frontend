@@ -9,11 +9,14 @@ import {
     REGISTER_FAIL,
 } from './types';
 import { returnErrors } from './errorActions';
-//load user from token
-export const loadUser = () => (dispatch, getState) => {
+
+
+export const loadUser =()=>  (dispatch, getState) => {
     dispatch({
         type: USER_LOADING
     }); //set user to loading state
+    console.log("load called")
+
     var path = "/api/user/userInfoFromToken";
     return fetch(path, {
         method: 'post',
@@ -40,7 +43,8 @@ export const loadUser = () => (dispatch, getState) => {
     });
 
 
-}
+};
+
 
 //Set up config/header and token
 
@@ -63,10 +67,13 @@ export const tokenConfig = (getState) => {
      return config;
 };
 
-export const register = (user) => (dispatch) => {
+export const register = (user) => {
+
+
+  return (dispatch) => {
   var path = "/api/auth/register";
   var userInfo=user;
-  return fetch(path, {
+  fetch(path, {
       method: 'post',
       headers: new Headers({
           'Content-Type': 'application/json',
@@ -85,7 +92,7 @@ export const register = (user) => (dispatch) => {
                         var email=userInfo.email
                         var password=userInfo.password
                         var path2 = "/api/auth/login";
-                        return fetch(path2, {
+                        fetch(path2, {
                             method: 'post',
                             headers: new Headers({
                                 'Authorization': 'Basic ' + new Buffer(email + ':' + password).toString('base64')
@@ -93,13 +100,22 @@ export const register = (user) => (dispatch) => {
                             credentials: "include"
                         }).then((response) => {
                             response.json().then((data)=>{
-                                dispatch({
-                                    type: LOGIN_SUCCESS,
-                                    payload: data
-                                })
+                              console.log('registered')
+                              console.log(data)
+
+                                      dispatch({
+                                          type: LOGIN_SUCCESS,
+                                          payload: data
+                                      })
+                                      //Start to Load User Now
+                                      dispatch(loadUser())
+
+
                             });
                         }).catch((err) => {
-                            console.log(err);
+                          console.log(err);
+
+
                         });
 
             }else{
@@ -108,12 +124,14 @@ export const register = (user) => (dispatch) => {
               dispatch({
                   type: REGISTER_FAIL
               })
+
             }
   })
   .catch((err) => {
 
   });
-
+}
+}
     //
     // axios
     //     .post('/api/users', body, config)
@@ -129,9 +147,12 @@ export const register = (user) => (dispatch) => {
     //             type: REGISTER_FAIL
     //         })
     //     });
-}
 
-export const login = ({ email, password }) => (dispatch) => {
+
+export const login = ({ email, password }) =>{
+
+
+  return (dispatch) => {
 
     var path = "/api/auth/login";
     return fetch(path, {
@@ -147,6 +168,8 @@ export const login = ({ email, password }) => (dispatch) => {
                 type: LOGIN_SUCCESS,
                 payload: data
             })
+            loadUser()
+
         });
       }else{
         console.log('first'+err)
@@ -162,6 +185,7 @@ export const login = ({ email, password }) => (dispatch) => {
     });
 
 
+}
 }
 export const logout = () => (dispatch) => {
     dispatch({
