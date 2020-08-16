@@ -15,7 +15,7 @@ import Page6 from "../components/bookingComponents/Page6";
 import Page7 from "../components/bookingComponents/Page7";
 import APIUser from "../api/APIUser";
 import APIExperience from "../api/APIExperience";
-import APIBookExp from "../api/APIBookExp";
+import APIReservation from "../api/APIReservation";
 
 
 class ShadowReservation extends React.Component {
@@ -25,13 +25,13 @@ class ShadowReservation extends React.Component {
     this.state = {
       data: {
         user: null,
-        exp: null,
-        dateRange: null,
+        experience: null,
+        availableRanges: null,
         aspects: {},
         otherAspects: "",
         whatMakesGood: "",
         accomodations: "",
-        files: []
+        approval: "pending",
       },
       loaded: false,
       counter: 1,
@@ -48,7 +48,6 @@ class ShadowReservation extends React.Component {
   }
 
   componentWillMount() {
-    /*
     try {
       let user = APIUser.getCurrentUser()
         .then(user => this.setState(prevState => {
@@ -62,15 +61,14 @@ class ShadowReservation extends React.Component {
     } catch (error) {
       console.log(error);
     }
-    */
 
     try {
-      let exp = APIExperience.getExperienceById(this.props.match.params.id)
-        .then(exp => this.setState(prevState => {
+      APIExperience.getExperienceById(this.props.match.params.id)
+        .then(experience => this.setState(prevState => {
           return {
             data: {
               ...prevState.data,
-              exp: exp,
+              experience: experience,
             },
             loaded: true
           }
@@ -102,12 +100,12 @@ class ShadowReservation extends React.Component {
     }, this.handleSubmit);
   }
 
-  handleDateRange(dateRange) {
+  handleDateRange(availableRanges) {
     this.setState(prevState => {
         return {
           data: {
             ...prevState.data,
-            dateRange: dateRange
+            availableRanges: availableRanges
           }
         }
     }, () => {
@@ -185,9 +183,15 @@ class ShadowReservation extends React.Component {
       console.log("Submit API called");
 
       let data = this.state.data;
-      console.log(data);
+      let availableRanges = [];
+      availableRanges.push(data.availableRanges.startDate);
+      availableRanges.push(data.availableRanges.endDate);
+      data.availableRanges = availableRanges;
 
-      APIBookExp.submitReservation(data);
+      APIReservation.createReservation(data)
+        .then((function (res) {
+          console.log(res);
+        }));
     }
   }
 
@@ -195,7 +199,7 @@ class ShadowReservation extends React.Component {
     const data = this.state.data;
     let success = true;
 
-    if (!data.dateRange) {
+    if (!data.availableRanges) {
       toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
       this.setState({counter: 5, progress: 75});
       success = false;
@@ -248,7 +252,7 @@ class ShadowReservation extends React.Component {
         <div className="container-fluid app">
 
           <Helmet>
-            <title>Shadow an experienced {this.state.data.exp.host.title} | YoloShadow</title>
+            <title>Shadow an experienced {this.state.data.experience.host.title} | YoloShadow</title>
           </Helmet>
 
           <div className="nav pb-5">
@@ -265,7 +269,7 @@ class ShadowReservation extends React.Component {
                 />
               </div>
               <div className="col apply ml-5">
-                <p>Shadow an experienced {this.state.data.exp.host.title}</p>
+                <p>Shadow an experienced {this.state.data.experience.host.title}</p>
               </div>
             </div>
           </div>

@@ -55,7 +55,7 @@ class Page2 extends React.Component {
               </div>
             </div>
             <div className='row offset-1'>
-              {this.props.data.exp.whatICanOffer.map((item, index) =>
+              {this.props.data.experience.whatICanOffer.map((item, index) =>
                 <CardExpDetail item={item} key={index} id={index} handleAspectSelect={this.handleAspectSelect} aspects={this.state.aspects} />
               )}
             </div>

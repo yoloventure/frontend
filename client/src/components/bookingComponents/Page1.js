@@ -8,9 +8,9 @@ class Page1 extends React.Component {
   constructor(props) {
     super(props);
 
-    if (props.data.dateRange) {
+    if (props.data.availableRanges) {
       this.state = {
-        selectionRange: props.data.dateRange
+        selectionRange: props.data.availableRanges
       };
     } else {
       this.state = {
@@ -50,7 +50,7 @@ class Page1 extends React.Component {
             <div className="row mt-5 mb-4">
               <div className="col">
                 <h3>
-                  When do you want to shadow {this.props.data.exp.host.user.fname}?
+                  When do you want to shadow {this.props.data.experience.host.user.fname}?
                 </h3>
               </div>
             </div>

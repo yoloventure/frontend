@@ -36,7 +36,7 @@ class Page3 extends React.Component {
             <div className="row mt-5 mb-4">
               <div className="col">
                 <h3>
-                  What makes you a good shadower for {this.props.data.exp.host.user.fname}?
+                  What makes you a good shadower for {this.props.data.experience.host.user.fname}?
                 </h3>
               </div>
             </div>
