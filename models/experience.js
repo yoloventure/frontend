@@ -24,6 +24,7 @@ const experienceSchema = new mongoose.Schema({
         required: true,
     },
     whatICanOffer:{
+
       type: Array(Object),
       default: []
     },
@@ -36,7 +37,7 @@ const experienceSchema = new mongoose.Schema({
       required:false
     },
     reviews:{
-      type: Array(String),//array of ids , reviews will have separrate schema
+      type: Array,//array of ids , reviews will have separrate schema
       default: []
     }
 
