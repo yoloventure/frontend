@@ -6,28 +6,26 @@ class Page3 extends React.Component {
     super(props);
 
     this.state = {
-      aspects: props.data.aspects
+      whatMakesGood: props.data.whatMakesGood
     };
 
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleWhatMakesGood = this.handleWhatMakesGood.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
   }
 
-  handleAspectSelect(event) {
-    /*
-    this.setState({
-      selectedFile: event.target.files[0],
-      fileName: event.target.files[0].name,
-      //loaded: 0,
-    }, () => {
-      //console.log(event.target.files[0]);
-      this.props.handleFileUpload(this.state.selectedFile, 0);
+  handleWhatMakesGood(event) {
+    const {value} = event.target;
+    this.setState(
+      {
+        whatMakesGood: value
+      }, () => {
+      this.props.handleWhatMakesGood(this.state.whatMakesGood);
     });
-    */
   }
 
   render() {
@@ -38,21 +36,16 @@ class Page3 extends React.Component {
             <div className="row mt-5 mb-4">
               <div className="col">
                 <h3>
-                  What makes you a good shadower for {this.props.data.exp.host.user.fname}?
+                  What makes you a good shadower for {this.props.data.experience.host.user.fname}?
                 </h3>
               </div>
             </div>
-            <div className='row offset-1'>
-              {this.props.data.exp.whatICanOffer.map((item, index) =>
-                <CardExpDetail item={item} key={index} handleSelect={this.handleAspectSelect} />
-              )}
-            </div>
-            <div className="row mt-5 mb-4">
+            <div className="row mt-5 mb-5">
               <div className="col">
                 <p>
-                  What other aspects do you want to learn?
+                  For example, your skills, interests, past experience, etc.
                 </p>
-                <textarea></textarea>
+                <textarea name="whatMakesGood" onChange={this.handleWhatMakesGood}>{this.state.whatMakesGood}</textarea>
               </div>
             </div>
             <div className="row mt-5 mb-4">

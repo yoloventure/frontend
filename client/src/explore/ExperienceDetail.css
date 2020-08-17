@@ -74,7 +74,7 @@
   margin-top: 52px;
 }
 
-.content button {
+.content button, .content a {
   width: 134px;
   height: 39px;
 

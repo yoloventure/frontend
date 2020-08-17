@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Helmet } from 'react-helmet';
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import CardExpDetail from "../components/CardExpDetail";
@@ -75,7 +76,7 @@ export default class ExperienceDetail extends React.Component{
                         </div>
 
                         <div className='d-flex pt-1 controls'>
-                          <button id="btn-reserve" onclick="#">RESERVE NOW</button>
+                          <Link id="btn-reserve" className="btn" to={"/reserve/" + this.props.match.params.id}>RESERVE NOW</Link>
                           <button id="btn-availability" onclick="#">Availability</button>
                         </div>
 
