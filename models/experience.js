@@ -24,6 +24,7 @@ const experienceSchema = new mongoose.Schema({
         required: true,
     },
     whatICanOffer:{
+
       type: Array(Object),
       default: []
     },
