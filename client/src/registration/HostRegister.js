@@ -35,6 +35,7 @@ class HostRegister extends React.Component {
         email: "",
         phone: "",
         website: "",
+        industry:'',
         category: "",
         street: "",
         city: "",

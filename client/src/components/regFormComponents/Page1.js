@@ -11,7 +11,7 @@ class Page1 extends React.Component {
     e.preventDefault();
 
     let host=this.props.host
-    if(!host.fname|| !host.lname ||!host.company ||!host.phone|| !host.email ||!host.title ||host.yearsExp){
+    if(!host.fname|| !host.lname ||!host.company ||!host.phone|| !host.email ||!host.title ||!host.yearsExp||!host.industry){
       this.setState({submittedPage1:true, errorPage1:"Please fill all required fields"})
     }else{
       this.props.setNextTrue()
@@ -147,35 +147,41 @@ class Page1 extends React.Component {
 
               <div className="row">
                   <div className="col-sm-6">
-                    <div className="row">
-                      <input
-                        placeholder="+1 222-222-2222"
-                        name="phone"
-                        value={this.props.host.phone}
-                        type="tel"
-                        onChange={this.props.handleInputChange}
-                      />
-                    </div>
+                      <div className="row">
+
+                        <input
+                          placeholder="+1 222-222-2222"
+                          name="phone"
+                          value={this.props.host.phone}
+                          type="tel"
+                          onChange={this.props.handleInputChange}
+                        />
+                      </div>
                     {this.state.submittedPage1 && !this.props.host.phone?
                         <div className="row">Phone is required</div>
                         :null
                     }
-                  </div>
+                </div>
                 <div className="col-sm-6">
+                  <div className="row">
 
-                  <input
-                    name="title"
-                    placeholder="ex: Recruiter"
-                    value={this.props.host.title}
-                    type="text"
-                    onChange={this.props.handleInputChange}
-                    />
+                    <input
+                      name="title"
+                      placeholder="ex: Recruiter"
+                      value={this.props.host.title}
+                      type="text"
+                      onChange={this.props.handleInputChange}
+                      />
+                  </div>
                     {this.state.submittedPage1 && !this.props.host.title?
                         <div className="row">Title is required</div>
                         :null
                     }
                   </div>
               </div>
+
+
+
               <div className="row mt-3 mb-n2">
                 <div className="col">
                   <div className="row mb-n2">
@@ -187,8 +193,8 @@ class Page1 extends React.Component {
                     <input
                       type="number"
                       placeholder=""
-                      name="stage"
-                      value={this.props.host.stage}
+                      name="yearsExp"
+                      value={this.props.host.yearsExp}
                       onChange={this.props.handleInputChange}
                     />
                   </div>
@@ -196,6 +202,30 @@ class Page1 extends React.Component {
                       <div className="row">Years are required</div>
                       :null
                   }
+
+                  <div className="row mt-3 mb-n2">
+                          <label>Industry</label>
+                  </div>
+                  <div className="row">
+                    <select
+                      name="industry"
+                      value={this.props.host.industry}
+                      onChange={this.props.handleInputChange}
+                    >
+                      <option value="">Select</option>
+                      <option value="engineering">Engineering</option>
+                      <option value="artAndDesign">Art & Design</option>
+                      <option value="businessAndFinance">Business & Finance</option>
+                      <option value="healthCare">Healthcare</option>
+                      <option value="others">Others</option>
+
+                    </select>
+                  </div>
+                  {this.state.submittedPage1 && !this.props.host.phone?
+                      <div className="row">Industry is required</div>
+                      :null
+                  }
+
                   <div className="row mt-3 mb-n3">
                     <label htmlFor="">
                       <label htmlFor="">Company</label>
@@ -228,15 +258,19 @@ class Page1 extends React.Component {
                       onChange={this.props.handleInputChange}
                     />
                   </div>
-                  <div className="row"></div>
                 </div>
                 <div className="col">
-                  <label htmlFor="">One line to describe what you do</label>
-                  <textarea name="description"
-                      value={this.props.host.description}
-                      onChange={this.props.handleInputChange}
+
+                  <div className="row">
+                      <label htmlFor="">One line to describe what you do</label>
+                      <textarea name="description"
+                          value={this.props.host.description}
+                          onChange={this.props.handleInputChange}
                       ></textarea>
-                </div>
+                  </div>
+
+              </div>
+
               </div>
 
               <div className="row mt-5 mb-4">

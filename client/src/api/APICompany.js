@@ -42,16 +42,14 @@ function createCompany(company) {
 }
 
 //updatees an company in the system
-function editCompany(companyId, Company) {
+function editCompany(companyId, company) {
   var path = "/api/company/" + companyId;
   return fetch(path, {
     method: 'put',
     headers: new Headers({
         'Content-Type': 'application/json'
     }),
-    body: JSON.stringify({
-        company: Company
-    }),
+    body: JSON.stringify(company),
     credentials: "include"
   }).then((response) => {
     return response.json();

@@ -24,6 +24,10 @@ const hostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  industry: {
+    type: String,
+    required: true,
+  },
   company: {
     //company has both company name and website
     type: mongoose.Schema.Types.ObjectId,

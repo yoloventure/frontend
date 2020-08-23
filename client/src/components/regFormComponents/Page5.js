@@ -63,6 +63,14 @@ class Page5 extends React.Component {
         </div>
         <div className="row mb-2">
           <div className='col-2'>
+          <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>5</p>
+          </div>
+          <div className='col-6'>
+          <p className='mt-2'> <b>industry:</b> {obj.industry} </p>
+          </div>
+        </div>
+        <div className="row mb-2">
+          <div className='col-2'>
           <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>6</p>
           </div>
           <div className='col-6'>

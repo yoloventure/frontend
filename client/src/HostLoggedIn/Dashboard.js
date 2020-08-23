@@ -146,8 +146,6 @@ class Dashboard extends React.Component{
           }
 
 
-          console.log(tempArray3)
-          console.log(currentTemp3)
           this.state={
             counter:1,
             selectionRange:{
@@ -227,6 +225,8 @@ class Dashboard extends React.Component{
 
          });
 
+                   console.log(tempArray3)
+                   console.log(currentTemp3)
 
 
          fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
@@ -235,10 +235,13 @@ class Dashboard extends React.Component{
                 'Content-Type':'application/json'
             }),
         }).then((response) => {
+           console.log(response)
 
           response.json().then((experience)=>{
             console.log(experience)
                 let tempPerks=[]
+                let tempWhatCanIOffer=[]
+                let tempWhatCanIOfferBodies=[]
                 experience.perks.forEach((perk,i)=>{
                   if(i===experience.perks.length-1){
                     tempPerks.push(perk+'.')
@@ -247,7 +250,17 @@ class Dashboard extends React.Component{
 
                   }
                 })
-               this.setState({perks:tempPerks, whatCanIOffer:experience.whatICanOffer})
+                experience.whatICanOffer.forEach((offer,i)=>{
+                  if(i===experience.perks.length-1){
+                    tempWhatCanIOffer.push(offer.title+'.')
+                  }else{
+                    tempWhatCanIOffer.push(offer.title+", ")
+
+                  }
+                  tempWhatCanIOfferBodies.push(offer.body)
+
+                })
+               this.setState({perks:tempPerks, whatCanIOfferTitles:tempWhatCanIOffer, whatCanIOfferBodies:tempWhatCanIOfferBodies})
 
 
           })
@@ -565,7 +578,7 @@ class Dashboard extends React.Component{
 
     <div className='pt-5 mt-5 mr-5'>
                 <div className='row' >
-                        <div className='col-4  offset-1 mt-2'>
+                        <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
                                   <h5 className='' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Hosting Progress</h5>
@@ -632,13 +645,13 @@ class Dashboard extends React.Component{
                                                         <div className='row'>
                                                               <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
                                                                 >My Availability
-                                                                 <button onClick={this.enableRangeEdit} style={{border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+                                                                 <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
                                                                </h5>
 
                                                               {!this.state.rangeEditDisabled?
                                                                     <React.Fragment>
-                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1'}} onClick={this.addRange}>Add Range </MDBBtn>
-                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.addRange}>Add Range </MDBBtn>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
                                                                     <DateRange
                                                                      ranges={[this.state.selectionRange]}
                                                                      onChange={this.handleSelect}
@@ -682,7 +695,7 @@ class Dashboard extends React.Component{
                                                             className='mt-2 col-5' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
                                                             >
                                                               My Experience Page
-                                                              <button onClick={this.toggleExperienceEdit} style={{border:'transparent',background:'#ffffff'}}>
+                                                              <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
                                                               <MDBIcon icon="edit" fixed />
                                                               </button>
 
@@ -698,7 +711,7 @@ class Dashboard extends React.Component{
                                                     <div className='row m-1 mt-1'>
                                                           <div className='col-4 ' >
                                                                 <h5
-                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
                                                                 >What Can I Offer:
                                                                 </h5>
                                                           </div>
@@ -708,13 +721,13 @@ class Dashboard extends React.Component{
                                                                   type="text"
                                                                   name="perks"
                                                                   placeholder=""
-                                                                  value={this.state.whatCanIOffer}
+                                                                  value={this.state.whatCanIOfferTitles}
                                                                   onChange={this.handleInputChange}
                                                                 />
                                                                 :
                                                                 <h5
-                                                                style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                                                >{this.state.whatCanIOffer}
+                                                                style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                >{this.state.whatCanIOfferTitles}
                                                                 </h5>
                                                               }
 
@@ -800,6 +813,15 @@ class Dashboard extends React.Component{
                                                                 <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
                                                             </Link>
                                                          </div>
+                                                         <div className='col-3 mt-2'>
+                                                           <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Sort</a>
+
+                                                            <div class="dropdown-menu">
+                                                              <a class="dropdown-item" href="#">Latest</a>
+
+                                                            </div>
+                                                        </div>
 
 
                                                     </div>
