@@ -117,7 +117,7 @@ mongoose
 app.use(passport.initialize());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/public")));
+app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use(cors());
 
@@ -163,7 +163,7 @@ app.post("/api/file/upload", cors(), function(req, res) {
 */
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/public/index.html"));
+  res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
 // Defining our port
