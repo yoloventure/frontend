@@ -12,7 +12,7 @@ import HostRegister_Round2 from "./registration/hostRegister_Round2"
 import FeatureStory from "./story/featureStory";
 import About from "./about/about";
 import HostGuidelines from "./hostExperience/hostGuidelines";
-import Dashboard from './hostLoggedIn/dashboard'
+import Dashboard from './hostInterface/dashboard'
 import Admin from "./admin/admin";
 import {persistor,store} from './store';
 import { Provider } from 'react-redux';
