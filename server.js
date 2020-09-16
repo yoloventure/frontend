@@ -65,25 +65,25 @@ mongoose
   .catch(err => console.log(err));
 
 //Insert Experience object
-  const exp1=new Experience({
-  host: "5f19ae6cb21fedd6cfee46b9",
-  durationDays: "2",
-  price: "$112",
-  image: "http://via.placeholder.com/425x425",
-  availableRanges: ["2020-07-22T04:00:00.000+00:00", "2020-07-23T04:00:00.000+00:00"],
-  whatICanOffer: [{
-        "title": "Dentist-patient communication techniques",
-        "body": "I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients."
-    }, {
-        "title": "Foundations of Dentist Practice",
-        "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas."
-    }, {
-        "title": "Tincidunt lobortis feugiat vivamus",
-        "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas."
-    }],
-  perks: ["Coffee shop", "Career Handbook"],
-  quote: "I am Dr. Gail Schupak, and I look forward to meeting you if you want to learn more about our practice and the techniques we use to treat patients. We will be discussing your career goals and be your shadowing host for 2 days. But first let me tell you about my practice and how we can help you. I’ve been practicing and teaching orthodontics in Manhattan for over 30 years. During that time, my top priority has been to provide patients with the highest quality orthodontic care in a relaxed and upbeat environment. Dr. Movahedian and I recognize that every patient has different orthodontic requirements. We both listen very carefully to our patients to make sure they will be satisfied with their smile. We utilize the latest and most efficient technological advances, such as high-tech wires from SureSmile®, clear braces, Invisalign®, and the latest computer technology, such as digital imaging and advanced computer graphics, to ensure that our patients receive the most effective care possible.",
-  reviews: [],
+  // const exp1=new Experience({
+  // host: "5f19ae6cb21fedd6cfee46b9",
+  // durationDays: "2",
+  // price: "$112",
+  // image: "http://via.placeholder.com/425x425",
+  // availableRanges: ["2020-07-22T04:00:00.000+00:00", "2020-07-23T04:00:00.000+00:00"],
+  // whatICanOffer: [{
+  //       "title": "Dentist-patient communication techniques",
+  //       "body": "I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients."
+  //   }, {
+  //       "title": "Foundations of Dentist Practice",
+  //       "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas."
+  //   }, {
+  //       "title": "Tincidunt lobortis feugiat vivamus",
+  //       "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas."
+  //   }],
+  // perks: ["Coffee shop", "Career Handbook"],
+  // quote: "I am Dr. Gail Schupak, and I look forward to meeting you if you want to learn more about our practice and the techniques we use to treat patients. We will be discussing your career goals and be your shadowing host for 2 days. But first let me tell you about my practice and how we can help you. I’ve been practicing and teaching orthodontics in Manhattan for over 30 years. During that time, my top priority has been to provide patients with the highest quality orthodontic care in a relaxed and upbeat environment. Dr. Movahedian and I recognize that every patient has different orthodontic requirements. We both listen very carefully to our patients to make sure they will be satisfied with their smile. We utilize the latest and most efficient technological advances, such as high-tech wires from SureSmile®, clear braces, Invisalign®, and the latest computer technology, such as digital imaging and advanced computer graphics, to ensure that our patients receive the most effective care possible.",
+  // reviews: [],
     //     "author": "Derek",
     //     "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas.",
     //     "publishDate": "5/12/2018"
@@ -100,8 +100,8 @@ mongoose
     //     "body": "Tincidunt lobortis feugiat vivamus at augue eget. Risus feugiat in ante metus dictum. Amet aliquam id diam maecenas.",
     //     "publishDate": "5/12/2018"
     // }],
-  })
-  exp1.save()
+  // })
+  // exp1.save()
 
   //
   // const review1=new Review({

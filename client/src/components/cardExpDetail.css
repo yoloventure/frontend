@@ -1,0 +1,85 @@
+
+h4 {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+
+  /* TextColors/Headers */
+  color: #30233D;
+}
+
+p {
+  font-family: 'Mplus 1p';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 163.35%;
+  /* or 26px */
+
+  color: #776C82;
+}
+
+/* Customize the label (the container) */
+.custom-checkbox {
+  display: block;
+  position: relative;
+  margin-bottom: 78px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+
+  border: 1px solid rgba(246, 16, 103, 0.5);
+  box-sizing: border-box;
+}
+
+/* On mouse-over, add a grey background color */
+.custom-checkbox:hover input ~ .checkmark {
+  background: rgba(246, 16, 103, 0.02);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.custom-checkbox .checkmark:after {
+  left: 15px;
+  top: 16px;
+  width: 25px;
+  height: 27px;
+  border: solid red;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
