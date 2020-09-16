@@ -11,8 +11,8 @@ import Page4 from "../components/regFormComponents/page4";
 import Page5 from "../components/regFormComponents/page5";
 import Page6 from "../components/regFormComponents/page6";
 import Page7 from "../components/regFormComponents/page7";
-import APIHost from "../api/APIHost";
-import APICompany from "../api/APICompany";
+import APIHost from "../api/apiHost";
+import APICompany from "../api/apiCompany";
 
 
 import { connect } from 'react-redux';

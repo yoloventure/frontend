@@ -13,7 +13,7 @@ import Page4 from "../components/bookingComponents/page4";
 import Page5 from "../components/bookingComponents/page5";
 import Page6 from "../components/bookingComponents/page6";
 import Page7 from "../components/bookingComponents/page7";
-import APIUser from "../api/APIUser";
+import APIUser from "../api/apiUser";
 import APIExperience from "../api/apiExperience";
 import APIBookExp from "../api/apiBookExp";
 

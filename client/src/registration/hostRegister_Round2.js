@@ -11,8 +11,8 @@ import Round2_Page1 from "../components/regFormComponents/round2_Page1";
 import Round2_Page2 from "../components/regFormComponents/round2_Page2";
 import Round2_Page3 from "../components/regFormComponents/round2_Page3";
 import Round2_Page4 from "../components/regFormComponents/round2_Page4";
-import APIHostApp from "../api/APIHostApp";
-import APIUser from "../api/APIUser";
+import APIHostApp from "../api/apiHostApp";
+import APIUser from "../api/apiUser";
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {

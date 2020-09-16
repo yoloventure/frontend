@@ -1,5 +1,5 @@
 import React from "react";
-import CardExpDetail from "../CardExpDetail";
+import CardExpDetail from "../cardExpDetail";
 
 class Page3 extends React.Component {
   constructor(props) {
