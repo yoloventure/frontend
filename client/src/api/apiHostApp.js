@@ -79,24 +79,24 @@ function rejectApp(hostId) {
 }
 
 function submitAppRound2(hostApp) {
-  // update host availability
-  var hostId = hostApp.hostId;
-  var host = APIHost.getHostById(hostId);
-  host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
-  APIHost.editHost(hostId, host);
-
   // upload images
   for (var i=0; i<hostApp.files.length; i++) {
     const data = new FormData();
     data.append('file', hostApp.files[i]);
     data.append('hostId', hostId);
 
-    axios.post("/api/file/upload", data, {
+    axios.post("/api/fileUpload", data, {
         })
         .then(res => {
           console.log(res.statusText)
         });
   }
+  
+  // update host availability
+  var hostId = hostApp.hostId;
+  var host = APIHost.getHostById(hostId);
+  host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
+  APIHost.editHost(hostId, host);
 }
 
 submitApp.propTypes = {

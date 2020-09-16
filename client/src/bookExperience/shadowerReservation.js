@@ -17,6 +17,9 @@ import APIUser from "../api/APIUser";
 import APIExperience from "../api/apiExperience";
 import APIBookExp from "../api/apiBookExp";
 
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
 
 class ShadowReservation extends React.Component {
   constructor(props) {
@@ -25,12 +28,13 @@ class ShadowReservation extends React.Component {
     this.state = {
       data: {
         user: null,
-        exp: null,
-        dateRange: null,
-        aspects: [],
+        experience: null,
+        availableRanges: null,
+        aspects: {},
         otherAspects: "",
-        accomodations: [],
-        files: []
+        whatMakesGood: "",
+        accomodations: "",
+        approval: "pending",
       },
       loaded: false,
       counter: 1,
@@ -38,34 +42,22 @@ class ShadowReservation extends React.Component {
     };
 
     this.handleDateRange = this.handleDateRange.bind(this);
+    this.handleAspectSelect = this.handleAspectSelect.bind(this);
+    this.handleOtherAspects = this.handleOtherAspects.bind(this);
+    this.handleWhatMakesGood = this.handleWhatMakesGood.bind(this);
+    this.handleAccomodations = this.handleAccomodations.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
-    /*
     try {
-      let user = APIUser.getCurrentUser()
-        .then(user => this.setState(prevState => {
+      APIExperience.getExperienceById(this.props.match.params.id)
+        .then(experience => this.setState(prevState => {
           return {
             data: {
               ...prevState.data,
-              user: user,
-            }
-          }
-        }));
-    } catch (error) {
-      console.log(error);
-    }
-    */
-
-    try {
-      let exp = APIExperience.getExperienceById(this.props.match.params.id)
-        .then(exp => this.setState(prevState => {
-          return {
-            data: {
-              ...prevState.data,
-              exp: exp,
+              experience: experience,
             },
             loaded: true
           }
@@ -97,16 +89,68 @@ class ShadowReservation extends React.Component {
     }, this.handleSubmit);
   }
 
-  handleDateRange(dateRange) {
+  handleDateRange(availableRanges) {
     this.setState(prevState => {
         return {
           data: {
             ...prevState.data,
-            dateRange: dateRange
+            availableRanges: availableRanges
           }
         }
     }, () => {
       console.log(this.state.data);
+    });
+  }
+
+  handleAspectSelect(aspects) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          aspects: aspects
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleOtherAspects(otherAspects) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          otherAspects: otherAspects
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleWhatMakesGood(whatMakesGood) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          whatMakesGood: whatMakesGood
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
+    });
+  }
+
+  handleAccomodations(accomodations) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          accomodations: accomodations
+        }
+      }
+    }, () => {
+    console.log(this.state.data);
     });
   }
 
@@ -128,9 +172,17 @@ class ShadowReservation extends React.Component {
       console.log("Submit API called");
 
       let data = this.state.data;
-      console.log(data);
+      let availableRanges = [];
+      availableRanges.push(data.availableRanges.startDate);
+      availableRanges.push(data.availableRanges.endDate);
+      data.availableRanges = availableRanges;
 
-      APIBookExp.submitReservation(data);
+      data.user = this.props.auth.user._id;
+
+      APIReservation.createReservation(data)
+        .then((function (res) {
+          console.log(res);
+        }));
     }
   }
 
@@ -138,7 +190,7 @@ class ShadowReservation extends React.Component {
     const data = this.state.data;
     let success = true;
 
-    if (!data.dateRange) {
+    if (!data.availableRanges) {
       toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
       this.setState({counter: 5, progress: 75});
       success = false;
@@ -165,13 +217,13 @@ class ShadowReservation extends React.Component {
         return <Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 2:
-        return <Page2 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page2 handleAspectSelect={this.handleAspectSelect} handleOtherAspects={this.handleOtherAspects} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 3:
-        return <Page3 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page3 handleWhatMakesGood={this.handleWhatMakesGood} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 4:
-        return <Page4 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page4 handleAccomodations={this.handleAccomodations} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 5:
         return <Page5 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
@@ -191,7 +243,7 @@ class ShadowReservation extends React.Component {
         <div className="container-fluid app">
 
           <Helmet>
-            <title>Shadow an experienced {this.state.data.exp.host.title} | YoloShadow</title>
+            <title>Shadow an experienced {this.state.data.experience.host.title} | YoloShadow</title>
           </Helmet>
 
           <div className="nav pb-5">
@@ -208,7 +260,7 @@ class ShadowReservation extends React.Component {
                 />
               </div>
               <div className="col apply ml-5">
-                <p>Shadow an experienced {this.state.data.exp.host.title}</p>
+                <p>Shadow an experienced {this.state.data.experience.host.title}</p>
               </div>
             </div>
           </div>
@@ -262,4 +314,14 @@ class ShadowReservation extends React.Component {
   }
 }
 
-export default ShadowReservation;
+ShadowReservation.propTypes = {
+  register: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth:state.auth //item represents the entire state
+});
+
+export default connect(mapStateToProps,  {register,loadUser})(ShadowReservation)

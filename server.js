@@ -12,11 +12,11 @@ const passport = require('passport');
 
 // Models
 const User = require('./models/user');
-const Experience=require('./models/experience')
-const Host=require('./models/host')
-const Company=require('./models/company')
-const Review=require('./models/review')
-
+const Experience = require('./models/experience')
+const Host = require('./models/host')
+const Company = require('./models/company')
+const Review = require('./models/review')
+const Reservation = require('./models/reservation');
 
 // API Endpoints
 const user = require('./routes/user');
@@ -27,6 +27,8 @@ const experience = require('./routes/experience');
 const review = require('./routes/review');
 const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
+const fileUpload = require('./routes/fileUpload');
+const reservation = require('./routes/reservation');
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
@@ -128,6 +130,8 @@ app.use('/api/experience', experience);
 app.use('/api/company', company);
 app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
+app.use('/api/fileUpload', fileUpload);
+app.use('/api/reservation', reservation);
 
 // Error handling middleware
 app.use(function(err, req, res, next) {
@@ -136,7 +140,7 @@ app.use(function(err, req, res, next) {
 });
 
 // File upload
-// Todo: customize destination based on hostId
+/*
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, "uploads");
@@ -156,7 +160,7 @@ app.post("/api/file/upload", cors(), function(req, res) {
     return res.status(200).send(req.file);
   });
 });
-// End file upload
+*/
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/public/index.html"));
