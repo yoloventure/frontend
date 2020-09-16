@@ -1,6 +1,6 @@
-import APIAuth from "./APIAuth";
-import APIHost from "./APIHost";
-import APIUser from "./APIUser";
+import APIAuth from "./apiAuth";
+import APIHost from "./apiHost";
+import APIUser from "./apiUser";
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { compose } from 'redux';

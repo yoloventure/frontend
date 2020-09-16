@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ExperienceDetail from '../explore/ExperienceDetail'
 
 
 export default class Card extends React.Component {

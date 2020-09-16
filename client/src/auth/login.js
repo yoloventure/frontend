@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
 import { MDBContainer } from 'mdbreact';
-import Navbar from "../components/Navbar";
-import FooterPage from "../components/Footer";
+import Navbar from "../components/navbar";
+import FooterPage from "../components/footer";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import { compose } from 'redux';

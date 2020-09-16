@@ -1,6 +1,6 @@
 import React from "react";
 import "../about/about.css";
-import AboutImage from "./AboutImage";
+import AboutImage from "./aboutImage";
 import yawo from "../photos/yawo.png";
 import shelley from "../photos/shelley.png";
 import andrew from "../photos/andrew.png";
@@ -157,7 +157,7 @@ class Team extends React.Component {
           </div>
         </div>
         {/*Row  5*/}
-        {/* 
+        {/*
         <div className="row justify-content-center">
 
           <div

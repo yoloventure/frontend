@@ -3,19 +3,19 @@ import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./shadowerReservation.css";
-import Navbar from "../components/Navbar";
-import RegistrationFooter from "../components/RegistrationFooter";
+import Navbar from "../components/navbar";
+import RegistrationFooter from "../components/registrationFooter";
 import ortho from "../photos/ortho.png";
-import Page1 from "../components/bookingComponents/Page1";
-import Page2 from "../components/bookingComponents/Page2";
-import Page3 from "../components/bookingComponents/Page3";
-import Page4 from "../components/bookingComponents/Page4";
-import Page5 from "../components/bookingComponents/Page5";
-import Page6 from "../components/bookingComponents/Page6";
-import Page7 from "../components/bookingComponents/Page7";
+import Page1 from "../components/bookingComponents/page1";
+import Page2 from "../components/bookingComponents/page2";
+import Page3 from "../components/bookingComponents/page3";
+import Page4 from "../components/bookingComponents/page4";
+import Page5 from "../components/bookingComponents/page5";
+import Page6 from "../components/bookingComponents/page6";
+import Page7 from "../components/bookingComponents/page7";
 import APIUser from "../api/APIUser";
-import APIExperience from "../api/APIExperience";
-import APIBookExp from "../api/APIBookExp";
+import APIExperience from "../api/apiExperience";
+import APIBookExp from "../api/apiBookExp";
 
 
 class ShadowReservation extends React.Component {

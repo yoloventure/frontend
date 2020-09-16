@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import "./CardExpDetailReview.css";
+import "./cardExpDetailReview.css";
 
 export default class CardExpDetailReview extends React.Component {
 

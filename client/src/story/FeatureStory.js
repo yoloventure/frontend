@@ -2,9 +2,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Helmet } from 'react-helmet';
-import Navbar from "../components/Navbar"
-import Slider from "../components/Slider";
-import FooterPage from "../components/Footer";
+import Navbar from "../components/navbar"
+import Slider from "../components/slider";
+import FooterPage from "../components/footer";
 
 
 export default class FeatureStory extends React.Component {

@@ -6,7 +6,7 @@ import {
   Route,
   withRouter,
 } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 class UserProfile extends React.Component {
   constructor(props) {

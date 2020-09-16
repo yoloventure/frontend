@@ -9,17 +9,17 @@ import {
   withRouter,
   Link
 } from "react-router-dom";
-import Footer from '../components/Footer'
+import Footer from '../components/footer'
 import PropTypes from "prop-types";
-import Navbar from "../components/Navbar";
-import "./Explore.css";
+import Navbar from "../components/navbar";
+import "./explore.css";
 // import data from "../explore/data.json";
-import Card from "../components/Card";
+import Card from "../components/card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ExperienceDetail from '../explore/ExperienceDetail'
+import ExperienceDetail from '../explore/experienceDetail'
 import { Button } from 'reactstrap';
 import Fuse from 'fuse.js';
 

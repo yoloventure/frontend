@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import logoWhite from "../photos/Logo_white.png";
 import logoColored from "../photos/Logo_colored.png";
 import {Link, BrowserRouter as Router } from "react-router-dom";
-import './Navbar.css'
+import './navbar.css'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions';

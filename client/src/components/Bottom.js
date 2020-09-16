@@ -5,7 +5,7 @@ import kaixin from "../photos/kaixin.jpg";
 import quotes from "../photos/quotes.png";
 import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
-import Slide from "./Slide";
+import Slide from "./slide";
 class Bottom extends React.Component {
   constructor(props) {
     super(props);

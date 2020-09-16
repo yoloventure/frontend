@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Slide from './Slide'
+import Slide from './slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
 import img1 from "../photos/chef.jpg"

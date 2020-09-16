@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import data from "../explore/data.json";
-import Card from "./Card";
+import Card from "./card";
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
 

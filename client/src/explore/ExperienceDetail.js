@@ -3,17 +3,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Helmet } from 'react-helmet';
 
-import Navbar from "../components/Navbar";
-import CardExpDetail from "../components/CardExpDetail";
-import CardExpDetailReview from "../components/CardExpDetailReview";
-import Footer from '../components/Footer';
+import Navbar from "../components/navbar";
+import CardExpDetail from "../components/cardExpDetail";
+import CardExpDetailReview from "../components/cardExpDetailReview";
+import Footer from '../components/footer';
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
 
-import APIExperience from "../api/APIExperience";
-import APIHost from "../api/APIHost";
+import APIExperience from "../api/apiExperience";
+import APIHost from "../api/apiHost";
 
-import "./ExperienceDetail.css";
+import "./experienceDetail.css";
 
 export default class ExperienceDetail extends React.Component{
     constructor(props) {

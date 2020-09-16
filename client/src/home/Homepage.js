@@ -1,14 +1,14 @@
 /*jshint esversion: 6 */
 import React from "react"
 import ReactDOM from "react-dom"
-import "./Homepage.css"
-import Navbar from "../components/Navbar"
-import Slider from '../components/Slider'
+import "./homepage.css"
+import Navbar from "../components/navbar"
+import Slider from '../components/slider'
 import homeArrow from '../photos/homeArrow.png'
 import ScrollArrow from '../photos/ScrollForMore.png'
 import Background from '../photos/CoverPhoto.png'
-import Bottom from "../components/Bottom"
-import FooterPage from "../components/Footer"
+import Bottom from "../components/bottom"
+import FooterPage from "../components/footer"
 import  Link  from "react-router-dom";
 import BrandImage from '../photos/brand_image.png';
 import { Helmet } from 'react-helmet';

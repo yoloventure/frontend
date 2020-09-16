@@ -1,19 +1,19 @@
 import React from "react";
-import Homepage from "./home/Homepage";
-import Explore from "./explore/Explore";
-import ExperienceDetail from "./explore/ExperienceDetail";
-import ShadowerReservation from "./bookExperience/ShadowerReservation";
+import Homepage from "./home/homepage";
+import Explore from "./explore/explore";
+import ExperienceDetail from "./explore/experienceDetail";
+import ShadowerReservation from "./bookExperience/shadowerReservation";
 import Login from "./auth/login";
-import HostExperience from "./hostExperience/HostExperience";
+import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 import Register from "./auth/register";
-import HostRegister from "./registration/HostRegister"
-import HostRegister_Round2 from "./registration/HostRegister_Round2"
-import FeatureStory from "./story/FeatureStory";
-import About from "./about/About";
-import HostGuidelines from "./hostExperience/HostGuidelines";
-import Dashboard from './HostLoggedIn/Dashboard'
-import Admin from "./admin/Admin";
+import HostRegister from "./registration/hostRegister"
+import HostRegister_Round2 from "./registration/hostRegister_Round2"
+import FeatureStory from "./story/featureStory";
+import About from "./about/about";
+import HostGuidelines from "./hostExperience/hostGuidelines";
+import Dashboard from './hostLoggedIn/dashboard'
+import Admin from "./admin/admin";
 import {persistor,store} from './store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import "./CardExpDetail.css";
+import "./cardExpDetail.css";
 
 export default class CardExpDetail extends React.Component {
 
@@ -9,7 +9,7 @@ export default class CardExpDetail extends React.Component {
     if (this.props.key % 3 == 0) {
       if (this.props.handleSelect) {
         return (
-          <div>      
+          <div>
             <div className="col-4">
               <label class="custom-checkbox">
                 <input type="checkbox" id={"aspect" + this.props.key} name={"aspect" + this.props.key} />

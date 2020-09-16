@@ -1,6 +1,6 @@
 import React, {createRef} from "react";
 import { Helmet } from 'react-helmet';
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -12,7 +12,7 @@ import reviewNotifications from './reviewNotifications.json'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
-import './Dashboard.css'
+import './dashboard.css'
 // import './Dashboard.css'
 import {
   BrowserRouter as Router,

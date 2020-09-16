@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
 import hostbackground from "../photos/hostbackground.jpg";
 import "./about.css";
-import Navbar from "../components/Navbar";
-import FooterPage from "../components/Footer";
-import Bottom from "../components/Bottom";
-import Team from "../components/Team";
+import Navbar from "../components/navbar";
+import FooterPage from "../components/footer";
+import Bottom from "../components/bottom";
+import Team from "../components/team";
 
 class About extends React.Component {
   render() {
@@ -102,7 +102,7 @@ class About extends React.Component {
           </div>
 
           <Team />
-          {/* 
+          {/*
           <div className="d-flex row justify-content-around">
             <div className="d-flex justify-content-center">
               <img src={shawn} alt="" className="ellipse" />
@@ -137,7 +137,7 @@ class About extends React.Component {
               <img src={yawo} alt="" className="ellipse" />
             </div>
           </div>*/}
-          {/* 
+          {/*
           <div className="d-flex justify-content-center">
             <img src={may} alt="" className="ellipse" />
           </div>*/}

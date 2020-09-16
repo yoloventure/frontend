@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
-import HostApplicationItem from "./HostApplicationItem";
-import Navbar from "../components/Navbar";
-import FooterPage from "../components/Footer";
+import HostApplicationItem from "./hostApplicationItem";
+import Navbar from "../components/navbar";
+import FooterPage from "../components/footer";
 
-import APIHost from "../api/APIHost";
-import APIUser from "../api/APIUser";
+import APIHost from "../api/apiHost";
+import APIUser from "../api/apiUser";
 
 class Admin extends React.Component {
   constructor(props) {
