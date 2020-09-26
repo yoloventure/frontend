@@ -125,23 +125,26 @@ h2 {
 }
 
 .ellipse {
-  width: 460px;
-  height: 460px;
-  border-radius: 50%;
-  /* border: 1px solid red; */
+  margin-left: 70px;
+  width: 1060px;
+  height: 260px;
+ /* border-radius: 50%;*/
+  border: 5px solid  #180434; 
   text-align: center;
-  vertical-align: middle;
-  background: #5e239d;
+  /*vertical-align: middle;*/
+  /*background: #5e239d;*/
+
 }
 
 .ellipser {
+  font-size: 12px;
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  /* border: 1px solid red; */
+  /*border: 1px solid red; */
   text-align: center;
   vertical-align: middle;
-  background: #5e239d;
+  /*background: #5e239d;*/
 }
 
 .apply-now-1 a,
@@ -196,7 +199,7 @@ h2 {
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 29px;
   /* Colors/White */
   color: #fcfcfc;
@@ -206,7 +209,7 @@ h2 {
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 800;
-  font-size: 21.6px;
+  font-size: 22.0px;
   line-height: 35px;
   /* identical to box height */
   /* Colors/White */
@@ -214,12 +217,13 @@ h2 {
 }
 
 .ceo {
+  margin-left: 210px;
   position: relative;
   right: 10%;
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 800;
-  font-size: 12.6px;
+  font-size: 13.6px;
   line-height: 26px;
   letter-spacing: 6px;
   text-transform: uppercase;
@@ -284,3 +288,4 @@ h2 {
   /* TextColors/Headers */
   color: #30233d;
 }
+
