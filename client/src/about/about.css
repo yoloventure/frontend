@@ -125,11 +125,19 @@ h2 {
 }
 
 .ellipse {
+<<<<<<< HEAD
   margin-left: 40px;
   width: 800px;
   height: 260px;
  /* border-radius: 50%;*/
   border: 3px solid  #180434; 
+=======
+  margin-left: 70px;
+  width: 1060px;
+  height: 260px;
+ /* border-radius: 50%;*/
+  border: 5px solid  #180434; 
+>>>>>>> e309897e246f0001943e188215e23694ae41cc9e
   text-align: center;
   /*vertical-align: middle;*/
   /*background: #5e239d;*/
@@ -217,14 +225,22 @@ h2 {
 }
 
 .ceo {
+<<<<<<< HEAD
   margin-left: 20%;
+=======
+  margin-left: 210px;
+>>>>>>> e309897e246f0001943e188215e23694ae41cc9e
   position: relative;
   right: 10%;
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 800;
   font-size: 13.6px;
+<<<<<<< HEAD
   line-height: 24px;
+=======
+  line-height: 26px;
+>>>>>>> e309897e246f0001943e188215e23694ae41cc9e
   letter-spacing: 6px;
   text-transform: uppercase;
   /* Colors/White */
@@ -289,6 +305,7 @@ h2 {
   color: #30233d;
 }
 
+<<<<<<< HEAD
 @media screen and (min-width: 0px) and (max-width: 1200px) {
    .team_container img {
      max-width: 180px;
@@ -364,6 +381,7 @@ h2 {
   }
 
 }
+
 
 
 
