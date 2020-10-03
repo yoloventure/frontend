@@ -5,7 +5,15 @@ const emailSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  fname: {
+    type: String,
+    required: true
+  },
+  lname: {
+    type: String,
+    required: true
   }
 });
 
-module.exports = mongoose.model("Email", emailSchema);
+module.exports = mongoose.model("EmailList", emailSchema);
