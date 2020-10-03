@@ -46,8 +46,8 @@
   color: #f61067;
 }
 
-.enter-email::placeholder {
-  color: #b9bdbc;
+::placeholder {
+  color: #d1d1d1;
   margin-left: 50%;
 }
 .enter-email {

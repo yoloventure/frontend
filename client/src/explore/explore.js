@@ -30,7 +30,7 @@ class Explore extends React.Component{
 
   componentDidMount() {
     this._isMounted=true
-    this.setState
+
   }
   componentWillUnmount() {
     this._isMounted=false
@@ -55,14 +55,14 @@ class Explore extends React.Component{
     this.state = {
       searchValue:'',
       cardArray:cardArray,
-      currentData:{},
+      currentData:[],
       currentFilteredData:{},
       data:{},
       valueFromSearch:'',
       industryFilters:[],
       durationDaysFilters:[],
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate:new Date(),//inititalized as today
+      endDate: (new Date()).setDate((new Date()).getDate() + 80),//set initital date to be 80 days ahead of today's date
       sortHTML:'Sort By',
       sortSelection:'N',
       match:match,
@@ -70,7 +70,7 @@ class Explore extends React.Component{
     }
 
 
-     fetch('/api/experience/', {
+     fetch('api/experience/', {
         method: 'get',
         headers: new Headers({
             'Content-Type':'application/json'
@@ -605,32 +605,36 @@ class Explore extends React.Component{
                 <div className=" searchArea col-12" >
                     <div className="search">
 
-                        <h1 className="pl-5 pt-4" style={{color:"white", fontSize:"200%", fontWeight:'500',"textTransform":"uppercase"}}>Start Your next Journey </h1>
-                        <div class="input-group pt-2">
-                            <input id="addInput" type="text" class="form-control" value={this.state.searchValue} name="searchValue" onChange={this.handleInputChange} placeholder="Search"/>
-                            <div class="input-group-append">
-                              <button class="btn btn-secondary" type="button" onClick={this.search}>
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
+                        <h1 className="text-center pt-4" style={{color:"white", fontSize:"200%", fontWeight:'500',"textTransform":"uppercase"}}>Start Your next Journey </h1>
+                        <div className='d-flex justify-content-center'>
+                          <div className="input-group pt-2">
+                              <input id="addInput" type="text" class="form-control" value={this.state.searchValue} name="searchValue" onChange={this.handleInputChange} placeholder="Search"
+                              />
+                              <div className="input-group-append">
+                                <button class="btn btn-secondary" type="button" onClick={this.search}>
+                                  <i className="fa fa-search"></i>
+                                </button>
+                              </div>
+                          </div>
+                        </div>
+
+
+
+                        <div className='row pt-5 ' style={{paddingLeft:'5%'}}>
+                                    <p className='col-lg-1 col-3 mt-1 mr-5' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"16.6px","letterSpacing":"2px","textTransform":"uppercase","color":"#000000",background:'', padding:'0.1%'}}> Industry </p>
+                                     <Button className='col-lg-2 col-md-3 col-3  mr-2' style={{background:"#c73abc",height:'40%'}}  onClick={(e)=> this.updateIndustryFilters(e)} >Education</Button>
+                                      <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}   onClick={(e)=> this.updateIndustryFilters(e)} >Engineering</Button>
+                                       <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}   onClick={(e)=> this.updateIndustryFilters(e)} >Art and Design</Button>
+                                        <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}  onClick={(e)=> this.updateIndustryFilters(e)} >Healthcare</Button>
+                                         <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}   onClick={(e)=> this.updateIndustryFilters(e)} >Food</Button>
                         </div>
 
 
                         <div className='row pt-5 ' style={{paddingLeft:'5%'}}>
-                                    <p className='col-lg-1 col-3 mt-3 ' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"16.6px","letterSpacing":"2px","textTransform":"uppercase","color":"#000000",background:'', padding:'0.1%'}}> Industry </p>
-                                     <Button className='col-lg-1 col-3  mr-2' style={{background:"#c73abc"}}  onClick={(e)=> this.updateIndustryFilters(e)} >Education</Button>
-                                      <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateIndustryFilters(e)} >Engineering</Button>
-                                       <Button className='col-lg-2 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateIndustryFilters(e)} >Art and Design</Button>
-                                        <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}  onClick={(e)=> this.updateIndustryFilters(e)} >Healthcare</Button>
-                                         <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateIndustryFilters(e)} >Food</Button>
-                        </div>
-
-
-                        <div className='row pt-5 ' style={{paddingLeft:'5%'}}>
-                                    <p className='col-lg-1 col-3 mt-3' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"16.6px","letterSpacing":"2px","textTransform":"uppercase","color":"#000000",background:'', padding:'0.1%'}}> Duration </p>
-                                     <Button className='col-lg-1 col-3  mr-2' style={{background:"#c73abc"}}  onClick={(e)=> this.updateDurationFilters(e)} >1 Day</Button>
-                                      <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateDurationFilters(e)} >2 Days</Button>
-                                       <Button className='col-lg-1 col-3  mr-2 ' style={{background:"#c73abc"}}   onClick={(e)=> this.updateDurationFilters(e)} >3 Days+</Button>
+                                    <p className='col-lg-2 col-md-3 col-3 mt-1 mr-2' style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"16.6px","letterSpacing":"2px","textTransform":"uppercase","color":"#000000",background:'', padding:'0.1%'}}> Duration </p>
+                                     <Button className='col-lg-2 col-md-3 col-3  mr-2' style={{background:"#c73abc",height:'40%'}}  onClick={(e)=> this.updateDurationFilters(e)} >1 Day</Button>
+                                      <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}   onClick={(e)=> this.updateDurationFilters(e)} >2 Days</Button>
+                                       <Button className='col-lg-2 col-md-3 col-3  mr-2 ' style={{background:"#c73abc",height:'40%'}}   onClick={(e)=> this.updateDurationFilters(e)} >3 Days+</Button>
                         </div>
 
 
