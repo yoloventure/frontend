@@ -42,8 +42,7 @@ class About extends React.Component {
 
           <div className="row align-items-center">
             <h3 className="why-yolo col-4 text-center offset-3 mb-1 mt-2">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Why Yolo
+              Why Yolo
             </h3>
           </div>
           <br />

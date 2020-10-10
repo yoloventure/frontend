@@ -346,6 +346,9 @@ h2 {
     line-height: 5px;
     letter-spacing: 2px;
   }
+    .why-yolo{
+    font-size: 35px;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 600px) {
@@ -372,7 +375,9 @@ h2 {
     line-height: 4px;
     letter-spacing: 2px;
   }
-
+  .why-yolo{
+    font-size: 25px;
+  }
 }
 
 
