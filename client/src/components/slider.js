@@ -85,19 +85,19 @@ export default class Slider extends Component {
     const Link = require("react-router-dom").Link;
 
     return (
-      <div className=''>
+      <div className='container-fluid'>
             <div className='row'>
-                  <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"20%"}}>
-                       <h2 className="" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
+                  <div className='FeatureStoryTitle col-md-4 offset-1' style={{paddingBottom:"20%"}}>
+                       <h2 style={{"fontStyle":"normal","fontWeight":"800","fontSize":"2vh","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
-                       <h2 className=""style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
+                       <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"7vh","lineHeight":"67px", "letterSpacing" : "1px","color":"#30233D"}}
                        >  {this.state.title[0]} </h2>
-                       <h3 className="pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
+                       <h3 className="pt-2" style={{"fontStyle":"normal","fontWeight":"500","fontSize":"3.5vh","lineHeight":"29px", "letterSpacing" : "1px","color":"#776C82"}}
                        > {this.state.body2[0]} </h3>
-                       <h3 className="pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"26px","lineHeight":"29px","color":"#30233D"}}
+                       <h3 className="pt-2"style={{"fontStyle":"normal","fontWeight":"450","fontSize":"3.5vh","lineHeight":"29px","letterSpacing" : "1px","color":"#30233D"}}
                        > {this.state.body1[0]} </h3>
                        <Link to='/explore'>
-                       <button className="mt-5  learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
+                       <button className="mt-5 learnmore justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
                        </Link>
                   </div>
 
@@ -105,11 +105,11 @@ export default class Slider extends Component {
 
                       <img src={this.state.images[0]}
                       alt="photo of a smiling chef"
-                      className="chefimage"
-                      />
+                      className="chefimage"/>
                   </div>
+
                   <div className="col-md-1 quoteContainer">
-                    <div className="quotes d-flex flex-column">
+                    <div className="quotes flex-column">
                       <img src={fquote} alt="" />
                       <br />
                       <p style={{ width: "50%" }}>
@@ -125,14 +125,14 @@ export default class Slider extends Component {
 
             </div>
             <div className='row mt-5'>
-                  <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12 ' style={{background: '#F2C94C', padding:'5%'}}>
-                       <h2 className=" offset-1" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
+                  <div className='FeatureStoryTitle col-md-6' style={{background: '#F2C94C', padding:'5%'}}>
+                       <h2 className=" offset-1" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"2vh","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
-                       <h2 className="offset-1"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
+                       <h2 className="offset-1"style={{"fontStyle":"normal","fontWeight":"500","fontSize":"7vh","lineHeight":"67px","color":"#30233D"}}
                        >  {this.state.title[this.state.currentIndex]} </h2>
-                       <h3 className="offset-1 pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"28px","lineHeight":"29px","color":"#776C82"}}
+                       <h3 className="offset-1 pt-2"style={{"fontStyle":"normal","fontWeight":"500","fontSize":"3.5vh","lineHeight":"29px","color":"#776C82"}}
                        > {this.state.body2[this.state.currentIndex]} </h3>
-                       <h3 className="offset-1 pt-2"style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"30px","lineHeight":"29px","color":"#30233D"}}
+                       <h3 className="offset-1"style={{"fontStyle":"normal","fontWeight":"450","fontSize":"3.5vh","lineHeight":"29px","color":"#30233D"}}
                        > {this.state.body1[this.state.currentIndex]} </h3>
                   </div>
 
@@ -140,10 +140,7 @@ export default class Slider extends Component {
                   <div className="slider col-lg-4 " >
 
                     <div >
-
-
                             <Slide key={this.state.currentIndex} image={this.state.images[this.state.currentIndex]} />
-
 
                     </div>
 
@@ -152,12 +149,10 @@ export default class Slider extends Component {
 
 
 
-                  <div className='col-lg-2 col-2 pt-4' id="">
+                  <div className='d-none d-md-block col-md-2 col-2 pt-4' id="">
 
                     <h3 className='' style={{"position":"absolute", top:"50%","width":"272px","height":"28px","fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}>
                     Scroll For More </h3>
-
-
                     <a href="#whyYolo" style={{"position":"absolute", top:"67%", left:'49%', "transform":"rotate(90deg)"}}>  <img src={ScrollArrow}></img></a>
 
                   </div>
@@ -168,7 +163,7 @@ export default class Slider extends Component {
             <div className='row' style={{background: '#F2C94C', padding:'0%'}}>
                   <div className='col-2'>
                   <Link to='/explore'>
-                  <button className="offset-6  mt-2 learnmore d-flex justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
+                  <button className="offset-6 mt-2 learnmore d-flex  justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
                   </Link>
                   </div>
                   <div className='col-2 offset-8' style={{background:'#150433'}}>
@@ -178,16 +173,13 @@ export default class Slider extends Component {
             <div className='row'>
               <div className='col-10' style={{height:'100px',background:'#F2C94C'}}>
               </div>
-              <div className='col-1' style={{background:'#150433'}}>
-                <LeftArrow
-                 prevSlide={this.goToPrevSlide}
 
-                />
-              </div>
               <div className='col-1' style={{background:'#150433'}}>
-                <RightArrow
-                 goToNextSlide={this.goToNextSlide}
-                />
+                <LeftArrow prevSlide={this.goToPrevSlide}/>
+              </div>
+
+              <div className='col-1' style={{background:'#150433'}}>
+                <RightArrow goToNextSlide={this.goToNextSlide} />
 
               </div>
             </div>

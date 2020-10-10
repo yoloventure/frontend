@@ -21,7 +21,7 @@ export default class Homepage extends React.Component{
     const Link = require("react-router-dom").Link;
 
     return(
-      <div>
+      <div className="section">
         <Helmet>
           <title>YoloShadow | Your Next Career Starts with an Adventure</title>
           <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
@@ -79,8 +79,8 @@ export default class Homepage extends React.Component{
 
             <div className='container-fluid' id='whyYolo' style={{background: "#150433"}} >
 
-              <div className='row d-flex justify-content-center pt-5 pb-3 '>
-                <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"6.5vh","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
+              <div className='row d-flex justify-content-center pb-3 '>
+                <h2 className='pt-3' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"6.5vh","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
                 > Why YoloShadow </h2>
               </div>
               <div className='row d-flex justify-content-center  ' style={{paddingBottom:'4%'}} >
