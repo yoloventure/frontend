@@ -16,8 +16,8 @@ Backend: (You all should do both upper and lower steps)
 
 
 **#Creating Pull Requests:**
-git fetch origin master
-**If conflicts then fix them and then,**
-git add .
-git commit -m "some-message"
-git push
+1. git fetch origin master
+**2. If conflicts then fix them and then,**
+3. git add .
+4. git commit -m "some-message"
+5. git push
