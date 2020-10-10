@@ -15,9 +15,9 @@ Backend: (You all should do both upper and lower steps)
 4. run the command "npm run dev". Server will run on localhost:5000 by default. Open the frontend port, usually localhost:8080, if it does not open automatically. 
 
 
-Creating Pull Requests:
+**#Creating Pull Requests:**
 git fetch origin master
-If conflicts then fix them and then,
+**If conflicts then fix them and then,**
 git add .
 git commit -m "some-message"
 git push
