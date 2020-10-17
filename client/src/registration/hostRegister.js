@@ -77,7 +77,6 @@ class HostRegister extends React.Component {
   }
   handleInputChange(event) {
     const { name, value } = event.target;
-    console.log(name, value)
 
     const { host } = this.state;
     this.setState({

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "./bottom.css";
 
 const Slide = ({ image }) => {
   const stylesImg = {
@@ -13,7 +13,7 @@ const Slide = ({ image }) => {
 
     <div className="slide" >
 
-     <img src={image}/>
+     <img className="slidepic" src={image}/>
 
   </div>
 )

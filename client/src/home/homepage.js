@@ -79,8 +79,10 @@ export default class Homepage extends React.Component{
 
             <div className='container-fluid' id='whyYolo' style={{background: "#150433"}} >
 
+
               <div className='row d-flex justify-content-center pb-3 '>
                 <h2 className='pt-3' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"6.5vh","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
+
                 > Why YoloShadow </h2>
               </div>
               <div className='row d-flex justify-content-center  ' style={{paddingBottom:'4%'}} >

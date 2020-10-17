@@ -21,6 +21,7 @@ const Reservation = require('./models/reservation');
 // API Endpoints
 const user = require('./routes/user');
 const email = require('./routes/email');
+const emailList = require('./routes/emailList');
 const auth = require('./routes/auth');
 const host = require('./routes/host');
 const experience = require('./routes/experience');
@@ -124,6 +125,7 @@ app.use(cors());
 // Use API Routes
 app.use('/api/user', user);
 app.use('/api/email', email);
+app.use('/api/emailList', emailList);
 app.use('/api/auth', auth);
 app.use('/api/host', host);
 app.use('/api/experience', experience);

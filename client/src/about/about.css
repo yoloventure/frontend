@@ -125,23 +125,31 @@ h2 {
 }
 
 .ellipse {
-  width: 460px;
-  height: 460px;
-  border-radius: 50%;
-  /* border: 1px solid red; */
+
+  width: 800px;
+  height: 260px;
+ /* border-radius: 50%;*/
+  border: 3px solid  #180434; 
+  margin-left: 30px;
+  width: 800px;
+  height: 260px;
+ /* border-radius: 50%;*/
+  border: 3px solid  #180434; 
   text-align: center;
-  vertical-align: middle;
-  background: #5e239d;
+  /*vertical-align: middle;*/
+  /*background: #5e239d;*/
+
 }
 
 .ellipser {
+  font-size: 12px;
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  /* border: 1px solid red; */
+  /*border: 1px solid red; */
   text-align: center;
   vertical-align: middle;
-  background: #5e239d;
+  /*background: #5e239d;*/
 }
 
 .apply-now-1 a,
@@ -196,7 +204,7 @@ h2 {
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 29px;
   /* Colors/White */
   color: #fcfcfc;
@@ -206,7 +214,7 @@ h2 {
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 800;
-  font-size: 21.6px;
+  font-size: 22.0px;
   line-height: 35px;
   /* identical to box height */
   /* Colors/White */
@@ -214,12 +222,15 @@ h2 {
 }
 
 .ceo {
+  margin-left: 20%;
+  margin-left: 160px;
   position: relative;
   right: 10%;
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 800;
-  font-size: 12.6px;
+  font-size: 13.6px;
+  line-height: 24px;
   line-height: 26px;
   letter-spacing: 6px;
   text-transform: uppercase;
@@ -284,3 +295,91 @@ h2 {
   /* TextColors/Headers */
   color: #30233d;
 }
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+   .team_container img {
+     max-width: 180px;
+     max-height:180px;
+  }
+  .ellipse {
+  margin-left: 35px;
+  max-width: 600px;
+  height: 160px;
+  }
+  .shell{
+    font-size: 22px;
+    line-height: 9px;
+  }
+    .paragraph{
+    line-height: 18px;
+    font-size: 12px;
+  }
+   .ceo{
+    margin-left: 100px;
+    font-size: 12px;
+    line-height: 8px;
+    letter-spacing: 4px;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 900px) {
+   .team_container img {
+     max-width: 150px;
+     max-height:150px;
+  }
+  .ellipse {
+  margin-left: 30px;
+  max-width: 340px;
+  height: 130px;
+  }
+  .paragraph{
+    line-height: 10px;
+    font-size: 11px;
+  }
+  .shell{
+    font-size: 16px;
+    line-height: 7px;
+  }
+  .ceo{
+    margin-left: 70px;
+    font-size: 8px;
+    line-height: 5px;
+    letter-spacing: 2px;
+  }
+    .why-yolo{
+    font-size: 35px;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+   .team_container img {
+     max-width: 100px;
+     max-height:100px;
+  }
+  .ellipse {
+  margin-left: 20px;
+  max-width: 270px;
+  height: 90px;
+  }
+  .paragraph{
+    line-height: 8px;
+    font-size: 6px;
+  }
+  .shell{
+    font-size: 12px;
+    line-height: 5px;
+  }
+  .ceo{
+    margin-left: 55px;
+    font-size: 6px;
+    line-height: 4px;
+    letter-spacing: 2px;
+  }
+  .why-yolo{
+    font-size: 25px;
+  }
+}
+
+
+
+

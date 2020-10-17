@@ -6,6 +6,7 @@ import quotes from "../photos/quotes.png";
 import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
 import Slide from "./slide";
+import "./bottom.css";
 class Bottom extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,9 @@ class Bottom extends React.Component {
     this.state = {
       images: [kaixin, yawo],
       currentIndex: 0,
-      email: ""
+      email: "",
+      fname: "",
+      lname:""
       //translateValue: 0
     };
 
@@ -22,15 +25,23 @@ class Bottom extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ email: event.target.value });
+    const {id,value}=event.target
+    this.setState({ [id]: value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    if(!this.state.fname || !this.state.lname || !this.state.email){
+      alert("Please fill all fields before submitting")
+      return;
 
+    }
     return fetch("/api/emailList", {
       method: "POST",
+
       body: JSON.stringify({
+        fname: this.state.fname,
+        lname:this.state.lname,
         email: this.state.email
       }),
       headers: {
@@ -41,9 +52,12 @@ class Bottom extends React.Component {
         if (response.ok) {
           alert("You have successfully subscribed to our Newsletter.");
           this.setState({ email: "" });
-        } else if (response.status === 422) {
+        } else if (response.status === 409) {
           alert("You have already subscribed to our Newsletter. Thank you!");
           this.setState({ email: "" });
+        }else{
+          alert("Please try again, there was an error in getting you subscribed!");
+          
         }
         return response;
       })
@@ -119,7 +133,10 @@ class Bottom extends React.Component {
             <img className="openQuote " src={quotes} alt="" />
           </div>
           <div className="col-7 ">
-            <p className="aside ">YOLO empowers me to be an adventurer </p>
+            <p className="asides">YOLO
+            empowers me 
+            to be an 
+            adventurer </p>
           </div>
         </div>
 
@@ -134,10 +151,9 @@ class Bottom extends React.Component {
             <br />
             <div className="col d-flex justify-content-center">
               <h5 className="stay-tuned">
-                Stay Tuned for Yoloer's Adventurous Stories!
+                Stay Tuned for Yoloer's Adventurous Stories!'
               </h5>
             </div>
-            <br />
             <br />
             {/*
             <div className="col d-flex justify-content-center pb-5">
@@ -156,12 +172,32 @@ class Bottom extends React.Component {
             </div>*/}
             <div className="mb-2">
               <form action="" onSubmit={this.handleSubmit}>
+                <div className="row d-flex justify-content-center mb-2 w-20">
+                  <input
+                    style={{width:"30%"}}
+                    type="text"
+                    id="fname"
+                    placeholder="Enter First Name"
+                    value={this.state.fname}
+                    onChange={this.handleChange}
+                  />
+                </div>
                 <div className="row d-flex justify-content-center mb-2">
                   <input
-                    className="enter-email w-50"
+                    style={{width:"30%"}}
+                    type="text"
+                    id="lname"
+                    placeholder="Enter Last Name"
+                    value={this.state.lname}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="row d-flex justify-content-center mb-2">
+                  <input
+                    style={{width:"30%"}}
                     type="email"
                     id="email"
-                    placeholder="ENTER EMAIL"
+                    placeholder="Enter Email"
                     value={this.state.email}
                     onChange={this.handleChange}
                   />
