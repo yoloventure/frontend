@@ -6,6 +6,7 @@ import quotes from "../photos/quotes.png";
 import LeftArrow from "./left-arrow";
 import RightArrow from "./right-arrow";
 import Slide from "./slide";
+import "./bottom.css";
 class Bottom extends React.Component {
   constructor(props) {
     super(props);
@@ -132,7 +133,10 @@ class Bottom extends React.Component {
             <img className="openQuote " src={quotes} alt="" />
           </div>
           <div className="col-7 ">
-            <p className="aside ">YOLO empowers me to be an adventurer </p>
+            <p className="asides">YOLO
+            empowers me 
+            to be an 
+            adventurer </p>
           </div>
         </div>
 
@@ -147,10 +151,9 @@ class Bottom extends React.Component {
             <br />
             <div className="col d-flex justify-content-center">
               <h5 className="stay-tuned">
-                Stay Tuned for Yoloer's Adventurous Stories!
+                Stay Tuned for Yoloer's Adventurous Stories!'
               </h5>
             </div>
-            <br />
             <br />
             {/*
             <div className="col d-flex justify-content-center pb-5">

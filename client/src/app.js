@@ -13,6 +13,7 @@ import FeatureStory from "./story/featureStory";
 import About from "./about/about";
 import HostGuidelines from "./hostExperience/hostGuidelines";
 import Dashboard from './hostInterface/dashboard'
+import ShadowerDashboard from './shadowerInterface/shadowerDashboard'
 import Admin from "./admin/admin";
 import {persistor,store} from './store';
 import { Provider } from 'react-redux';
@@ -123,6 +124,12 @@ class App extends React.Component {
         path="/hostdashboard"
         exact
         component={Dashboard}
+      />
+
+      <Route
+        path="/shadowerdashboard"
+        exact
+        component={ShadowerDashboard}
       />
 
       <Route

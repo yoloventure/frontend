@@ -8,7 +8,10 @@ import kaixin from "../photos/kaixin.jpg";
 import abdoul from "../photos/abdoul.png";
 import maxim from "../photos/maxim.jpeg";
 import vanishka from "../photos/vanishka.JPG";
-import shuran from "../photos/shuran.png"
+import shuran from "../photos/shuran.png";
+import waleed from "../photos/waleed.png";
+import tianyue from "../photos/tianyue.png";
+import sarah from "../photos/sarah.png";
 
 class Team extends React.Component {
   constructor(props) {
@@ -34,23 +37,27 @@ class Team extends React.Component {
   }
   render() {
     return (
+     <div class="team_container"> 
     <div className="container">
         {/*Row  1 */}
        
         {/*Row  2 */}
         <div className="row d-flex justify-content-around ">
+
           <div
             onClick={event =>
               this.onClick(
                 event,
-                "Yawo Siatitse",
-                "CTO",
-                `       In my sophomore year, I was a Summer Technology Analyst at Morgan Stanley. I worked as a full-stack developer and added features on one of their financial reporting applications. While interning there I developed a strong for security after talking to some security professionals. In the past summer, I interned at Microsoft Cloud and AI Security team to explore the domain. Needless to say, I fell in love with both the domain and the company so I will be returning this summer.`
+                "Kaixin Li",
+                "UX/UI designer",
+                `       Kaixin has interned with a couple of tech companies as UXer and dived into multimodal interaction and crossmodal integration in research centers, making strides in decoding nuanced human cognition and building it into design and emerging technologies to give everyone a stake in shaping the future of their lives.
+                `
               )
             }
           >
-            <AboutImage path={yawo} />
+            <AboutImage path={kaixin} />
           </div>
+
           <div
             onClick={event =>
               this.onClick(
@@ -65,19 +72,6 @@ class Team extends React.Component {
             <AboutImage path={shelley} />
           </div>
           <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Kaixin Li",
-                "UX/UI designer",
-                `       Kaixin has interned with a couple of tech companies as UXer and dived into multimodal interaction and crossmodal integration in research centers, making strides in decoding nuanced human cognition and building it into design and emerging technologies to give everyone a stake in shaping the future of their lives.
-                `
-              )
-            }
-          >
-            <AboutImage path={kaixin} />
-          </div>
-                      <div
               onClick={event =>
                 this.onClick(
                   event,
@@ -94,7 +88,18 @@ class Team extends React.Component {
         {/*Row  3*/}
 
         <div className="row d-flex flex-nowrap flex-row justify-content-around">
-
+        <div
+              onClick={event =>
+                this.onClick(
+                  event,
+                  "Tianyue Wang",
+                  "Marketing Analyst",
+                  `Tianyue Wang is a former financial market analyst at FlowAlgo, and a research manager intern at Meridian Global Hedge Fund. Gleaning from her professional experiences, she is experienced at engaging with customers and maintaining customer relationship. Tianyue Wang is thrilled to work with Yolo Shadow to conduct customer discovery programs and host exciting career events with professionals at top companies. Aside from her professional life, she is a creative writer and an illustrator who has great passion in arts.`
+                )
+              }
+            >
+              <AboutImage path={tianyue} />
+            </div>
           <div className="row d-flex justify-content-center">
             <div className="col">
               <div className="ellipse  d-flex flex-wrap align-items-center">
@@ -109,6 +114,20 @@ class Team extends React.Component {
             </div>
           </div>
           <div className="col">
+          </div>
+          <div
+            onClick={event =>
+              this.onClick(
+                event,
+                "Waleed Nadeem",
+                "Marketing Analyst",
+                `       Shuran is a new-joined full stack developer in fall 2020 who is very ethusiastic with traveling. She experienced pressure and nervous in her career exploration for the past summer internship
+                so she decided to join the team and work on this excellent product that can combine the fun traveling with challenging job hunting. She had teaching assistant and internship experiences with mobile application before, and now 
+                Yolo Shadow provides an exciting opportunity for her to try new technologies in web development.`
+              )
+            }
+          >
+            <AboutImage path={waleed} />
           </div>
         </div>
 
@@ -126,32 +145,8 @@ class Team extends React.Component {
             >
               <AboutImage path={vanishka} />
             </div>
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Andrew Thankson",
-                "Full Stack Developer",
-                `       Someone who is all about personal growth: both his and that of others. For him, Yolo Shadow created a great opportunity for him to hone his frontend skills. He joined because he loved the vision of the company and also saw an opportunity to work on something that’s going to be really great. Last summer, he worked as a front-end developer intern. He’s currently working as a full stack software engineering intern at Promazo, a software product Sprint intern at Google and will be joining IHS Markit as a software engineering intern over the summer. `
-              )
-            }
-          >
-            <AboutImage path={andrew} />
-          </div>
-
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Maxim Gorshkov",
-                "Full Stack Developer",
-                `       Traveling is one of his greatest passions in life, so it is no wonder that he fell in love with YoloShadow’s mission. Working at YoloShadow is not only helping him grow as a software engineer, but also gives him the opportunity to contribute to a product that will change people’s lives for the better. He loves learning from the wonderful, experienced team which is an added bonus for him!
-                He was a teaching assistant for Data Structures and Algorithms, and participated in a few Full Stack Development apprenticeships. He is a big fan of the Japanese culture and is currently trying to learn the language, and loves to listen to classic rock!`
-              )
-            }
-          >
-            <AboutImage path={maxim} />
-          </div>
+          
+          
            <div
             onClick={event =>
               this.onClick(
@@ -166,24 +161,21 @@ class Team extends React.Component {
           >
             <AboutImage path={shuran} />
           </div>
-        </div>
-        {/*Row  5*/}
-        {/*
-        <div className="row justify-content-center">
           <div
             onClick={event =>
               this.onClick(
                 event,
-                "Yawo Siatitse",
-                "CTO",
-                `"Software Engineer at Microsoft"`
+                "Sarah Zaman",
+                "Full Stack Developer",
+                `Sarah is a junior pursuing a BS in Computer Science. She is also minoring in Digital Media Studies with a concentration on video game development. She loves cooking, RPGs, and learning new technologies. She spent the summer teaching herself full-stack development and joined Yolo shadow to help the tech team build the website. As a junior struggling to make sense of what she wants to do with her career, she loves being a part of a company that offers some direction to confused students like herself.`
               )
             }
           >
-            <AboutImage path={yawo} />
+            <AboutImage path={sarah} />
           </div>
         </div>
-        */}
+
+      </div>
       </div>
     );
   }
