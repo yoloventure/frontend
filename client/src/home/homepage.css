@@ -12,6 +12,9 @@
   background-color: #9D42FF;
 }
 
+.section{
+    min-height: 100vh;
+}
 .learnmore{
 
 width: 190px;
@@ -30,4 +33,8 @@ br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */
             margin-top: 2rem; /* change this to whatever height you want it */
+}
+
+.pt-3{
+    margin-top: 2rem;
 }
