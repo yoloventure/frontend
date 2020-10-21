@@ -1,27 +1,22 @@
 import React, {createRef} from "react";
-import { Helmet } from 'react-helmet';
 import Navbar from "../components/navbar";
-import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {Button} from "reactstrap"
-import PropTypes from "prop-types";
+
 import hostRequests from './hostRequests.json'
 import hostReviews from './hostReviews.json'
 import reviewShadowerNotifications from './reviewShadowerNotifications.json'
-import Calendar from 'react-calendar';
+
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './shadowerDashboard.css'
-// import './Dashboard.css'
+
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter,
   Link
 } from "react-router-dom";
+
 import {MDBIcon, MDBBtn} from 'mdbreact'
 
 
@@ -73,7 +68,7 @@ class Dashboard extends React.Component{
                         <div className='col-3 offset-4'>
 
 
-                              <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%',color:'white'}}> Reply </button>
+                              <button style={{width:"100%" ,"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%',color:'white'}}> Reply </button>
 
                        </div>
             </div>
@@ -126,7 +121,7 @@ class Dashboard extends React.Component{
                           <p> {notification.fname}</p>
                        </div>
                        <div className='col-3 offset-4'>
-                          <button style={{color:'#C4C4C4', borderRadius:'4px', border:'1px solid #C4C4C4'}}>Completed</button>
+                          <button style={{width:"100%" ,color:'#C4C4C4', borderRadius:'4px', border:'1px solid #C4C4C4'}}>Completed</button>
                        </div>
 
             </div>
@@ -336,7 +331,11 @@ class Dashboard extends React.Component{
 
    }
 
-
+    toggleExperienceEdit=()=>{
+        this.setState(prevState => ({
+            editExperience: !prevState.editExperience
+        }));
+    }
 
 
    changeCards=()=>{
@@ -550,15 +549,15 @@ class Dashboard extends React.Component{
   let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
 
   return(
-    <div style={styleViewPort}>
+    <div className="bg-light" style={styleViewPort}>
     <Navbar className='mb-5' textColor={"black"} />
 
     <div className='pt-5 mt-5 mr-5'>
-                <div className='row' >
+                <div className='row pt-4' >
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
-                                  <h5 className='' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+                                  <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
                                     <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDateArr[2]} {todayDateArr[1]}, <span style={{color:' #707683'}}>{todayDateArr[0]}</span></p>
@@ -586,21 +585,20 @@ class Dashboard extends React.Component{
 
 
                                   <div className='row '>
-                                              <p className='col-lg-2 col-3 ' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
+                                              <p className='col-lg-2 col-3' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
                                               >Show :</p>
-                                              <Button className='col-lg-2 col-3  mr-2' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
-                                              >
-                                                Requests
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >Requests
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-4' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#FE8D86'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Upcoming
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-2' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                                >
                                                 Ongoing
                                                </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-5' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Completed
                                               </Button>
@@ -617,12 +615,12 @@ class Dashboard extends React.Component{
 
                         </div>
                         <div className='col-5 offset-1' >
-                            <div className='row' >
-                                              <div className='col-12' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                            <div className='row pt-1' >
+                                              <div className='col-12 pb-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='col-12' >
                                                           <div className='row'>
                                                             <h5
-                                                            className='mt-2 col-5' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
+                                                            className='mt-2 col-5 pt-1' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
                                                             >
                                                               My Profile
                                                               <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
@@ -630,7 +628,7 @@ class Dashboard extends React.Component{
                                                               </button>
 
                                                             </h5>
-                                                            <div className='col-6'>
+                                                            <div className='col-6 pt-1'>
                                                             <Link>
                                                                 <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
                                                             </Link>
@@ -639,13 +637,13 @@ class Dashboard extends React.Component{
 
                                                     </div>
                                                     <div className='row m-1 mt-1'>
-                                                          <div className='col-4 ' >
+                                                          <div className='col-2 ' >
                                                                 <h5
-                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
                                                                 >About:
                                                                 </h5>
                                                           </div>
-                                                          <div className='col-8'>
+                                                          <div className='col-10'>
                                                               {this.state.editExperience?
                                                                 <input
                                                                   type="text"
@@ -731,17 +729,17 @@ class Dashboard extends React.Component{
 
                                               <div className='col-12 mt-5' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='row m-1' >
-                                                        <div className='col-2 mt-2'>
+                                                        <div className='col-3 mt-2 pt-1'>
                                                             <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
                                                         </div>
-                                                        <div className='col-6 ml-5 mt-2'>
+                                                        <div className='col-5 ml-5 mt-2'>
 
                                                             <Link>
                                                                 <p style={{color:'707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
                                                             </Link>
                                                          </div>
                                                          <div className='col-2 ml-4 mt-2'>
-                                                           <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                           <a class="btn btn-outline-black dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
                                                             aria-expanded="false">Sort</a>
 
                                                             <div class="dropdown-menu">

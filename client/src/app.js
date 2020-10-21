@@ -19,6 +19,7 @@ import {persistor,store} from './store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 
+
 class App extends React.Component {
   constructor(props) {
      super(props);
