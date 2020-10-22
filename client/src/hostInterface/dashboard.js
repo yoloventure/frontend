@@ -573,15 +573,15 @@ class Dashboard extends React.Component{
   let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
 
   return(
-    <div style={styleViewPort}>
+    <div className="bg-light" style={styleViewPort}>
     <Navbar className='mb-5' textColor={"black"} />
 
     <div className='pt-5 mt-5 mr-5'>
-                <div className='row' >
+                <div className='row pt-4' >
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
-                                  <h5 className='' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Hosting Progress</h5>
+                                  <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Hosting Progress</h5>
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
                                     <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDateArr[2]} {todayDateArr[1]}, <span style={{color:' #707683'}}>{todayDateArr[0]}</span></p>
@@ -611,19 +611,19 @@ class Dashboard extends React.Component{
                                   <div className='row '>
                                               <p className='col-lg-2 col-3 ' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
                                               >Show :</p>
-                                              <Button className='col-lg-2 col-3  mr-2' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3  mr-2 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Requests
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-4' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#FE8D86'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3  mr-2 pr-4 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Upcoming
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-2' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3  mr-2 pr-2 btn-pos' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                                >
                                                 Ongoing
                                                </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-5' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3  mr-2 pr-5 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Completed
                                               </Button>

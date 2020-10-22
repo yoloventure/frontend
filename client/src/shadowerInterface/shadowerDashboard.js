@@ -552,7 +552,7 @@ class Dashboard extends React.Component{
     <div className="bg-light" style={styleViewPort}>
     <Navbar className='mb-5' textColor={"black"} />
 
-    <div className='pt-5 mt-5 mr-5'>
+    <div className='pt-5 mt-5 mr-5 bg-light'>
                 <div className='row pt-4' >
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
