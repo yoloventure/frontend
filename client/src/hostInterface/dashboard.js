@@ -5,10 +5,13 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
+
 import {Button} from "reactstrap"
 import PropTypes from "prop-types";
+
 import shadowRequests from './shadowRequests.json'
 import reviewNotifications from './reviewNotifications.json'
+
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
@@ -639,6 +642,8 @@ class Dashboard extends React.Component{
                             </div>
 
                         </div>
+
+
                         <div className='col-5 offset-1' >
                             <div className='row' >
                                                   <div className='col-12 ' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>

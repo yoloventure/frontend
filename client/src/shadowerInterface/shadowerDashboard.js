@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 
 import {MDBIcon, MDBBtn} from 'mdbreact'
+import {DateRange} from "react-date-range";
 
 
 class Dashboard extends React.Component{
@@ -187,8 +188,17 @@ class Dashboard extends React.Component{
 
 
           this.state={
-              counter:1,            
+              counter:1,
+              selectionRange:{
+                  startDate: new Date(),
+                  endDate: new Date(),
+                  key: 'selection'
+              },
+              rangeTextboxes: new Array(100),
+              rangeObjects:new Array(100),
               textboxIdCount:0,
+              rangeEditDisabled:true,
+
               editExperience:false,
               hostRequests:tempArray,
               currenthostRequests:currentTemp,
@@ -302,8 +312,6 @@ class Dashboard extends React.Component{
 
         });
 
-
-
   }
 
 
@@ -327,9 +335,64 @@ class Dashboard extends React.Component{
    }else{
      this.setState({counter:1})
    }
-
-
    }
+
+
+    addRange=()=>{
+        let rangesUpdated=this.state.rangeTextboxes
+        let rangesObjectsUpdated=this.state.rangeObjects
+        let textId='textbox'+this.state.textboxIdCount
+        let startDateArray=this.state.selectionRange.startDate.toString().split(" ")
+        let endDateArray=this.state.selectionRange.endDate.toString().split(" ")
+
+        let htmlForTextbox= startDateArray[0]+ " " +startDateArray[1]+" "+startDateArray[2]+" "+startDateArray[3] + " - " + endDateArray[0]+ " "+endDateArray[1]+" "+endDateArray[2]+" "+endDateArray[3]
+        rangesUpdated[this.state.textboxIdCount]=(
+            <div className='row'>
+
+                <div className='col-2 mt-4'    onClick={this.deleteRange.bind(this,textId )}>
+
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </div>
+
+                <div className='col-10 mt-4'>
+                    <p>{htmlForTextbox}</p>
+                </div>
+            </div>
+        )
+        rangesObjectsUpdated[this.state.textboxIdCount]={startDate: this.state.selectionRange.startDate, endDate: this.state.selectionRange.endDate}
+
+        this.setState({
+            rangeTextboxes: rangesUpdated,
+            textboxIdCount: this.state.textboxIdCount+1,
+            rangeObjects: rangesObjectsUpdated
+        });
+
+    }
+
+    deleteRange(id){
+        let rangesUpdated=this.state.rangeTextboxes
+        let rangesObjectsUpdated=this.state.rangeObjects
+
+        let idToDelete=id.charAt(7);
+        rangesUpdated[idToDelete]=null
+        rangesObjectsUpdated[idToDelete]=null
+
+        this.setState({
+            rangeTextboxes: rangesUpdated,
+            rangeObjects: rangesObjectsUpdated
+
+        });
+    }
+
+    enableRangeEdit=()=>{
+        this.setState(prevState => ({
+            rangeEditDisabled: !prevState.rangeEditDisabled
+        }));
+    }
+
 
     toggleExperienceEdit=()=>{
         this.setState(prevState => ({
@@ -615,8 +678,57 @@ class Dashboard extends React.Component{
 
                         </div>
                         <div className='col-5 offset-1' >
-                            <div className='row pt-1' >
-                                              <div className='col-12 pb-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                            <div className='row' >
+
+
+                                <div className='col-12' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                    <div className='row'>
+                                        <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
+                                        >My Availability
+                                            <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+                                        </h5>
+
+                                        {!this.state.rangeEditDisabled?
+                                            <React.Fragment>
+                                                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.addRange}>Add Range </MDBBtn>
+                                                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+                                                <DateRange
+                                                    ranges={[this.state.selectionRange]}
+                                                    onChange={this.handleSelect}
+                                                    moveRangeOnFirstSelection={true}
+                                                    minDate={this.state.rangeEditDisabled ? distantDate: todayDate}
+                                                    showDateDisplay={false}
+                                                    showMonthArrow={false}
+                                                    showSelectionPreview={false}
+                                                    scroll={{enabled:true,
+                                                        calendarWidth: 100,
+                                                        calendarHeight:100
+                                                    }}
+                                                    // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+
+                                                />
+                                            </React.Fragment>
+
+                                            :null}
+
+                                        <div className='col-12'>
+
+                                            <p className='mt-2' style={{color:'#4C5862',opacity:'0.5',fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal'}}>Selected Dates:</p>
+                                            <div  style={{height:'100px',overflowY:'scroll', overflowX:'hidden'}}>
+                                                {this.state.rangeTextboxes}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='col-12' >
                                                           <div className='row'>
                                                             <h5
@@ -727,7 +839,7 @@ class Dashboard extends React.Component{
 
                                               </div>
 
-                                              <div className='col-12 mt-5' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                              <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='row m-1' >
                                                         <div className='col-3 mt-2 pt-1'>
                                                             <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
