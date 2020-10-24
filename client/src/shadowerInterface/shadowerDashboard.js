@@ -122,7 +122,7 @@ class Dashboard extends React.Component{
                           <p> {notification.fname}</p>
                        </div>
                        <div className='col-3 offset-4'>
-                          <button style={{width:"100%" ,color:'#C4C4C4', borderRadius:'4px', border:'1px solid #C4C4C4'}}>Completed</button>
+                          <button style={{color:'#C4C4C4', borderRadius:'4px', border:'1px solid #C4C4C4'}}>Completed</button>
                        </div>
 
             </div>
@@ -198,7 +198,6 @@ class Dashboard extends React.Component{
               rangeObjects:new Array(100),
               textboxIdCount:0,
               rangeEditDisabled:true,
-
               editExperience:false,
               hostRequests:tempArray,
               currenthostRequests:currentTemp,
@@ -399,7 +398,9 @@ class Dashboard extends React.Component{
             editExperience: !prevState.editExperience
         }));
     }
-
+    confirmRanges=()=>{
+     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+   }
 
    changeCards=()=>{
      let changeTo=1

@@ -26,6 +26,11 @@ border-radius: 36px;
 
 
 }
+
+.chat_container{
+  background: #150433;
+  height: 1148px;
+}
 br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */
