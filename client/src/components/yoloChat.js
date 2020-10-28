@@ -2,6 +2,8 @@ import React from "react";
 import "../home/homepage.css";
 import chat1 from "../photos/chat1.png";
 import chat2 from "../photos/chat2.png";
+
+
 class YoloChat extends React.Component {
    constructor(props) {
     super(props);
@@ -59,12 +61,12 @@ class YoloChat extends React.Component {
     return (
       <div class="chat_container">
       <div className='row d-flex justify-content-center pt-5 pb-3 '>
-          <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"50px","lineHeight":"163.35%","textAlign":"center","color":"#FCFCFC"}}
+          <h2 style={{"fontStyle":"normal","fontWeight":"800","fontSize":"50px","lineHeight":"163.35%","textAlign":"center","color":"#FCFCFC"}}
           > Yolo Chat</h2>
       </div>
       <div className='row d-flex justify-content-center  ' style={{paddingBottom:'4%'}} >
-          <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500","fontSize":"21.6px",lineHeight:"35px",textAlign:"center",color:"#FCFCFC"}}
-          > Join us to wxplore the secret sauce of professionals </h3>
+          <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500",lineHeight:"35px",textAlign:"center",color:"#FCFCFC"}}
+          > Join us to explore the secret sauce of professionals </h3>
       </div>
        <div className="row d-flex justify-content-around ">
       <div class="col text-center">
@@ -75,62 +77,65 @@ class YoloChat extends React.Component {
           >September 13</h3>
           <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
       <div>
          <div class="col text-center">
          <img src={chat1} />
-          <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
+          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
           >Chat with Alex Marinov</h2>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >September 13</h3>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
       </div>
        <div className="col text-center">
          <img src={chat1} />
-          <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
+          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
           >Chat with Alex Marinov</h2>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >September 13</h3>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
        </div>
        <div className="col text-center" style={{paddingTop:'70px'}}>
       <div className='row d-flex justify-content-center'  >
-          <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500","fontSize":"24px",lineHeight:"35.64px",textAlign:"center",color:"#FCFCFC"}}
+          <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500",lineHeight:"35.64px",textAlign:"center",color:"#FCFCFC"}}
           > Stay tuned for more Yolo events! </h3>
       </div>
 
       <form action="" onSubmit={this.handleSubmit}>
           <div className='row justify-content-center' style={{paddingTop:'20px'}}>     
                   <input
-                    style={{width:"129px",background:'#150433',color:'#FCFCFC'}}
+                      className="subscribeInput text-center"
+                    style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
                     type="text"
                     id="fname"
-                    placeholder=" First Name"
+                    placeholder="FIRST NAME"
                     value={this.state.fname}
                     onChange={this.handleChange}
                   />
                   <div style={{paddingRight:'34px',paddingLeft:'34px'}}>
                   <input
-                    style={{width:"129px",background:'#150433',color:'#FCFCFC'}}
+                      className="subscribeInput text-center"
+                    style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
                     type="text"
                     id="lname"
-                    placeholder=" Last Name"
+                    placeholder="LAST NAME"
                     value={this.state.lname}
                     onChange={this.handleChange}
                   />
                   </div>
                   <input
-                    style={{width:"129px",background:'#150433',color:'#FCFCFC'}}
+                      className="subscribeInput text-center"
+                    style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
                     type="email"
                     id="email"
-                    placeholder=" Email"
+                    placeholder="EMAIL"
                     value={this.state.email}
                     onChange={this.handleChange}
                   />
