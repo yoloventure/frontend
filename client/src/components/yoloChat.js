@@ -65,19 +65,19 @@ class YoloChat extends React.Component {
           > Yolo Chat</h2>
       </div>
       <div className='row d-flex justify-content-center  ' style={{paddingBottom:'4%'}} >
-          <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500",lineHeight:"35px",textAlign:"center",color:"#FCFCFC"}}
+          <h3 style={{fontSize:"18px",fontStyle:"normal",fontWeight:"500",lineHeight:"35px",textAlign:"center",color:"#FCFCFC"}}
           > Join us to explore the secret sauce of professionals </h3>
       </div>
        <div className="row d-flex justify-content-around ">
       <div class="col text-center">
          <img src={chat2} />
-          <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
+          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
           >Chat with Alex Marinov</h2>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >September 13</h3>
-          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
       <div>
          <div class="col text-center">
@@ -88,7 +88,7 @@ class YoloChat extends React.Component {
           >September 13</h3>
           <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
       </div>
        <div className="col text-center">
@@ -99,7 +99,7 @@ class YoloChat extends React.Component {
           >September 13</h3>
           <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
           >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
       </div>
        </div>
        <div className="col text-center" style={{paddingTop:'70px'}}>
@@ -109,17 +109,21 @@ class YoloChat extends React.Component {
       </div>
 
       <form action="" onSubmit={this.handleSubmit}>
-          <div className='row justify-content-center' style={{paddingTop:'20px'}}>     
+          <div className='row justify-content-center' style={{paddingTop:'20px'}}>
+              <div className="col-12 col-md-5 ">
                   <input
-                      className="subscribeInput text-center"
-                    style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
-                    type="text"
-                    id="fname"
-                    placeholder="FIRST NAME"
-                    value={this.state.fname}
-                    onChange={this.handleChange}
+                      className="subscribeInput text-center pull-right"
+                      style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
+                      type="text"
+                      id="fname"
+                      placeholder="FIRST NAME"
+                      value={this.state.fname}
+                      onChange={this.handleChange}
                   />
-                  <div style={{paddingRight:'34px',paddingLeft:'34px'}}>
+              </div>
+
+
+                  <div className="col-12 col-md-2" style={{paddingRight:'34px',paddingLeft:'34px'}}>
                   <input
                       className="subscribeInput text-center"
                     style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
@@ -130,17 +134,20 @@ class YoloChat extends React.Component {
                     onChange={this.handleChange}
                   />
                   </div>
+              <div className="col-12 col-md-5">
                   <input
-                      className="subscribeInput text-center"
-                    style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
-                    type="email"
-                    id="email"
-                    placeholder="EMAIL"
-                    value={this.state.email}
-                    onChange={this.handleChange}
+                      className="subscribeInput text-center pull-left"
+                      style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
+                      type="email"
+                      id="email"
+                      placeholder="EMAIL"
+                      value={this.state.email}
+                      onChange={this.handleChange}
                   />
+              </div>
+
         </div>  
-                <div className="row d-flex justify-content-center" style={{paddingTop:'39px'}}>
+                <div className="row d-flex justify-content-center pb-5" style={{paddingTop:'39px'}}>
                   <input type="submit" name="SUBSCRIBE" className="learnmore" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}} />
                 </div>
               </form>
