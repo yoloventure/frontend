@@ -164,7 +164,6 @@ class Dashboard extends React.Component{
 
           let currentTemp=[];
           let currentTemp2=[];
-          let currentTemp4=[];
           try{
             currentTemp=tempArray.slice(0,1)
           }catch(e){
@@ -177,11 +176,6 @@ class Dashboard extends React.Component{
           }
           try{
             currentTemp2=tempArray2.slice(0,2)
-          }catch(e){
-
-          }
-          try{
-            currentTemp2=tempArray4.slice(0,2)
           }catch(e){
 
           }
