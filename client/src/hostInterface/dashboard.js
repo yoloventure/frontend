@@ -13,6 +13,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './dashboard.css'
+import { connect } from 'react-redux';
+
 // import './Dashboard.css'
 import {
   BrowserRouter as Router,
@@ -21,7 +23,7 @@ import {
   withRouter,
   Link
 } from "react-router-dom";
-import {MDBIcon, MDBBtn} from 'mdbreact'
+import {MDBBtn} from 'mdbreact'
 
 
 class Dashboard extends React.Component{
@@ -178,7 +180,9 @@ class Dashboard extends React.Component{
 
           let tempArray3=[]
           let currentTemp3=[]
-          fetch('/api/review/', {
+          console.log(this.props.auth.user)
+          fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+
              method: 'get',
              headers: new Headers({
                  'Content-Type':'application/json'
@@ -229,7 +233,7 @@ class Dashboard extends React.Component{
                    console.log(currentTemp3)
 
 
-         fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
+         fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -645,7 +649,8 @@ class Dashboard extends React.Component{
                                                         <div className='row'>
                                                               <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
                                                                 >My Availability
-                                                                 <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+
+                                                                 <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><span className="fas fa-edit"></span></button>
                                                                </h5>
 
                                                               {!this.state.rangeEditDisabled?
@@ -696,13 +701,13 @@ class Dashboard extends React.Component{
                                                             >
                                                               My Experience Page
                                                               <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
-                                                              <MDBIcon icon="edit" fixed />
+                                                              <span className="fas fa-edit"></span>
                                                               </button>
 
                                                             </h5>
                                                             <div className='col-6'>
                                                             <Link>
-                                                                <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> What makes a great one?</p>
                                                             </Link>
                                                             </div>
                                                          </div>
@@ -810,7 +815,7 @@ class Dashboard extends React.Component{
                                                         <div className='col-6 mt-2'>
 
                                                             <Link>
-                                                                <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> How to get better reviews?</p>
                                                             </Link>
                                                          </div>
                                                          <div className='col-3 mt-2'>
@@ -866,4 +871,13 @@ class Dashboard extends React.Component{
 }
 
 
-export default   Dashboard;
+
+Dashboard.propTypes = {
+    auth: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
+
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+export default connect(mapStateToProps)(Dashboard);

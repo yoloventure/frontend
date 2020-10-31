@@ -152,18 +152,18 @@ class Dashboard extends React.Component{
               width={380}
               color='black'
 
-               > 
+               >
                <p>
                {review.reviewContent}
                </p>
                </ShowMoreText>
-               </div>                                        
+               </div>
             </div>
             )
         })
 
 
-       
+
 
 
           let currentTemp=[];
@@ -192,7 +192,7 @@ class Dashboard extends React.Component{
 
 
           this.state={
-              counter:1,            
+              counter:1,
               textboxIdCount:0,
               editExperience:false,
               hostRequests:tempArray,
@@ -551,9 +551,9 @@ class Dashboard extends React.Component{
 
   return(
     <div style={styleViewPort}>
-    <Navbar className='mb-5' textColor={"black"} />
+    <Navbar className='mb-0 mt-5' textColor={"black"} />
 
-    <div className='pt-5 mt-5 mr-5'>
+    <div className='pt-5 mt-0 mr-5'>
                 <div className='row' >
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
@@ -626,13 +626,14 @@ class Dashboard extends React.Component{
                                                             >
                                                               My Profile
                                                               <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
-                                                              <MDBIcon icon="edit" fixed />
+                                                              <span className="fas fa-edit"></span>
+
                                                               </button>
 
                                                             </h5>
                                                             <div className='col-6'>
                                                             <Link>
-                                                                <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+                                                                <p style={{color:'#707683', fontSize:'100%'}}><span className="far fa-question-circle"></span> What makes a great one?</p>
                                                             </Link>
                                                             </div>
                                                          </div>
@@ -737,7 +738,7 @@ class Dashboard extends React.Component{
                                                         <div className='col-6 ml-5 mt-2'>
 
                                                             <Link>
-                                                                <p style={{color:'707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
+                                                                <p style={{color:'707683', fontSize:'100%'}}> <span className="far fa-question-circle"></span>How to get better reviews?</p>
                                                             </Link>
                                                          </div>
                                                          <div className='col-2 ml-4 mt-2'>
@@ -774,10 +775,10 @@ class Dashboard extends React.Component{
                                                                   {this.state.myReviewButton}
                                                                   </button>
                                                                 </div>
-                                                                
-                                                    </div>  
-                
-                                                    
+
+                                                    </div>
+
+
 
                                               </div>
 
