@@ -115,7 +115,7 @@ export default class Slider extends Component {
                         YOLOers really inspire me! I’ve got different points of view
                         on the work I do.
                       </p>
-                        
+
                       <br />
                       <img src={bquote} alt="" />
                     </div>
