@@ -16,9 +16,11 @@ function getCurrentUser(){
     });
 }
 
+
+
 // @route   GET api/user/
 // @desc    get all users from database
-// @access  Private 
+// @access  Private
 function getAllUsers(){
     var path = "/api/user/";
     return fetch(path, {
