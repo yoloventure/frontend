@@ -48,6 +48,7 @@ class Dashboard extends React.Component{
                     <div className='col-11 offset-1'>
                         <ShowMoreText
                             /* Default options */
+
                             lines={1}
                             more='+more'
                             less='-less'
@@ -80,6 +81,7 @@ class Dashboard extends React.Component{
                     </div>
                 </div>
             )
+
         })
 
         //setup review notifications
@@ -145,6 +147,7 @@ class Dashboard extends React.Component{
                     <div className='col-11 offset-1'>
                         <ShowMoreText
                             /* Default options */
+
                             lines={1}
                             more='+more'
                             less='-less'
@@ -161,8 +164,10 @@ class Dashboard extends React.Component{
                         </ShowMoreText>
                     </div>
                 </div>
+
             )
         })
+
 
 
 
@@ -170,6 +175,7 @@ class Dashboard extends React.Component{
         let currentTemp2=[];
 
         try{
+
             currentTemp=tempArray.slice(0,1)
         }catch(e){
 
@@ -181,48 +187,101 @@ class Dashboard extends React.Component{
         }
         try{
             currentTemp2=tempArray2.slice(0,2)
-        }catch(e){
 
-        }
+          }catch(e){
 
-
-
-        this.state={
-            counter:1,
-
-            selectionRange:{
-                startDate: new Date(),
-                endDate: new Date(),
-                key: 'selection'
-            },
-            rangeTextboxes: new Array(100),
-            rangeObjects:new Array(100),
-            textboxIdCount:0,
-            rangeEditDisabled:true,
-
-            editExperience:false,
-            hostRequests:tempArray,
-            currenthostRequests:currentTemp,
-            reviewShadowerNotifications:tempArray2,
-            hostReviews:tempArray4,
-            currentReviewShadowerNotifications:currentTemp2,
-            myHistoryButton:'Show More',
-            myReviewsAll:[],
-            myReviewsCurrent:[],
-            myReviewButton:'Show More',
-            imgNames:[],
-            selectedImages:[],
-            showRequests:true,
-            showCompleted:true,
-            notificationFilters:[]
+          }
 
 
 
-        }
+          this.state={
+              counter:1,
 
-        let tempArray3=[]
-        let currentTemp3=[]
-        fetch('/api/review/', {
+              selectionRange:{
+                  startDate: new Date(),
+                  endDate: new Date(),
+                  key: 'selection'
+              },
+              rangeTextboxes: new Array(100),
+              rangeObjects:new Array(100),
+              textboxIdCount:0,
+              rangeEditDisabled:true,
+
+              editExperience:false,
+              hostRequests:tempArray,
+              currenthostRequests:currentTemp,
+              reviewShadowerNotifications:tempArray2,
+              hostReviews:tempArray4,
+              currentReviewShadowerNotifications:currentTemp2,
+              myHistoryButton:'Show More',
+              myReviewsAll:[],
+              myReviewsCurrent:[],
+              myReviewButton:'Show More',
+              imgNames:[],
+              selectedImages:[],
+              showRequests:true,
+              showCompleted:true,
+              notificationFilters:[]
+
+
+
+          }
+
+          let tempArray3=[]
+          let currentTemp3=[]
+          fetch('/api/review/', {
+             method: 'get',
+             headers: new Headers({
+                 'Content-Type':'application/json'
+             }),
+         }).then((response) => {
+
+           response.json().then((reviewsData)=>{
+             //setup my myReviews
+             reviewsData.forEach(review=>{
+                       tempArray3.push(
+                         <React.Fragment>
+                         <div className='col-11 ml-2 mb-2' >
+                             <p style={{fontSize:'90%',lineHeight:'10px',fontWeight:'500'}}> {review.publishDate} </p>
+                             <ShowMoreText
+                             /* Default options */
+                                lines={1}
+                                more='+more'
+                                less='-less'
+                                anchorClass='moreClass'
+                                onClick={this.executeOnClick}
+                                expanded={false}
+                                width={280}
+                                color='black'
+
+                            >
+                               <p style={{fontSize:'80%'}}>{review.body}</p>
+                           </ShowMoreText>
+                         </div>
+
+                         </React.Fragment>
+
+                       )
+
+               })
+               try{
+                 currentTemp3=tempArray3.slice(0,1)
+               }catch(e){
+
+               }
+               this.setState({myReviewsAll:tempArray3,myReviewsCurrent:currentTemp3})
+           })
+         }).catch((err) => {
+                   console.log(err)
+
+         });
+
+                   console.log(tempArray3)
+                   console.log(currentTemp3)
+
+
+         fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
+
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -338,7 +397,9 @@ class Dashboard extends React.Component{
             this.setState({counter:1})
         }
 
+
     }
+
 
 
     addRange=()=>{
@@ -403,18 +464,25 @@ class Dashboard extends React.Component{
         }));
     }
     confirmRanges=()=>{
-        //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
-    }
+
+     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+   }
 
 
-    changeCards=()=>{
-        let changeTo=1
-        if(this.state.myHistoryButton.localeCompare('Show More')===0){
-            changeTo=0
-        }
-        if(this.state.hostRequests.length>this.state.currenthostRequests.length){
-            this.setState(prevState=>{
-                return {...prevState,currenthostRequests:prevState.hostRequests}
+   changeCards=()=>{
+     let changeTo=1
+     if(this.state.myHistoryButton.localeCompare('Show More')===0){
+       changeTo=0
+     }
+     if(this.state.hostRequests.length>this.state.currenthostRequests.length){
+       this.setState(prevState=>{
+           return {...prevState,currenthostRequests:prevState.hostRequests}
+          })
+     }else if(this.state.hostRequests.length!==0){
+
+       this.setState(prevState=>{
+            return {...prevState,currenthostRequests:prevState.hostRequests.slice(0,1) }
+
             })
         }else if(this.state.hostRequests.length!==0){
 
@@ -577,6 +645,7 @@ class Dashboard extends React.Component{
     }
 
 
+
     render() {
 
         let showRequests=false
@@ -619,6 +688,7 @@ class Dashboard extends React.Component{
 
         return(
 
+
             <div className="bg-light" style={styleViewPort}>
                 <Navbar className='mb-5' textColor={"black"} />
 
@@ -627,7 +697,9 @@ class Dashboard extends React.Component{
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
-                                    <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+
+                                  <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+
 
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
@@ -652,30 +724,32 @@ class Dashboard extends React.Component{
                                         <p className='col-1 ml-3'>{weekNumsToDisplay[6]}</p>
                                     </div>
 
-                                </div>
+
+                                 </div>
 
 
-                                <div className='row '>
+                                  <div className='row '>
 
-                                    <p className='col-lg-2 col-3' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
-                                    >Show :</p>
-                                    <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
-                                    >Requests
-                                    </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
-                                    >
-                                        Upcoming
-                                    </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
-                                    >
-                                        Ongoing
-                                    </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <p className='col-lg-2 col-3' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
+                                              >Show :</p>
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >Requests
+                                              </Button>
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >
+                                                Upcoming
+                                              </Button>
+                                              <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                               >
+                                                Ongoing
+                                               </Button>
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
 
-                                    >
-                                        Completed
-                                    </Button>
-                                </div>
+                                              >
+                                                Completed
+                                              </Button>
+                                  </div>
+
 
                                 <div className='col-12' >
                                     {showRequests?this.state.currenthostRequests:null}
@@ -740,183 +814,184 @@ class Dashboard extends React.Component{
 
 
                                 <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
-                                    <div className='col-12' >
-                                        <div className='row'>
-                                            <h5
-                                                className='mt-2 col-5 pt-1' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
-                                            >
-                                                My Profile
-                                                <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
-                                                    <MDBIcon icon="edit" fixed />
-                                                </button>
 
-                                            </h5>
-                                            <div className='col-6 pt-1'>
-                                                <Link>
-                                                    <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+                                                    <div className='col-12' >
+                                                          <div className='row'>
+                                                            <h5
+                                                            className='mt-2 col-5 pt-1' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
+                                                            >
+                                                              My Profile
+                                                              <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
+                                                              <MDBIcon icon="edit" fixed />
+                                                              </button>
 
-                                                </Link>
-                                            </div>
-                                        </div>
+                                                            </h5>
+                                                            <div className='col-6 pt-1'>
+                                                            <Link>
+                                                                <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
 
-                                    </div>
-                                    <div className='row m-1 mt-1'>
+                                                            </Link>
+                                                            </div>
+                                                         </div>
 
-                                        <div className='col-2 ' >
-                                            <h5
-                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                            >About:
-                                            </h5>
-                                        </div>
-                                        <div className='col-10'>
+                                                    </div>
+                                                    <div className='row m-1 mt-1'>
 
-                                            {this.state.editExperience?
-                                                <input
-                                                    type="text"
-                                                    name="skills"
-                                                    placeholder=""
-                                                    value={this.state.whatCanIOfferTitles}
-                                                    onChange={this.handleInputChange}
-                                                />
-                                                :
-                                                <h5
-                                                    style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
-                                                >{this.state.whatCanIOfferTitles}
-                                                </h5>
-                                            }
+                                                          <div className='col-2 ' >
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >About:
+                                                                </h5>
+                                                          </div>
+                                                          <div className='col-10'>
 
-                                        </div>
-                                        <div className='col-2 ' >
-                                            <h5
-                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                            >Skills:
-                                            </h5>
-                                        </div>
-                                        <div className='col-10'>
+                                                              {this.state.editExperience?
+                                                                <input
+                                                                  type="text"
+                                                                  name="skills"
+                                                                  placeholder=""
+                                                                  value={this.state.whatCanIOfferTitles}
+                                                                  onChange={this.handleInputChange}
+                                                                />
+                                                                :
+                                                                <h5
+                                                                style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                >{this.state.whatCanIOfferTitles}
+                                                                </h5>
+                                                              }
 
-                                            {this.state.editExperience?
-                                                <input
-                                                    type="text"
-                                                    name="skills"
-                                                    placeholder=""
-                                                    value={this.state.skills}
-                                                    onChange={this.handleInputChange}
-                                                />
-                                                :
-                                                <h5
-                                                    style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                                >
-                                                    {this.state.skills}
-                                                </h5>
+                                                          </div>
+                                                          <div className='col-2 ' >
+                                                                <h5
+                                                                 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                 >Skills:
+                                                                 </h5>
+                                                          </div>
+                                                          <div className='col-10'>
 
-                                            }
+                                                                {this.state.editExperience?
+                                                                  <input
+                                                                    type="text"
+                                                                    name="skills"
+                                                                    placeholder=""
+                                                                    value={this.state.skills}
+                                                                    onChange={this.handleInputChange}
+                                                                  />
+                                                                  :
+                                                                  <h5
+                                                                  style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                  >
+                                                                  {this.state.skills}
+                                                                  </h5>
 
-                                        </div>
+                                                                }
 
-                                        <div className='col-2 ' >
-                                            <h5
-                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                            >Photos:
-                                            </h5>
+                                                          </div>
 
-                                        </div>
-                                        <div className='col-2' >
-                                            <label  className="imgSubmit">
-                                                <input  type="file" ref={this.Ref} name="file_photoId" accept="image/*"  onChange={(e)=>this.handleFileUpload(e)} />
-                                                <div className='box m-1 p-1' style={{height:'5rem',width:'5rem'}}>
-                                                    <div className="hl"></div>
-                                                    <div className="vl"></div>
-                                                </div>
-                                            </label>
-                                            <p>{this.state.imgNames}</p>
+                                                          <div className='col-2 ' >
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >Photos:
+                                                                </h5>
 
-                                        </div>
-                                        <div className='col-12 pb-1' >
-                                            {this.state.imgNames.length!==0?
-                                                <a onClick={  ()=>{  this.setState({imgNames:[], selectedImages:[]}, this.handleFileUpload(null) )  } }
-                                                >
-                                                    Clear Image Selections
-                                                </a>
-                                                :null
-                                            }
-                                        </div>
-                                        {this.state.editExperience?
-                                            <div className='col-12' >
-                                                <button> Confirm Changes </button>
-                                            </div>
-                                            :null
-                                        }
+                                                          </div>
+                                                          <div className='col-2' >
+                                                            <label  className="imgSubmit">
+                                                              <input  type="file" ref={this.Ref} name="file_photoId" accept="image/*"  onChange={(e)=>this.handleFileUpload(e)} />
+                                                                <div className='box m-1 p-1' style={{height:'5rem',width:'5rem'}}>
+                                                                <div className="hl"></div>
+                                                                <div className="vl"></div>
+                                                                </div>
+                                                            </label>
+                                                            <p>{this.state.imgNames}</p>
 
-
-                                    </div>
+                                                          </div>
+                                                          <div className='col-12 pb-1' >
+                                                            {this.state.imgNames.length!==0?
+                                                              <a onClick={  ()=>{  this.setState({imgNames:[], selectedImages:[]}, this.handleFileUpload(null) )  } }
+                                                              >
+                                                              Clear Image Selections
+                                                              </a>
+                                                              :null
+                                                            }
+                                                          </div>
+                                                          {this.state.editExperience?
+                                                          <div className='col-12' >
+                                                            <button> Confirm Changes </button>
+                                                          </div>
+                                                          :null
+                                                          }
 
 
-                                </div>
+                                                    </div>
 
 
-                                <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
-                                    <div className='row m-1' >
-                                        <div className='col-3 mt-2 pt-1'>
-                                            <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
-                                        </div>
-                                        <div className='col-5 ml-5 mt-2'>
-
-                                            <Link>
-                                                <p style={{color:'707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
-                                            </Link>
-                                        </div>
-                                        <div className='col-2 ml-4 mt-2'>
-                                            <a class="btn btn-outline-black dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-
-                                               aria-expanded="false">Sort</a>
-
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Latest</a>
-
-                                            </div>
-                                        </div>
+                                              </div>
 
 
-                                    </div>
-                                    <div className='row m-1'>
+                                              <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                                    <div className='row m-1' >
+                                                        <div className='col-3 mt-2 pt-1'>
+                                                            <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
+                                                        </div>
+                                                        <div className='col-5 ml-5 mt-2'>
 
-                                        <div className='col-4 mt-2'>
-                                            <p
-                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
-                                            >My Review Score:
-                                            </p>
-                                        </div>
-                                        <div className='col-1' style={{borderRadius:'15px', opacity:'0.6', background:'#192A3E', fontSize:'80%',height:'24px',width:'56px'}}>
-                                            <p
-                                                className='text-center d-flex justify-content-center' style={{color:'white'}}
-                                            >
-                                                4.8
-                                            </p>
-                                        </div>
-                                        {this.state.myReviewsCurrent}
-                                        {this.state.hostReviews}
-                                        <div className='col-12 d-flex justify-content-center' >
-                                            <button onClick={this.changeMyReviewCards} style={{color:'#109CF1', background:'none', border:'none'}}>
-                                                {this.state.myReviewButton}
-                                            </button>
-                                        </div>
+                                                            <Link>
+                                                                <p style={{color:'707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
+                                                            </Link>
+                                                         </div>
+                                                         <div className='col-2 ml-4 mt-2'>
+                                                           <a class="btn btn-outline-black dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+
+                                                            aria-expanded="false">Sort</a>
+
+                                                            <div class="dropdown-menu">
+                                                              <a class="dropdown-item" href="#">Latest</a>
+
+                                                            </div>
+                                                        </div>
 
 
-                                    </div>
+                                                    </div>
+                                                    <div className='row m-1'>
+
+                                                                <div className='col-4 mt-2'>
+                                                                <p
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >My Review Score:
+                                                                </p>
+                                                                </div>
+                                                                <div className='col-1' style={{borderRadius:'15px', opacity:'0.6', background:'#192A3E', fontSize:'80%',height:'24px',width:'56px'}}>
+                                                                  <p
+                                                                   className='text-center d-flex justify-content-center' style={{color:'white'}}
+                                                                  >
+                                                                  4.8
+                                                                  </p>
+                                                                </div>
+                                                                {this.state.myReviewsCurrent}
+                                                                {this.state.hostReviews}
+                                                                <div className='col-12 d-flex justify-content-center' >
+                                                                  <button onClick={this.changeMyReviewCards} style={{color:'#109CF1', background:'none', border:'none'}}>
+                                                                  {this.state.myReviewButton}
+                                                                  </button>
+                                                                </div>
+
+                                                                
+                                                    </div>  
+                
+                                                    
 
 
+                                              </div>
 
 
-                                </div>
-
+                              </div>
 
                             </div>
                         </div>
 
                     </div>
                 </div>
-
-            </div>
 
         );
     }
