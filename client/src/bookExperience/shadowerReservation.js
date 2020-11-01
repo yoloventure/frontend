@@ -14,6 +14,12 @@ import Page5 from "../components/bookingComponents/page5";
 import Page6 from "../components/bookingComponents/page6";
 import Page7 from "../components/bookingComponents/page7";
 import APIExperience from "../api/apiExperience";
+
+import APIReservation from "../api/apiReservation";
+
+import APIBookExp from "../api/apiBookExp";
+
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register,loadUser } from '../actions/authActions';
@@ -46,7 +52,7 @@ class ShadowReservation extends React.Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+//this.props.match.params.id will return host ID.
   componentWillMount() {
     try {
       APIExperience.getExperienceById(this.props.match.params.id)
@@ -54,7 +60,7 @@ class ShadowReservation extends React.Component {
           return {
             data: {
               ...prevState.data,
-              experience: experience,
+              experience: experience
             },
             loaded: true
           }

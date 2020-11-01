@@ -8,11 +8,17 @@ import moment from "moment";
 import {Button} from "reactstrap"
 import PropTypes from "prop-types";
 import shadowRequests from './shadowRequests.json'
+
 import reviewNotifications from './reviewNotifications.json'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './dashboard.css'
+<<<<<<< HEAD
+=======
+import { connect } from 'react-redux';
+import reviewNotifications from './reviewNotifications.json'
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
 // import './Dashboard.css'
 import {
     BrowserRouter as Router,
@@ -152,6 +158,7 @@ class Dashboard extends React.Component{
                 startDate: new Date(),
                 endDate: new Date(),
                 key: 'selection'
+<<<<<<< HEAD
             },
             rangeTextboxes: new Array(100),
             rangeObjects:new Array(100),
@@ -230,6 +237,91 @@ class Dashboard extends React.Component{
 
 
         fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
+=======
+              },
+              rangeTextboxes: new Array(100),
+              rangeObjects:new Array(100),
+              textboxIdCount:0,
+              rangeEditDisabled:true,
+              editExperience:false,
+              shadowRequests:tempArray,
+              currentShadowRequests:currentTemp,
+              reviewNotifications:tempArray2,
+              currentReviewNotifications:currentTemp2,
+              myHistoryButton:'Show More',
+              myReviewsAll:[],
+              myReviewsCurrent:[],
+              myReviewButton:'Show More',
+              imgNames:[],
+              selectedImages:[],
+              showRequests:true,
+              showCompleted:true,
+              notificationFilters:[],
+              whatICanOfferTitles:[],
+              whatICanOfferBodies:[],
+              perks:[]
+
+
+
+          }
+
+          let tempArray3=[]
+          let currentTemp3=[]
+          console.log(this.props.auth.user)
+          fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+
+             method: 'get',
+             headers: new Headers({
+                 'Content-Type':'application/json'
+             }),
+         }).then((response) => {
+
+           response.json().then((reviewsData)=>{
+             //setup my myReviews
+             reviewsData.forEach(review=>{
+                       tempArray3.push(
+                         <React.Fragment>
+                         <div className='col-11 ml-2 mb-2' >
+                             <p style={{fontSize:'90%',lineHeight:'10px',fontWeight:'500'}}> {review.publishDate} </p>
+                             <ShowMoreText
+                             /* Default options */
+                                lines={1}
+                                more='+more'
+                                less='-less'
+                                anchorClass='moreClass'
+                                onClick={this.executeOnClick}
+                                expanded={false}
+                                width={280}
+                                color='black'
+
+                            >
+                               <p style={{fontSize:'80%'}}>{review.body}</p>
+                           </ShowMoreText>
+                         </div>
+
+                         </React.Fragment>
+
+                       )
+
+               })
+               try{
+                 currentTemp3=tempArray3.slice(0,1)
+               }catch(e){
+
+               }
+               this.setState({myReviewsAll:tempArray3,myReviewsCurrent:currentTemp3})
+           })
+         }).catch((err) => {
+                   console.log(err)
+
+         });
+
+                   console.log(tempArray3)
+                   console.log(currentTemp3)
+
+          //fetch relevant experience for this host and set up initial states
+         fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -240,9 +332,10 @@ class Dashboard extends React.Component{
             response.json().then((experience)=>{
                 console.log(experience)
                 let tempPerks=[]
-                let tempWhatCanIOffer=[]
-                let tempWhatCanIOfferBodies=[]
+                let tempWhatICanOffer=[]
+                let tempWhatICanOfferBodies=[]
                 experience.perks.forEach((perk,i)=>{
+<<<<<<< HEAD
                     if(i===experience.perks.length-1){
                         tempPerks.push(perk+'.')
                     }else{
@@ -261,6 +354,19 @@ class Dashboard extends React.Component{
 
                 })
                 this.setState({perks:tempPerks, whatCanIOfferTitles:tempWhatCanIOffer, whatCanIOfferBodies:tempWhatCanIOfferBodies})
+=======
+                    tempPerks.push(perk)
+
+                })
+                experience.whatICanOffer.forEach((offer,i)=>{
+
+                  tempWhatICanOffer.push(offer.title)
+
+                  tempWhatICanOfferBodies.push(offer.body)
+
+                })
+               this.setState({perks:tempPerks, whatICanOfferTitles:tempWhatICanOffer, whatICanOfferBodies:tempWhatICanOfferBodies})
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
 
 
             })
@@ -271,6 +377,150 @@ class Dashboard extends React.Component{
 
 
 
+<<<<<<< HEAD
+=======
+  }
+
+  confirmExperienceEdit=()=>{
+    let bodyToSend={}
+    bodyToSend["perks"]=this.state.perks
+    let whatCanIOfferArray=new Array(this.state.whatICanOfferBodies.length)
+    for(let i=0;i<whatCanIOfferArray.length;++i){//initial each element as a json
+      whatCanIOfferArray[i]={}
+    }
+    this.state.whatICanOfferTitles.forEach( (titleToAdd,i)=>{
+
+      whatCanIOfferArray[i].title=titleToAdd
+
+    })
+
+
+    this.state.whatICanOfferBodies.forEach( (bodyToAdd,i)=>{
+      whatCanIOfferArray[i]["body"]=bodyToAdd
+
+    })
+
+    bodyToSend["whatICanOffer"]=whatCanIOfferArray
+
+    //update database
+    fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+       method: 'PUT',
+       headers: new Headers({
+           'Content-Type':'application/json'
+       }),
+       body:JSON.stringify(bodyToSend)
+   }).then((response) => {
+   }).catch((err) => {
+             console.log(err)
+
+   });
+   this.setState({editExperience:false})
+
+
+  }
+  handleSelect=(ranges)=>{
+    if(this.state.counter===1){
+     this.setState({selectionRange: {
+       startDate: ranges.selection.startDate,
+       endDate: ranges.selection.startDate,
+         key: 'selection'
+     }})
+   }else{
+     this.setState({selectionRange: {
+       startDate: ranges.selection.startDate,
+       endDate: ranges.selection.endDate,
+         key: 'selection'
+     }})
+   }
+
+    if(this.state.counter===1){
+     this.setState({counter:0})
+   }else{
+     this.setState({counter:1})
+   }
+
+
+   }
+
+
+   addRange=()=>{
+     let rangesUpdated=this.state.rangeTextboxes
+     let rangesObjectsUpdated=this.state.rangeObjects
+     let textId='textbox'+this.state.textboxIdCount
+     let startDateArray=this.state.selectionRange.startDate.toString().split(" ")
+     let endDateArray=this.state.selectionRange.endDate.toString().split(" ")
+
+     let htmlForTextbox= startDateArray[0]+ " " +startDateArray[1]+" "+startDateArray[2]+" "+startDateArray[3] + " - " + endDateArray[0]+ " "+endDateArray[1]+" "+endDateArray[2]+" "+endDateArray[3]
+     rangesUpdated[this.state.textboxIdCount]=(
+       <div className='row'>
+
+           <div className='col-2 mt-4'    onClick={this.deleteRange.bind(this,textId )}>
+
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+               <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+               </svg>
+             </div>
+
+           <div className='col-10 mt-4'>
+           <p>{htmlForTextbox}</p>
+           </div>
+       </div>
+     )
+     rangesObjectsUpdated[this.state.textboxIdCount]={startDate: this.state.selectionRange.startDate, endDate: this.state.selectionRange.endDate}
+
+     this.setState({
+       rangeTextboxes: rangesUpdated,
+       textboxIdCount: this.state.textboxIdCount+1,
+       rangeObjects: rangesObjectsUpdated
+     });
+
+   }
+
+   deleteRange(id){
+     let rangesUpdated=this.state.rangeTextboxes
+     let rangesObjectsUpdated=this.state.rangeObjects
+
+     let idToDelete=id.charAt(7);
+     rangesUpdated[idToDelete]=null
+     rangesObjectsUpdated[idToDelete]=null
+
+     this.setState({
+       rangeTextboxes: rangesUpdated,
+       rangeObjects: rangesObjectsUpdated
+
+     });
+   }
+
+   enableRangeEdit=()=>{
+     this.setState(prevState => ({
+        rangeEditDisabled: !prevState.rangeEditDisabled
+      }));
+   }
+   toggleExperienceEdit=()=>{
+     this.setState(prevState => ({
+        editExperience: !prevState.editExperience
+      }));
+   }
+   confirmRanges=()=>{
+     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+   }
+
+   changeCards=()=>{
+     let changeTo=1
+     if(this.state.myHistoryButton.localeCompare('Show More')===0){
+       changeTo=0
+     }
+     if(this.state.shadowRequests.length>this.state.currentShadowRequests.length){
+       this.setState(prevState=>{
+           return {...prevState,currentShadowRequests:prevState.shadowRequests}
+          })
+     }else if(this.state.shadowRequests.length!==0){
+
+       this.setState(prevState=>{
+            return {...prevState,currentShadowRequests:prevState.shadowRequests.slice(0,1) }
+            })
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
     }
 
 
@@ -392,6 +642,7 @@ class Dashboard extends React.Component{
             this.setState(prevState=>{
                 let currentTemp2=[]
 
+<<<<<<< HEAD
                 try{
                     currentTemp2=prevState.reviewNotifications.slice(0,1)
                 }catch(e){
@@ -411,6 +662,153 @@ class Dashboard extends React.Component{
                 }
 
             });
+=======
+     }
+   }
+
+   changeMyReviewCards=()=>{
+     let changeTo=1
+     if(this.state.myReviewButton.localeCompare('Show More')===0){
+       changeTo=0
+     }
+
+       if(this.state.myReviewsAll.length>this.state.myReviewsCurrent.length){
+             this.setState(prevState=>{
+               if(changeTo===0){
+                 return {...prevState,myReviewsCurrent:prevState.myReviewsAll, myReviewButton:"Show Less"}
+               }else{
+                 return {...prevState,myReviewsCurrent:prevState.myReviewsAll, myReviewButton:"Show More"}
+
+               }
+             })
+
+
+       }else if(this.state.myReviewsAll.length!==0){
+
+           this.setState(prevState=>{
+               if(changeTo===0){
+                 return {...prevState,myReviewsCurrent:prevState.myReviewsAll.slice(0,1), myReviewButton:"Show Less" }
+               }else{
+                 return {...prevState,myReviewsCurrent:prevState.myReviewsAll.slice(0,1), myReviewButton:"Show More"}
+               }
+           })
+       }
+
+   }
+
+
+   getNextDay=(day)=>{
+     if(day.localeCompare('Sun')===0){
+        return 'Mon'
+     }else if(day.localeCompare('Mon')===0){
+        return 'Tue'
+     }else if(day.localeCompare('Tue')===0){
+          return 'Wed'
+      } else if(day.localeCompare('Wed')===0){
+        return 'Thurs'
+      } else if(day.localeCompare('Thurs')===0){
+        return 'Fri'
+
+      } else if(day.localeCompare('Fri')===0){
+        return 'Sat'
+
+      } else{
+        return 'Sun'
+
+      }
+   }
+
+
+   handleFileUpload=(event)=> {
+     if(event===null){
+       this.Ref.current.value = ""
+       return
+     }
+     let tempNames=this.state.imgNames
+     let tempSelectedImages=this.state.selectedImages
+     if(tempNames.length!==0){
+       tempNames.push(" , ")
+     }
+     console.log('called')
+     console.log(event.target.files[0].name)
+     console.log(this.state.imgNames)
+     tempNames.push(event.target.files[0].name)
+     tempSelectedImages.push(event.target.files[0])
+     this.setState({
+       selectedImages: tempSelectedImages,
+       imgNames: tempNames
+     })
+   }
+
+   handleInputChange=(event)=> {//generic input change method for all input text boxes. Updates the state.
+     const { name, value } = event.target;
+     console.log(name+">>"+value)
+     if(name.localeCompare("whatICanOfferTitles")==0 || name.localeCompare("perks")==0){
+       let valueArr=value.split(',')
+       this.setState(prevState=>{
+          return({
+               ...prevState,
+               [name]: valueArr
+             })
+       });
+     }
+     else{
+       this.setState(prevState=>{
+          return({
+               ...prevState,
+               [name]: value
+             })
+       });
+     }
+
+   }
+
+   updateNotificationFilters=(e)=>{
+     if(e.target.classList.contains('disabled')){
+       console.log(e.target.classList)
+       e.target.classList.remove('disabled')
+
+     }else{
+       e.target.classList.add('disabled')
+
+     }
+
+     if(e.target.innerHTML.localeCompare('Requests')===0){
+       this.setState(prevState=> ({...prevState, showRequests:!prevState.showRequests}) )
+     }
+     if(e.target.innerHTML.localeCompare('Completed')===0){
+       this.setState(prevState=> ({...prevState, showCompleted:!prevState.showCompleted}) )
+     }
+     let found=false
+     let temp=this.state.notificationFilters
+     temp.forEach((notification,i)=>{
+       if(notification.localeCompare(e.target.innerHTML)===0){
+         temp[i]=''
+         found=true
+       }
+     })
+     if(!found){
+       temp.push(e.target.innerHTML)
+     }
+     this.setState({notificationFilters:temp})
+
+
+   }
+
+
+  render() {
+
+    let showRequests=false
+    let showCompleted=false
+    let filterSelected=false
+    this.state.notificationFilters.forEach(notification=>{
+      if(notification.localeCompare('')!==0){
+        filterSelected=true
+        if(notification.localeCompare('Requests')===0){
+          showRequests=true
+        }else if(notification.localeCompare('Completed')===0){
+          showCompleted=true
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
 
         }
     }
@@ -532,6 +930,7 @@ class Dashboard extends React.Component{
     }
 
 
+<<<<<<< HEAD
     render() {
 
         let showRequests=false
@@ -568,6 +967,12 @@ class Dashboard extends React.Component{
         }
         //  todayDate.push( moment().format("MM-DD-YYYY"))
         var distantDate =  new Date(moment().add(20, 'year').calendar());
+=======
+
+  return(
+    <div className="bg-light" style={styleViewPort}>
+    <Navbar className='mb-5' textColor={"black"} />
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
 
         let styleViewPort={ height:window.innerHeight+'px', width:window.innerWidth+'px' }
         let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
@@ -853,6 +1258,230 @@ class Dashboard extends React.Component{
                                 </div>
 
 
+<<<<<<< HEAD
+=======
+                        <div className='col-5 offset-1' >
+                            <div className='row' >
+                                                  <div className='col-12 ' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                                        <div className='row'>
+                                                              <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
+                                                                >My Availability
+
+                                                                 <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><span className="fas fa-edit"></span></button>
+                                                               </h5>
+
+                                                              {!this.state.rangeEditDisabled?
+                                                                    <React.Fragment>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.addRange}>Add Range </MDBBtn>
+                                                                    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+                                                                    <DateRange
+                                                                     ranges={[this.state.selectionRange]}
+                                                                     onChange={this.handleSelect}
+                                                                     moveRangeOnFirstSelection={true}
+                                                                     minDate={this.state.rangeEditDisabled ? distantDate: todayDate}
+                                                                     showDateDisplay={false}
+                                                                     showMonthArrow={false}
+                                                                     showSelectionPreview={false}
+                                                                     scroll={{enabled:true,
+                                                                             calendarWidth: 100,
+                                                                             calendarHeight:100
+                                                                              }}
+                                                                     // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+
+                                                                   />
+                                                                   </React.Fragment>
+
+                                                              :null}
+
+                                                             <div className='col-12'>
+
+                                                               <p className='mt-2' style={{color:'#4C5862',opacity:'0.5',fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal'}}>Selected Dates:</p>
+                                                                  <div  style={{height:'100px',overflowY:'scroll', overflowX:'hidden'}}>
+                                                                 {this.state.rangeTextboxes}
+                                                                 </div>
+                                                             </div>
+
+
+
+                                                      </div>
+                                              </div>
+
+
+
+
+
+                                              <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                                    <div className='col-12' >
+                                                          <div className='row'>
+                                                            <h5
+                                                            className='mt-2 col-5' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
+                                                            >
+                                                              My Experience Page
+                                                              <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
+                                                              <span className="fas fa-edit"></span>
+                                                              </button>
+
+                                                            </h5>
+                                                            <div className='col-6'>
+                                                            <Link>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> What makes a great one?</p>
+                                                            </Link>
+                                                            </div>
+                                                         </div>
+
+                                                    </div>
+                                                    <div className='row m-1 mt-1'>
+                                                          <div className='col-4 ' >
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                >What Can I Offer:
+                                                                </h5>
+                                                          </div>
+                                                          <div className='col-8'>
+                                                              {this.state.editExperience?
+                                                                <input
+                                                                  type="text"
+                                                                  name="whatICanOfferTitles"
+                                                                  placeholder=""
+                                                                  value={this.state.whatICanOfferTitles}
+                                                                  onChange={this.handleInputChange}
+                                                                />
+                                                                :
+                                                                <h5
+                                                                style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                >{this.state.whatICanOfferTitles.map(title=>{
+                                                                  return title+','
+                                                                })}
+                                                                </h5>
+                                                              }
+
+                                                          </div>
+                                                          <div className='col-2 ' >
+                                                                <h5
+                                                                 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                 >Perks:
+                                                                 </h5>
+                                                          </div>
+                                                          <div className='col-10'>
+
+                                                                {this.state.editExperience?
+                                                                  <input
+                                                                    type="text"
+                                                                    name="perks"
+                                                                    placeholder=""
+                                                                    value={this.state.perks}
+                                                                    onChange={this.handleInputChange}
+                                                                  />
+                                                                  :
+                                                                  <h5
+                                                                  style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                  >
+                                                                    {this.state.perks.map(perk=>{
+                                                                      return perk+','
+                                                                    })}
+                                                                  </h5>
+
+                                                                }
+
+                                                          </div>
+
+                                                          <div className='col-2 ' >
+                                                                <h5
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >Photos:
+                                                                </h5>
+
+                                                          </div>
+                                                          <div className='col-2' >
+                                                            <label  className="imgSubmit">
+                                                              <input  type="file" ref={this.Ref} name="file_photoId" accept="image/*"  onChange={(e)=>this.handleFileUpload(e)} />
+                                                                <div className='box m-1 p-1' style={{height:'5rem',width:'5rem'}}>
+                                                                <div className="hl"></div>
+                                                                <div className="vl"></div>
+                                                                </div>
+                                                            </label>
+                                                            <p>{this.state.imgNames}</p>
+
+                                                          </div>
+                                                          <div className='col-12 pb-1' >
+                                                            {this.state.imgNames.length!==0?
+                                                              <a onClick={  ()=>{  this.setState({imgNames:[], selectedImages:[]}, this.handleFileUpload(null) )  } }
+                                                              >
+                                                              Clear Image Selections
+                                                              </a>
+                                                              :null
+                                                            }
+                                                          </div>
+                                                          {//edit expereience confirm/submit button
+                                                            this.state.editExperience?
+                                                          <div className='col-12' >
+                                                            <button onClick={this.confirmExperienceEdit}> Confirm Changes </button>
+                                                          </div>
+                                                          :null
+                                                          }
+
+
+                                                    </div>
+
+
+                                              </div>
+
+
+
+
+                                              <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                                    <div className='row' >
+                                                        <div className='col-2 mt-2 ml-1'>
+                                                            <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
+                                                        </div>
+                                                        <div className='col-6 mt-2'>
+
+                                                            <Link>
+                                                                <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> How to get better reviews?</p>
+                                                            </Link>
+                                                         </div>
+                                                         <div className='col-3 mt-2'>
+                                                           <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Sort</a>
+
+                                                            <div class="dropdown-menu">
+                                                              <a class="dropdown-item" href="#">Latest</a>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div className='row m-1'>
+
+                                                                <div className='col-4 mt-2'>
+                                                                <p
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
+                                                                >My Review Score:
+                                                                </p>
+                                                                </div>
+                                                                <div className='col-1' style={{borderRadius:'15px', opacity:'0.6', background:'#192A3E', fontSize:'80%'}}>
+                                                                  <p
+                                                                   className='text-center d-flex justify-content-center mt-2' style={{color:'white'}}
+                                                                  >
+                                                                  4.8
+                                                                  </p>
+                                                                </div>
+                                                                {this.state.myReviewsCurrent}
+
+                                                                <div className='col-12 d-flex justify-content-center' >
+                                                                  <button onClick={this.changeMyReviewCards} style={{color:'#109CF1', background:'none', border:'none'}}>
+                                                                  {this.state.myReviewButton}
+                                                                  </button>
+                                                                </div>
+                                                    </div>
+
+
+                                              </div>
+
+
+                              </div>
+>>>>>>> d2452db4ba151aa2201fd57d5d196a89f10f5ad2
                             </div>
                         </div>
 

@@ -40,6 +40,7 @@
   "scripts": {
     "watch": "npm-watch",
     "start": "webpack-dev-server --mode development --open --hot",
+    "start-dev":"react-scripts start",
     "build": "./node_modules/.bin/webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -59,6 +60,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:5000",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
