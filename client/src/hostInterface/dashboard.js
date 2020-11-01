@@ -8,12 +8,12 @@ import moment from "moment";
 import {Button} from "reactstrap"
 import PropTypes from "prop-types";
 import shadowRequests from './shadowRequests.json'
-import reviewNotifications from './reviewNotifications.json'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './dashboard.css'
 import { connect } from 'react-redux';
+import reviewNotifications from './reviewNotifications.json'
 
 // import './Dashboard.css'
 import {
@@ -172,7 +172,10 @@ class Dashboard extends React.Component{
               selectedImages:[],
               showRequests:true,
               showCompleted:true,
-              notificationFilters:[]
+              notificationFilters:[],
+              whatICanOfferTitles:[],
+              whatICanOfferBodies:[],
+              perks:[]
 
 
 
@@ -232,6 +235,7 @@ class Dashboard extends React.Component{
                    console.log(tempArray3)
                    console.log(currentTemp3)
 
+          //fetch relevant experience for this host and set up initial states
 
          fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
             method: 'get',
@@ -244,27 +248,20 @@ class Dashboard extends React.Component{
           response.json().then((experience)=>{
             console.log(experience)
                 let tempPerks=[]
-                let tempWhatCanIOffer=[]
-                let tempWhatCanIOfferBodies=[]
+                let tempWhatICanOffer=[]
+                let tempWhatICanOfferBodies=[]
                 experience.perks.forEach((perk,i)=>{
-                  if(i===experience.perks.length-1){
-                    tempPerks.push(perk+'.')
-                  }else{
-                    tempPerks.push(perk+", ")
+                    tempPerks.push(perk)
 
-                  }
                 })
                 experience.whatICanOffer.forEach((offer,i)=>{
-                  if(i===experience.perks.length-1){
-                    tempWhatCanIOffer.push(offer.title+'.')
-                  }else{
-                    tempWhatCanIOffer.push(offer.title+", ")
 
-                  }
-                  tempWhatCanIOfferBodies.push(offer.body)
+                  tempWhatICanOffer.push(offer.title)
+
+                  tempWhatICanOfferBodies.push(offer.body)
 
                 })
-               this.setState({perks:tempPerks, whatCanIOfferTitles:tempWhatCanIOffer, whatCanIOfferBodies:tempWhatCanIOfferBodies})
+               this.setState({perks:tempPerks, whatICanOfferTitles:tempWhatICanOffer, whatICanOfferBodies:tempWhatICanOfferBodies})
 
 
           })
@@ -277,7 +274,43 @@ class Dashboard extends React.Component{
 
   }
 
+  confirmExperienceEdit=()=>{
+    let bodyToSend={}
+    bodyToSend["perks"]=this.state.perks
+    let whatCanIOfferArray=new Array(this.state.whatICanOfferBodies.length)
+    for(let i=0;i<whatCanIOfferArray.length;++i){//initial each element as a json
+      whatCanIOfferArray[i]={}
+    }
+    this.state.whatICanOfferTitles.forEach( (titleToAdd,i)=>{
 
+      whatCanIOfferArray[i].title=titleToAdd
+
+    })
+
+
+    this.state.whatICanOfferBodies.forEach( (bodyToAdd,i)=>{
+      whatCanIOfferArray[i]["body"]=bodyToAdd
+
+    })
+
+    bodyToSend["whatICanOffer"]=whatCanIOfferArray
+
+    //update database
+    fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+       method: 'PUT',
+       headers: new Headers({
+           'Content-Type':'application/json'
+       }),
+       body:JSON.stringify(bodyToSend)
+   }).then((response) => {
+   }).catch((err) => {
+             console.log(err)
+
+   });
+   this.setState({editExperience:false})
+
+
+  }
   handleSelect=(ranges)=>{
     if(this.state.counter===1){
      this.setState({selectionRange: {
@@ -493,14 +526,27 @@ class Dashboard extends React.Component{
      })
    }
 
-   handleInputChange=(event)=> {
+   handleInputChange=(event)=> {//generic input change method for all input text boxes. Updates the state.
      const { name, value } = event.target;
-     this.setState(prevState=>{
-        return({
-             ...prevState,
-             [name]: value
-           })
-     });
+     console.log(name+">>"+value)
+     if(name.localeCompare("whatICanOfferTitles")==0 || name.localeCompare("perks")==0){
+       let valueArr=value.split(',')
+       this.setState(prevState=>{
+          return({
+               ...prevState,
+               [name]: valueArr
+             })
+       });
+     }
+     else{
+       this.setState(prevState=>{
+          return({
+               ...prevState,
+               [name]: value
+             })
+       });
+     }
+
    }
 
    updateNotificationFilters=(e)=>{
@@ -575,6 +621,7 @@ class Dashboard extends React.Component{
 
   let styleViewPort={ height:window.innerHeight+'px', width:window.innerWidth+'px' }
   let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
+
 
   return(
     <div style={styleViewPort}>
@@ -724,15 +771,17 @@ class Dashboard extends React.Component{
                                                               {this.state.editExperience?
                                                                 <input
                                                                   type="text"
-                                                                  name="perks"
+                                                                  name="whatICanOfferTitles"
                                                                   placeholder=""
-                                                                  value={this.state.whatCanIOfferTitles}
+                                                                  value={this.state.whatICanOfferTitles}
                                                                   onChange={this.handleInputChange}
                                                                 />
                                                                 :
                                                                 <h5
                                                                 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
-                                                                >{this.state.whatCanIOfferTitles}
+                                                                >{this.state.whatICanOfferTitles.map(title=>{
+                                                                  return title+','
+                                                                })}
                                                                 </h5>
                                                               }
 
@@ -757,7 +806,9 @@ class Dashboard extends React.Component{
                                                                   <h5
                                                                   style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
                                                                   >
-                                                                  {this.state.perks}
+                                                                    {this.state.perks.map(perk=>{
+                                                                      return perk+','
+                                                                    })}
                                                                   </h5>
 
                                                                 }
@@ -791,9 +842,10 @@ class Dashboard extends React.Component{
                                                               :null
                                                             }
                                                           </div>
-                                                          {this.state.editExperience?
+                                                          {//edit expereience confirm/submit button
+                                                            this.state.editExperience?
                                                           <div className='col-12' >
-                                                            <button> Confirm Changes </button>
+                                                            <button onClick={this.confirmExperienceEdit}> Confirm Changes </button>
                                                           </div>
                                                           :null
                                                           }

@@ -3,12 +3,16 @@ const user = require('./user');
 const experience = require('./experience');
 
 const reservationSchema = new mongoose.Schema({
-  user: {
-    //userID reference
-    //disabled while APIUser is not working
+  shadower: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  host:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Host',
+    required: true
+
   },
   experience: {
     //experienceID reference
@@ -22,7 +26,7 @@ const reservationSchema = new mongoose.Schema({
   },
   aspects: {
     type: Object, // true/false for corresponding aspects selected
-    
+
 
   },
   otherAspects: {

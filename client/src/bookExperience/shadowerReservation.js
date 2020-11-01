@@ -49,7 +49,7 @@ class ShadowReservation extends React.Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+//this.props.match.params.id will return host ID.
   componentWillMount() {
     try {
       APIExperience.getExperienceById(this.props.match.params.id)
@@ -57,7 +57,7 @@ class ShadowReservation extends React.Component {
           return {
             data: {
               ...prevState.data,
-              experience: experience,
+              experience: experience
             },
             loaded: true
           }
