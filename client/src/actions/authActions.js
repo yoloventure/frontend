@@ -172,7 +172,6 @@ export const login = ({ email, password }) =>{
 
         });
       }else{
-        console.log('first'+err)
         dispatch({
             type:LOGIN_FAIL
         })
