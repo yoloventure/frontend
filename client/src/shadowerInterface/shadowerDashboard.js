@@ -1,9 +1,12 @@
 import React, {createRef} from "react";
+
 import Navbar from "../components/navbar";
+
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {Button} from "reactstrap"
+
 
 import hostRequests from './hostRequests.json'
 import hostReviews from './hostReviews.json'
@@ -19,6 +22,7 @@ import {
 
 import {MDBIcon, MDBBtn} from 'mdbreact'
 import {DateRange} from "react-date-range";
+
 
 
 class Dashboard extends React.Component{
@@ -69,7 +73,9 @@ class Dashboard extends React.Component{
                         <div className='col-3 offset-4'>
 
 
+
                               <button style={{width:"100%" ,"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%',color:'white'}}> Reply </button>
+
 
                        </div>
             </div>
@@ -148,22 +154,21 @@ class Dashboard extends React.Component{
               width={380}
               color='black'
 
-               > 
+
                <p>
                {review.reviewContent}
                </p>
                </ShowMoreText>
-               </div>                                        
+
             </div>
             )
         })
 
 
-       
-
 
           let currentTemp=[];
           let currentTemp2=[];
+
           try{
             currentTemp=tempArray.slice(0,1)
           }catch(e){
@@ -181,8 +186,10 @@ class Dashboard extends React.Component{
           }
 
 
+
           this.state={
               counter:1,
+
               selectionRange:{
                   startDate: new Date(),
                   endDate: new Date(),
@@ -192,6 +199,7 @@ class Dashboard extends React.Component{
               rangeObjects:new Array(100),
               textboxIdCount:0,
               rangeEditDisabled:true,
+
               editExperience:false,
               hostRequests:tempArray,
               currenthostRequests:currentTemp,
@@ -305,6 +313,7 @@ class Dashboard extends React.Component{
 
         });
 
+
   }
 
 
@@ -328,6 +337,7 @@ class Dashboard extends React.Component{
    }else{
      this.setState({counter:1})
    }
+
    }
 
 
@@ -395,6 +405,7 @@ class Dashboard extends React.Component{
     confirmRanges=()=>{
      //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
    }
+
 
    changeCards=()=>{
      let changeTo=1
@@ -607,6 +618,7 @@ class Dashboard extends React.Component{
   let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
 
   return(
+
     <div className="bg-light" style={styleViewPort}>
     <Navbar className='mb-5' textColor={"black"} />
 
@@ -616,6 +628,7 @@ class Dashboard extends React.Component{
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
                                   <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
                                     <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDateArr[2]} {todayDateArr[1]}, <span style={{color:' #707683'}}>{todayDateArr[0]}</span></p>
@@ -643,6 +656,7 @@ class Dashboard extends React.Component{
 
 
                                   <div className='row '>
+
                                               <p className='col-lg-2 col-3' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
                                               >Show :</p>
                                               <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
@@ -657,6 +671,7 @@ class Dashboard extends React.Component{
                                                 Ongoing
                                                </Button>
                                               <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+
                                               >
                                                 Completed
                                               </Button>
@@ -674,6 +689,7 @@ class Dashboard extends React.Component{
                         </div>
                         <div className='col-5 offset-1' >
                             <div className='row' >
+
 
 
                                 <div className='col-12' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
@@ -738,12 +754,14 @@ class Dashboard extends React.Component{
                                                             <div className='col-6 pt-1'>
                                                             <Link>
                                                                 <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+
                                                             </Link>
                                                             </div>
                                                          </div>
 
                                                     </div>
                                                     <div className='row m-1 mt-1'>
+
                                                           <div className='col-2 ' >
                                                                 <h5
                                                                 style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
@@ -751,6 +769,7 @@ class Dashboard extends React.Component{
                                                                 </h5>
                                                           </div>
                                                           <div className='col-10'>
+
                                                               {this.state.editExperience?
                                                                 <input
                                                                   type="text"
@@ -834,6 +853,7 @@ class Dashboard extends React.Component{
 
                                               </div>
 
+
                                               <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='row m-1' >
                                                         <div className='col-3 mt-2 pt-1'>
@@ -847,6 +867,7 @@ class Dashboard extends React.Component{
                                                          </div>
                                                          <div className='col-2 ml-4 mt-2'>
                                                            <a class="btn btn-outline-black dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+
                                                             aria-expanded="false">Sort</a>
 
                                                             <div class="dropdown-menu">
@@ -879,10 +900,12 @@ class Dashboard extends React.Component{
                                                                   {this.state.myReviewButton}
                                                                   </button>
                                                                 </div>
+
                                                                 
                                                     </div>  
                 
                                                     
+
 
                                               </div>
 

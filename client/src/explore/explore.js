@@ -75,9 +75,10 @@ class Explore extends React.Component{
         headers: new Headers({
             'Content-Type':'application/json'
         }),
-    }).then((response) => {
+    })
+    .then((response) => {
 
-      response.json().then((data)=>{
+      response.json().then(data=>{
             console.log(data)
             data.forEach(element=>{
               element.availableFrom=element.availableRanges[0]
@@ -96,7 +97,6 @@ class Explore extends React.Component{
               console.log(err)
 
     });
-
 
 
 

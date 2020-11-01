@@ -19,7 +19,7 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    publishDate:{//in the form: $112   that is dollar sign followed by number
+    publishDate:{
         type: Date,
         required: true
     },
