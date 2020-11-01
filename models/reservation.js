@@ -7,13 +7,13 @@ const reservationSchema = new mongoose.Schema({
     //userID reference
     //disabled while APIUser is not working
     type: mongoose.Schema.Types.ObjectId,
-    ref: user,
-    //required: true,
+    ref: 'User',
+    required: true,
   },
   experience: {
     //experienceID reference
     type: mongoose.Schema.Types.ObjectId,
-    ref: experience,
+    ref: 'Experience',
     required: true,
   },
   availableRanges: {
@@ -22,19 +22,22 @@ const reservationSchema = new mongoose.Schema({
   },
   aspects: {
     type: Object, // true/false for corresponding aspects selected
-    required: true,
+    
+
   },
   otherAspects: {
     type: String,
-    required: true,
+    default:''
+
   },
   whatMakesGood: {
     type: String,
-    required: true,
+    default:''
   },
   accomodations: {
     type: String,
-    required: true,
+    default:''
+
   },
   approval: {
     //reservation approval stage

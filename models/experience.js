@@ -37,7 +37,7 @@ const experienceSchema = new mongoose.Schema({
       required:false
     },
     reviews:{
-      type: Array,//array of ids , reviews will have separrate schema
+      type: Array(mongoose.Schema.Types.ObjectId),//array of ids , reviews will have separrate schema
       default: []
     }
 
