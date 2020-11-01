@@ -14,6 +14,7 @@ import ShowMoreText from 'react-show-more-text';
 import './dashboard.css'
 import { connect } from 'react-redux';
 import reviewNotifications from './reviewNotifications.json'
+
 // import './Dashboard.css'
 import {
   BrowserRouter as Router,
@@ -235,6 +236,7 @@ class Dashboard extends React.Component{
                    console.log(currentTemp3)
 
           //fetch relevant experience for this host and set up initial states
+
          fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
             method: 'get',
             headers: new Headers({

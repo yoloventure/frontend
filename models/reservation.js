@@ -12,6 +12,7 @@ const reservationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Host',
     required: true
+
   },
   experience: {
     //experienceID reference
