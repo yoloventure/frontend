@@ -20,6 +20,8 @@ class Page1 extends React.Component {
           endDate: new Date(),
           key: 'selection'
         },
+        rangeTextboxes: new Array(100)
+
       };
     }
 
