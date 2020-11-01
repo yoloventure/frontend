@@ -17,7 +17,7 @@ export const loadUser =()=>  (dispatch, getState) => {
     }); //set user to loading state
     console.log("load called")
 
-    var path = "/api/user/userInfoFromToken";
+    var path = "/api/user/userInfoFromToken";//decode the token
     return fetch(path, {
         method: 'post',
         headers: new Headers({
@@ -26,7 +26,6 @@ export const loadUser =()=>  (dispatch, getState) => {
         body: JSON.stringify({token:localStorage.getItem('token').split(' ')[1]})
 
     }).then((response) => {
-      console.log('sahi jaga'+response)
 
       response.json().then((data)=>{
 
@@ -36,7 +35,6 @@ export const loadUser =()=>  (dispatch, getState) => {
             })
       })
     }).catch((err) => {
-              console.log('galat jaga'+err)
               dispatch({
                   type: AUTH_ERROR
               })
@@ -168,7 +166,9 @@ export const login = ({ email, password }) =>{
                 type: LOGIN_SUCCESS,
                 payload: data
             })
-            loadUser()
+            console.log('now gonna load')
+            dispatch(loadUser())
+
 
         });
       }else{

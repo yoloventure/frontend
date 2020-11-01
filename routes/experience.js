@@ -13,9 +13,11 @@ router.get('/', function (req, res) {
     path: 'host',
     populate: { path: 'company' }
   })
-  .then(function (experiences) {
+  .then( experiences =>{
     res.send(experiences);
   });
+
+
 });
 
 //Retrive experience by Id
