@@ -112,7 +112,7 @@ class YoloChat extends React.Component {
           <div className='row justify-content-center' style={{paddingTop:'20px'}}>
               <div className="col-12 col-md-5 ">
                   <input
-                      className="subscribeInput text-center pull-right"
+                      className="subscribeInput text-center float-right"
                       style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
                       type="text"
                       id="fname"
@@ -136,7 +136,7 @@ class YoloChat extends React.Component {
                   </div>
               <div className="col-12 col-md-5">
                   <input
-                      className="subscribeInput text-center pull-left"
+                      className="subscribeInput text-center float-left"
                       style={{width:"129px",background:'#150433',color:"#FCFCFC", fontWeight:"600", fontSize:"18px"}}
                       type="email"
                       id="email"
