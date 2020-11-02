@@ -153,13 +153,13 @@ class Dashboard extends React.Component{
               expanded={false}
               width={380}
               color='black'
-
+              >
 
                <p>
                {review.reviewContent}
                </p>
                </ShowMoreText>
-
+              </div>
             </div>
             )
         })
