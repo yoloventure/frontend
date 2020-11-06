@@ -65,6 +65,36 @@ mongoose
   .then(() => console.log("Connected to database..."))
   .catch(err => console.log(err));
 
+
+//clear Reservation collection
+// Reservation.deleteMany({}).then(function(){
+//     console.log("Reservations deleted"); // Success
+// }).catch(function(error){
+//     console.log(error); // Failure
+// });
+
+//Insert example reservation
+// const reservation1=new Reservation({
+//    shadower: "5ed5a01fc8a5c656cc476f80",
+//     host: "5f14aba6e1d046aa0894f3c3",
+//     otherAspects: "sample otherAspects",
+//     whatMakesGood: "sample whatMakesGood",
+//     accomodations: "sample accomodations",
+//     approval: "pending",
+//     availabeRanges: [
+//               "2014-01-01T23:28:56.782Z",
+//               "2014-01-07T23:28:56.782Z"
+//           ],
+//     experience: "5f19b09d769f37d6e9f22802",
+//     aspects: {
+//               "0": "true",
+//               "1": "true",
+//               "2": "false"
+//       },
+// })
+// reservation1.save();
+
+
 //Insert Experience object
   const exp1=new Experience({
   host: "5f14aba6e1d046aa0894f3c3",

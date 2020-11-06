@@ -8,11 +8,12 @@ import moment from "moment";
 import {Button} from "reactstrap"
 import PropTypes from "prop-types";
 import shadowRequests from './shadowRequests.json'
-import reviewNotifications from './reviewNotifications.json'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './dashboard.css'
+import { connect } from 'react-redux';
+import reviewNotifications from './reviewNotifications.json'
 // import './Dashboard.css'
 import {
     BrowserRouter as Router,
@@ -21,7 +22,7 @@ import {
     withRouter,
     Link
 } from "react-router-dom";
-import {MDBIcon, MDBBtn} from 'mdbreact'
+import {MDBBtn} from 'mdbreact'
 
 
 class Dashboard extends React.Component{
@@ -170,7 +171,10 @@ class Dashboard extends React.Component{
             selectedImages:[],
             showRequests:true,
             showCompleted:true,
-            notificationFilters:[]
+            notificationFilters:[],
+            whatICanOfferTitles:[],
+            whatICanOfferBodies:[],
+            perks:[]
 
 
 
@@ -178,7 +182,9 @@ class Dashboard extends React.Component{
 
         let tempArray3=[]
         let currentTemp3=[]
-        fetch('/api/review/', {
+        console.log(this.props.auth.user)
+        fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -228,8 +234,8 @@ class Dashboard extends React.Component{
         console.log(tempArray3)
         console.log(currentTemp3)
 
-
-        fetch('/api/experience/host/5f19ae6cb21fedd6cfee46b9', {
+        //fetch relevant experience for this host and set up initial states
+        fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -240,27 +246,20 @@ class Dashboard extends React.Component{
             response.json().then((experience)=>{
                 console.log(experience)
                 let tempPerks=[]
-                let tempWhatCanIOffer=[]
-                let tempWhatCanIOfferBodies=[]
+                let tempWhatICanOffer=[]
+                let tempWhatICanOfferBodies=[]
                 experience.perks.forEach((perk,i)=>{
-                    if(i===experience.perks.length-1){
-                        tempPerks.push(perk+'.')
-                    }else{
-                        tempPerks.push(perk+", ")
+                    tempPerks.push(perk)
 
-                    }
                 })
                 experience.whatICanOffer.forEach((offer,i)=>{
-                    if(i===experience.perks.length-1){
-                        tempWhatCanIOffer.push(offer.title+'.')
-                    }else{
-                        tempWhatCanIOffer.push(offer.title+", ")
 
-                    }
-                    tempWhatCanIOfferBodies.push(offer.body)
+                    tempWhatICanOffer.push(offer.title)
+
+                    tempWhatICanOfferBodies.push(offer.body)
 
                 })
-                this.setState({perks:tempPerks, whatCanIOfferTitles:tempWhatCanIOffer, whatCanIOfferBodies:tempWhatCanIOfferBodies})
+                this.setState({perks:tempPerks, whatICanOfferTitles:tempWhatICanOffer, whatICanOfferBodies:tempWhatICanOfferBodies})
 
 
             })
@@ -273,7 +272,43 @@ class Dashboard extends React.Component{
 
     }
 
+    confirmExperienceEdit=()=>{
+        let bodyToSend={}
+        bodyToSend["perks"]=this.state.perks
+        let whatCanIOfferArray=new Array(this.state.whatICanOfferBodies.length)
+        for(let i=0;i<whatCanIOfferArray.length;++i){//initial each element as a json
+            whatCanIOfferArray[i]={}
+        }
+        this.state.whatICanOfferTitles.forEach( (titleToAdd,i)=>{
 
+            whatCanIOfferArray[i].title=titleToAdd
+
+        })
+
+
+        this.state.whatICanOfferBodies.forEach( (bodyToAdd,i)=>{
+            whatCanIOfferArray[i]["body"]=bodyToAdd
+
+        })
+
+        bodyToSend["whatICanOffer"]=whatCanIOfferArray
+
+        //update database
+        fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+            method: 'PUT',
+            headers: new Headers({
+                'Content-Type':'application/json'
+            }),
+            body:JSON.stringify(bodyToSend)
+        }).then((response) => {
+        }).catch((err) => {
+            console.log(err)
+
+        });
+        this.setState({editExperience:false})
+
+
+    }
     handleSelect=(ranges)=>{
         if(this.state.counter===1){
             this.setState({selectionRange: {
@@ -489,14 +524,27 @@ class Dashboard extends React.Component{
         })
     }
 
-    handleInputChange=(event)=> {
+    handleInputChange=(event)=> {//generic input change method for all input text boxes. Updates the state.
         const { name, value } = event.target;
-        this.setState(prevState=>{
-            return({
-                ...prevState,
-                [name]: value
-            })
-        });
+        console.log(name+">>"+value)
+        if(name.localeCompare("whatICanOfferTitles")==0 || name.localeCompare("perks")==0){
+            let valueArr=value.split(',')
+            this.setState(prevState=>{
+                return({
+                    ...prevState,
+                    [name]: valueArr
+                })
+            });
+        }
+        else{
+            this.setState(prevState=>{
+                return({
+                    ...prevState,
+                    [name]: value
+                })
+            });
+        }
+
     }
 
     updateNotificationFilters=(e)=>{
@@ -572,9 +620,10 @@ class Dashboard extends React.Component{
         let styleViewPort={ height:window.innerHeight+'px', width:window.innerWidth+'px' }
         let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
 
+
         return(
             <div style={styleViewPort}>
-                <Navbar className='mb-5 bg-light' textColor={"black"} />
+                <Navbar className='mb-5' textColor={"black"} />
 
                 <div className='pt-5 mt-5 mr-5'>
                     <div className='row' >
@@ -611,19 +660,19 @@ class Dashboard extends React.Component{
                                 <div className='row '>
                                     <p className='col-lg-2 col-3 ' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
                                     >Show :</p>
-                                    <Button className='col-lg-2 col-3  btn-pos no-border' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                    <Button className='col-lg-2 col-3  mr-2' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
                                     >
                                         Requests
                                     </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                    <Button className='col-lg-2 col-3  mr-2 pr-4' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#FE8D86'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                     >
                                         Upcoming
                                     </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                    <Button className='col-lg-2 col-3  mr-2 pr-2' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                     >
                                         Ongoing
                                     </Button>
-                                    <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                    <Button className='col-lg-2 col-3  mr-2 pr-5' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
                                     >
                                         Completed
                                     </Button>
@@ -645,7 +694,8 @@ class Dashboard extends React.Component{
                                     <div className='row'>
                                         <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
                                         >My Availability
-                                            <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+
+                                            <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><span className="fas fa-edit"></span></button>
                                         </h5>
 
                                         {!this.state.rangeEditDisabled?
@@ -688,7 +738,7 @@ class Dashboard extends React.Component{
 
 
 
-                                <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                     <div className='col-12' >
                                         <div className='row'>
                                             <h5
@@ -696,13 +746,13 @@ class Dashboard extends React.Component{
                                             >
                                                 My Experience Page
                                                 <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
-                                                    <MDBIcon icon="edit" fixed />
+                                                    <span className="fas fa-edit"></span>
                                                 </button>
 
                                             </h5>
                                             <div className='col-6'>
                                                 <Link>
-                                                    <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+                                                    <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> What makes a great one?</p>
                                                 </Link>
                                             </div>
                                         </div>
@@ -719,15 +769,17 @@ class Dashboard extends React.Component{
                                             {this.state.editExperience?
                                                 <input
                                                     type="text"
-                                                    name="perks"
+                                                    name="whatICanOfferTitles"
                                                     placeholder=""
-                                                    value={this.state.whatCanIOfferTitles}
+                                                    value={this.state.whatICanOfferTitles}
                                                     onChange={this.handleInputChange}
                                                 />
                                                 :
                                                 <h5
                                                     style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
-                                                >{this.state.whatCanIOfferTitles}
+                                                >{this.state.whatICanOfferTitles.map(title=>{
+                                                    return title+','
+                                                })}
                                                 </h5>
                                             }
 
@@ -752,7 +804,9 @@ class Dashboard extends React.Component{
                                                 <h5
                                                     style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
                                                 >
-                                                    {this.state.perks}
+                                                    {this.state.perks.map(perk=>{
+                                                        return perk+','
+                                                    })}
                                                 </h5>
 
                                             }
@@ -786,11 +840,12 @@ class Dashboard extends React.Component{
                                                 :null
                                             }
                                         </div>
-                                        {this.state.editExperience?
-                                            <div className='col-12' >
-                                                <button> Confirm Changes </button>
-                                            </div>
-                                            :null
+                                        {//edit expereience confirm/submit button
+                                            this.state.editExperience?
+                                                <div className='col-12' >
+                                                    <button onClick={this.confirmExperienceEdit}> Confirm Changes </button>
+                                                </div>
+                                                :null
                                         }
 
 
@@ -802,7 +857,7 @@ class Dashboard extends React.Component{
 
 
 
-                                <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                <div className='col-12 mt-2' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                     <div className='row' >
                                         <div className='col-2 mt-2 ml-1'>
                                             <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
@@ -810,7 +865,7 @@ class Dashboard extends React.Component{
                                         <div className='col-6 mt-2'>
 
                                             <Link>
-                                                <p style={{color:'black', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
+                                                <p style={{color:'black', fontSize:'100%'}}> <span className="far fa-question-circle"></span> How to get better reviews?</p>
                                             </Link>
                                         </div>
                                         <div className='col-3 mt-2'>
@@ -866,4 +921,13 @@ class Dashboard extends React.Component{
 }
 
 
-export default   Dashboard;
+
+Dashboard.propTypes = {
+    auth: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
+
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+export default connect(mapStateToProps)(Dashboard);

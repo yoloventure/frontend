@@ -21,18 +21,24 @@ router.get('/:id', function (req, res, next) {
 //Retrive reservations by experience id
 router.get('/experience/:id', function (req, res, next) {
   Reservation.find({experience: req.params.id})
-  .then(function (reservation) {
-    console.log(reservation)
-    res.send(reservation);
+  .then(function (reservations) {
+    res.send(reservations);
   });
 });
 
-//Retrive reservations by user id
-router.get('/user/:id', function (req, res, next) {
-  Reservation.find({user: req.params.id})
-  .then(function (reservation) {
-    console.log(reservation)
-    res.send(reservation);
+//Retrive reservations by shadower id
+router.get('/shadower/:id', function (req, res, next) {
+  Reservation.find({shadower: req.params.id})
+  .then(function (reservations) {
+    res.send(reservations);
+  });
+});
+
+//Retrive reservations by host id
+router.get('/host/:id', function (req, res, next) {
+  Reservation.find({host: req.params.id})
+  .then(function (reservations) {
+    res.send(reservations);
   });
 });
 

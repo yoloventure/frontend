@@ -55,9 +55,9 @@ class Explore extends React.Component{
     this.state = {
       searchValue:'',
       cardArray:cardArray,
-      currentData:[],
-      currentFilteredData:{},
-      data:{},
+      currentData:[],//store in JSON form the current filtered data to display
+      currentFilteredData:{},//store in HTML form the current filtered data that is being displayed
+      data:{},//store in JSON form all data returned from experiences api
       valueFromSearch:'',
       industryFilters:[],
       durationDaysFilters:[],
@@ -413,6 +413,7 @@ class Explore extends React.Component{
 
     sortUndo=()=>{
 
+      let filteredData=this.state.currentFilteredData
 
       let dataToUse=this.state.currentFilteredData
       this.filterIndustry()
@@ -480,7 +481,7 @@ class Explore extends React.Component{
    }
 
    search=()=>{
-     var fuse = new Fuse(data, {
+     var fuse = new Fuse(this.state.data, {
     keys: [
       'industry',
       'profession',

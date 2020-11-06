@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //const host = require('./host');
-
+//schema for experience advertisements/info pages
 const experienceSchema = new mongoose.Schema({
     host:{
         type: mongoose.Schema.Types.ObjectId,
