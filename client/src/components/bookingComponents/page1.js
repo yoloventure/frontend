@@ -96,6 +96,11 @@ class Page1 extends React.Component {
     }));
   }
 
+  confirmRanges=()=>{
+    //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+  }
+
+
 
   render() {
     let todayDate = new Date(moment().format("MM-DD-YYYY"));
