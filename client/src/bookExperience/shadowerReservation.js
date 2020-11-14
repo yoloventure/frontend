@@ -55,15 +55,15 @@ class ShadowReservation extends React.Component {
   componentWillMount() {
     try {
       APIExperience.getExperienceById(this.props.match.params.id)
-        .then(experience => this.setState(prevState => {
-          return {
-            data: {
-              ...prevState.data,
-              experience: experience
-            },
-            loaded: true
-          }
-        }));
+          .then(experience => this.setState(prevState => {
+            return {
+              data: {
+                ...prevState.data,
+                experience: experience
+              },
+              loaded: true
+            }
+          }));
     } catch (error) {
       console.log(error);
     }
@@ -93,12 +93,12 @@ class ShadowReservation extends React.Component {
 
   handleDateRange(availableRanges) {
     this.setState(prevState => {
-        return {
-          data: {
-            ...prevState.data,
-            availableRanges: availableRanges
-          }
+      return {
+        data: {
+          ...prevState.data,
+          availableRanges: availableRanges
         }
+      }
     }, () => {
       console.log(this.state.data);
     });
@@ -113,7 +113,7 @@ class ShadowReservation extends React.Component {
         }
       }
     }, () => {
-    console.log(this.state.data);
+      console.log(this.state.data);
     });
   }
 
@@ -126,7 +126,7 @@ class ShadowReservation extends React.Component {
         }
       }
     }, () => {
-    console.log(this.state.data);
+      console.log(this.state.data);
     });
   }
 
@@ -139,7 +139,7 @@ class ShadowReservation extends React.Component {
         }
       }
     }, () => {
-    console.log(this.state.data);
+      console.log(this.state.data);
     });
   }
 
@@ -152,18 +152,18 @@ class ShadowReservation extends React.Component {
         }
       }
     }, () => {
-    console.log(this.state.data);
+      console.log(this.state.data);
     });
   }
 
   handleFileUpload(file, index) {
     this.setState(prevState => {
-        prevState.data.files[index] = file;
-        return {
-          data: {
-            ...prevState.data,
-          }
+      prevState.data.files[index] = file;
+      return {
+        data: {
+          ...prevState.data,
         }
+      }
     }, () => {
       console.log(this.state.data);
     });
@@ -182,9 +182,9 @@ class ShadowReservation extends React.Component {
       data.user = this.props.auth.user._id;
 
       APIReservation.createReservation(data)
-        .then((function (res) {
-          console.log(res);
-        }));
+          .then((function (res) {
+            console.log(res);
+          }));
     }
   }
 
@@ -242,75 +242,74 @@ class ShadowReservation extends React.Component {
   render() {
     if (this.state.loaded) {
       return (
-        <div className="container-fluid app">
+          <div className="container-fluid app">
 
-          <Helmet>
-            <title>Shadow an experienced {this.state.data.experience.host.title} | YoloShadow</title>
-          </Helmet>
+            <Helmet>
+              <title>Shadow an experienced {this.state.data.experience.host.title} | YoloShadow</title>
+            </Helmet>
 
-          <div className="nav pb-5">
-            <Navbar textColor={"black"} />
-          </div>
-
-          <div className="container pt-5 mt-5 mb-5">
-            <div className="top row">
-              <div className="col-md-4">
-                <img
-                  src={ortho}
-                  alt="photo of orthodontist"
-                  className="chefimage"
-                />
-              </div>
-              <div className="col apply ml-5">
-                <p>Shadow an experienced {this.state.data.experience.host.title}</p>
-              </div>
+            <div className="nav pb-5">
+              <Navbar textColor={"black"} />
             </div>
-          </div>
 
-          <div className="main container">
-            {/*Progress Bar*/}
-
-            <div onSubmit={this.handleSubmit}>
-              <div className="row mt-5">
-                <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
-                  <p>PROGRESS</p>
+            <div className="container pt-5 mt-5 mb-5">
+              <div className="top row">
+                <div className="col-md-4">
+                  <img
+                      src={ortho}
+                      alt="photo of orthodontist"
+                      className="chefimage"
+                  />
                 </div>
-
-                <div className="col-sm-10 progress" style={{ height: "2px" }}>
-                  <div
-                    className={"progress-bar  w-" + this.state.progress}
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                  ></div>
+                <div className="col apply ml-5">
+                  <p>Shadow an experienced {this.state.data.experience.host.title}</p>
                 </div>
               </div>
-              {/*Components go here: replace with components */}
+            </div>
 
-              <div className="insert">
-                {this.handlePageRender(this.state.counter)}
+            <div className="main container">
+              {/*Progress Bar*/}
+
+              <div onSubmit={this.handleSubmit}>
+                <div className="row mt-5">
+                  <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
+                    <p>PROGRESS</p>
+                  </div>
+
+                  <div className="col-sm-10 progress" style={{ height: "2px" }}>
+                    <div
+                        className={"progress-bar  w-" + this.state.progress}
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    ></div>
+                  </div>
+                </div>
+                {/*Components go here: replace with components */}
+
+                <div className="insert">
+                  {this.handlePageRender(this.state.counter)}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="footerpages">
-            <RegistrationFooter />
+            <div className="footerpages">
+              <RegistrationFooter />
+            </div>
           </div>
-        </div>
       );
     } else {
       return (
-        <div>
-          <div className="nav pb-5">
-            <Navbar textColor={'black'}  />
-          </div>
+          <div>
+            <div className="nav pb-5">
+              <Navbar textColor={'black'}  />
+            </div>
+            // insert loading icon
 
-          // insert loading icon
-
-          <div className="footerpages">
-            <RegistrationFooter/>
+            <div className="footerpages">
+              <RegistrationFooter/>
+            </div>
           </div>
-        </div>
       );
     }
   }

@@ -12,10 +12,10 @@
 
 
 a:hover {
-    text-decoration: underline !important;
+  text-decoration: underline !important;
 }
 .nav-link{
   font-family: Mplus 1p;
-font-style: normal;
-font-weight: 700;
+  font-style: normal;
+  font-weight: 700;
 }

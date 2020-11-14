@@ -11,6 +11,7 @@ require('./config/passport');
 const passport = require('passport');
 
 // Models
+const Chat = require('./models/chat');
 const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
@@ -21,6 +22,7 @@ const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 
 // API Endpoints
+const chat = require('./routes/chat');
 const user = require('./routes/user');
 const email = require('./routes/email');
 const emailList = require('./routes/emailList');
@@ -67,19 +69,21 @@ mongoose
   .then(() => console.log("Connected to database..."))
   .catch(err => console.log(err));
 
-const host_Notification_Queue1=new Host_Notification_Queue(
-  {
-    host: "5f14aba6e1d046aa0894f3c3",
-    shadowRequestNotificationQueue:[
-                                    "5f9df96db4e68e5938afa1db"
-                                   ],
-    reviewNotificationQueue:[
-                                  "5fa9d7610172285138fa0f15"
-                            ]
+// const host_Notification_Queue1=new Host_Notification_Queue(
+//   {
+//     host: "5f14aba6e1d046aa0894f3c3",
+//     shadowRequestNotificationQueue:[
+//                                     "5f9df96db4e68e5938afa1db"
+//                                    ],
+//     reviewNotificationQueue:[
+//                                   "5fa9d7610172285138fa0f15"
+//                             ]
+//
+//   }
+// )
+// host_Notification_Queue1.save()
 
-  }
-)
-host_Notification_Queue1.save()
+
 //clear Reservation collection
 // Reservation.deleteMany({}).then(function(){
 //     console.log("Reservations deleted"); // Success
@@ -167,6 +171,7 @@ app.use(express.static(path.join(__dirname, "client/dist")));
 app.use(cors());
 
 // Use API Routes
+app.use('/api/chat', chat);
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/emailList', emailList);

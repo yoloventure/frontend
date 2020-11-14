@@ -146,10 +146,10 @@ class Bottom extends React.Component {
         >
           <div className="row d-flex flex-column">
             <div className="col d-flex justify-content-center">
-              <h3 className="newsletter">Subscribe to Our Newsletter</h3>
+              <h3 className="newsletter d-none d-md-block col-lg-2 col-2">Subscribe to Our Newsletter</h3>
             </div>
             <br />
-            <div className="col d-flex justify-content-center">
+            <div className="col d-flex justify-content-center mt-2 pt-2">
               <h5 className="stay-tuned">
                 Stay Tuned for Yoloer's Adventurous Stories!'
               </h5>
@@ -203,7 +203,7 @@ class Bottom extends React.Component {
                   />
                 </div>
 
-                <div className="row d-flex justify-content-center">
+                <div className="row d-flex justify-content-center mb-2 pb-2">
                   <input type="submit" name="Subscribe" />
                 </div>
               </form>
