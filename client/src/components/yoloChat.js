@@ -2,19 +2,38 @@ import React from "react";
 import "../home/homepage.css";
 import chat1 from "../photos/chat1.png";
 import chat2 from "../photos/chat2.png";
-
+import yoloChatEvent from './yoloChatEvent.json'
 
 class YoloChat extends React.Component {
-   constructor(props) {
+      constructor(props) {
     super(props);
-    this.state = {
-      email: "",
-      fname: "",
-      lname:""
-      //translateValue: 0
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    //set up yolo chat events
+      let tempArray=[]
+        yoloChatEvent.forEach(event=>{
+          tempArray.push(
+        <div class="col text-center">
+         <img src={chat2} />
+          <h2 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
+          >Chat with {event.speaker}</h2>
+          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          >{event.date}</h3>
+          <h3 style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
+          >{event.time}</h3>
+          <a href = {event.link}>
+          <button className="learnmore" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
+            </a>
+      </div>
+          )
+        }
+        )
+      this.state = {
+      email: "",
+      fname: "",
+      lname:"",
+      chatArray:tempArray
+    };
    }
     handleChange(event) {
     const {id,value}=event.target
@@ -69,38 +88,7 @@ class YoloChat extends React.Component {
           > Join us to explore the secret sauce of professionals </h3>
       </div>
        <div className="row d-flex justify-content-around ">
-      <div class="col text-center">
-         <img src={chat2} />
-          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
-          >Chat with Alex Marinov</h2>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >September 13</h3>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
-      </div>
-      <div>
-         <div class="col text-center">
-         <img src={chat1} />
-          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
-          >Chat with Alex Marinov</h2>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >September 13</h3>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
-      </div>
-      </div>
-       <div className="col text-center">
-         <img src={chat1} />
-          <h2 style={{"fontStyle":"normal","fontWeight":"500","fontSize":"24px","lineHeight":"36px","textAlign":"center","color":"#14D2B8","margin-top":"36px"}}
-          >Chat with Alex Marinov</h2>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >September 13</h3>
-          <h3 style={{"fontStyle":"normal","fontWeight":"400","fontSize":"18px","lineHeight":"29.4px","textAlign":"center","color":"#FCFCFC","margin-top":"4px"}}
-          >2020 2PM-3PM EST</h3>
-          <button className="learnmore mt-3 mb-2" style={{background:'#150433',fontStyle: "normal" ,fontWeight: '500',fontSize: '13.5px', lineHeight: '20px',alignItems: 'center',  letterSpacing: '2px',color: '#FCFCFC'}}>Register</button>
-      </div>
+      {this.state.chatArray}
        </div>
        <div className="col text-center" style={{paddingTop:'70px'}}>
       <div className='row d-flex justify-content-center'  >
