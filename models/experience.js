@@ -28,6 +28,14 @@ const experienceSchema = new mongoose.Schema({
       type: Array(Object),
       default: []
     },
+
+    //for good shadower {preferenceForShadower}
+    goodShadower:{
+
+        type: Array(Object),
+        default: []
+    },
+
     perks:{
       type: Array(String),
       default: []

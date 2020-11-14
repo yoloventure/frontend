@@ -33,6 +33,13 @@ const reservationSchema = new mongoose.Schema({
     default:''
 
   },
+
+  //for options for good shadower
+  makesGoodOptions: {
+    type:Object, //true/false for corresponding aspects
+
+  },
+
   whatMakesGood: {
     type: String,
     default:''

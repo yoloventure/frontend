@@ -176,8 +176,6 @@ class Dashboard extends React.Component{
             whatICanOfferBodies:[],
             perks:[]
 
-
-
         }
 
         let tempArray3=[]
@@ -185,9 +183,9 @@ class Dashboard extends React.Component{
         console.log(this.props.auth.user)
         fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
 
-            method: 'get',
-            headers: new Headers({
-                'Content-Type':'application/json'
+                                method: 'get',
+                                headers: new Headers({
+                                'Content-Type':'application/json'
             }),
         }).then((response) => {
 
@@ -198,7 +196,7 @@ class Dashboard extends React.Component{
                         <React.Fragment>
                             <div className='col-11 ml-2 mb-2' >
                                 <p style={{fontSize:'90%',lineHeight:'10px',fontWeight:'500'}}> {review.publishDate} </p>
-                                <ShowMoreText
+                            <ShowMoreText
                                     /* Default options */
                                     lines={1}
                                     more='+more'
@@ -292,6 +290,8 @@ class Dashboard extends React.Component{
         })
 
         bodyToSend["whatICanOffer"]=whatCanIOfferArray
+
+        //EXAMPLE
 
         //update database
         fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {

@@ -13,7 +13,7 @@ class Page5 extends React.Component {
           <div className="col">
             <ol>
               <li>
-                <b>Availability: </b>{this.props.data.availableRanges.startDate.toString()} - {this.props.data.availableRanges.endDate.toString()}
+                <b>Availability: </b> {/*{this.props.data.availableRanges.startDate.toString()} - {this.props.data.availableRanges.endDate.toString()}*/}
               </li>
               <li>
                 <b>Aspects: </b>{this.props.data.otherAspects}

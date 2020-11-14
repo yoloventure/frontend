@@ -4,10 +4,15 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {MDBBtn} from "mdbreact";
+import CardExpDetail from "../cardExpDetail";
 
 class Page1 extends React.Component {
+
+
   constructor(props) {
     super(props);
+
+
 
     if (props.data.availableRanges) {
       this.state = {
@@ -20,8 +25,11 @@ class Page1 extends React.Component {
           endDate: new Date(),
           key: 'selection'
         },
-        rangeTextboxes: new Array(100)
+        rangeTextboxes: new Array(100),
 
+        rangeObjects:new Array(100),
+        textboxIdCount:0,
+        rangeEditDisabled:true,
       };
     }
 
@@ -33,15 +41,30 @@ class Page1 extends React.Component {
     event.preventDefault();
   }
 
-  handleSelect(ranges) {
-    this.setState({selectionRange: {
-      startDate: ranges.selection.startDate,
-      endDate: ranges.selection.endDate,
-      key: 'selection'
-    }}, () => {
-      this.props.handleDateRange(this.state.selectionRange);
-    });
+  handleSelect=(ranges)=>{
+    if(this.state.counter===1){
+      this.setState({selectionRange: {
+          startDate: ranges.selection.startDate,
+          endDate: ranges.selection.startDate,
+          key: 'selection'
+        }})
+    }else{
+      this.setState({selectionRange: {
+          startDate: ranges.selection.startDate,
+          endDate: ranges.selection.endDate,
+          key: 'selection'
+        }})
+    }
+
+    if(this.state.counter===1){
+      this.setState({counter:0})
+    }else{
+      this.setState({counter:1})
+    }
+
+
   }
+
 
   addRange=()=>{
     let rangesUpdated=this.state.rangeTextboxes
@@ -103,6 +126,11 @@ class Page1 extends React.Component {
   }
 
 
+  formatDate(string){
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(string).toLocaleDateString([],options);
+  }
+
 
   render() {
     let todayDate = new Date(moment().format("MM-DD-YYYY"));
@@ -119,17 +147,42 @@ class Page1 extends React.Component {
               </div>
             </div>
             <div className="row mt-5 mb-5">
+              <h5 className="col-12 text-center"> {this.props.data.experience.host.user.fname}'s availability</h5>
               <div className="col text-center">
-                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.addRange}>Add Range </MDBBtn>
-                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
-                <DateRange
-                  ranges={[this.state.selectionRange]}
-                  onChange={this.handleSelect}
-                  moveRangeOnFirstSelection={false}
-                  minDate={todayDate}
-                  scroll={{enabled: true}}
-                  //maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
-                />
+
+                {/*help*/}
+
+                {this.props.data.experience.availableRanges.map((item, index) =>
+
+                  <p>{this.formatDate(item)} </p>
+
+                )}
+
+
+
+                <h5>Your Availability</h5>
+
+                <React.Fragment>
+
+                  <DateRange
+                      ranges={[this.state.selectionRange]}
+                      onChange={this.handleSelect}
+
+                      showDateDisplay={false}
+                      showMonthArrow={false}
+                      showSelectionPreview={false}
+                      scroll={{enabled:true,
+                        calendarWidth: 100,
+                        calendarHeight:100
+                      }}
+                      // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+
+                  />
+                </React.Fragment>
+              </div>
+              <div className="col-12 text-center mt-3">
+                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1'}} onClick={this.addRange}>Add Range </MDBBtn>
+                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
               </div>
             </div>
             <div className="row mt-5 mb-4">

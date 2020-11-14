@@ -37,6 +37,7 @@ class Page4 extends React.Component {
                 <h3>
                   We care about your shadowing experience. How can we better accommodate you?
                 </h3>
+                <p>E.g., accessibility needs, food allergy</p>
               </div>
             </div>
             <div className="row mt-5 mb-5">

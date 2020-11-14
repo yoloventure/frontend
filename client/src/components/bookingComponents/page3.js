@@ -6,16 +6,31 @@ class Page3 extends React.Component {
     super(props);
 
     this.state = {
+      makesGoodOptions: props.data.makesGoodOptions,
       whatMakesGood: props.data.whatMakesGood
     };
 
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMakesGoodOptions = this.handleMakesGoodOptions.bind(this);
     this.handleWhatMakesGood = this.handleWhatMakesGood.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
+  }
+
+  handleMakesGoodOptions(key, event) {
+    const {checked} = event.target;
+    const key_val = key;
+    this.setState(prevState => {
+      prevState.makesGoodOptions[key_val] = checked;
+      return {
+        makesGoodOptions: prevState.makesGoodOptions
+      }
+    }, () => {
+      this.props. handleMakesGoodOptions(this.state.makesGoodOptions);
+    });
   }
 
   handleWhatMakesGood(event) {
@@ -40,6 +55,13 @@ class Page3 extends React.Component {
                 </h3>
               </div>
             </div>
+
+            <div className='row offset-1'>
+              {this.props.data.experience.goodShadower.map((item, index) =>
+                  <CardExpDetail item={item} key={index} id={index} handleAspectSelect={this.handleMakesGoodOptions} aspects={this.state.makesGoodOptions} />
+              )}
+            </div>
+
             <div className="row mt-5 mb-5">
               <div className="col">
                 <p>
@@ -72,5 +94,6 @@ class Page3 extends React.Component {
     );
   }
 }
+
 
 export default Page3;

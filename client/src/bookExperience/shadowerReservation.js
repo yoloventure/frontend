@@ -34,6 +34,10 @@ class ShadowReservation extends React.Component {
         availableRanges: null,
         aspects: {},
         otherAspects: "",
+
+        //add on for page 3
+        makesGoodOptions: "",
+
         whatMakesGood: "",
         accomodations: "",
         approval: "pending",
@@ -46,6 +50,10 @@ class ShadowReservation extends React.Component {
     this.handleDateRange = this.handleDateRange.bind(this);
     this.handleAspectSelect = this.handleAspectSelect.bind(this);
     this.handleOtherAspects = this.handleOtherAspects.bind(this);
+
+    //add-ons for page 3
+    this.handleMakesGoodOptions = this.handleMakesGoodOptions(this);
+
     this.handleWhatMakesGood = this.handleWhatMakesGood.bind(this);
     this.handleAccomodations = this.handleAccomodations.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
@@ -123,6 +131,20 @@ class ShadowReservation extends React.Component {
         data: {
           ...prevState.data,
           otherAspects: otherAspects
+        }
+      }
+    }, () => {
+      console.log(this.state.data);
+    });
+  }
+
+  //add on for page 3
+  handleMakesGoodOptions(makesGoodOptions) {
+    this.setState(prevState => {
+      return {
+        data: {
+          ...prevState.data,
+          makesGoodOptions: makesGoodOptions
         }
       }
     }, () => {
@@ -222,7 +244,7 @@ class ShadowReservation extends React.Component {
         return <Page2 handleAspectSelect={this.handleAspectSelect} handleOtherAspects={this.handleOtherAspects} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 3:
-        return <Page3 handleWhatMakesGood={this.handleWhatMakesGood} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return <Page3 handleMakesGoodOptions={this.handleMakesGoodOptions} handleWhatMakesGood={this.handleWhatMakesGood} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 4:
         return <Page4 handleAccomodations={this.handleAccomodations} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
