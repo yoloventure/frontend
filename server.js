@@ -15,8 +15,10 @@ const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
 const Company = require('./models/company')
-const Review = require('./models/review')
+const Host_Review = require('./models/host_Review')
 const Reservation = require('./models/reservation');
+const Host_Notification_Queue = require('./models/host_Notification_Queue');
+
 
 // API Endpoints
 const user = require('./routes/user');
@@ -65,7 +67,19 @@ mongoose
   .then(() => console.log("Connected to database..."))
   .catch(err => console.log(err));
 
+const host_Notification_Queue1=new Host_Notification_Queue(
+  {
+    host: "5f14aba6e1d046aa0894f3c3",
+    shadowRequestNotificationQueue:[
+                                    "5f9df96db4e68e5938afa1db"
+                                   ],
+    reviewNotificationQueue:[
+                                  "5fa9d7610172285138fa0f15"
+                            ]
 
+  }
+)
+host_Notification_Queue1.save()
 //clear Reservation collection
 // Reservation.deleteMany({}).then(function(){
 //     console.log("Reservations deleted"); // Success
@@ -135,7 +149,7 @@ mongoose
   // exp1.save()
   //
   //
-  // const review1=new Review({
+  // const review1=new Host_Review({
   //   author:'5ef660a01c7b54239095e6c5',
   //   host:'5f14aba6e1d046aa0894f3c3',
   // rating:4,
