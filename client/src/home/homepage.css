@@ -19,16 +19,27 @@
 
 width: 190px;
 height: 45px;
-
- padding-bottom: 0%;
-
-
-
+    padding-bottom: 0%;
 
 border-radius: 36px;
-
+    border-color: white;
 
 }
+
+.subscribeInput{
+    border:none;
+    border-bottom: 1px solid white;
+    padding: 5px 10px;
+    outline: none;
+    color: #FCFCFC !important;
+}
+
+.chat_container{
+  background: #150433;
+
+}
+
+
 br {
             display: block; /* makes it have a width */
             content: ""; /* clears default height */

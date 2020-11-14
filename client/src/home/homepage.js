@@ -12,7 +12,7 @@ import FooterPage from "../components/footer"
 import  Link  from "react-router-dom";
 import BrandImage from '../photos/brand_image.png';
 import { Helmet } from 'react-helmet';
-
+import YoloChat from "../components/yoloChat";
 
 export default class Homepage extends React.Component{
 
@@ -70,6 +70,7 @@ export default class Homepage extends React.Component{
                 </Link>
 
               </div>
+             <YoloChat/>
             </div>
 
 

@@ -24,6 +24,7 @@ class HostExperience extends React.Component {
         <div className="nav">
           <Navbar textColor={"black"} />
         </div>
+
         <div className="p-3">
           <div className="row align-items-center experience-fig1">
             <h2 className="ml-5 mt-2">Host an Experience</h2>

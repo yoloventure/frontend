@@ -1,45 +1,46 @@
 .FeatureStoryTitle{
   // position: absolute;
-//width: 30%;
-height: 650px;
-// left: 10%;
-// top: 120%;
+  //width: 30%;
+  height: 650px;
+  // left: 10%;
+  // top: 120%;
 
-/* Headers/H3 */
+  /* Headers/H3 */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 67px;
 
-font-style: normal;
-font-weight: 500;
-font-size: 45px;
-line-height: 67px;
 
-/* TextColors/Headers */
+  /* TextColors/Headers */
 
-color: #30233D;
+
+  color: #30233D;
 }
 
 
 .learnmore{
 
-width: 190px;
-height: 45px;
- left: 18%;
- top: 110%;
+  width: 190px;
+  height: 45px;
+  left: 18%;
+  top: 110%;
 
 
 
 
-border-radius: 36px
+  border-radius: 36px
 
 
 }
 
 .slider {
-   //position: absolute;
-//
+  //position: absolute;
+  //
 
   top:10%;
- right: 4%;
-// top: 972px;
+  right: 4%;
+  // top: 972px;
   overflow: hidden;
   white-space: nowrap;
 
@@ -79,7 +80,7 @@ border-radius: 36px
 
 
 .right-arrow {
-   //position: absolute;
+  //position: absolute;
   //  top: 50%;
   // right: 27%;
   z-index: 999;
@@ -96,8 +97,8 @@ border-radius: 36px
 
 .left-arrow {
   // position: absolute;
-    // top: 50%;
-    // left: 500%;
+  // top: 50%;
+  // left: 500%;
 
   z-index: 999;
   color: red;

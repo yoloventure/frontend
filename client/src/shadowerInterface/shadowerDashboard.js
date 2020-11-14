@@ -1,28 +1,28 @@
 import React, {createRef} from "react";
-import { Helmet } from 'react-helmet';
+
 import Navbar from "../components/navbar";
-import { DateRange } from 'react-date-range';
+
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {Button} from "reactstrap"
-import PropTypes from "prop-types";
+
+
 import hostRequests from './hostRequests.json'
 import hostReviews from './hostReviews.json'
 import reviewShadowerNotifications from './reviewShadowerNotifications.json'
-import Calendar from 'react-calendar';
+
 import 'react-calendar/dist/Calendar.css';
 import ShowMoreText from 'react-show-more-text';
 import './shadowerDashboard.css'
-// import './Dashboard.css'
+
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter,
   Link
 } from "react-router-dom";
+
 import {MDBIcon, MDBBtn} from 'mdbreact'
+import {DateRange} from "react-date-range";
+
 
 
 class Dashboard extends React.Component{
@@ -73,7 +73,9 @@ class Dashboard extends React.Component{
                         <div className='col-3 offset-4'>
 
 
-                              <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%',color:'white'}}> Reply </button>
+
+                              <button style={{width:"100%" ,"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%',color:'white'}}> Reply </button>
+
 
                        </div>
             </div>
@@ -151,24 +153,22 @@ class Dashboard extends React.Component{
               expanded={false}
               width={380}
               color='black'
+              >
 
-               >
                <p>
                {review.reviewContent}
                </p>
                </ShowMoreText>
-               </div>
+              </div>
             </div>
             )
         })
 
 
 
-
-
           let currentTemp=[];
           let currentTemp2=[];
-          let currentTemp4=[];
+
           try{
             currentTemp=tempArray.slice(0,1)
           }catch(e){
@@ -184,16 +184,22 @@ class Dashboard extends React.Component{
           }catch(e){
 
           }
-          try{
-            currentTemp2=tempArray4.slice(0,2)
-          }catch(e){
 
-          }
 
 
           this.state={
               counter:1,
+
+              selectionRange:{
+                  startDate: new Date(),
+                  endDate: new Date(),
+                  key: 'selection'
+              },
+              rangeTextboxes: new Array(100),
+              rangeObjects:new Array(100),
               textboxIdCount:0,
+              rangeEditDisabled:true,
+
               editExperience:false,
               hostRequests:tempArray,
               currenthostRequests:currentTemp,
@@ -308,7 +314,6 @@ class Dashboard extends React.Component{
         });
 
 
-
   }
 
 
@@ -333,10 +338,73 @@ class Dashboard extends React.Component{
      this.setState({counter:1})
    }
 
-
    }
 
 
+    addRange=()=>{
+        let rangesUpdated=this.state.rangeTextboxes
+        let rangesObjectsUpdated=this.state.rangeObjects
+        let textId='textbox'+this.state.textboxIdCount
+        let startDateArray=this.state.selectionRange.startDate.toString().split(" ")
+        let endDateArray=this.state.selectionRange.endDate.toString().split(" ")
+
+        let htmlForTextbox= startDateArray[0]+ " " +startDateArray[1]+" "+startDateArray[2]+" "+startDateArray[3] + " - " + endDateArray[0]+ " "+endDateArray[1]+" "+endDateArray[2]+" "+endDateArray[3]
+        rangesUpdated[this.state.textboxIdCount]=(
+            <div className='row'>
+
+                <div className='col-2 mt-4'    onClick={this.deleteRange.bind(this,textId )}>
+
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </div>
+
+                <div className='col-10 mt-4'>
+                    <p>{htmlForTextbox}</p>
+                </div>
+            </div>
+        )
+        rangesObjectsUpdated[this.state.textboxIdCount]={startDate: this.state.selectionRange.startDate, endDate: this.state.selectionRange.endDate}
+
+        this.setState({
+            rangeTextboxes: rangesUpdated,
+            textboxIdCount: this.state.textboxIdCount+1,
+            rangeObjects: rangesObjectsUpdated
+        });
+
+    }
+
+    deleteRange(id){
+        let rangesUpdated=this.state.rangeTextboxes
+        let rangesObjectsUpdated=this.state.rangeObjects
+
+        let idToDelete=id.charAt(7);
+        rangesUpdated[idToDelete]=null
+        rangesObjectsUpdated[idToDelete]=null
+
+        this.setState({
+            rangeTextboxes: rangesUpdated,
+            rangeObjects: rangesObjectsUpdated
+
+        });
+    }
+
+    enableRangeEdit=()=>{
+        this.setState(prevState => ({
+            rangeEditDisabled: !prevState.rangeEditDisabled
+        }));
+    }
+
+
+    toggleExperienceEdit=()=>{
+        this.setState(prevState => ({
+            editExperience: !prevState.editExperience
+        }));
+    }
+    confirmRanges=()=>{
+     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+   }
 
 
    changeCards=()=>{
@@ -550,15 +618,17 @@ class Dashboard extends React.Component{
   let styleDateSection={"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px",height:(window.innerHeight/2.2+'px')}
 
   return(
-    <div style={styleViewPort}>
-    <Navbar className='mb-0 mt-5' textColor={"black"} />
 
-    <div className='pt-5 mt-0 mr-5'>
-                <div className='row' >
+    <div className="bg-light" style={styleViewPort}>
+    <Navbar className='mb-5' textColor={"black"} />
+
+    <div className='pt-5 mt-5 mr-5 bg-light'>
+                <div className='row pt-4' >
                         <div className='col-5  offset-1 mt-2'>
                             <div className='row p-3' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                 <div className='col-12 ' >
-                                  <h5 className='' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+                                  <h5 className='pb-4' style={{fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal', color:'#334D6E', fontSize:'100%'}}> My Shadowing Progress</h5>
+
                                 </div>
                                 <div style={{height:'150px', marginLeft:'4%'}}>
                                     <p style={{fontFamily:'Poppins', color:'#192A3E', fontWeight:'700'}}>{todayDateArr[2]} {todayDateArr[1]}, <span style={{color:' #707683'}}>{todayDateArr[0]}</span></p>
@@ -586,21 +656,22 @@ class Dashboard extends React.Component{
 
 
                                   <div className='row '>
-                                              <p className='col-lg-2 col-3 ' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
+
+                                              <p className='col-lg-2 col-3' style={{whiteSpace:'pre',fontFamily:"Poppins","fontStyle":"normal","color":"#6A707E"}}
                                               >Show :</p>
-                                              <Button className='col-lg-2 col-3  mr-2' style={{height:'70%',fontSize:'80%', background:"#2ED47A", color:'white'}}  onClick={(e)=> this.updateNotificationFilters(e)}
-                                              >
-                                                Requests
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'150%', fontSize:'80%', background:"#2ED47A", color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              >Requests
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-4' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#FE8D86'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FE8D86",color:'#FFFFFF'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                               >
                                                 Upcoming
                                               </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-2' style={{height:'70%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos' style={{height:'70%', width:'110%',fontSize:'80%',background:"#FFFFFF",color:'#5E239D'}}   onClick={(e)=> this.updateNotificationFilters(e)}
                                                >
                                                 Ongoing
                                                </Button>
-                                              <Button className='col-lg-2 col-3  mr-2 pr-5' style={{height:'70%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+                                              <Button className='col-lg-2 col-3 btn-pos no-border' style={{height:'70%', width:'110%',fontSize:'80%',background:"#6C7B8A",color:'#FFFFFF'}}  onClick={(e)=> this.updateNotificationFilters(e)}
+
                                               >
                                                 Completed
                                               </Button>
@@ -618,35 +689,87 @@ class Dashboard extends React.Component{
                         </div>
                         <div className='col-5 offset-1' >
                             <div className='row' >
-                                              <div className='col-12' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+
+
+
+                                <div className='col-12' style={{"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                    <div className='row'>
+                                        <h5 className='m-4' style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}
+                                        >My Availability
+                                            <button onClick={this.enableRangeEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}><MDBIcon  icon="edit" fixed /></button>
+                                        </h5>
+
+                                        {!this.state.rangeEditDisabled?
+                                            <React.Fragment>
+                                                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.addRange}>Add Range </MDBBtn>
+                                                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1', height:'50%'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+                                                <DateRange
+                                                    ranges={[this.state.selectionRange]}
+                                                    onChange={this.handleSelect}
+                                                    moveRangeOnFirstSelection={true}
+                                                    minDate={this.state.rangeEditDisabled ? distantDate: todayDate}
+                                                    showDateDisplay={false}
+                                                    showMonthArrow={false}
+                                                    showSelectionPreview={false}
+                                                    scroll={{enabled:true,
+                                                        calendarWidth: 100,
+                                                        calendarHeight:100
+                                                    }}
+                                                    // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+
+                                                />
+                                            </React.Fragment>
+
+                                            :null}
+
+                                        <div className='col-12'>
+
+                                            <p className='mt-2' style={{color:'#4C5862',opacity:'0.5',fontFamily:'Poppins', fontWeight:'500', fontStyle:'normal'}}>Selected Dates:</p>
+                                            <div  style={{height:'100px',overflowY:'scroll', overflowX:'hidden'}}>
+                                                {this.state.rangeTextboxes}
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='col-12' >
                                                           <div className='row'>
                                                             <h5
-                                                            className='mt-2 col-5' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
+                                                            className='mt-2 col-5 pt-1' style={{fontSize:'90%',fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal'}}
                                                             >
                                                               My Profile
                                                               <button onClick={this.toggleExperienceEdit} style={{outline:'none',border:'transparent',background:'#ffffff'}}>
-                                                              <span className="fas fa-edit"></span>
-
+                                                              <MDBIcon icon="edit" fixed />
                                                               </button>
 
                                                             </h5>
-                                                            <div className='col-6'>
+                                                            <div className='col-6 pt-1'>
                                                             <Link>
-                                                                <p style={{color:'#707683', fontSize:'100%'}}><span className="far fa-question-circle"></span> What makes a great one?</p>
+                                                                <p style={{color:'#707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> What makes a great one?</p>
+
                                                             </Link>
                                                             </div>
                                                          </div>
 
                                                     </div>
                                                     <div className='row m-1 mt-1'>
-                                                          <div className='col-4 ' >
+
+                                                          <div className='col-2 ' >
                                                                 <h5
-                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"15px","letterSpacing":"0.01em"}}
+                                                                style={{color:'#707683',"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"400","fontSize":"80%","lineHeight":"10px","letterSpacing":"0.01em"}}
                                                                 >About:
                                                                 </h5>
                                                           </div>
-                                                          <div className='col-8'>
+                                                          <div className='col-10'>
+
                                                               {this.state.editExperience?
                                                                 <input
                                                                   type="text"
@@ -730,19 +853,21 @@ class Dashboard extends React.Component{
 
                                               </div>
 
-                                              <div className='col-12 mt-5' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+
+                                              <div className='col-12 mt-4' style={{background: '#FFFFFF',"boxShadow":"0px 6px 18px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
                                                     <div className='row m-1' >
-                                                        <div className='col-2 mt-2'>
+                                                        <div className='col-3 mt-2 pt-1'>
                                                             <h5  style={{fontFamily:'Poppins', fontWeight:'700', fontStyle:'normal', fontSize:'90%'}}> My Review </h5>
                                                         </div>
-                                                        <div className='col-6 ml-5 mt-2'>
+                                                        <div className='col-5 ml-5 mt-2'>
 
                                                             <Link>
-                                                                <p style={{color:'707683', fontSize:'100%'}}> <span className="far fa-question-circle"></span>How to get better reviews?</p>
+                                                                <p style={{color:'707683', fontSize:'100%'}}> <MDBIcon icon="question-circle" fixed /> How to get better reviews?</p>
                                                             </Link>
                                                          </div>
                                                          <div className='col-2 ml-4 mt-2'>
-                                                           <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                           <a class="btn btn-outline-black dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+
                                                             aria-expanded="false">Sort</a>
 
                                                             <div class="dropdown-menu">
@@ -776,8 +901,10 @@ class Dashboard extends React.Component{
                                                                   </button>
                                                                 </div>
 
-                                                    </div>
-
+                                                                
+                                                    </div>  
+                
+                                                    
 
 
                                               </div>

@@ -17,7 +17,7 @@ const Host = require('./models/host')
 const Company = require('./models/company')
 const Review = require('./models/review')
 const Reservation = require('./models/reservation');
-
+const Chat = require('./models/chat');
 // API Endpoints
 const user = require('./routes/user');
 const email = require('./routes/email');
@@ -30,7 +30,7 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 const fileUpload = require('./routes/fileUpload');
 const reservation = require('./routes/reservation');
-
+ const chat = require('./routes/chat');
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
 
@@ -133,8 +133,16 @@ mongoose
   //   }]
   // })
   // exp1.save()
-  //
-  //
+
+    // const chat1=new Chat({
+  //   speaker:"Lorem ipsum",
+  //   date:"September 20, 2020",
+  //   time:"2PM to 3PM EST",
+  //   image: "http://via.placeholder.com/425x425"
+  //   link: "www.google.com"
+  // })
+  //   chat1.save()
+  // review1.save()
   // const review1=new Review({
   //   author:'5ef660a01c7b54239095e6c5',
   //   host:'5f14aba6e1d046aa0894f3c3',
@@ -164,7 +172,7 @@ app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
 app.use('/api/fileUpload', fileUpload);
 app.use('/api/reservation', reservation);
-
+app.use('/api/chat', chat);
 // Error handling middleware
 app.use(function(err, req, res, next) {
   console.log(err);
