@@ -5,6 +5,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
 import {MDBBtn} from "mdbreact";
 import CardExpDetail from "../cardExpDetail";
+import {Button} from "reactstrap/es";
 
 class Page1 extends React.Component {
 
@@ -146,45 +147,81 @@ class Page1 extends React.Component {
                 </h3>
               </div>
             </div>
-            <div className="row mt-5 mb-5">
-              <h5 className="col-12 text-center"> {this.props.data.experience.host.user.fname}'s availability</h5>
-              <div className="col text-center">
+            <div className="row">
+              <div className="col-6 p-3 align-items-center">
+                <h5 className="text-center">Select at least 3 date & time</h5>
+                <p className="text-center">2 hours experience</p>
 
-                {/*help*/}
-
-                {this.props.data.experience.availableRanges.map((item, index) =>
-
-                  <p>{this.formatDate(item)} </p>
-
-                )}
-
-
-
-                <h5>Your Availability</h5>
-
-                <React.Fragment>
-
-                  <DateRange
-                      ranges={[this.state.selectionRange]}
-                      onChange={this.handleSelect}
-
-                      showDateDisplay={false}
-                      showMonthArrow={false}
-                      showSelectionPreview={false}
-                      scroll={{enabled:true,
-                        calendarWidth: 100,
-                        calendarHeight:100
-                      }}
-                      // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
-
-                  />
+                <React.Fragment className="d-flex align-items-center">
+                        <DateRange
+                            ranges={[this.state.selectionRange]}
+                            onChange={this.handleSelect}
+                            className="ml-0"
+                            showDateDisplay={false}
+                            showMonthArrow={false}
+                            showSelectionPreview={false}
+                            scroll={{enabled:true,
+                              calendarWidth: 100,
+                              calendarHeight:100
+                            }}
+                            // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
+                        />
                 </React.Fragment>
+                <p>February 20</p>
+                <button type="button" className="btn btn-outline-primary m-2">12:00pm - 2:00pm</button>
+                <button type="button" className="btn btn-outline-primary m-2">2:00pm - 4:00pm</button>
+                <button type="button" className="btn btn-outline-primary m-2">4:00pm - 6:00pm</button>
               </div>
-              <div className="col-12 text-center mt-3">
-                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1'}} onClick={this.addRange}>Add Range </MDBBtn>
-                <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>
+
+              <div className="col-6 p-3">
+                <h5>Selected date & time</h5>
+                <p>Confirm ONE date & time. All the others are automatically stored as backup times in case that you and host need to reschedule.</p>
+                <b>February 5th  2:00pm - 3:00pm</b><button type="button" className="btn btn-link">Move to backup</button>
+                <h5 className="pt-3">Backup date & time</h5>
+                <p>February 14, 2020      12:00pm - 2:00pm</p>
+                <p>March 6, 2020            2:00pm - 4:00pm</p>
               </div>
+
             </div>
+            {/*<div className="row mt-5 mb-5">*/}
+            {/*  <h5 className="col-12 text-center"> {this.props.data.experience.host.user.fname}'s availability</h5>*/}
+            {/*  <div className="col text-center">*/}
+
+            {/*    /!*help*!/*/}
+
+            {/*    {this.props.data.experience.availableRanges.map((item, index) =>*/}
+
+            {/*      <p>{this.formatDate(item)} </p>*/}
+
+            {/*    )}*/}
+
+
+
+            {/*    <h5>Your Availability</h5>*/}
+
+            {/*    <React.Fragment>*/}
+
+            {/*      <DateRange*/}
+            {/*          ranges={[this.state.selectionRange]}*/}
+            {/*          onChange={this.handleSelect}*/}
+
+            {/*          showDateDisplay={false}*/}
+            {/*          showMonthArrow={false}*/}
+            {/*          showSelectionPreview={false}*/}
+            {/*          scroll={{enabled:true,*/}
+            {/*            calendarWidth: 100,*/}
+            {/*            calendarHeight:100*/}
+            {/*          }}*/}
+            {/*          // maxDate={this.state.rangeEditDisabled? todayDate: new Date()}*/}
+
+            {/*      />*/}
+            {/*    </React.Fragment>*/}
+            {/*  </div>*/}
+            {/*  <div className="col-12 text-center mt-3">*/}
+            {/*    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":'ml-5'} size='sm' style={{background:'#109CF1'}} onClick={this.addRange}>Add Range </MDBBtn>*/}
+            {/*    <MDBBtn color={this.state.rangeEditDisabled? " disabled ml-3":' ml-3'} size='sm' style={{background:'#109CF1'}} onClick={this.confirmRanges}>Confirm and Submit </MDBBtn>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
             <div className="row mt-5 mb-4">
               <div className="col text-center">
                 <input
