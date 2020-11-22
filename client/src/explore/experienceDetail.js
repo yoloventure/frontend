@@ -54,7 +54,7 @@ export default class ExperienceDetail extends React.Component{
 
                 <div className='row'>
                     <div className='col-4 offset-1 name'>
-                      <img src={this.state.experience.image} />
+                      <img className="image mt-3 pt-3" src={this.state.experience.image} />
                       <div className="d-flex pt-5">
                         <h3> {this.state.experience.host.user.fname} </h3>
                       </div>
@@ -62,20 +62,21 @@ export default class ExperienceDetail extends React.Component{
                         <button id="btn-message" onclick="#">Message</button>
                       </div>
                     </div>
+
                     <div className='col-7 overview'>
-                        <div className="d-flex pt-5 title">
+                        <div className="d-flex pt-5 offset-2 title">
                           <h1> Shadow an experienced {this.state.experience.host.title} </h1>
                         </div>
 
-                        <div className='d-flex pt-5 location'>
+                        <div className='d-flex pt-5 offset-2 location'>
                           <span> {this.state.experience.host.company.city}, {this.state.experience.host.company.state} </span>
                         </div>
-                        <div className='d-flex pt-1 params'>
+                        <div className='d-flex pt-1 offset-2 params'>
                           <span> {this.state.experience.durationDays} days </span>
                           <span> {this.state.experience.price} </span>
                         </div>
 
-                        <div className='d-flex pt-1 controls'>
+                        <div className='d-flex pt-1 offset-2 controls'>
                           <Link id="btn-reserve" className="btn" to={"/reserve/" + this.props.match.params.id}>RESERVE NOW</Link>
                           <button id="btn-availability" onclick="#">Availability</button>
                         </div>
@@ -98,7 +99,7 @@ export default class ExperienceDetail extends React.Component{
                 </div>
 
                 <div className='container pt-4 quote'>
-                    <blockquote>
+                    <blockquote className="p-3">
                       {this.state.experience.quote}
                     </blockquote>
                 </div>

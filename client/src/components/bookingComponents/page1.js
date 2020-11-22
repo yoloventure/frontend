@@ -1,15 +1,17 @@
 import React from "react";
-import { Calendar, DateRange } from 'react-date-range';
+import { Calendar } from 'react-date-range';
+import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from "moment";
+import 'react-calendar/dist/Calendar.css';
 import {MDBBtn} from "mdbreact";
 import CardExpDetail from "../cardExpDetail";
 import {Button} from "reactstrap/es";
 
 class Page1 extends React.Component {
 
-
+//Visual calender
   constructor(props) {
     super(props);
 

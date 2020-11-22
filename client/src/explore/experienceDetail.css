@@ -37,8 +37,13 @@
   height: 40%;
 }
 
+.image{
+  width: 500px;
+}
+
 .overview {
   background: linear-gradient(216.68deg, #5E239D 0%, #B77FFF 15.81%);
+
 }
 
 .overview span {
@@ -123,3 +128,4 @@
   /* Colors/White */
   color: #FCFCFC;
 }
+
