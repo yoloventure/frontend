@@ -73,7 +73,7 @@ class Round2_Page1 extends React.Component {
               <div className="col text-center">
                 <input
                   className="btn nextBtn"
-                  type="submit"
+                  type="button"
                   value="Next Step"
                   onClick={this.props.goNext}
                 />

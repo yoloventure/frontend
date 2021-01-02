@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 
 //Retrive application by Id
 router.get('/:id', function (req, res, next) {
-  Host.findById({_id: req.params.id})
+  Host.findById(req.params.id)
   // .populate('user')
   // .populate('company')
   // .populate('location')
@@ -50,7 +50,7 @@ router.post('/', function (req, res, next) {
 //edit application using put requests
 router.put('/:id', function (req, res, next) {
   //find and update specific application
-  Host.findByIdAndUpdate({_id: req.params.id}, req.body).then(function () {
+  Host.findByIdAndUpdate( req.params.id, req.body).then(function () {
     //find and send back updated application for display
     Host.findOne({_id: req.params.id}, req.body).then(function (host) {
       res.send(host);
@@ -60,7 +60,7 @@ router.put('/:id', function (req, res, next) {
 
 //delete specific application
 router.delete('/:id', function (req, res, next) {
-  Host.findByIdAndRemove({_id: req.params.id}).then(function (host) {
+  Host.findByIdAndRemove(req.params.id).then(function (host) {
     res.send(host);
   });
 });

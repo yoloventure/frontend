@@ -10,6 +10,22 @@ const hostSchema = new mongoose.Schema({
     required: true,
   },
   //--------------------------page-1----------------------------
+  yearsExp: {
+    type: Number,
+    default: null,
+  },
+  workingImage: {
+    type: String,
+    default: null,
+  },
+  otherAspects: {
+    type: String,
+    default: null,
+  },
+ idImage: {
+    type: String,
+    default: null,
+  },
   gender: {
     type: String,
     default: null,
@@ -53,12 +69,12 @@ const hostSchema = new mongoose.Schema({
     default: null,
     required: true,
   },
-  moreOffering: {
-    //other aspects of what they can offer
-    type: Array(String),
-    default: null,
-    required: false,
-  },
+  // moreOffering: {
+  //   //other aspects of what they can offer
+  //   type: Array(String),
+  //   default: null,
+  //   required: false,
+  // },
   //----------------page-4------------------------------------
   expertise: {
     type: Array(String),

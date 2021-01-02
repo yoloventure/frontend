@@ -83,45 +83,7 @@ class Page3 extends React.Component {
                 </div>
               </div>
 
-              <div className="row mt-3 mb-n3">
-                <div className="col">
-                  <p>Tell us more</p>
-                </div>
-                <div className="col">
-                  <p>Tell us more</p>
-                </div>
-                <div className="col">
-                  <p>Tell us more</p>
-                </div>
-              </div>
 
-              <div className="row">
-                <div className="col">
-                  <textarea
-                    placeholder="e.g., I’ll show you how I pace my speech, use radiograph to explain, and apply other techniques routinely to communicate effectively with my patients."
-                    type="text"
-                    name="moreOne"
-                    value={this.props.host.moreOne}
-                    onChange={this.props.handleInputChange}
-                  />
-                </div>
-                <div className="col">
-                  <textarea
-                    type="text"
-                    name="moreTwo"
-                    value={this.props.host.moreTwo}
-                    onChange={this.props.handleInputChange}
-                  />
-                </div>
-                <div className="col">
-                  <textarea
-                    type="text"
-                    name="moreThree"
-                    value={this.props.host.moreThree}
-                    onChange={this.props.handleInputChange}
-                  />
-                </div>
-              </div>
 
               <div className="container mt-3">
                 <div className="row">

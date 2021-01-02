@@ -26,4 +26,4 @@ const yoloChatAdSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("YoloChatAd", chatSchema);
+module.exports = mongoose.model("YoloChatAd", yoloChatAdSchema);

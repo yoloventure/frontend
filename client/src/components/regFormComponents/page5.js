@@ -25,7 +25,7 @@ class Page5 extends React.Component {
           <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>1</p>
           </div>
           <div className='col-6'>
-          <p className='mt-2'> <b>userId</b>: {obj.userId} </p>
+          <p className='mt-2'> <b>userId</b>: {obj.hostId} </p>
           </div>
 
         </div>
@@ -34,7 +34,15 @@ class Page5 extends React.Component {
           <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>2</p>
           </div>
           <div className='col-6'>
-          <p className='mt-2'> <b>name:</b> {obj.name} </p>
+          <p className='mt-2'> <b>first name:</b> {obj.fname} </p>
+          </div>
+        </div>
+          <div className="row mb-2">
+          <div className='col-2'>
+          <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>2</p>
+          </div>
+          <div className='col-6'>
+          <p className='mt-2'> <b>lirst name:</b> {obj.lname} </p>
           </div>
         </div>
         <div className="row mb-2">
