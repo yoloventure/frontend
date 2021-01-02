@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import PropTypes from "prop-types";
 import Navbar from "../components/navbar";
 import "./explore.css";
-// import data from "../explore/data.json";
+// import dataihuhkj from "../explore/data.json";
 import Card from "../components/card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
@@ -25,7 +25,6 @@ import Fuse from 'fuse.js';
 
 
 class Explore extends React.Component{
-
 
 
   componentDidMount() {
@@ -64,7 +63,7 @@ class Explore extends React.Component{
 
   }
 
-  
+
 
   constructor(props) {
     super(props)
@@ -90,7 +89,7 @@ class Explore extends React.Component{
     }
 
 
-    
+
 
 
 
@@ -117,7 +116,7 @@ class Explore extends React.Component{
 
 
   filter=()=>{
-   
+
 console.log(this.state.durationDaysFilters)
       let filteredData=this.state.currentData
 
@@ -142,7 +141,7 @@ console.log(this.state.durationDaysFilters)
       }
 
       if(this.state.durationDaysFilters.length!==0){
-       
+
 console.log(this.state.currentData)
 
       filteredData= filteredData.filter(dataElement => {
@@ -205,8 +204,6 @@ console.log(this.state.currentData)
           <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
           {console.log(filteredData[i].image)}
           </div>
-
-
           <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
           <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
           </div>
@@ -727,7 +724,7 @@ console.log(this.state.currentData)
     );
 
 
-      
+
 }
 }
 
