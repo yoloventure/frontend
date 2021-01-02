@@ -80,22 +80,26 @@ function rejectApp(hostId) {
 
 function submitAppRound2(hostApp) {
   // upload images
+
   for (var i=0; i<hostApp.files.length; i++) {
     const data = new FormData();
     data.append('file', hostApp.files[i]);
     data.append('hostId', hostId);
 
-    axios.post("/api/fileUpload", data, {
-        })
-        .then(res => {
-          console.log(res.statusText)
-        });
-  }
+  //   const config = {     
+  //   headers: { 'content-type': 'multipart/form-data' }
+  // }
+  //   axios.post("api/fileUpload", data, config)
+  //       .then(res => {
+  //         console.log(res.statusText)
+  //       });
+   }
   
   // update host availability
   var hostId = hostApp.hostId;
   var host = APIHost.getHostById(hostId);
-  host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
+   host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
+  //host.gender = "female";
   APIHost.editHost(hostId, host);
 }
 

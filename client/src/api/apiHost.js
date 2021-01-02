@@ -14,15 +14,15 @@ function getHostById(hostId){
 }
 
 //returns the infomations about the current Host or null if not logged in
-// function getCurrentHost(){
-//   var user = getCurrentUser();
-//   var hostId = user.hostId;
-//   if (hostId != null) {
-//     return getHostById(hostId);
-//   } else {
-//     return null;
-//   }
-// }
+function getCurrentHost(){
+  var user = getCurrentUser();
+  var hostId = user.hostId;
+  if (hostId != null) {
+    return getHostById(hostId);
+  } else {
+    return null;
+  }
+}
 
 //returns the infomations about all the hosts in the system
 function getAllHosts(){
@@ -41,6 +41,7 @@ function getAllHosts(){
 function createNewHost(host) {
   console.log(JSON.stringify(host))
   var path = "/api/host/";
+
   return fetch(path, {
     method: 'post',
     headers: new Headers({
@@ -56,7 +57,7 @@ function createNewHost(host) {
 }
 
 
-function editHost(hostId, Host) {
+function editHost(hostId, data) {
   var path = "/api/host/" + hostId;
   return fetch(path, {
     method: 'put',
@@ -64,7 +65,9 @@ function editHost(hostId, Host) {
         'Content-Type': 'application/json'
     }),
     body: JSON.stringify({
-        host: Host
+        "idImage": data.idImage,
+        "workingImage": data.workingImage,
+        "availability": data.availability,
     }),
     credentials: "include"
   }).then((response) => {
@@ -73,7 +76,6 @@ function editHost(hostId, Host) {
     console.log(err);
   });
 }
-
 
 function deleteHost(hostId) {
   var path = "/api/host/" + hostId;
