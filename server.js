@@ -11,14 +11,18 @@ require('./config/passport');
 const passport = require('passport');
 
 // Models
+const Chat = require('./models/chat');
 const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
 const Company = require('./models/company')
-const Review = require('./models/review')
+const Host_Review = require('./models/host_Review')
 const Reservation = require('./models/reservation');
-const Chat = require('./models/chat');
+const Host_Notification_Queue = require('./models/host_Notification_Queue');
+
+
 // API Endpoints
+const chat = require('./routes/chat');
 const user = require('./routes/user');
 const email = require('./routes/email');
 const emailList = require('./routes/emailList');
@@ -30,7 +34,7 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 const fileUpload = require('./routes/fileUpload');
 const reservation = require('./routes/reservation');
- const chat = require('./routes/chat');
+
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
 
@@ -51,10 +55,11 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority";
-
+// const db =
+//   process.env.MONGODB_URI ||
+//   "mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority";
+  const db=process.env.MONGODB_URI ||
+  "mongodb://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-shard-00-00.oru1g.gcp.mongodb.net:27017,yolo-cluster-shard-00-01.oru1g.gcp.mongodb.net:27017,yolo-cluster-shard-00-02.oru1g.gcp.mongodb.net:27017/test?ssl=true&replicaSet=yolo-cluster-shard-0&authSource=admin&retryWrites=true&w=majority"
 //Connect to MongoDB
 mongoose
   .connect(db, {
@@ -64,6 +69,20 @@ mongoose
   })
   .then(() => console.log("Connected to database..."))
   .catch(err => console.log(err));
+
+// const host_Notification_Queue1=new Host_Notification_Queue(
+//   {
+//     host: "5f14aba6e1d046aa0894f3c3",
+//     shadowRequestNotificationQueue:[
+//                                     "5f9df96db4e68e5938afa1db"
+//                                    ],
+//     reviewNotificationQueue:[
+//                                   "5fa9d7610172285138fa0f15"
+//                             ]
+//
+//   }
+// )
+// host_Notification_Queue1.save()
 
 
 //clear Reservation collection
@@ -133,17 +152,9 @@ mongoose
   //   }]
   // })
   // exp1.save()
-
-    // const chat1=new Chat({
-  //   speaker:"Lorem ipsum",
-  //   date:"September 20, 2020",
-  //   time:"2PM to 3PM EST",
-  //   image: "http://via.placeholder.com/425x425"
-  //   link: "www.google.com"
-  // })
-  //   chat1.save()
-  // review1.save()
-  // const review1=new Review({
+  //
+  //
+  // const review1=new Host_Review({
   //   author:'5ef660a01c7b54239095e6c5',
   //   host:'5f14aba6e1d046aa0894f3c3',
   // rating:4,
@@ -161,6 +172,7 @@ app.use(express.static(path.join(__dirname, "client/dist")));
 app.use(cors());
 
 // Use API Routes
+app.use('/api/chat', chat);
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/emailList', emailList);
@@ -172,7 +184,7 @@ app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
 app.use('/api/fileUpload', fileUpload);
 app.use('/api/reservation', reservation);
-app.use('/api/chat', chat);
+
 // Error handling middleware
 app.use(function(err, req, res, next) {
   console.log(err);

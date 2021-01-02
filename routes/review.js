@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Review = require('../models/review');
+const Review = require('../models/host_Review');
 
 //Get all experiences
 router.get('/', function (req, res) {

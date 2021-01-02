@@ -7,10 +7,15 @@ import {
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    RESET_ATTEMPT
 } from './types';
 import { returnErrors } from './errorActions';
 
-
+export const resetAttempt=()=>(dispatch)=>{
+  dispatch({
+    type:RESET_ATTEMPT
+  })
+}
 export const loadUser =()=>  (dispatch, getState) => {
     dispatch({
         type: USER_LOADING
@@ -162,6 +167,8 @@ export const login = ({ email, password }) =>{
     }).then((response) => {
         if(response.status===200){
         response.json().then((data)=>{
+          console.log('now gonna login')
+
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: data
