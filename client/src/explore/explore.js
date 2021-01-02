@@ -724,7 +724,7 @@ console.log(this.state.currentData)
     );
 
 
-
+      
 }
 }
 
