@@ -55,10 +55,11 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority";
-
+// const db =
+//   process.env.MONGODB_URI ||
+//   "mongodb+srv://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-oru1g.gcp.mongodb.net/test?retryWrites=true&w=majority";
+  const db=process.env.MONGODB_URI ||
+  "mongodb://yolo-dev:RLTwlEzBUNsKWcbB@yolo-cluster-shard-00-00.oru1g.gcp.mongodb.net:27017,yolo-cluster-shard-00-01.oru1g.gcp.mongodb.net:27017,yolo-cluster-shard-00-02.oru1g.gcp.mongodb.net:27017/test?ssl=true&replicaSet=yolo-cluster-shard-0&authSource=admin&retryWrites=true&w=majority"
 //Connect to MongoDB
 mongoose
   .connect(db, {

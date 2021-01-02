@@ -14,7 +14,7 @@ const chatSchema = new mongoose.Schema({
     time: {
       type:String,
       required:true
-    }
+    },
     image:{
       type: String,
       required: true
