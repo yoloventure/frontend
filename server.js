@@ -11,7 +11,7 @@ require('./config/passport');
 const passport = require('passport');
 
 // Models
-const Chat = require('./models/chat');
+const YoloChatAd = require('./models/yoloChatAd');
 const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
