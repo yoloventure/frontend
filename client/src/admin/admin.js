@@ -12,7 +12,7 @@ class Admin extends React.Component {
     super(props);
 
     this.state = {
-      hostApps: [],
+      hostApps: []
     };
 
   }
@@ -25,6 +25,7 @@ class Admin extends React.Component {
             return host.approval == 'pending';
           })
         )
+
         .then(data => this.setState({hostApps: data}));
     } catch (error) {
       console.log(error);

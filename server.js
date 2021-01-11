@@ -17,7 +17,7 @@ const Host = require('./models/host')
 const Company = require('./models/company')
 const Review = require('./models/review')
 const Reservation = require('./models/reservation');
-const Chat = require('./models/chat');
+const Chat = require('./models/yoloChatAd');
 // API Endpoints
 const user = require('./routes/user');
 const email = require('./routes/email');
@@ -30,7 +30,7 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 const fileUpload = require('./routes/fileUpload');
 const reservation = require('./routes/reservation');
- const chat = require('./routes/chat');
+ const chat = require('./routes/yoloChatAd');
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
 
