@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import PropTypes from "prop-types";
 import Navbar from "../components/navbar";
 import "./explore.css";
-// import data from "../explore/data.json";
+// import dataihuhkj from "../explore/data.json";
 import Card from "../components/card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
@@ -27,9 +27,35 @@ import Fuse from 'fuse.js';
 class Explore extends React.Component{
 
 
-
   componentDidMount() {
-    this._isMounted=true
+    fetch('api/experience/', {
+      method: 'get',
+      headers: new Headers({
+          'Content-Type':'application/json'
+      }),
+  })
+  .then((response) => {
+
+    response.json().then(data=>{
+          console.log(data)
+          data.forEach(element=>{
+            element.availableFrom=element.availableRanges[0] //set this to first element in available ranges, as we assume array is sorted
+            element.availableTill=element.availableRanges[element.availableRanges.length-1]
+          })
+
+
+          this.setState({
+              currentData:JSON.parse(JSON.stringify(data)),//store in JSON form the current filtered data to display
+              currentDataHTML:JSON.parse(JSON.stringify(data)),//store in HTML form the current filtered data that is being displayed
+              data:JSON.parse(JSON.stringify(data)),
+              firstAPICallCompleted:true
+
+          })
+    })
+  }).catch((err) => {
+            console.log(err)
+
+  });
 
   }
   componentWillUnmount() {
@@ -37,12 +63,7 @@ class Explore extends React.Component{
 
   }
 
-  static propTypes = {
-    auth:PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
-    city: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
+
 
   constructor(props) {
     super(props)
@@ -55,48 +76,20 @@ class Explore extends React.Component{
     this.state = {
       searchValue:'',
       cardArray:cardArray,
-      currentData:[],//store in JSON form the current filtered data to display
-      currentFilteredData:{},//store in HTML form the current filtered data that is being displayed
-      data:{},//store in JSON form all data returned from experiences api
       valueFromSearch:'',
       industryFilters:[],
       durationDaysFilters:[],
-      startDate:new Date(),//inititalized as today
-      endDate: (new Date()).setDate((new Date()).getDate() + 80),//set initital date to be 80 days ahead of today's date
+      startDate:(new Date()).setDate((new Date()).getDate() - 380),//inititalized as today minus 380 days
+      endDate: (new Date()).setDate((new Date()).getDate() + 180),//set initital date to be 80 days ahead of today's date
       sortHTML:'Sort By',
       sortSelection:'N',
       match:match,
+      firstAPICallCompleted:false
 
     }
 
 
-     fetch('api/experience/', {
-        method: 'get',
-        headers: new Headers({
-            'Content-Type':'application/json'
-        }),
-    })
-    .then((response) => {
 
-      response.json().then(data=>{
-            console.log(data)
-            data.forEach(element=>{
-              element.availableFrom=element.availableRanges[0]
-              element.availableTill=element.availableRanges[element.availableRanges.length-1]
-            })
-
-
-            this.setState({
-                currentData:JSON.parse(JSON.stringify(data)),
-                currentFilteredData:JSON.parse(JSON.stringify(data)),
-                data:JSON.parse(JSON.stringify(data))
-
-            })
-      })
-    }).catch((err) => {
-              console.log(err)
-
-    });
 
 
 
@@ -124,34 +117,41 @@ class Explore extends React.Component{
 
   filter=()=>{
 
+console.log(this.state.durationDaysFilters)
       let filteredData=this.state.currentData
 
       if(this.state.industryFilters.length!==0){
 
 
-      filteredData= filteredData.filter(dataElement => {
-            let bool=false
-              this.state.industryFilters.forEach(industry=>{
-
-                  if(dataElement.industry.includes(industry)){
-                    bool=true;
+        filteredData= filteredData.filter(dataElement => {
+          console.log(dataElement)
+              let bool=false
+                this.state.industryFilters.forEach(industry=>{
+                  if(dataElement.host.industry){
+                    if(dataElement.host.industry.includes(industry)){
+                      bool=true;
+                    }
                   }
-              })
+                })
 
-              return bool;
+                return bool;
 
-      })
+        })
 
       }
 
       if(this.state.durationDaysFilters.length!==0){
 
+console.log(this.state.currentData)
 
       filteredData= filteredData.filter(dataElement => {
+        console.log('here')
 
             let bool=false
               this.state.durationDaysFilters.forEach(durationDays=>{
-                   if(durationDays>3 &&  dataElement.durationDays>2   ){
+                console.log(durationDays)
+                console.log(dataElement.durationDays)
+                   if(durationDays>2 &&  dataElement.durationDays>2   ){
                      bool=true
                    }
                    else if(dataElement.durationDays==durationDays){
@@ -173,7 +173,7 @@ class Explore extends React.Component{
             console.log(endDate)
             let from=new Date(dataElement.availableFrom)
             let to=new Date(dataElement.availableTill)
-            if(from.getTime()>=startDate.getTime() &&endDate.getTime()>=to.getTime()){
+            if(new Date(from).getTime()>=new Date(startDate).getTime() &&new Date(endDate).getTime()>=new Date(to).getTime()){
                 console.log('dates true')
                bool=true
             }
@@ -204,8 +204,6 @@ class Explore extends React.Component{
           <Card image={filteredData[i].image} id={filteredData[i].id} city={filteredData[i].city} profession={filteredData[i].profession} price={filteredData[i].price} durationDays={filteredData[i].durationDays}/>
           {console.log(filteredData[i].image)}
           </div>
-
-
           <div className="card col-lg-4  offset-lg-1 " style={{padding:'2%'}}>
           <Card image={filteredData[i+1].image} id={filteredData[i+1].id} city={filteredData[i+1].city} profession={filteredData[i+1].profession} price={filteredData[i+1].price} durationDays={filteredData[i+1].durationDays}/>
           </div>
@@ -235,7 +233,7 @@ class Explore extends React.Component{
         // Then we use that to set the state for list
         this.setState({
           cardArray: cardArray2,
-          currentFilteredData:filteredData
+          currentDataHTML:filteredData
 
         });
 
@@ -279,7 +277,7 @@ class Explore extends React.Component{
         });
   }
   sortLow=()=>{
-    let filteredData=this.state.currentFilteredData
+    let filteredData=this.state.currentDataHTML
 
       this.sortByKeyL(filteredData, 'price');
 
@@ -349,7 +347,7 @@ class Explore extends React.Component{
   }
 
     sortHigh=()=>{
-      let filteredData=this.state.currentFilteredData
+      let filteredData=this.state.currentDataHTML
 
 
         this.sortByKeyH(filteredData, 'price');
@@ -413,9 +411,9 @@ class Explore extends React.Component{
 
     sortUndo=()=>{
 
-      let filteredData=this.state.currentFilteredData
+      let filteredData=this.state.currentDataHTML
 
-      let dataToUse=this.state.currentFilteredData
+      let dataToUse=this.state.currentDataHTML
       this.filterIndustry()
 
       console.log(dataToUse)
@@ -570,7 +568,7 @@ class Explore extends React.Component{
 
      }
 
-     this.setState({cardArray:results, currentFilteredData:dataToDisplay})
+     this.setState({cardArray:results, currentDataHTML:dataToDisplay})
    }
 
   render(){
@@ -597,6 +595,9 @@ class Explore extends React.Component{
       }
     return (
       <div>
+      {!this.state.currentData? <h1> Loading</h1>
+      :
+        <div>
 
         <Navbar className='mb-5' textColor={'black'} />
 
@@ -609,7 +610,7 @@ class Explore extends React.Component{
                         <h1 className="text-center pt-4" style={{color:"white", fontSize:"200%", fontWeight:'500',"textTransform":"uppercase"}}>Start Your next Journey </h1>
                         <div className='d-flex justify-content-center'>
                           <div className="input-group pt-2">
-                              <input id="addInput" type="text" class="form-control" value={this.state.searchValue} name="searchValue" onChange={this.handleInputChange} placeholder="Search"
+                              <input id="addInput" type="text" className="form-control" value={this.state.searchValue} name="searchValue" onChange={this.handleInputChange} placeholder="Search"
                               />
                               <div className="input-group-append">
                                 <button class="btn btn-secondary" type="button" onClick={this.search}>
@@ -718,11 +719,12 @@ class Explore extends React.Component{
 
 
       </div>
-
+    }
+      </div>
     );
 
 
-
+      
 }
 }
 

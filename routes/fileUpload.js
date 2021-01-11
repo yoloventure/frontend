@@ -25,8 +25,7 @@ const getBlobName = originalName => {
     const identifier = Date.now();
     return '${identifier}-${originalName}';
 };
- 
-try {
+/*try {
     // Use StorageSharedKeyCredential with storage account and account key
     const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey);
     const blobServiceClient = new BlobServiceClient(
@@ -36,7 +35,7 @@ try {
 
     router.post('/', uploadStrategy, (req, res) => {
         const containerClient = blobServiceClient.getContainerClient(containerName);
-    
+
         //const content = "Hello world!";
         const blobName = getBlobName(req.file.originalname);
         const stream = getStream(req.file.buffer);
@@ -52,7 +51,7 @@ try {
 
 } catch {
     console.log("fileUpload.js: Error while connecting to Azure (check env variables)");
-}
+}*/
 
 
 module.exports = router;

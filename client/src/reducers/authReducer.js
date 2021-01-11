@@ -6,7 +6,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    RESET_ATTEMPT
   } from '../actions/types';
 
 const initialState = {
@@ -14,11 +15,17 @@ const initialState = {
     isAuthenticated: null,
     isLoading: false,
     user: null,
-    error:''
+    error:'',
+    attemptDone:false
 }
 
 export default function(state=initialState, action) {
     switch(action.type){
+        case RESET_ATTEMPT:
+            return{
+              ...state,
+              attemptDone:false
+            };
         case USER_LOADING:
             return {
                 ...state,
@@ -42,7 +49,8 @@ export default function(state=initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                user: action.payload.user
+                user: action.payload.user,
+                attemptDone:true
 
             };
         case AUTH_ERROR:
@@ -57,7 +65,8 @@ export default function(state=initialState, action) {
                 isAuthenticated: false,
                 isLoading: false,
                 user: null,
-                error:'failure'
+                error:'failure',
+                attemptDone:true
 
             }
 

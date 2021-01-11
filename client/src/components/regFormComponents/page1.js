@@ -124,6 +124,7 @@ class Page1 extends React.Component {
                       value={this.props.host.gender}
                       onChange={this.props.handleInputChange}
                     >
+                      <option value="">Select</option>
                       <option value="female">Female</option>
                       <option value="male">Male</option>
                       <option value="nonbinary">Non-binary</option>

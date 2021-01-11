@@ -3,15 +3,17 @@ import React from "react";
 class Round2_Page3 extends React.Component {
   constructor(props) {
     super(props);
-
     if (props.data.files[1]) {
       this.state = {
-        fileName: props.data.files[1].name
+        fileName: props.data.files[1].name,
+        selectedFile: props.data.files[1],
+       workingImagePath: URL.createObjectURL(props.data.files[1])
       };
     } else {
       this.state = {
         selectedFile: null,
-        fileName: ""
+        fileName: "",
+        workingImagePathL: null
       };
     }
 
@@ -24,9 +26,11 @@ class Round2_Page3 extends React.Component {
   }
 
   handleFileUpload(event) {
+    event.preventDefault();
     this.setState({
       selectedFile: event.target.files[0],
       fileName: event.target.files[0].name,
+      workingImagePath: URL.createObjectURL(event.target.files[0])
       //loaded: 0,
     }, () => {
       //console.log(event.target.files[0]);
@@ -55,6 +59,7 @@ class Round2_Page3 extends React.Component {
                     <div className="vl"></div>
                   </div>
                 </label>
+                <img src={this.state.workingImagePath}/>
                 <p>{this.state.fileName}</p>
               </div>
             </div>
@@ -70,7 +75,7 @@ class Round2_Page3 extends React.Component {
               <div className="col text-left">
                 <input
                   className="btn nextBtn"
-                  type="submit"
+                  type="button"
                   value="Submit"
                   onClick={this.props.goNext}
                 />

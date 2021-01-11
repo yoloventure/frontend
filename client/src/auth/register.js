@@ -11,11 +11,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import PropTypes from 'prop-types';
-import { register } from '../actions/authActions';
+import { register,resetAttempt } from '../actions/authActions';
 
 class Register extends Component {
   constructor(props) {
     super(props);
+    this.props.resetAttempt();
 
     this.state = {
         user: {
@@ -53,6 +54,7 @@ handleSubmit(event) {
     this.setState({ submitted: true });
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
+        this.props.resetAttempt();
         this.props.register(user);
 
    }
@@ -60,8 +62,27 @@ handleSubmit(event) {
 
 }
 
+ static getDerivedStateFromProps(nextProps, prevState){
 
-componentWillReceiveProps(nextprops){
+   if(nextProps.auth.attemptDone){
+     console.log('here')
+     if(nextProps.auth.isAuthenticated){
+       return {errorMessage:"Success", redirect:true};
+
+
+     }else {
+       console.log('authenticated fail')
+
+       return {errorMessage:"There is already a user associated with this email."};
+
+     }
+
+   }
+ }
+
+
+/*This lifecycle method has been declared unsafe for newer version of react
+ componentWillReceiveProps(nextprops){
   if(nextprops.auth.isAuthenticated){
     this.setState({errorMessage:"", redirect:true})
 
@@ -72,7 +93,7 @@ componentWillReceiveProps(nextprops){
     this.setState({errorMessage:"There is already a user associated with this email."})
 
   }
-}
+}*/
 renderRedirect = () => {
   if (this.state.redirect) {
       var link="/";
@@ -166,5 +187,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withRouter,
-  connect(mapStateToProps,  {register})
+  connect(mapStateToProps,  {register,resetAttempt})
 )(Register);

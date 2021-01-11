@@ -18,8 +18,7 @@ const userSchema = new mongoose.Schema({
     hostId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Host',
-        type: String,
-        default: null,
+        default: null
     },
     job_interest:{
         type: Array,

@@ -55,18 +55,34 @@ class Login extends Component {
          // }
     }
 
-    componentWillReceiveProps(nextprops){
-      if(nextprops.auth.isAuthenticated){
-        this.setState({errorMessage:"", redirect:true})
-         // this.props.loadUser();
 
-      }else{
-        console.log('authenticated fail')
+    static getDerivedStateFromProps(nextProps, prevState){
 
-        this.setState({errorMessage:"Username or Password was incorrect."})
+      if(prevState.submitted){
+        if(nextProps.auth.isAuthenticated){
+          return {errorMessage:"Success", redirect:true};
 
+
+        }else {
+          console.log('authenticated fail')
+
+          return {errorMessage:"Username or Password was incorrect."};
+
+        }
       }
     }
+    // componentWillReceiveProps(nextprops){
+    //   if(nextprops.auth.isAuthenticated){
+    //     this.setState({errorMessage:"", redirect:true})
+    //
+    //
+    //   }else{
+    //     console.log('authenticated fail')
+    //
+    //     this.setState({errorMessage:""})
+    //
+    //   }
+    // }
 
     renderRedirect = () => {
       if (this.state.redirect) {
