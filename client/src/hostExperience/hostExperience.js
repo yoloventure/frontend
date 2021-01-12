@@ -5,7 +5,7 @@ import "./hostExperience.css";
 import Navbar from "../components/navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../components/footer";
-import chef from "../photos/chef.jpg";
+import mike_photo from "../photos/mike_photo.png";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
@@ -75,7 +75,7 @@ class HostExperience extends React.Component {
               </div>
               <div className="col-md-3 align-self-center">
                 <img
-                  src={chef}
+                  src={mike_photo}
                   alt="photo of a smiling chef"
                   className="chefimage"
                 />
