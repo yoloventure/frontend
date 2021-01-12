@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Slide from './slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
-import img1 from "../photos/chef.jpg"
+import img1 from "../photos/mike_photo.png"
+
 import img2 from "../photos/ortho2.png"
 import img3 from "../photos/yawo.png"
 import "./style.scss"
@@ -21,17 +22,18 @@ export default class Slider extends Component {
       img1,img2,img3
       ],
       title: [
-        'What is it like to be a chef in Japan?',
+        'What is it like to work while travelling?',
         'A day shadowing an experienced orthodontist',
         'just test'
       ],
       body1:[
-          'There is a huge difference between just learning basic skills in school and actually going out there to work with real pros,” said Seo, a student at Hattori Nutrition College in Tokyo. It’s only after you’ve had real working experience that you’ll be able to understand the certain way (Japanese people) act and think.',
+          'Mark’s photography assignments have taken him to more than 100 countries on six continents. Among Mark’s numerous accolades are CLIO, ACE, Aurora Gold, and IPA awards. His books include Faces of the Twentieth Century: Master Photographers and Their Work, The Way of the Japanese Bath, Wanderlust, North Korea, South Korea, Inside Iran and The Travel Photo Essay: Describing A Journey Through Images. He is currently putting the final touches on The People of the Forest, a book about orangutans.',
           'We went through dental nomenclature, the small business, dental instruments, infection control and dental procedures to name a few.',
           'We went through dental nomenclature, the small business, dental instruments, infection control and dental procedures to name a few.',
 
       ],
-      body2:['As a foreigner aspiring to become a “washoku” (Japanese food) chef, South Korean student Seo Dong-young landed an ideal job after shadowing a Japanese chef through YOLO.',
+      body2:[
+        'Mark hosts shadowing experience “The Photo Essay describing the story through images” to open doors for anyone, whether you are a novice or a seasoned photographer.',
       'Alyssa went to a dental specialist’s office to observe procedures, learned terminology and techniques, observed different practice environments and asked the dental professional questions about her journey to practicing dentistry.',
       'Alyssa went to a dental specialist’s office to observe procedures, learned terminology and techniques, observed different practice environments and asked the dental professional questions about her journey to practicing dentistry.',
 
@@ -86,7 +88,7 @@ export default class Slider extends Component {
 
     return (
       <div className='container-fluid'>
-            <div className='row'>
+            <div className='row pb-2'>
 
                   <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"20%"}}>
                        <h2 className="" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
@@ -106,7 +108,7 @@ export default class Slider extends Component {
                   <div className="col-md-3 align-self-center">
 
                       <img src={this.state.images[0]}
-                      alt="photo of a smiling chef"
+                      alt="picture of a photographer"
 
                       />
 
@@ -117,8 +119,7 @@ export default class Slider extends Component {
                       <img src={fquote} alt="" />
                       <br />
                       <p style={{ width: "50%" }}>
-                        YOLOers really inspire me! I’ve got different points of view
-                        on the work I do.
+                      Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
                       </p>
 
                       <br />
@@ -131,7 +132,8 @@ export default class Slider extends Component {
             </div>
 
             <div className='row'>
-                  <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12 ' style={{background: '#F2C94C', padding:'5%'}}>
+
+                  <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12' style={{background: '#F2C94C', padding:'5%'}}>
                        <h2 className=" offset-1" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
                        <h2 className="offset-1"style={{"fontStyle":"normal","fontWeight":"500","fontSize":"55px","lineHeight":"67px","color":"#30233D"}}
@@ -156,7 +158,7 @@ export default class Slider extends Component {
                   </div>
 
 
-
+            
 
                   <div className='col-lg-2 col-2 pt-4 d-none d-md-block col-lg-2 col-2' id="">
 

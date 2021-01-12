@@ -77,6 +77,39 @@ class Page5 extends React.Component {
           <p className='mt-2'> <b>industry:</b> {obj.industry} </p>
           </div>
         </div>
+        {obj.twitterProfile?
+        (<div className="row mb-2">
+          <div className='col-2'>
+          <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>5</p>
+          </div>
+          <div className='col-6'>
+          <p className='mt-2'> <b>Twitter:</b> {obj.twitterProfile} </p>
+          </div>
+        </div>)
+        :null
+        } 
+        {obj.linkedInProfile?
+        <div className="row mb-2">
+          <div className='col-2'>
+          <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>5</p>
+          </div>
+          <div className='col-6'>
+          <p className='mt-2'> <b>LinkedIn:</b> {obj.linkedInProfile} </p>
+          </div>
+        </div>
+        :null
+        } 
+        {obj.instagramProfile?
+        <div className="row mb-2">
+          <div className='col-2'>
+          <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>5</p>
+          </div>
+          <div className='col-6'>
+          <p className='mt-2'> <b>Instagram:</b> {obj.instagramProfile} </p>
+          </div>
+        </div>
+        :null
+        } 
         <div className="row mb-2">
           <div className='col-2'>
           <p className="ellipse" style={{height:'75%', width:'50%',background:'transparent'}}>6</p>

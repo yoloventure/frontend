@@ -250,6 +250,7 @@ class Page1 extends React.Component {
                   <div className="row mt-3 mb-n2">
                     <label>Company website</label>
                   </div>
+
                   <div className="row">
                     <input
                       placeholder="website url"
@@ -259,6 +260,7 @@ class Page1 extends React.Component {
                       onChange={this.props.handleInputChange}
                     />
                   </div>
+
                 </div>
                 <div className="col">
 
@@ -269,7 +271,54 @@ class Page1 extends React.Component {
                           onChange={this.props.handleInputChange}
                       ></textarea>
                   </div>
+                  <div className="row mt-3 mb-n2">
+                    <label>Twitter</label>
+                  </div>
 
+                  <div className="row">
+                     <div className="col">
+
+                    <input
+                      placeholder="optional"
+                      name="twitterProfile"
+                      value={this.props.host.twitterProfile}
+                      type="text"
+                      onChange={this.props.handleInputChange}
+                    />
+                    </div>
+                  </div>
+                  <div className="row mt-3 mb-n2">
+                    <label>LinkedIn</label>
+                  </div>
+
+                  <div className="row">
+                     <div className="col">
+
+                    <input
+                      placeholder="optional"
+                      name="linkedInProfile"
+                      value={this.props.host.linkedInProfile}
+                      type="text"
+                      onChange={this.props.handleInputChange}
+                    />
+                    </div>
+                  </div>
+                  <div className="row mt-3 mb-n2">
+                    <label>Instagram</label>
+                  </div>
+
+                  <div className="row">
+                     <div className="col">
+
+                    <input
+                      placeholder="optional"
+                      name="instagramProfile"
+                      value={this.props.host.instagramProfile}
+                      type="text"
+                      onChange={this.props.handleInputChange}
+                    />
+                    </div>
+                  </div>
               </div>
 
               </div>
