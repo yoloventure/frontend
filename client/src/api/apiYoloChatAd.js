@@ -1,6 +1,6 @@
 //returns the infomations about the chat with the given UID
-function getChatById(chatId){
-  var path = "/api/chat/" + chatId;
+function getYoloChatAdById(yoloChatAdId){
+  var path = "/api/yoloChatAd/" + chatId;
   return fetch(path, {
       method: 'get',
       credentials: "include"
@@ -12,8 +12,8 @@ function getChatById(chatId){
 }
 
 //returns the infomations about all the chats in the system
-function getAllChats(){
-  var path = "/api/chat/";
+function getAllYoloChatAds(){
+  var path = "/api/yoloChatAd/";
   return fetch(path, {
       method: 'get',
       credentials: "include"
@@ -25,8 +25,8 @@ function getAllChats(){
 }
 
 //creates a new chat in the system
-function createChat(Chat) {
-  var path = "/api/chat/";
+function createYoloChatAd(YoloChatAd) {
+  var path = "/api/yoloChatAd/";
   return fetch(path, {
     method: 'post',
     headers: new Headers({
@@ -44,7 +44,7 @@ function createChat(Chat) {
 }
 
 //updatees an chat in the system(after the chat,update the register link to google drive recording)
-function editChat(experienceId, Experience) {
+function editYoloChatAd(yoloChatAdId, YoloChatAd) {
   var path = "/api/chat/" + chatId;
   return fetch(path, {
     method: 'put',
@@ -63,7 +63,7 @@ function editChat(experienceId, Experience) {
 }
 
 //deletes an experience in the system
-function deleteChat(experienceId) {
+function deleteYoloChatAd(yoloChatAdId) {
   var path = "/api/chat/" + chatId;
   return fetch(path, {
       method: 'DELETE',
@@ -79,4 +79,4 @@ function deleteChat(experienceId) {
 }
 
 
-export default {getChatById, getAllChats, deleteChat, editChat, createChat}
+export default {getYoloChatAdById, getAllYoloChatAds, deleteYoloChatAd, editYoloChatAd, createYoloChatAd}

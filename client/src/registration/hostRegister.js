@@ -46,14 +46,12 @@ class HostRegister extends React.Component {
         offerOne: "",
         offerTwo: "",
         offerThree: "",
-        moreOne: "",
-        moreTwo: "",
-        moreThree: "",
         otherAspects: "",
         expertise: "",
         password:"",
         confirmPassword:"",
-        errorMessage:''
+        errorMessage:'',
+        offering:[],
       },
       counter: 1,
       progress: 0,
@@ -90,8 +88,6 @@ class HostRegister extends React.Component {
 
   handleSubmit() {
 
-
-
     if(this.state.counter===7){
       let host=this.state.host
       let user = {
@@ -105,6 +101,13 @@ class HostRegister extends React.Component {
 
 
     }else if(this.state.counter===6 && this.props.auth.isAuthenticated){
+          const offering2 = [this.state.host.offerOne,this.state.host.offerTwo,this.state.host.offerThree];
+          this.setState({
+              host: {
+                ...this.state.host,
+                offering: [...this.state.host.offering,...offering2],
+              }
+          });
       APICompany.createCompany({
          name:this.state.host.company,
          website:this.state.host.website,
@@ -115,6 +118,10 @@ class HostRegister extends React.Component {
          zip:this.state.host.zip
       }).then( response=>this.setState({  host:{...this.state.host,company:response._id, user:this.props.auth.user._id}  } ,()=>{
           console.log(this.state.host)
+          console.log("offering");
+          console.log(this.state.host.offering);
+          console.log("more offering");
+          console.log(this.state.host.moreOffering);
           APIHost.createNewHost(this.state.host);
           this.setState({firstLoad:false})
         }))

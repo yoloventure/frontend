@@ -11,7 +11,7 @@ require('./config/passport');
 const passport = require('passport');
 
 // Models
-const Chat = require('./models/chat');
+const YoloChatAd = require('./models/yoloChatAd');
 const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
@@ -22,7 +22,7 @@ const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 
 // API Endpoints
-const chat = require('./routes/chat');
+const yoloChatAd = require('./routes/yoloChatAd');
 const user = require('./routes/user');
 const email = require('./routes/email');
 const emailList = require('./routes/emailList');
@@ -172,7 +172,7 @@ app.use(express.static(path.join(__dirname, "client/dist")));
 app.use(cors());
 
 // Use API Routes
-app.use('/api/chat', chat);
+app.use('/api/yoloChatAd', yoloChatAd);
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/emailList', emailList);

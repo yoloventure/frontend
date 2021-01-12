@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const chatSchema = new mongoose.Schema({
+const yoloChatAdSchema = new mongoose.Schema({
   //change speaker to speaker name
     speaker:{
       type: String,
@@ -26,4 +26,4 @@ const chatSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("Chat", chatSchema);
+module.exports = mongoose.model("YoloChatAd", yoloChatAdSchema);

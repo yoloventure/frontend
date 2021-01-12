@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from 'react-helmet';
+import {connect} from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./hostRegister.css";
@@ -13,13 +14,23 @@ import Round2_Page3 from "../components/regFormComponents/round2_Page3";
 import Round2_Page4 from "../components/regFormComponents/round2_Page4";
 import APIHostApp from "../api/apiHostApp";
 import APIUser from "../api/apiUser";
+import APIHost from "../api/apiHost";
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: {hostId: null, dateRange: null, files: []},
+      data: {
+        hostId: null, 
+        dateRange: null, 
+        files: [],
+        workingImage: "",
+        idImage: "" ,
+        availability: []
+      },
       counter: 1,
       progress: 25,
     };
@@ -30,12 +41,19 @@ class HostRegister_Round2 extends React.Component {
   }
 
   componentDidMount() {
-    const user = APIUser.getCurrentUser();
+    const user = this.props.auth.user;
+    console.log("host id");
+    console.log(user.hostId);
+    console.log("id");
+    console.log(user._id);
+    console.log("user");
+    console.log(this.props.auth.user);
+    //hard code host id for now
     this.setState(prevState => {
       return {
         data: {
           ...prevState.data,
-          hostId: user.hostId
+          hostId: "5f3978f8bf2792263cbad573",
         }
       }
     });
@@ -86,18 +104,37 @@ class HostRegister_Round2 extends React.Component {
     }, () => {
       console.log(this.state.data);
     });
-  }
 
+  }
   handleSubmit() {
     if (this.state.counter == 4 && this.formValidation()) {
       console.log("Submit API called");
-
-      let data = this.state.data;
-      console.log(data);
-
-      data.hostId = 'test123'; // overwrite hostId for testing
-
-      APIHostApp.submitAppRound2(data);
+      const { data } = this.state;
+       // let data = this.state.data;
+       console.log(data);
+      const start = new Date(this.state.data.dateRange.startDate);
+      const end = new Date(this.state.data.dateRange.endDate);
+      const availability2 = [start,end];
+      this.setState({ 
+        data: {
+            ...this.state.data,
+            workingImage: "working image",
+            idImage: "id image",
+            availability: [...this.state.data.availability,...availability2]
+         }
+       }, () => {
+      console.log(this.state.data);
+        APIHost.editHost(data.hostId, this.state.data);
+    }); 
+      //var host = APIHost.getHostById(data.hostId);
+      //host.idImage=this.state.data.idImage;
+      // console.log("current image");
+      // console.log(this.state.data);
+      
+       // data.hostId = 'test123'; // overwrite hostId for testing
+       // APIHost.editHost(data.hostId, this.state.data);
+       // console.log(host.availability);
+      //APIHostApp.submitAppRound2(data);
     }
   }
 
@@ -142,6 +179,16 @@ class HostRegister_Round2 extends React.Component {
   }
 
   render() {
+     const { isAuthenticated, user } = this.props.auth;
+        //      let fname='noOne'
+        // try {
+
+        //     fname=user.fname
+
+        // }
+        // catch(err) {
+        //      console.log("hi there")
+        // }
     return (
       <div className="container-fluid app">
 
@@ -201,5 +248,10 @@ class HostRegister_Round2 extends React.Component {
     );
   }
 }
-
-export default HostRegister_Round2;
+Navbar.propTypes = {
+    auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth
+});
+export default connect(mapStateToProps)(HostRegister_Round2);
