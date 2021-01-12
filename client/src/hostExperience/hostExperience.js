@@ -85,8 +85,7 @@ class HostExperience extends React.Component {
                   <img className="mt-5" src={fquote} alt="" />
                   <br />
                   <p style={{ width: "50%" }}>
-                    YOLOers really inspire me! I’ve got different points of view
-                    on the work I do.
+                  Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
                   </p>{" "}
                   <br />
                   <img src={bquote} alt="" />

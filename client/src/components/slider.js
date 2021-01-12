@@ -88,7 +88,7 @@ export default class Slider extends Component {
 
     return (
       <div className='container-fluid'>
-            <div className='row pb-2'>
+            <div className='row '>
 
                   <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"20%"}}>
                        <h2 className="" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
@@ -131,7 +131,7 @@ export default class Slider extends Component {
 
             </div>
 
-            <div className='row'>
+            <div className='row mb-3'>
 
                   <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12' style={{background: '#F2C94C', padding:'5%'}}>
                        <h2 className=" offset-1" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
