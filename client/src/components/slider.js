@@ -89,7 +89,6 @@ export default class Slider extends Component {
     return (
       <div className='container-fluid'>
             <div className='row '>
-
                   <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"65%"}}>
                        <h2 className="" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
