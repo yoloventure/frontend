@@ -55,20 +55,23 @@ class HostExperience extends React.Component {
               <div className="fig10 col-md-5 align-self-end row">
                 <div className="insider row">
                   <div className="container  align-self-center">
-                    <h5>Demonstrate your values</h5>
+
+
+
+
+                    <h5>Small business, big impact</h5>
                     <p>
-                      Show your openness, dedication to diversity & inclusion,
-                      and willingness to give back.
+                    Unveil your impact to curious minds, reach more customers and collaborators, and show your dedication to the diverse business world.
+
                     </p>
-                    <h5>Get a new perspective</h5>
+                    <h5>Exchange perspectives</h5>
                     <p>
-                      Infuse your business with a different point of view and
-                      innovative ideas.
+                    Infuse your growing business with a different point of view and innovative ideas.
                     </p>
-                    <h5>Grow your brand Bring </h5>
+                    <h5>Grow your brand </h5>
                     <p>
-                      people along on your business journey and create a
-                      community of fans and advocates and get rewarded for it.
+                    Bring people along on your business journey and create a community of fans and advocates and get rewarded for it.
+
                     </p>
                   </div>
                 </div>
