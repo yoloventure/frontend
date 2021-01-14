@@ -23,7 +23,7 @@ export default class Homepage extends React.Component{
     return(
       <div className="section">
         <Helmet>
-          <title>Yolo Shadow | Your Next Career Starts with an Adventure</title>
+          <title>Yolo Shadow | Transformative job shadowing with small business owners</title>
           <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
         </Helmet>
 
@@ -38,10 +38,10 @@ export default class Homepage extends React.Component{
 
               <div className='row pt-5'>
                 <div className='col-lg-9 col-10 offset-1 mt-2 pt-5'>
-                  <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>
+                  <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>  
 
-                  <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'7vw', color:"white", fontWeight:'670'}}>Your next career <br/> </h3>
-                  <h3 className='' style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'7vw',fontWeight:'670',color:"#F2C94C"}}> starts with an <br/> adventure </h3>
+                  <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'7vw', color:"white", fontWeight:'670'}}>Transformative job <br/>shadowing 
+                  <span style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'7vw',fontWeight:'670',color:"#F2C94C"}}>  with small <br/> business owners </span> </h3>
                 </div>
                 <div className='d-none d-md-block col-lg-2 col-2' id="scrollForMore">
 

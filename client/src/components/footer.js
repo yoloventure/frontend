@@ -76,16 +76,16 @@ const Footer = () => {
             </div>
 
             <div className="row mt-5">
-              <h5 className="col text-center follow mt-5">
-                <a href="#">F O L L O W  U S</a>
+              <h5 className="col text-center mt-5" style={{whiteSpace:"pre"}}>
+                <a href="#">F O L L O W   U S</a>
               </h5>
             </div>
 
             <div className="row justify-content-center">
               <div className="text-center">
-                <a className="btn btn-social-icon btn-facebook" href="https://www.facebook.com/yoloshadow"><i className="fa fa-facebook"></i></a>
-                <a className="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/company/yolo-shadow/"><i className="fa fa-linkedin"></i></a>
-                <a className="btn btn-social-icon" href="https://www.instagram.com/yolo.shadow/"><i className="fa fa-instagram"></i></a>
+                <a className="btn btn-social-icon " href="https://www.facebook.com/yoloshadow"><i className="fa fa-facebook" style={{color:"white"}}></i></a>
+                <a className="btn btn-social-icon " href="https://www.linkedin.com/company/yolo-shadow/"><i className="fa fa-linkedin" style={{color:"white"}}></i></a>
+                <a className="btn btn-social-icon" href="https://www.instagram.com/yolo.shadow/"><i className="fa fa-instagram" style={{color:"white"}}></i></a>
               </div>
             </div>
 

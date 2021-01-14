@@ -9,7 +9,7 @@ import img3 from "../photos/yawo.png"
 import "./style.scss"
 import bquote from "../photos/bquote.png";
 import fquote from "../photos/fquote.png";
-import ScrollArrow from '../photos/searchArrow.png'
+import arrow from '../photos/searchArrow.png'
 import  Link  from "react-router-dom";
 
 
@@ -89,6 +89,7 @@ export default class Slider extends Component {
     return (
       <div className='container-fluid'>
             <div className='row '>
+
                   <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"65%"}}>
                        <h2 className="" style={{"fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                        > Featured Story </h2>
@@ -164,7 +165,7 @@ export default class Slider extends Component {
 
                     <h3 className='' style={{"position":"absolute", top:"50%","width":"272px","height":"28px","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}>
                     Scroll For More </h3>
-                    <a href="#whyYolo" style={{"position":"absolute", top:"67%", left:'49%', "transform":"rotate(90deg)"}}>  <img src={ScrollArrow}></img></a>
+                    <a href="#whyYolo" style={{"position":"absolute", top:"67%", left:'49%', "transform":"rotate(90deg)"}}>  <img src={arrow}></img></a>
 
                   </div>
 
