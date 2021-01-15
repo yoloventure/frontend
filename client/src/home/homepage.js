@@ -23,7 +23,7 @@ export default class Homepage extends React.Component{
     return(
       <div className="section">
         <Helmet>
-          <title>YoloShadow | Your Next Career Starts with an Adventure</title>
+          <title>Yolo Shadow | Transformative job shadowing with small business owners</title>
           <meta property="og:image" content={"http://yoloshadow.com" + BrandImage} />
         </Helmet>
 
@@ -38,10 +38,10 @@ export default class Homepage extends React.Component{
 
               <div className='row pt-5'>
                 <div className='col-lg-9 col-10 offset-1 mt-2 pt-5'>
-                  <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>
+                  <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>  
 
-                  <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'7vw', color:"white", fontWeight:'670'}}>Your next career <br/> </h3>
-                  <h3 className='' style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'7vw',fontWeight:'670',color:"#F2C94C"}}> starts with an <br/> adventure </h3>
+                  <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'7vw', color:"white", fontWeight:'670'}}>Transformative job <br/>shadowing 
+                  <span style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'7vw',fontWeight:'670',color:"#F2C94C"}}>  with small <br/> business owners </span> </h3>
                 </div>
                 <div className='d-none d-md-block col-lg-2 col-2' id="scrollForMore">
 
@@ -70,7 +70,6 @@ export default class Homepage extends React.Component{
                 </Link>
 
               </div>
-             <YoloChat/>
             </div>
 
 
@@ -84,11 +83,11 @@ export default class Homepage extends React.Component{
               <div className='row d-flex justify-content-center pb-3 '>
                 <h2 className='pt-3' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"6.5vh","lineHeight":"67px","textAlign":"center","color":"#FCFCFC"}}
 
-                > Why YoloShadow </h2>
+                > Why Yolo Shadow </h2>
               </div>
               <div className='row d-flex justify-content-center  ' style={{paddingBottom:'4%'}} >
                 <h3 style={{fontSize:"18px", fontFamily:"Mplus 1p",fontStyle:"normal",fontWeight:"500",lineHeight:"29px",textAlign:"center",color:"#FCFCFC"}}
-                >       YoloShadow empowers you in every way. </h3>
+                >       Yolo Shadow empowers you in every way. </h3>
 
               </div>
               <div className='container pt-5  ' style={{paddingBottom:'4%'}} >
@@ -106,14 +105,14 @@ export default class Homepage extends React.Component{
                     <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#F61067"}}
                     > Adventurous </h2>
                     <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"18px","lineHeight":"29px","color":"#FCFCFC"}}
-                    >Yolo empowers me to become an adventurer </h3>
+                    >Yolo Shadow empowers you to become an adventurer </h3>
                   </div>
 
                   <div className="col-md-4">
                     <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#F2C94C"}}
                     > Community </h2>
                     <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"18px","lineHeight":"29px","color":"#FCFCFC"}}
-                    > Join a global community of Yoloers and Yolo hosts </h3>
+                    > Join a global community of Yolo Shadowers and Hosts </h3>
                   </div>
                 </div>
               </div>
@@ -124,21 +123,21 @@ export default class Homepage extends React.Component{
                     <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#F67110"}}
                     > Customizable </h2>
                     <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"18px","lineHeight":"29px","color":"#FCFCFC"}}
-                    >Every YoloShadow experience is tailored to your needs </h3>
+                    >Every Yolo Shadow experience is tailored to your needs </h3>
                   </div>
 
                   <div className='col-md-4' >
                     <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#00F0B5"}}
                     > Accessible </h2>
                     <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"18px","lineHeight":"29px","color":"#F2F2F2"}}
-                    >YoloShadow strives to make job shadow more accessible to everyone </h3>
+                    >Yolo Shadow strives to make job shadow more accessible to everyone </h3>
                   </div>
 
                   <div className="col-md-4">
                     <h2 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"27px","color":"#F61067"}}
                     > Impactful </h2>
                     <h3 style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"normal","fontSize":"18px","lineHeight":"29px","color":"#FCFCFC"}}
-                    > A YoloShadow experience opens door for career opportunities </h3>
+                    > A Yolo Shadow experience opens door for career opportunities </h3>
                   </div>
 
                   <Link to='/explore' style={{paddingTop:'7%', paddingLeft:'40%'}}>

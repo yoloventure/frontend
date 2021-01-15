@@ -14,15 +14,15 @@ function getHostById(hostId){
 }
 
 //returns the infomations about the current Host or null if not logged in
-function getCurrentHost(){
-  var user = getCurrentUser();
-  var hostId = user.hostId;
-  if (hostId != null) {
-    return getHostById(hostId);
-  } else {
-    return null;
-  }
-}
+// function getCurrentHost(){
+//   var user = getCurrentUser();
+//   var hostId = user.hostId;
+//   if (hostId != null) {
+//     return getHostById(hostId);
+//   } else {
+//     return null;
+//   }
+// }
 
 //returns the infomations about all the hosts in the system
 function getAllHosts(){

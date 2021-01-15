@@ -47,6 +47,18 @@ const hostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  twitterProfile: {
+    type: String,
+    required: false,
+  },
+  linkedInProfile: {
+    type: String,
+    required: false,
+  },
+  instagramProfile: {
+    type: String,
+    required: false,
+  },
   company: {
     //company has both company name and website
     type: mongoose.Schema.Types.ObjectId,
