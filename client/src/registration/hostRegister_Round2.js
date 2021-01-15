@@ -17,7 +17,10 @@ import APIUser from "../api/apiUser";
 import APIHost from "../api/apiHost";
 import PropTypes from 'prop-types';
 import { register,loadUser } from '../actions/authActions';
-
+import axios from 'axios';
+// import { InteractiveBrowserCredential } from "@azure/identity";
+// // we're using these objects from the storage sdk - there are others for different needs
+// import { BlobServiceClient, BlobItem } from "@azure/storage-blob";
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +32,8 @@ class HostRegister_Round2 extends React.Component {
         files: [],
         workingImage: "",
         idImage: "" ,
-        availability: []
+        availability: [],
+        imgCollection:[]
       },
       counter: 1,
       progress: 25,
@@ -53,7 +57,7 @@ class HostRegister_Round2 extends React.Component {
       return {
         data: {
           ...prevState.data,
-          hostId: "5f3978f8bf2792263cbad573",
+          hostId: "5ff95d7a88a6f4b1c2b33a01",
         }
       }
     });
@@ -124,6 +128,22 @@ class HostRegister_Round2 extends React.Component {
          }
        }, () => {
       console.log(this.state.data);
+      var formData = new FormData();
+      formData.append('imgCollection',this.state.data.files[0]);
+      formData.append('imgCollection',this.state.data.files[1]);
+      console.log("form data");
+      formData.forEach((value, key) => {
+console.log("key %s: value %s", key, value);
+})
+      APIHost.editHost(data.hostId, this.state.data);
+      var path = "/api/host/" + this.state.data.hostId;
+       axios.post(path, formData, {
+        headers: {
+      'Content-Type': 'multipart/form-data'
+      }
+        }).then(res => {
+            console.log(res.data)
+        })
         APIHost.editHost(data.hostId, this.state.data);
     }); 
       //var host = APIHost.getHostById(data.hostId);

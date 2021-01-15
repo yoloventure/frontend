@@ -184,7 +184,7 @@ app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
 app.use('/api/fileUpload', fileUpload);
 app.use('/api/reservation', reservation);
-
+app.use('/uploaded_images', express.static('uploaded_images'));
 // Error handling middleware
 app.use(function(err, req, res, next) {
   console.log(err);

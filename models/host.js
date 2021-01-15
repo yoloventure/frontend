@@ -26,6 +26,9 @@ const hostSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  imageCollection:{
+    type:Array,
+  },
   gender: {
     type: String,
     default: null,

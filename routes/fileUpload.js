@@ -12,7 +12,7 @@ const
 const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");
 const account = process.env.ACCOUNT_NAME;
 const accountKey = process.env.ACCOUNT_KEY;
-
+require("dotenv").config();
 const containerName = 'yolo';
 
 const handleError = (err, res) => {
@@ -25,7 +25,7 @@ const getBlobName = originalName => {
     const identifier = Date.now();
     return '${identifier}-${originalName}';
 };
-/*try {
+try {
     // Use StorageSharedKeyCredential with storage account and account key
     const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey);
     const blobServiceClient = new BlobServiceClient(
@@ -33,7 +33,7 @@ const getBlobName = originalName => {
     sharedKeyCredential
     );
 
-    router.post('/', uploadStrategy, (req, res) => {
+    router.post('/upload', uploadStrategy, (req, res) => {
         const containerClient = blobServiceClient.getContainerClient(containerName);
 
         //const content = "Hello world!";
@@ -51,7 +51,7 @@ const getBlobName = originalName => {
 
 } catch {
     console.log("fileUpload.js: Error while connecting to Azure (check env variables)");
-}*/
+}
 
 
 module.exports = router;
