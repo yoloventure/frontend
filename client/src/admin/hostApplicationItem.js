@@ -23,8 +23,7 @@ class HostApplicationItem extends React.Component {
           <div className="col">
             <ul style={{marginBottom: "0"}}>
               <li><strong>Applicant name: </strong>{hostApp.user.fname} {hostApp.user.lname}</li>
-              <li><strong>Company name: </strong>{hostApp.company.name}</li>
-              <li><strong>Location: </strong>{hostApp.location.city}, {hostApp.company.location.country}</li>
+              <li><strong>Company name: </strong>{hostApp.company}</li>              
             </ul>
           </div>
           <div className="col">
@@ -48,25 +47,20 @@ class HostApplicationItem extends React.Component {
             <li><strong>Title: </strong>{hostApp.title}</li>
             <li><strong>Company name: </strong>{hostApp.company.name}</li>
             <li><strong>Company website: </strong>{hostApp.company.website}</li>
-            <li><strong>Company location: </strong>{hostApp.company.location.street}, {hostApp.company.location.city}, {hostApp.company.location.state}, {hostApp.company.location.country}, {hostApp.company.location.zip}</li>
             <li><strong>Description: </strong>{hostApp.description}</li>
           </ul>
 
-          <h5>Page 2</h5>
-          <ul>
-            <li><strong>Location: </strong>{hostApp.location.street}, {hostApp.location.city}, {hostApp.location.state}, {hostApp.location.country}, {hostApp.location.zip}</li>
-          </ul>
 
-          <h5>Page 3</h5>
+          <h5>Page 2</h5>
           <ul>
             <li><strong>Offering 1: </strong>{hostApp.offering}</li>
             <li><strong>Offering 2: </strong>{hostApp.moreOffering}</li>
           </ul>
 
-          <h5>Page 4</h5>
+          <h5>Page 3</h5>
           <ul>
             <li><strong>Expertise: </strong>{hostApp.expertise}</li>
-            <li><strong>Experiences: </strong>{hostApp.experiences.toString()}</li>
+            <li><strong>Experiences: </strong>{hostApp.experiences}</li>
             <li><strong>Approval: </strong>{hostApp.approval.toString()}</li>
           </ul>
 
