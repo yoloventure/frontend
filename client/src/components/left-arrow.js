@@ -1,9 +1,9 @@
 import React from 'react'
-
+import svg from "./arrow-left-solid.svg"
 const LeftArrow = ({ prevSlide, coolButtons }) => {
   return (
-    <div className={coolButtons ? 'left-arrow cool-buttons' : 'left-arrow'} onClick={prevSlide}>
-      <img src={require("./arrow-left-solid.svg")} style={{width:'50%'}} />
+    <div className='left-arrow' onClick={prevSlide}>
+      <img src={svg} style={{width:'50%'}} />
     </div>
   )
 }

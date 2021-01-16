@@ -5,7 +5,7 @@ import "./hostExperience.css";
 import Navbar from "../components/navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../components/footer";
-import chef from "../photos/chef.jpg";
+import mike_photo from "../photos/mike_photo.png";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
@@ -55,27 +55,30 @@ class HostExperience extends React.Component {
               <div className="fig10 col-md-5 align-self-end row">
                 <div className="insider row">
                   <div className="container  align-self-center">
-                    <h5>Demonstrate your values</h5>
+
+
+
+
+                    <h5>Small business, big impact</h5>
                     <p>
-                      Show your openness, dedication to diversity & inclusion,
-                      and willingness to give back.
+                    Unveil your impact to curious minds, reach more customers and collaborators, and show your dedication to the diverse business world.
+
                     </p>
-                    <h5>Get a new perspective</h5>
+                    <h5>Exchange perspectives</h5>
                     <p>
-                      Infuse your business with a different point of view and
-                      innovative ideas.
+                    Infuse your growing business with a different point of view and innovative ideas.
                     </p>
-                    <h5>Grow your brand Bring </h5>
+                    <h5>Grow your brand </h5>
                     <p>
-                      people along on your business journey and create a
-                      community of fans and advocates and get rewarded for it.
+                    Bring people along on your business journey and create a community of fans and advocates and get rewarded for it.
+
                     </p>
                   </div>
                 </div>
               </div>
               <div className="col-md-3 align-self-center">
                 <img
-                  src={chef}
+                  src={mike_photo}
                   alt="photo of a smiling chef"
                   className="chefimage"
                 />
@@ -85,8 +88,7 @@ class HostExperience extends React.Component {
                   <img className="mt-5" src={fquote} alt="" />
                   <br />
                   <p style={{ width: "50%" }}>
-                    YOLOers really inspire me! I’ve got different points of view
-                    on the work I do.
+                  Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
                   </p>{" "}
                   <br />
                   <img src={bquote} alt="" />

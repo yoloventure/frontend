@@ -5,7 +5,6 @@ import "./hostExperience.css";
 import Navbar from "../components/navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../components/footer";
-import chef from "../photos/chef.jpg";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
