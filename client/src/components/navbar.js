@@ -67,7 +67,7 @@ class Navbar extends React.Component {
 
         };
         const styles2 = {
-            marginLeft:'12%',
+            // marginLeft:'12%',  Comment this line so "contact us" and "host an experience" can be aligned with other texts when the window becomes smaller
             marginRight:'12%',
             whiteSpace:'pre'
 
@@ -84,6 +84,7 @@ class Navbar extends React.Component {
             styles.color = "white";
             styles2.color = "white";
             classVal = "navbar navbar-expand-lg fixed-top navbar-dark bg "
+            this.state.navBackgroundStyle= {background:'#150433',opacity:'92%'}
             logoValue.push(<img src={logoWhite} />)
         }
 
@@ -101,8 +102,10 @@ class Navbar extends React.Component {
 
 
         return (
+           
             <div>
-                <nav  id='nav' className={classVal} style={this.state.navBackgroundStyle}>
+           
+                <nav id='nav' className={classVal} style={this.state.navBackgroundStyle}>
 
                     <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
                         {logoValue}
@@ -131,17 +134,6 @@ class Navbar extends React.Component {
                                     Story
                                 </a>
                             </li>
-                            {/*   <li className="nav-item dropdown">
-           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Dropdown
-           </a>
-           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-             <a className="dropdown-item" href="#">Action</a>
-             <a className="dropdown-item" href="#">Another action</a>
-             <div className="dropdown-divider"></div>
-             <a className="dropdown-item" href="#">Something else here</a>
-           </div>
-         </li> */}
                             <li className="nav-item active" style={styleLi}>
                                 <a className="nav-link " style={styles2} href="/hostexperience">
                                     Host an Experience
@@ -157,6 +149,7 @@ class Navbar extends React.Component {
                                     Contact Us
                                 </a>
                             </li>
+
                             {!isAuthenticated ?
                                 <React.Fragment>
 
@@ -218,7 +211,6 @@ class Navbar extends React.Component {
 
 
                     </div>
-
                 </nav>
                 <div id="modalPassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -241,6 +233,9 @@ class Navbar extends React.Component {
 
 
             </div>
+
+                
+
         );
     }
 }

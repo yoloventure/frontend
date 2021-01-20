@@ -12,7 +12,7 @@ class Admin extends React.Component {
     super(props);
 
     this.state = {
-      hostApps: [],
+      hostApps: []
     };
 
   }
@@ -22,10 +22,12 @@ class Admin extends React.Component {
       //Only display hosts with pending approval
       let hostApps = APIHost.getAllHosts()
         .then(response => response.filter(host => {
-            return host.approval == 'pending';
+            return host.approval === 'pending';
           })
         )
-        .then(data => this.setState({hostApps: data}));
+        .then(data => this.setState({hostApps: data
+                  }));
+
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +36,10 @@ class Admin extends React.Component {
   render() {
     console.log(this.state.hostApps);
 
+
     //Check if user is an admin
     let user = APIUser.getCurrentUser();
+    console.log(user)
     if (!user.isAdmin) {
       //return "You don't have permission to view this page";
       //don't forget to uncomment
