@@ -29,9 +29,13 @@ function getAllHosts(){
   var path = "/api/host/";
   return fetch(path, {
       method: 'get',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
       credentials: "include"
   }).then((response) => {
-      return response.json();
+      response.json().then(d=>console.log(d))
+      // return response.json();
   }).catch((err) => {
       console.log(err);
   });

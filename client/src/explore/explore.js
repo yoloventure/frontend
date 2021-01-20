@@ -25,7 +25,7 @@ import Fuse from 'fuse.js';
 
 
 class Explore extends React.Component{
-
+z
 
   componentDidMount() {
     fetch('api/experience/', {
@@ -100,7 +100,7 @@ class Explore extends React.Component{
   handleChange1 = date => {
   this.setState({
     startDate: date
-  },()=>this.filter());
+  },()=>this.filter() );
 
 
   };
