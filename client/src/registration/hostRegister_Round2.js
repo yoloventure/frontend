@@ -131,7 +131,6 @@ class HostRegister_Round2 extends React.Component {
       var formData = new FormData();
       formData.append('imgCollection',this.state.data.files[0]);
       formData.append('imgCollection',this.state.data.files[1]);
-      console.log("form data");
       formData.forEach((value, key) => {
 console.log("key %s: value %s", key, value);
 })
@@ -139,11 +138,15 @@ console.log("key %s: value %s", key, value);
       var path = "/api/host/" + this.state.data.hostId;
        axios.post(path, formData, {
         headers: {
-      'Content-Type': 'multipart/form-data'
-      }
-        }).then(res => {
+        'content-type': 'multipart/form-data'
+       }
+       }).then(res => {
             console.log(res.data)
-        })
+        }).catch(err => { 
+        if (err.response) {
+          console.log(err.response);
+        }
+         });
         APIHost.editHost(data.hostId, this.state.data);
     }); 
       //var host = APIHost.getHostById(data.hostId);

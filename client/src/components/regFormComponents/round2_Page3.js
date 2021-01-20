@@ -53,7 +53,9 @@ class Round2_Page3 extends React.Component {
             <div className="row mt-5 mb-5">
               <div className="col text-center">
                 <label className="imgSubmit">
+                <form enctype="multipart/form-data">
                   <input type="file" name="imgCollection" accept="image/*" onChange={this.handleFileUpload} />
+                  </form>
                   <div className="box">
                     <div className="hl"></div>
                     <div className="vl"></div>

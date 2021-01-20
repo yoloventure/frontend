@@ -3,7 +3,7 @@ const router = express.Router();
 const Host = require('../models/host');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
-const DIR = './upload_images/';
+const DIR = 'upload_images/';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -26,13 +26,15 @@ var upload = multer({
         }
     }
 });
-router.post('/:id', upload.array('imgCollection', 2), (req, res, next) => {
+router.post('/:id', upload.any(), (req, res, next) => {
+    console.log("hi");
+    console.log(req.file);
     const reqFiles = [];
     const url = req.protocol + '://' 
     console.log("Upload");
-    console.log(req.files[0]);
-    for (var i = 0; i < req.files.length; i++) {
-        reqFiles.push(url + '/uploaded_images/'+req.files[i].filename)
+    console.log(req.files[0].name);
+    for (var i = 0; i < 2; i++) {
+        reqFiles.push(url + '/upload_images/'+req.files[i].filename)
     }
 
     Host.findByIdAndUpdate({_id: req.params.id},{ imgCollection: reqFiles }, {useFindAndModify: false})
