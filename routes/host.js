@@ -4,6 +4,17 @@ const Host = require('../models/host');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 const DIR = 'upload_images/';
+const EmailList = require("../models/emailList");
+var nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+   host: 'smtp.gmail.com',
+  service: 'gmail',
+  auth: {
+    user: '1341452029zsr',
+    pass: 'zsr739146739146'
+  }
+});
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -97,6 +108,19 @@ router.post('/', function (req, res, next) {
             error: errors
           });
         } else {
+            var mailOptions = {
+            from: '1341452029zsr@gmail.com',
+            to: req.body.email,
+            subject: 'Yolo Shadow Host Application Received!',
+            text: 'Dear '+req.body.fname+', Thank you for applying! We will notify you when the decision is made.'
+          };
+                                      transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
           Host.create(req.body)
             .then(function (host) {
               res.send(host); //send back info to client
