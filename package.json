@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@azure/identity": "^1.1.0",
-    "@azure/storage-blob": "^12.2.0",
+    "@azure/storage-blob": "^12.4.0",
     "address-validator": "^0.2.3",
     "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
