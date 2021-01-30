@@ -53,6 +53,7 @@ router.put('/:id', function (req, res, next) {
   Host.findByIdAndUpdate( req.params.id, req.body).then(function () {
     //find and send back updated application for display
     Host.findOne({_id: req.params.id}, req.body).then(function (host) {
+      console.log(host);
       res.send(host);
     });
   });

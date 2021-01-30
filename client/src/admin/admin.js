@@ -45,6 +45,47 @@ class Admin extends React.Component {
     }
   }
 
+  acceptHost=id=>{
+    console.log('api/host/'+id)
+    let path='api/host/'+id
+    fetch(path, {
+      method: 'put',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body:JSON.stringify({"approval":"Approved"}),
+    }).then(response => {
+         response.json().then(data=>{
+          console.log(data)
+
+      })
+      // return response.json();
+      }).catch((err) => {
+          console.log(err);
+      });
+  }
+  rejectHost=id=>{
+    console.log('api/host/'+id)
+    let path='api/host/'+id
+    fetch(path, {
+      method: 'put',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body:JSON.stringify({"approval":"Rejected"}),
+    }).then(response => {
+         response.json().then(data=>{
+          console.log(data)
+        
+
+      })
+      // return response.json();
+      }).catch((err) => {
+          console.log(err);
+      });
+  }
+
+
   render() {
     console.log(this.state.hostApps);
 
@@ -78,7 +119,7 @@ class Admin extends React.Component {
 
         <div className="container">
           {this.state.hostApps.map((item, index) =>
-            <HostApplicationItem item={item} key={index} />
+            <HostApplicationItem item={item} acceptHost={this.acceptHost} rejectHost={this.rejectHost} key={index} />
           )}
         </div>
 
