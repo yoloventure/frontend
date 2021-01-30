@@ -14,7 +14,7 @@ class HostApplicationItem extends React.Component {
       showModal: !this.state.showModal
     });
   };
-
+  
   render() {
     let hostApp = this.props.item;
     return (
@@ -33,8 +33,8 @@ class HostApplicationItem extends React.Component {
 
         <Modal onClose={this.toggleModal} show={this.state.showModal} actions={
           <>
-            <input className="btn btn-success" type="button" value="Accept" />
-            <input className="btn btn-danger" type="button" value="Reject" />
+            <input onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" value="Accept" />
+            <input onClick={()=>this.props.rejectHost(hostApp._id)} className="btn btn-danger" type="button" value="Reject" />
           </>
         }>
           <h5>Page 1</h5>
