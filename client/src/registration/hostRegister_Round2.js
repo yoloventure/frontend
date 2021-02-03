@@ -7,7 +7,7 @@ import "./hostRegister.css";
 import "../components/regFormComponents/imgSubmit.css";
 import Navbar from "../components/navbar";
 import RegistrationFooter from "../components/registrationFooter";
-import ortho from "../photos/ortho.png";
+import rebecca_photo from "../photos/rebecca_photo.png";
 import Round2_Page1 from "../components/regFormComponents/round2_Page1";
 import Round2_Page2 from "../components/regFormComponents/round2_Page2";
 import Round2_Page3 from "../components/regFormComponents/round2_Page3";
@@ -204,7 +204,7 @@ class HostRegister_Round2 extends React.Component {
           <div className="top row">
             <div className="col-md-4">
               <img
-                src={ortho}
+                src={rebecca_photo}
                 alt="photo of orthodontist"
                 className="chefimage"
               />
