@@ -38,7 +38,7 @@ export default class Homepage extends React.Component{
 
               <div className='row pt-5'>
                 <div className='col-lg-9 col-10 offset-1 mt-2 pt-5'>
-                  <h4 className="pb-3" style={{fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>  
+                  <h4 className="pb-3" style={{fontFamily:"Mplus 1p","fontStyle":"normal",fontSize:'100%',color:"white", letterSpacing: '5px'}}> ARE YOU READY? </h4>  
 
                   <h3 className='pt-4' style={{lineHeight:'100%',fontSize:'7vw', color:"white", fontWeight:'670'}}>Transformative job <br/>shadowing 
                   <span style={{lineHeight:'100%',paddingBottom:'3%',fontSize:'7vw',fontWeight:'670',color:"#F2C94C"}}>  with small <br/> business owners </span> </h3>
