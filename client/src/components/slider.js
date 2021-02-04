@@ -23,7 +23,7 @@ export default class Slider extends Component {
       ],
       title: [
         'What is it like to work while travelling?',
-        'A day shadowing an experienced orthodontist',
+        'Mold some creative time with a ceramic artist',
         'just test'
       ],
    
@@ -86,23 +86,28 @@ export default class Slider extends Component {
 
     return (
       <div className='container-fluid'>
-            <div className='row '>
+            <div className='row ' >
 
-                  <div className='FeatureStoryTitle col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' style={{paddingBottom:"5%"}}>
-                       <h2 className="" style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
-                       > Featured Story </h2>
-                       <h2 className=""style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"45px",lineHeight:"67px",color:"#30233D"}}
-                       >  {this.state.title[0]} </h2>
-                       <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
-                       > {this.state.body1[0]} </h3>
-                       <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
-                       > {this.state.body2[0]} </h3>
-                       <Link to='/explore'>
-                       <button className="mt-5 learnmore justify-content-center" style={{fontFamily:"Mplus 1p",fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
-                       </Link>
+                  <div className='FeatureStoryTitle  col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' >
+                       <div className='row'>
+                        <h2 className="" style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
+                        > Featured Story </h2>
+                        <h2 className=""style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"45px",lineHeight:"67px",color:"#30233D"}}
+                        >  {this.state.title[0]} </h2>
+                        <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
+                        > {this.state.body1[0]} </h3>
+                        <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
+                        > {this.state.body2[0]} </h3>
+                       </div>
+                       <div className='row mb-2 mt-0'>
+                        <Link to='/explore'>
+                                  <button className="mt-5 learnmore justify-content-center" style={{fontFamily:"Mplus 1p",fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433'}}>     Learn More   </button>
+                        </Link>
+                      </div>
+                      
                   </div>
 
-                  <div className="col-md-3 align-self-center" style={{zIndex:"10"}}>
+                  <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"10"}}>
 
                       <img src={this.state.images[0]}
                       alt="picture of a photographer"
@@ -111,7 +116,7 @@ export default class Slider extends Component {
 
                   </div>
 
-                  <div className="mt-0 pt-0 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
+                  <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
                         <div className=" row d-flex justify-content-center" style={{ height:"2rem",}}>
                           <div style={{display:"flex"}}>
                             <img src={fquote} alt="" />
@@ -133,22 +138,37 @@ export default class Slider extends Component {
 
 
             </div>
-
+           
             <div className='row'>
+                <div className='col-7'  style={{background: '#F2C94C',  height:"3rem"}}>
 
-                  <div className='FeatureStoryTitle col-lg-6 col-md-12 col-sm-12 col-12' style={{background: '#F2C94C', padding:'5%'}}>
-                       <h2 className="" style={{textAlign:"justify",fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
-                       > Featured Story </h2>
-                       <h2 className=""style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"45px",lineHeight:"67px",color:"#30233D"}}
-                       >  {this.state.title[this.state.currentIndex]} </h2>
-                       <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
-                       > {this.state.body1[this.state.currentIndex]} </h3>
-                       <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
-                       > {this.state.body2[this.state.currentIndex]} </h3>
+                </div>
+            </div>
+
+            <div className='row '>
+                  <div className='col-1' style={{background: '#F2C94C'}}>
+
+                  </div>
+                  <div className='FeatureStoryTitle  col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12' style={{background: '#F2C94C'}}>
+                        <div className='row' style={{width:"80%"}}>
+                          <h2 className="" style={{textAlign:"justify",fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
+                          > Featured Story </h2>
+                          <h2 className=""style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"45px",lineHeight:"67px",color:"#30233D"}}
+                          >  {this.state.title[this.state.currentIndex]} </h2>
+                          <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
+                          > {this.state.body1[this.state.currentIndex]} </h3>
+                          <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
+                          > {this.state.body2[this.state.currentIndex]} </h3>
+                        </div>
+                        <div className='row ' style={{background: '#F2C94C'}}>
+                          <Link to='/explore'>
+                          <button className="mt-2 learnmore d-flex  justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
+                          </Link>
+                        </div>
                   </div>
 
 
-                  <div className="slider col-lg-4 " >
+                  <div className="slider col-xl-4 col-lg-4 col-md-12  " >
 
                     <div >
 
@@ -162,27 +182,23 @@ export default class Slider extends Component {
 
             
 
-                  <div className='col-lg-2 col-2 pt-4 d-none d-md-block col-lg-2 col-2' id="">
+                  <div className='col-1 pt-4 ' id="">
 
-
-                    <h3 className='' style={{"position":"absolute", top:"50%","width":"272px","height":"28px",fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}>
-                    Start your journey </h3>
-                    <a href="#whyYolo" style={{"position":"absolute", top:"77%", left:'49%', "transform":"rotate(90deg)"}}>  <img src={arrow}></img></a>
+                    <div className='d-flex flex-column'>
+                      <h3 className='pt-5 mt-1' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}>
+                      Start </h3>
+                      <h3 className='pt-5 mt-1' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}> your</h3>
+                      <h3 className='pt-5  mt-1' style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"black","transform":"rotate(90deg)"}}> journey</h3>
+                    
+                      <a className='mt-5 pt-5 pr-3' href="#whyYolo" style={{  "transform":"rotate(90deg)"}}>  <img src={arrow}></img></a>
+                    </div>
 
                   </div>
 
 
             </div>
 
-            <div className='row' style={{background: '#F2C94C', padding:'0%'}}>
-                  <div className='col-2'>
-                  <Link to='/explore'>
-                  <button className="offset-6 mt-2 learnmore d-flex  justify-content-center" style={{fontStyle: "normal" ,fontWeight: '500',fontSize: '14px',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',textTransform: 'uppercase',color: '#150433',background:'#F2C94C'}}>     Learn More   </button>
-                  </Link>
-                  </div>
-                  <div className='col-2 offset-8' style={{background:'#150433'}}>
-                  </div>
-            </div>
+           
 
             <div className='row'>
               <div className='col-10' style={{height:'100px',background:'#F2C94C'}}>
