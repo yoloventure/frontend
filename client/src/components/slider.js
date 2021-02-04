@@ -22,7 +22,7 @@ export default class Slider extends Component {
       img1,img2,img3
       ],
       title: [
-        'What is it like to work while travelling?',
+        'What is it like to work while traveling?',
         'Mold some creative time with a ceramic artist',
         'just test'
       ],
