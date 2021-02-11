@@ -12,7 +12,9 @@ class Admin extends React.Component {
     super(props);
 
     this.state = {
-      hostApps: []
+      // hostApps: []
+      hostApps: {},
+      appsLoaded:false
     };
 
   }
@@ -27,14 +29,28 @@ class Admin extends React.Component {
             credentials: "include"
           }).then(response => {
                response.json().then(data=>{
-                console.log(data)
+              //  console.log(data)
 
                 //Only display hosts with pending approval
                 data.filter(host => {
                   return host.approval === 'pending';
                 })
-                this.setState({hostApps: data })
-                console.log(data)
+                // this.setState({hostApps: data })
+                for(var i = 0; i < data.length; i++){
+                  this.setState(prevState=>{
+                                          let temp=prevState.hostApps
+                                          temp[data[i]._id] = data[i]
+                                          let appsLoadedTemp=false
+                                          if(i===data.length-1){
+                                            appsLoadedTemp=true
+                                          }
+                                           return {
+                                            hostApps:temp, 
+                                            appsLoaded:appsLoadedTemp
+                                           }
+                                           });
+                }
+               // console.log(data)
             })
             // return response.json();
         }).catch((err) => {
@@ -87,7 +103,7 @@ class Admin extends React.Component {
 
 
   render() {
-    console.log(this.state.hostApps);
+   // console.log(this.state.hostApps);
 
 
     //Check if user is an admin
@@ -118,11 +134,14 @@ class Admin extends React.Component {
         </div>
 
         <div className="container">
-          {this.state.hostApps.map((item, index) =>
+          {/* {this.state.hostApps.map((item, index) =>
             <HostApplicationItem item={item} acceptHost={this.acceptHost} rejectHost={this.rejectHost} key={index} />
-          )}
+          )} */}
+          {console.log(this.state.hostApps)}
+          {this.state.appsLoaded? <HostApplicationItem item = {this.state.hostApps }></HostApplicationItem> 
+          :null}
         </div>
-
+          {/* return <HostApplicationItem></HostApplicationItem> */}
         <br />
 
         <div className="footerpages">

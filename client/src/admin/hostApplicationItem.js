@@ -4,6 +4,7 @@ import Modal from "../components/modal";
 class HostApplicationItem extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       showModal: false,
     };
@@ -17,12 +18,13 @@ class HostApplicationItem extends React.Component {
   
   render() {
     let hostApp = this.props.item;
+    console.log(hostApp);
     return (
       <div>
         <div className="row" style={{border: 'solid', margin: '5px', padding: '10px'}}>
           <div className="col">
             <ul style={{marginBottom: "0"}}>
-              <li><strong>Applicant name: </strong>{hostApp.user.fname} {hostApp.user.lname}</li>
+              {/* <li><strong>Applicant name: </strong>{hostApp.user.fname} {hostApp.user.lname}</li> */}
               <li><strong>Company name: </strong>{hostApp.company}</li>              
             </ul>
           </div>
