@@ -12,26 +12,83 @@ class Admin extends React.Component {
     super(props);
 
     this.state = {
-      hostApps: []
+      // hostApps: []
+      hostApps: {}
     };
 
   }
 
   componentDidMount() {
     try {
-      //Only display hosts with pending approval
-      let hostApps = APIHost.getAllHosts()
-        .then(response => response.filter(host => {
-            return host.approval === 'pending';
-          })
-        )
-        .then(data => this.setState({hostApps: data
-                  }));
+          fetch('api/host/', {
+            method: 'get',
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            }),
+            credentials: "include"
+          }).then(response => {
+               response.json().then(data=>{
+                console.log(data)
 
+                //Only display hosts with pending approval
+                data.filter(host => {
+                  return host.approval === 'pending';
+                })
+                // this.setState({hostApps: data })
+                for(var i = 0; i < data.length; i++){
+                  this.setState(this.state.hostApps[data[i]._id] = data[i]);
+                }
+                console.log(data)
+            })
+            // return response.json();
+        }).catch((err) => {
+            console.log(err);
+        });
     } catch (error) {
       console.log(error);
     }
   }
+
+  acceptHost=id=>{
+    console.log('api/host/'+id)
+    let path='api/host/'+id
+    fetch(path, {
+      method: 'put',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body:JSON.stringify({"approval":"Approved"}),
+    }).then(response => {
+         response.json().then(data=>{
+          console.log(data)
+
+      })
+      // return response.json();
+      }).catch((err) => {
+          console.log(err);
+      });
+  }
+  rejectHost=id=>{
+    console.log('api/host/'+id)
+    let path='api/host/'+id
+    fetch(path, {
+      method: 'put',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body:JSON.stringify({"approval":"Rejected"}),
+    }).then(response => {
+         response.json().then(data=>{
+          console.log(data)
+        
+
+      })
+      // return response.json();
+      }).catch((err) => {
+          console.log(err);
+      });
+  }
+
 
   render() {
     console.log(this.state.hostApps);
@@ -65,11 +122,13 @@ class Admin extends React.Component {
         </div>
 
         <div className="container">
-          {this.state.hostApps.map((item, index) =>
-            <HostApplicationItem item={item} key={index} />
-          )}
+          {/* {this.state.hostApps.map((item, index) =>
+            <HostApplicationItem item={item} acceptHost={this.acceptHost} rejectHost={this.rejectHost} key={index} />
+          )} */}
+          {console.log(this.state.hostApps)}
+          <HostApplicationItem item = {this.state.hostApps['5f14aba6e1d046aa0894f3c3'] }></HostApplicationItem>
         </div>
-
+          {/* return <HostApplicationItem></HostApplicationItem> */}
         <br />
 
         <div className="footerpages">
