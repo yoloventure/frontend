@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import ortho from "../photos/ortho.png";
+import rebecca_photo from "../photos/rebecca_photo.png";
 import Page1 from "../components/regFormComponents/page1";
 import Page2 from "../components/regFormComponents/page2";
 import Page3 from "../components/regFormComponents/page3";
@@ -208,7 +208,7 @@ class HostRegister extends React.Component {
           <div className="top row">
             <div className="col-md-4">
               <img
-                src={ortho}
+                src={rebecca_photo}
                 alt="photo of orthodontist"
                 className="chefimage"
               />

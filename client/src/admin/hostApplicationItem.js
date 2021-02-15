@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Modal from "../components/modal";
+import ConfirmButton from "./ConfirmButton";
+
 
 class HostApplicationItem extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       showModal: false,
     };
@@ -18,7 +19,6 @@ class HostApplicationItem extends React.Component {
   
   render() {
     let hostApp = this.props.item;
-    console.log(hostApp);
     return (
       <div>
         <div className="row" style={{border: 'solid', margin: '5px', padding: '10px'}}>
@@ -34,10 +34,18 @@ class HostApplicationItem extends React.Component {
         </div>
 
         <Modal onClose={this.toggleModal} show={this.state.showModal} actions={
-          <>
-            <input onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" value="Accept" />
-            <input onClick={()=>this.props.rejectHost(hostApp._id)} className="btn btn-danger" type="button" value="Reject" />
-          </>
+        <>
+        {this.props.modify?  
+        <div>
+        {/* <input onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" value="Accept" />
+        <input onClick={()=>this.props.rejectHost(hostApp._id)} className="btn btn-danger" type="button" value="Reject" /> */}
+        <ConfirmButton onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" label="Accept"/>                {/* <input onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" value="Accept" /> */}
+        <ConfirmButton onClick={()=>this.props.rejectHost(hostApp._id)} className="btn btn-danger" type="button" label="Reject"/>    
+      </div>
+      :
+      <div></div>
+      }
+      </>
         }>
           <h5>Page 1</h5>
           <ul>
