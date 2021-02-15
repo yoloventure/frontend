@@ -113,7 +113,7 @@ class showAllItem extends React.Component {
           
         }>
         {Object.keys(allItem).map((item,i)=> <HostApplicationItem key = {i} 
-        item = {allItem[item]} modify = {true}>  </HostApplicationItem>)}
+        item = {allItem[item]} modify = {true} acceptHost={this.props.acceptHost} rejectHost={this.props.rejectHost}>   </HostApplicationItem>)}
      
         </Modal>
       </div>
