@@ -206,7 +206,7 @@ class Admin extends React.Component {
          {/* {this.state.appsLoaded? (Object.keys(this.state.accepted).map((item,i)=> <h1>{this.state.hostApps[item]._id}</h1>)):""} */}
          {/* {this.state.appsLoaded? (Object.keys(this.state.rejected).map((item,i)=> <h1>{this.state.hostApps[item]._id}</h1>)):""} */}
          {this.state.appsLoaded? <ShowAllItem 
-          acceptedItem = {this.state.accepted} rejectedItem = {this.state.rejected}
+          acceptedItem = {this.state.accepted} rejectedItem = {this.state.rejected} pendingItem = {this.state.pending}
           allItem = {this.state.hostApps} acceptHost={this.acceptHost} rejectHost={this.rejectHost}>  </ShowAllItem> : null}
      
        {/* {this.state.appsLoaded? Object.keys(this.state.accepted).map((acceptedItem,i)=> <HostApplicationItem key = {i} 

@@ -9,7 +9,8 @@ class showAllItem extends React.Component {
     this.state = {
       showModal1: false,
       showModal2: false,
-      showModel3: false
+      showModel3: false,
+      showModel4: false
     };
   }
 
@@ -28,10 +29,17 @@ class showAllItem extends React.Component {
       showModal3: !this.state.showModal3
     });
   };
+  toggleModal4 = e => {
+    this.setState({
+      showModal4: !this.state.showModal4
+    });
+  };
+
 
   render() {
     let acceptedItem = this.props.acceptedItem;
     let rejectedItem = this.props.rejectedItem;
+    let pendingItem = this.props.pendingItem;
     let allItem = this.props.allItem;
   
     return (
@@ -76,13 +84,30 @@ class showAllItem extends React.Component {
         </Modal>
       </div>
 
-
       <div className="col">
-            <input className="btn btn-primary" type="button" value="Pending/ Modify Hosts" onClick={e => {this.toggleModal3()}} />
+            <input className="btn btn-primary" type="button" value="Pending Hosts" onClick={e => {this.toggleModal3()}} />
           </div>
         
       <div>
         <Modal onClose={this.toggleModal3} show={this.state.showModal3} actions={
+          <>            
+          </>
+          
+        }>
+        {Object.keys(pendingItem).map((item,i)=> <HostApplicationItem key = {i} 
+        item = {pendingItem[item]} modify = {false}>  </HostApplicationItem>)}
+               
+        
+        </Modal>
+      </div>
+
+
+      <div className="col">
+            <input className="btn btn-primary" type="button" value="Modify Hosts" onClick={e => {this.toggleModal4()}} />
+          </div>
+        
+      <div>
+        <Modal onClose={this.toggleModal4} show={this.state.showModal4} actions={
           <>            
           </>
           
