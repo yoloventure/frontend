@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Slide from './slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
-import img1 from "../photos/mike_photo.png"
+import img1 from "../photos/markPhoto.jpg"
 
 import img2 from "../photos/rebecca_photo.png"
 import img3 from "../photos/yawo.png"
@@ -28,7 +28,7 @@ export default class Slider extends Component {
       ],
    
       body1:[
-        'Mark hosts shadowing experience “The Photo Essay describing the story through images” to open doors for anyone, whether you are a novice or a seasoned photographer.',
+       'Mark hosts the shadowing experience “The Photo Essay: Describing a Story Through Images” to open visual doors for anyone, from novice to advanced photographers.',
         "Rebecca hosts shadowing experience in her own pottery studio. Get a feel for the daily life of a ceramic artist, seeing the space she works in and the process of creating functional ceramic work."
       ],
       body2:[
@@ -109,7 +109,7 @@ export default class Slider extends Component {
 
                   <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"10"}}>
 
-                      <img src={this.state.images[0]}
+                      <img src={this.state.images[0]} style={{width:"120%",height:"120%"}}
                       alt="picture of a photographer"
 
                       />
