@@ -3,7 +3,7 @@ import Slide from './slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
 import img1 from "../photos/mike_photo.png"
-
+import img1New from '../photos/ChefPhoto.png'
 import img2 from "../photos/rebecca_photo.png"
 import img3 from "../photos/yawo.png"
 import "./style.scss"
@@ -19,7 +19,8 @@ export default class Slider extends Component {
 
     this.state = {
       images: [
-      img1,img2,img3
+      img1New,img2,img3
+      
       ],
       title: [
         'What is it like to work while traveling?',
@@ -28,7 +29,7 @@ export default class Slider extends Component {
       ],
    
       body1:[
-        'Mark hosts shadowing experience “The Photo Essay describing the story through images” to open doors for anyone, whether you are a novice or a seasoned photographer.',
+        'Mark hosts the shadowing experience “The Photo Essay: Describing a Story Through Images” to open visual doors for anyone, from novice to advanced photographers.',
         "Rebecca hosts shadowing experience in her own pottery studio. Get a feel for the daily life of a ceramic artist, seeing the space she works in and the process of creating functional ceramic work."
       ],
       body2:[
@@ -86,7 +87,8 @@ export default class Slider extends Component {
 
     return (
       <div className='container-fluid'>
-            <div className='row ' >
+       
+            <div className='row '>
 
                   <div className='FeatureStoryTitle  col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' >
                        <div className='row'>
@@ -96,7 +98,7 @@ export default class Slider extends Component {
                         >  {this.state.title[0]} </h2>
                         <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
                         > {this.state.body1[0]} </h3>
-                        <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
+                        <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"160%","color":"#30233D", textAlign:"justify"}}
                         > {this.state.body2[0]} </h3>
                        </div>
                        <div className='row mb-2 mt-0'>
@@ -107,16 +109,48 @@ export default class Slider extends Component {
                       
                   </div>
 
-                  <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"10"}}>
 
-                      <img src={this.state.images[0]}
-                      alt="picture of a photographer"
 
-                      />
+                <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"10", left: "2%"}}>
 
+                <img src={this.state.images[0]} 
+                alt="picture of a photographer"
+
+                />
+
+                </div>
+
+                <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
+                  <div className=" row d-flex justify-content-center" style={{ height:"2rem",}}>
+                    <div style={{display:"flex"}}>
+                      <img src={fquote} alt="" />
+                      <br />
+                    </div>
                   </div>
+                  <div className=" row  d-flex justify-content-center" >
+                      <p style={{zIndex: "25", display:"flex",width: "40%", fontFamily: "Noticia Text",fontStyle: "italic",fontWeight: "normal",fontSize: "20px",lineHeight: "177.42%",display: "flex",alignItems: "center" }}>
+                      Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
+                      </p>
+                  </div>
+                  <div className=" row  d-flex justify-content-center" style={{ height:"2rem",}}>
+                    <div style={{display:"flex"}}>                         
+                    <img src={bquote} alt="" />
+                    </div>
+                  </div>
+                </div>
 
-                  <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
+                <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{position: "absolute", zIndex:"30",background: "#F2C94C", height:"30rem",width:"2rem", right: "0px"}}>
+                  <div className=" row d-flex justify-content-center" style={{}}>
+                  </div>
+                  
+                  
+                </div>
+                  
+
+                  
+                  
+
+                  {/* <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"392px",width:"294px"}}>
                         <div className=" row d-flex justify-content-center" style={{ height:"2rem",}}>
                           <div style={{display:"flex"}}>
                             <img src={fquote} alt="" />
@@ -133,7 +167,7 @@ export default class Slider extends Component {
                            <img src={bquote} alt="" />
                           </div>
                         </div>
-                  </div>
+                  </div> */}
 
 
 
@@ -157,7 +191,7 @@ export default class Slider extends Component {
                           >  {this.state.title[this.state.currentIndex]} </h2>
                           <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"18px","lineHeight":"29px","color":"#776C82",textAlign:"justify"}}
                           > {this.state.body1[this.state.currentIndex]} </h3>
-                          <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"206%","color":"#30233D", textAlign:"justify"}}
+                          <h3 className="pt-2"style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"450","fontSize":"18px","lineHeight":"160%","color":"#30233D", textAlign:"justify"}}
                           > {this.state.body2[this.state.currentIndex]} </h3>
                         </div>
                         <div className='row ' style={{background: '#F2C94C'}}>
@@ -213,6 +247,8 @@ export default class Slider extends Component {
 
               </div>
             </div>
+
+              
 
       </div>
 

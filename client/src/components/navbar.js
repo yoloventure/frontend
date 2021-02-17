@@ -63,9 +63,10 @@ class Navbar extends React.Component {
         };
         const styleLi = {
             marginLeft:'7%',
-            marginRight:'7%'
+            marginRight:'7%',
 
         };
+
         const styles2 = {
             // marginLeft:'12%',  Comment this line so "contact us" and "host an experience" can be aligned with other texts when the window becomes smaller
             marginRight:'12%',
