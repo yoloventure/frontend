@@ -86,12 +86,18 @@ export default class Slider extends Component {
     const Link = require("react-router-dom").Link;
 
     return (
-      <div className='container-fluid'>
-       
-            <div className='row '>
+      <div className='container-fluid' >
 
+        {/* add some white space before the first featured story */}
+                <div className='row'>
+                <div className=''  style={{background: 'white',  height:"3rem"}}>
+                </div>
+
+            </div>
+       
+            <div className='row ' style={{left:"1000px"}}>
                   <div className='FeatureStoryTitle  col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 offset-1 ' >
-                       <div className='row'>
+                       <div className='row' >
                         <h2 className="" style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                         > Featured Story </h2>
                         <h2 className=""style={{fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"500","fontSize":"45px",lineHeight:"67px",color:"#30233D"}}
@@ -111,7 +117,7 @@ export default class Slider extends Component {
 
 
 
-                <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"10", left: "2%"}}>
+                <div className="col-xl-4 col-lg-4 col-md-3 align-self-center" style={{zIndex:"20", left: "2%"}}>
 
                 <img src={this.state.images[0]} 
                 alt="picture of a photographer"
@@ -120,7 +126,7 @@ export default class Slider extends Component {
 
                 </div>
 
-                <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
+                {/* <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"30rem",width:"2rem"}}>
                   <div className=" row d-flex justify-content-center" style={{ height:"2rem",}}>
                     <div style={{display:"flex"}}>
                       <img src={fquote} alt="" />
@@ -132,25 +138,20 @@ export default class Slider extends Component {
                       Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
                       </p>
                   </div>
-                  <div className=" row  d-flex justify-content-center" style={{ height:"2rem",}}>
+                  <div className=" row  d-flex justify-content-center" style={{ height:"2rem", }}>
                     <div style={{display:"flex"}}>                         
                     <img src={bquote} alt="" />
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{position: "absolute", zIndex:"30",background: "#F2C94C", height:"30rem",width:"2rem", right: "0px"}}>
-                  <div className=" row d-flex justify-content-center" style={{}}>
-                  </div>
-                  
-                  
-                </div>
+         
                   
 
                   
                   
 
-                  {/* <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"21",background: "#F2C94C", height:"392px",width:"294px"}}>
+                  <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{zIndex:"50",background: "#F2C94C", height:"420px",width:"294px"}}>
                         <div className=" row d-flex justify-content-center" style={{ height:"2rem",}}>
                           <div style={{display:"flex"}}>
                             <img src={fquote} alt="" />
@@ -167,8 +168,12 @@ export default class Slider extends Component {
                            <img src={bquote} alt="" />
                           </div>
                         </div>
-                  </div> */}
-
+                  </div>
+                  
+                  {/* fix yellow box layout */}
+                  <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{position: "absolute", zIndex:"10",background: "#F2C94C", height:"412px",top: "890px", left: "1100px", width: "100%"}}></div>
+                  <div className="mt-0 pt-0 col-lg-3 col-md-3  row d-flex justify-content-center" style={{position: "absolute", zIndex:"10",background: "#F2C94C", height:"412px",top: "890px", right: "0px", width: "100%"}}></div>
+                  {/* Kathy - not the best way to do this but it works  */}
 
 
             </div>
@@ -179,11 +184,10 @@ export default class Slider extends Component {
                 </div>
             </div>
 
-            <div className='row '>
-                  <div className='col-1' style={{background: '#F2C94C'}}>
-
-                  </div>
+            <div className='row ' >
+                  <div className='col-1' style={{background: '#F2C94C'}}></div>
                   <div className='FeatureStoryTitle  col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12' style={{background: '#F2C94C'}}>
+                  {/* <div className='row ' style={{background: '#F2C94C', height: "10rem"}}></div> */}
                         <div className='row' style={{width:"80%"}}>
                           <h2 className="" style={{textAlign:"justify",fontFamily:"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"12.6px","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}
                           > Featured Story </h2>
@@ -202,7 +206,7 @@ export default class Slider extends Component {
                   </div>
 
 
-                  <div className="slider col-xl-4 col-lg-4 col-md-12  " >
+                  <div className="slider col-xl-4 col-lg-4 col-md-12  " style = {{}} >
 
                     <div >
 
