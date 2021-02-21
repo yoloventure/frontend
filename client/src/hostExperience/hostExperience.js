@@ -55,23 +55,21 @@ class HostExperience extends React.Component {
               <div className="fig10 col-md-5 align-self-end row">
                 <div className="insider row">
                   <div className="container  align-self-center">
-
-
-
-
                     <h5>Small business, big impact</h5>
                     <p>
-                    Unveil your impact to curious minds, reach more customers and collaborators, and show your dedication to the diverse business world.
-
+                      Unveil your impact to curious minds, reach more customers
+                      and collaborators, and show your dedication to the diverse
+                      business world.
                     </p>
                     <h5>Exchange perspectives</h5>
                     <p>
-                    Infuse your growing business with a different point of view and innovative ideas.
+                      Infuse your growing business with a different point of
+                      view and innovative ideas.
                     </p>
                     <h5>Grow your brand </h5>
                     <p>
-                    Bring people along on your business journey and create a community of fans and advocates and get rewarded for it.
-
+                      Bring people along on your business journey and create a
+                      community of fans and advocates and get rewarded for it.
                     </p>
                   </div>
                 </div>
@@ -88,7 +86,8 @@ class HostExperience extends React.Component {
                   <img className="mt-5" src={fquote} alt="" />
                   <br />
                   <p style={{ width: "50%" }}>
-                  Yolo Shadow open doors for an eye-opening experience. What are alternative ways to live your life?
+                    Yolo Shadow open doors for an eye-opening experience. What
+                    are alternative ways to live your life?
                   </p>{" "}
                   <br />
                   <img src={bquote} alt="" />

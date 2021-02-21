@@ -1,10 +1,5 @@
 {
-  "ExpandedNodes": [
-    "",
-    "\\client",
-    "\\client\\src",
-    "\\client\\src\\admin"
-  ],
+  "ExpandedNodes": ["", "\\client", "\\client\\src", "\\client\\src\\admin"],
   "SelectedNode": "\\client\\src\\admin\\admin.js",
   "PreviewInSolutionExplorer": false
 }

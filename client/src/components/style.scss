@@ -1,5 +1,4 @@
-
-.FeatureStoryTitle{
+.FeatureStoryTitle {
   // position: absolute;
   //width: 30%;
   // left: 10%;
@@ -11,34 +10,25 @@
   font-size: 45px;
   line-height: 67px;
 
-
   /* TextColors/Headers */
 
-
-  color: #30233D;
+  color: #30233d;
 }
 
-
-.learnmore{
-
+.learnmore {
   width: 190px;
   height: 45px;
   left: 18%;
   top: 110%;
 
-
-
-
-  border-radius: 36px
-
-
+  border-radius: 36px;
 }
 
 .slider {
   //position: absolute;
   //
 
-  top:10%;
+  top: 10%;
   right: 4%;
   // top: 972px;
   overflow: hidden;
@@ -55,12 +45,11 @@
       width: 100%;
     }
   }
-
-
 }
 
-.right-arrow, .left-arrow {
-  height:25px;
+.right-arrow,
+.left-arrow {
+  height: 25px;
   width: 25px;
 
   /*display: flex;
@@ -69,15 +58,13 @@
   background: #f9f9f9;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform ease-in .1s;
+  transition: transform ease-in 0.1s;
 
   &:hover {
-    transition: transform ease-in .1s;
-    transform: scale(1.1)
+    transition: transform ease-in 0.1s;
+    transform: scale(1.1);
   }
 }
-
-
 
 .right-arrow {
   //position: absolute;

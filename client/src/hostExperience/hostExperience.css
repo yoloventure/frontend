@@ -179,11 +179,15 @@ top: 828px; */
   /* position: absolute; */
   width: 679px;
   height: 606px;
- 
 }
 
 .insider {
-  background: linear-gradient(0deg, rgba(36, 41, 52, 0.1), rgba(36, 41, 52, 0.1)), rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+      0deg,
+      rgba(36, 41, 52, 0.1),
+      rgba(36, 41, 52, 0.1)
+    ),
+    rgba(255, 255, 255, 0.1);
   background-blend-mode: normal, overlay;
   backdrop-filter: blur(30px);
 }
@@ -394,7 +398,12 @@ top: 1856px; */
   height: 618px;
   /* left: 763px;
     top: 1854px; */
-    background: linear-gradient(0deg, rgba(36, 41, 52, 0.1), rgba(36, 41, 52, 0.1)), rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+      0deg,
+      rgba(36, 41, 52, 0.1),
+      rgba(36, 41, 52, 0.1)
+    ),
+    rgba(255, 255, 255, 0.1);
   background-blend-mode: overlay, normal, normal, overlay;
   backdrop-filter: blur(30px);
 }

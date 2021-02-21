@@ -1,51 +1,47 @@
 .container-fluid {
-    padding-right:0;
-    padding-left:0;
-    margin-right:auto;
-    margin-left:auto
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.hoverButton{
+.hoverButton {
   background: rgba(255, 255, 255, 0.31);
 }
-.hoverButton:hover{
-  background-color: #9D42FF;
+.hoverButton:hover {
+  background-color: #9d42ff;
 }
 
-.section{
-    min-height: 100vh;
+.section {
+  min-height: 100vh;
 }
-.learnmore{
+.learnmore {
+  width: 190px;
+  height: 45px;
+  padding-bottom: 0%;
 
-width: 190px;
-height: 45px;
-    padding-bottom: 0%;
-
-border-radius: 36px;
-    border-color: white;
-
+  border-radius: 36px;
+  border-color: white;
 }
 
-.subscribeInput{
-    border:none;
-    border-bottom: 1px solid white;
-    padding: 5px 10px;
-    outline: none;
-    color: #FCFCFC !important;
+.subscribeInput {
+  border: none;
+  border-bottom: 1px solid white;
+  padding: 5px 10px;
+  outline: none;
+  color: #fcfcfc !important;
 }
 
-.chat_container{
+.chat_container {
   background: #150433;
-
 }
-
 
 br {
-            display: block; /* makes it have a width */
-            content: ""; /* clears default height */
-            margin-top: 2rem; /* change this to whatever height you want it */
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 2rem; /* change this to whatever height you want it */
 }
 
-.pt-3{
-    margin-top: 2rem;
+.pt-3 {
+  margin-top: 2rem;
 }

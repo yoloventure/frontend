@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./about.css";
 import Navbar from "../components/navbar";
@@ -11,9 +11,8 @@ class About extends React.Component {
   render() {
     return (
       <div className="container-fluid app p-0 m-0">
-
         <Helmet>
-            <title>About | YoloShadow</title>
+          <title>About | YoloShadow</title>
         </Helmet>
 
         <div className="nav">

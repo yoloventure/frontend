@@ -19,60 +19,59 @@ class Team extends React.Component {
     this.state = {
       imageDescription: "Click to a picture to learn about the person",
       position: "",
-      name: "Hello There"
+      name: "Hello There",
     };
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(event, name, position, description) {
     this.setState({
-      name: name
+      name: name,
     });
     this.setState({
-      position: position
+      position: position,
     });
     this.setState({
-      imageDescription: description
+      imageDescription: description,
     });
   }
   render() {
     return (
-     <div class="team_container"> 
-    <div className="container">
-        {/*Row  1 */}
-       
-        {/*Row  2 */}
-        <div className="row d-flex justify-content-around ">
+      <div class="team_container">
+        <div className="container">
+          {/*Row  1 */}
 
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Kaixin Li",
-                "UX/UI designer",
-                `       Kaixin has interned with a couple of tech companies as UXer and dived into multimodal interaction and crossmodal integration in research centers, making strides in decoding nuanced human cognition and building it into design and emerging technologies to give everyone a stake in shaping the future of their lives.
+          {/*Row  2 */}
+          <div className="row d-flex justify-content-around ">
+            <div
+              onClick={(event) =>
+                this.onClick(
+                  event,
+                  "Kaixin Li",
+                  "UX/UI designer",
+                  `       Kaixin has interned with a couple of tech companies as UXer and dived into multimodal interaction and crossmodal integration in research centers, making strides in decoding nuanced human cognition and building it into design and emerging technologies to give everyone a stake in shaping the future of their lives.
                 `
-              )
-            }
-          >
-            <AboutImage path={kaixin} />
-          </div>
+                )
+              }
+            >
+              <AboutImage path={kaixin} />
+            </div>
 
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Shelley Chen",
-                "CEO",
-                `       Last Summer, she interned for a Malaysian-based Venture Capital firm “TH Capital” where she helped four entrepreneurs in Southeast Asia grow their business and streamline operations. She participated in deal-sourcing, drafted finance processes and performed due diligence. During her internship, she helped a fast-growing Fintech startup "Money Match" develop a search engine optimization (SEO) strategy for the company and implement the SEO strategy in optimizing content for the company's social media channels, websites, and blogs. She also worked with our portfolio Fintech startup Versa to optimize their business strategy and develop a five-year go-to-market plan. These experiences make her a critical thinker and self-starter.
+            <div
+              onClick={(event) =>
+                this.onClick(
+                  event,
+                  "Shelley Chen",
+                  "CEO",
+                  `       Last Summer, she interned for a Malaysian-based Venture Capital firm “TH Capital” where she helped four entrepreneurs in Southeast Asia grow their business and streamline operations. She participated in deal-sourcing, drafted finance processes and performed due diligence. During her internship, she helped a fast-growing Fintech startup "Money Match" develop a search engine optimization (SEO) strategy for the company and implement the SEO strategy in optimizing content for the company's social media channels, websites, and blogs. She also worked with our portfolio Fintech startup Versa to optimize their business strategy and develop a five-year go-to-market plan. These experiences make her a critical thinker and self-starter.
                 `
-              )
-            }
-          >
-            <AboutImage path={shelley} />
-          </div>
-          <div
-              onClick={event =>
+                )
+              }
+            >
+              <AboutImage path={shelley} />
+            </div>
+            <div
+              onClick={(event) =>
                 this.onClick(
                   event,
                   "Abdul Moid Munawar",
@@ -83,13 +82,13 @@ class Team extends React.Component {
             >
               <AboutImage path={abdoul} />
             </div>
-        </div>
+          </div>
 
-        {/*Row  3*/}
+          {/*Row  3*/}
 
-        <div className="row d-flex flex-nowrap flex-row justify-content-around">
-        <div
-              onClick={event =>
+          <div className="row d-flex flex-nowrap flex-row justify-content-around">
+            <div
+              onClick={(event) =>
                 this.onClick(
                   event,
                   "Tianyue Wang",
@@ -100,41 +99,40 @@ class Team extends React.Component {
             >
               <AboutImage path={tianyue} />
             </div>
-          <div className="row d-flex justify-content-center">
-            <div className="col">
-              <div className="ellipse  d-flex flex-wrap align-items-center">
-                <div className="d-flex flex-column flex-wrap">
-                  <h3 className="shell">{this.state.name}</h3>
-                  <p className="ceo">{this.state.position}</p>
-                  <p className="paragraph d-flex flex-row flex-wrap">
-                    {this.state.imageDescription}
-                  </p>
+            <div className="row d-flex justify-content-center">
+              <div className="col">
+                <div className="ellipse  d-flex flex-wrap align-items-center">
+                  <div className="d-flex flex-column flex-wrap">
+                    <h3 className="shell">{this.state.name}</h3>
+                    <p className="ceo">{this.state.position}</p>
+                    <p className="paragraph d-flex flex-row flex-wrap">
+                      {this.state.imageDescription}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col">
-          </div>
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Waleed Nadeem",
-                "Marketing Analyst",
-                `       Shuran is a new-joined full stack developer in fall 2020 who is very ethusiastic with traveling. She experienced pressure and nervous in her career exploration for the past summer internship
+            <div className="col"></div>
+            <div
+              onClick={(event) =>
+                this.onClick(
+                  event,
+                  "Waleed Nadeem",
+                  "Marketing Analyst",
+                  `       Shuran is a new-joined full stack developer in fall 2020 who is very ethusiastic with traveling. She experienced pressure and nervous in her career exploration for the past summer internship
                 so she decided to join the team and work on this excellent product that can combine the fun traveling with challenging job hunting. She had teaching assistant and internship experiences with mobile application before, and now 
                 Yolo Shadow provides an exciting opportunity for her to try new technologies in web development.`
-              )
-            }
-          >
-            <AboutImage path={waleed} />
+                )
+              }
+            >
+              <AboutImage path={waleed} />
+            </div>
           </div>
-        </div>
 
-        {/*Row  4*/}
-        <div className="row justify-content-around">
-         <div
-              onClick={event =>
+          {/*Row  4*/}
+          <div className="row justify-content-around">
+            <div
+              onClick={(event) =>
                 this.onClick(
                   event,
                   "Vanshika Singhania",
@@ -145,37 +143,35 @@ class Team extends React.Component {
             >
               <AboutImage path={vanishka} />
             </div>
-          
-          
-           <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Shuran Zhang",
-                "Full Stack Developer",
-                `       Shuran is a new-joined full stack developer in fall 2020 who is very ethusiastic with traveling. She experienced pressure and nervous in her career exploration for the past summer internship
+
+            <div
+              onClick={(event) =>
+                this.onClick(
+                  event,
+                  "Shuran Zhang",
+                  "Full Stack Developer",
+                  `       Shuran is a new-joined full stack developer in fall 2020 who is very ethusiastic with traveling. She experienced pressure and nervous in her career exploration for the past summer internship
                 so she decided to join the team and work on this excellent product that can combine the fun traveling with challenging job hunting. She had teaching assistant and internship experiences with mobile application before, and now 
                 Yolo Shadow provides an exciting opportunity for her to try new technologies in web development.`
-              )
-            }
-          >
-            <AboutImage path={shuran} />
-          </div>
-          <div
-            onClick={event =>
-              this.onClick(
-                event,
-                "Sarah Zaman",
-                "Full Stack Developer",
-                `Sarah is a junior pursuing a BS in Computer Science. She is also minoring in Digital Media Studies with a concentration on video game development. She loves cooking, RPGs, and learning new technologies. She spent the summer teaching herself full-stack development and joined Yolo shadow to help the tech team build the website. As a junior struggling to make sense of what she wants to do with her career, she loves being a part of a company that offers some direction to confused students like herself.`
-              )
-            }
-          >
-            <AboutImage path={sarah} />
+                )
+              }
+            >
+              <AboutImage path={shuran} />
+            </div>
+            <div
+              onClick={(event) =>
+                this.onClick(
+                  event,
+                  "Sarah Zaman",
+                  "Full Stack Developer",
+                  `Sarah is a junior pursuing a BS in Computer Science. She is also minoring in Digital Media Studies with a concentration on video game development. She loves cooking, RPGs, and learning new technologies. She spent the summer teaching herself full-stack development and joined Yolo shadow to help the tech team build the website. As a junior struggling to make sense of what she wants to do with her career, she loves being a part of a company that offers some direction to confused students like herself.`
+                )
+              }
+            >
+              <AboutImage path={sarah} />
+            </div>
           </div>
         </div>
-
-      </div>
       </div>
     );
   }
