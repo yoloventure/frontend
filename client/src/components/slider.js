@@ -112,7 +112,7 @@ export default class Slider extends Component {
                        <div className='row mb-2 mt-0'>
                         <Link to='/explore'>
                                   {/* <button className="mt-5 learnmore justify-content-center" style={{fontFamily:"Mplus 1p",fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px',color: '#150433'}}>     Learn More   </button> */}
-                                  <button className="mt-5 learnmore justify-content-center" style={{fontFamily:"Mplus 1p",fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px'}}>     Learn More 1  </button>
+                                  <button className="mt-5 learnmore justify-content-center" style={{fontFamily:"Mplus 1p",fontStyle: "normal" ,fontWeight: '500',fontSize: '1vw',  lineHeight: '20px',display: 'flex',alignItems: 'center',  letterSpacing: '2px'}}>     Learn More  </button>
                         </Link>
                       </div>
                       
