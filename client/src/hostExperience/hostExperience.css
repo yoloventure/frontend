@@ -113,20 +113,9 @@ top: 828px; */
   color: #5e239d;
 }
 
-.applyNow-1 {
-  color: white;
-  /* position: absolute; */
-  width: 197px;
-  height: 45px;
-  /* left: 200px;
-    top: 816px; */
-  /* Colors/Secondary_100 */
-  background: #5e239d;
-  border-radius: 36px;
-}
 
-.applyNow-1 a,
-.applyNow-2 a {
+.hostGuideButton ,
+.applyButton {
   position: relative;
   bottom: 2px;
   left: 30px;
@@ -137,12 +126,20 @@ top: 828px; */
   font-size: 13.5px;
   line-height: 20px;
   display: flex;
-  align-items: center;
   letter-spacing: 2px;
+  
   text-transform: uppercase;
-  /* Colors/White */
-  color: #fcfcfc;
+   /* position: absolute; */
+   width: 197px;
+   height: 45px;
+   /* left: 801px;
+     top: 1707px; */
+   /* Colors/Secondary_100 */
+   border-radius: 36px;
 }
+
+
+
 
 .hostGuidelines {
   /* position: absolute; */
@@ -274,16 +271,6 @@ top: 828px; */
   color: #30233d;
 }
 
-.applyNow-2 {
-  /* position: absolute; */
-  width: 197px;
-  height: 45px;
-  /* left: 801px;
-    top: 1707px; */
-  /* Colors/Secondary_100 */
-  background: #5e239d;
-  border-radius: 36px;
-}
 
 .host-guidelines1 {
   /* position: absolute; */

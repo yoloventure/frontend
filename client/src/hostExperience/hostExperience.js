@@ -5,7 +5,7 @@ import "./hostExperience.css";
 import Navbar from "../components/navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../components/footer";
-import mike_photo from "../photos/markPhoto.jpg";
+import mark_photo from "../photos/markPhoto.jpg";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
@@ -38,13 +38,17 @@ class HostExperience extends React.Component {
                 <div className="col-md-10 align-self-start">
                   <h5 className="here10"> HERE WE GO</h5>
                   <h3 className="whyHost">Why Host</h3>
+                <div className="row">
+                  <button className="applyButton" style={{background:"#5e239d",color:"#fcfcfc"}}>
+                      <a href="/hostregister" style={{background:"#5e239d",color:"#fcfcfc", textAlign:"center", margin:"auto"}}>Apply Now</a>
+                    </button>
 
-                  <button className="applyNow-1">
-                    <a href="/hostregister">Apply Now</a>
-                  </button>
-                  <button className="applyNow-1">
-                    <a href="/hostguidelines">Host Guidelines</a>
-                  </button>
+
+                    <button className="hostGuideButton ml-5" style={{color:"#5e239d",background:"#fcfcfc"}}>
+                      <a href="/hostguidelines" style={{color:"#5e239d",background:"#fcfcfc", textAlign:"center", margin:"auto" }}>Host Guidelines</a>
+                   </button>
+                </div>
+                  
                 </div>
               </figure>
             </div>
@@ -78,9 +82,10 @@ class HostExperience extends React.Component {
               </div>
               <div className="col-md-3 align-self-center">
                 <img
-                  src={mike_photo}
+                  src={mark_photo}
                   alt="photo of a smiling chef"
-                  className="chefimage"
+                  className=""
+                  style={{height:"100%", width:"100%"}}
                 />
               </div>
               <div className="col-md-1 quoteContainer">
@@ -102,12 +107,16 @@ class HostExperience extends React.Component {
               <figure className="col align-self-end">
                 <h5 className="here20"> HERE WE GO</h5>
                 <h3 className="howTo">How to Become a Host</h3>
-                <a href="/hostregister">
-                  <button className="applyNow-2">Apply Now</button>
-                </a>
-                <a href="/hostguidelines">
-                  <button className="applyNow-2">Host Guidelines</button>
-                </a>
+                <div className="row">
+                  <button className="applyButton" style={{background:"#5e239d",color:"#fcfcfc"}}>
+                      <a href="/hostregister" style={{background:"#5e239d",color:"#fcfcfc", textAlign:"center", margin:"auto"}}>Apply Now</a>
+                    </button>
+
+
+                    <button className="hostGuideButton ml-5" style={{color:"#5e239d",background:"#fcfcfc"}}>
+                      <a href="/hostguidelines" style={{color:"#5e239d",background:"#fcfcfc", textAlign:"center", margin:"auto"}}>Host Guidelines</a>
+                   </button>
+                </div>
               </figure>
             </div>
             <div className="container-fluid row">
