@@ -5,19 +5,29 @@
   /* padding-left: 5%; */
 }
 
+.about{
+  padding: 210px 0;
+}
+
+
+
 .experience-fig-1 {
-  background: linear-gradient(
+  /* background: linear-gradient(
     90deg,
     #d3a630 0%,
     rgba(238, 154, 93, 0.109375) 42.87%,
     rgba(196, 196, 196, 0) 56.77%
-  );
+  ); */
   mix-blend-mode: multiply;
   background: url(../photos//aboutbackground.jpg);
-  mix-blend-mode: hard-light;
-  width: 100%;
-  height: 360px;
+  /* mix-blend-mode: hard-light; */
+  /* width: 100%; */
+  /* height: 100%; */
+  width: 1440px;
+  height: 336px;  
 }
+
+
 
 .team {
   background: #150433;

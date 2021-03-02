@@ -12,13 +12,19 @@
 }
 
 .experience-fig1 {
-  background: rgba(101, 32, 175, 0.76);
+  /* background: rgba(101, 32, 175, 0.76); */
+  mix-blend-mode: multiply;
   background: url(../photos//aboutbackground.jpg);
-  mix-blend-mode: hard-light;
-  width: 100%;
-  height: 360px;
+  /* mix-blend-mode: hard-light; */
+  /* width: 100%; */
+  width: 1440px;
+  height: 336px;
   /* left: 0px;
     top: 144px; */
+}
+
+.host-an-experience{
+  padding: 210px 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -40,10 +46,15 @@
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 500;
-  font-size: 54px;
+  font-size: px;
   line-height: 80px;
   /* Colors/Secondary_200 */
   color: #fcfcfc;
+}
+
+.why-host{
+  position: relative;
+  left: 150px;
 }
 
 .here10,
@@ -176,6 +187,7 @@ top: 828px; */
   /* position: absolute; */
   width: 679px;
   height: 606px;
+  
 }
 
 .insider {
@@ -185,8 +197,8 @@ top: 828px; */
       rgba(36, 41, 52, 0.1)
     ),
     rgba(255, 255, 255, 0.1);
-  background-blend-mode: normal, overlay;
-  backdrop-filter: blur(30px);
+  /* background-blend-mode: normal, overlay; */
+  /* backdrop-filter: blur(30px); */
 }
 
 .insider h5 {
@@ -218,6 +230,7 @@ top: 828px; */
   font-style: normal;
   /* TextColors/Headers */
   color: #30233d;
+  
 }
 
 .chefimage {
@@ -349,34 +362,49 @@ top: 1856px; */
   opacity: 0.25;
 }
 
+
 .quote1 {
   /* position: absolute; */
   width: 641px;
   height: 540px;
-  /* left: 345px;
-    top: 1789px; */
+  /* left: 345px; */
+  /* top: 1789px; */
   /* Yellow */
   background: #f2c94c;
   mix-blend-mode: normal;
 }
 
 .quote1Inside {
-  /* position: absolute; */
+  position: absolute;
   width: 300px;
   height: 504px;
   /* left: 450px;
     top: 1796px; */
+
+
+  font-family: Noticia Text;
+font-style: italic;
+font-weight: normal;
+font-size: 22.5px;
+line-height: 40px;
+display: flex;
+align-items: center;
+
+/* Colors/Secondary_300 */
+
+color: #150433;
+}
+
+
+.box1 {
+  /* position: absolute; */
+  width: 641px;
+  height: 540px;
+  left: 400px;
+  /* top: 1789px; */
+  /* Yellow */
   background: #f2c94c;
   mix-blend-mode: normal;
-  font-family: Noticia Text;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 22.5px;
-  line-height: 40px;
-  display: flex;
-  align-items: center;
-  /* Colors/Secondary_300 */
-  color: #30124e;
 }
 
 .fig20 {
@@ -404,6 +432,8 @@ top: 1856px; */
   /* Colors/White */
   background: #fcfcfc;
 }
+
+
 
 .kaixinn {
   /* position: absolute; */

@@ -10,6 +10,7 @@
   }
 }
 
+
 a:hover {
   text-decoration: underline !important;
 }
@@ -18,3 +19,13 @@ a:hover {
   font-style: normal;
   font-weight: 700;
 }
+
+
+/* change navbar background on collapse */
+@media (max-width: 992px) {
+  nav.navbar {
+    background:#150433;
+  }
+}
+
+

@@ -19,6 +19,7 @@ class Navbar extends React.Component {
       navBackgroundStyle: {},
     };
   }
+
   // logout() {
   //   APIAuth.logout().then();
   // }
@@ -26,29 +27,41 @@ class Navbar extends React.Component {
     window.addEventListener("scroll", this.handleScroll);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // }
+  
   handleScroll = () => {
     if (window.scrollY < 0.1 && this.props.textColor !== "black") {
-      this.setState({ navBackgroundStyle: { background: "transparent" } });
+      if(window.matchMedia("(max-width: 992px)").matches)
+      {this.setState({navBackgroundStyle: {background:'#150433',opacity:'92%'}})}
+      else{ this.setState({ navBackgroundStyle: { background: "transparent" } });}
+           
+
     } else if (this.props.textColor !== "black") {
       this.setState({
         navBackgroundStyle: {
           background: "#150433",
           opacity: "92%",
-          boxShadow: "0px 3px #888888",
-          height: "12%",
+          // boxShadow: "0px 3px #888888",
+          // height: "12%",
         },
       });
     }
-  };
+   }
 
   logout = () => {
     this.props.logout();
   };
 
-  render() {
+  newfunc = () => {
+    console.log("ss")
+  };
+ 
+
+  render = () => {
+
+   
     const { isAuthenticated, user } = this.props.auth;
     let fname = "noOne";
     try {
@@ -80,11 +93,17 @@ class Navbar extends React.Component {
     } else {
       styles.color = "white";
       styles2.color = "white";
-      classVal = "navbar navbar-expand-lg fixed-top navbar-dark bg ";
+      classVal = "navbar navbar-expand-lg fixed-top navbar-dark bg";
       // this.state.navBackgroundStyle= {background:'#150433',opacity:'92%'}
+      
+      
+// if(window.matchMedia("(max-width: 65em)").matches)
+// {this.state.navBackgroundStyle= {background:'#150433',opacity:'92%'}}
+
+
+
       logoValue.push(<img src={logoWhite} />);
     }
-
     let loginColorClass = "";
     let userNameStyles = {};
     if (this.props.textColor === "black") {
@@ -107,17 +126,22 @@ class Navbar extends React.Component {
       };
     }
 
-    return (
+
+    return (       
       <div>
         <nav
           id="nav"
           className={classVal}
           style={this.state.navBackgroundStyle}
+          
         >
           <a className="navbar-brand" href="/" style={{ color: "#F2C94C" }}>
             {logoValue}
           </a>
+         
           <button
+            // onclick = {()=> this.setState({ariaExpanded:"true"})}
+                       
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
@@ -125,10 +149,16 @@ class Navbar extends React.Component {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
 
+            <span className="navbar-toggler-icon" ></span>
+            
+          </button>
+         
+
+          
+          
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active" style={styleLi}>
@@ -176,6 +206,8 @@ class Navbar extends React.Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
+
+      
                   <li className="nav-item active" style={styleLi}>
                     <img
                       style={{ borderRadius: "50%" }}
@@ -251,6 +283,7 @@ class Navbar extends React.Component {
           </div>
         </div>
       </div>
+      
     );
   }
 }
@@ -263,3 +296,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 export default connect(mapStateToProps, { logout })(Navbar);
+

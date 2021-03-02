@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Slide from './slide'
 import LeftArrow from './left-arrow'
 import RightArrow from './right-arrow'
-import img1New from '../photos/ChefPhoto.png'
+import img1New from '../photos/mark.png'
 import img2 from "../photos/rebecca_photo.png"
 import img3 from "../photos/yawo.png"
 import "./style.scss"
