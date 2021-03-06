@@ -1,33 +1,30 @@
-.moreClass{
-  color:#109CF1;
+.moreClass {
+  color: #109cf1;
 }
-button{
-  outline:none;
+button {
+  outline: none;
 }
 
-.pb-4{
+.pb-4 {
   padding-bottom: 4rem;
 }
 
-.pt-4{
+.pt-4 {
   padding-top: 4rem;
 }
 
-.pt-1{
+.pt-1 {
   padding-top: 0.5rem !important;
 }
 
-
-
-.btn-pos{
+.btn-pos {
   text-align: center !important;
   padding-right: 1rem;
   padding-bottom: 4px !important;
   margin-right: 1rem;
-  border-color: #5E239D;
+  border-color: #5e239d;
 }
 
-.no-border{
+.no-border {
   border: none !important;
 }
-

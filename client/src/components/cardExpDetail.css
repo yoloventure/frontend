@@ -1,6 +1,5 @@
-
 h4 {
-  font-family: 'Mplus 1p';
+  font-family: "Mplus 1p";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -8,18 +7,18 @@ h4 {
   /* identical to box height */
 
   /* TextColors/Headers */
-  color: #30233D;
+  color: #30233d;
 }
 
 p {
-  font-family: 'Mplus 1p';
+  font-family: "Mplus 1p";
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 163.35%;
   /* or 26px */
 
-  color: #776C82;
+  color: #776c82;
 }
 
 /* Customize the label (the container) */

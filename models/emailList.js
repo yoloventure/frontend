@@ -4,16 +4,16 @@ const emailSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   fname: {
     type: String,
-    required: true
+    required: true,
   },
   lname: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("EmailList", emailSchema);

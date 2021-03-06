@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
-import {
-  MDBContainer
-} from "mdbreact";
+import { Helmet } from "react-helmet";
+import { MDBContainer } from "mdbreact";
 import Navbar from "../components/navbar";
 import FooterPage from "../components/footer";
-import { Link, Redirect,withRouter } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-import PropTypes from 'prop-types';
-import { register,resetAttempt } from '../actions/authActions';
+import PropTypes from "prop-types";
+import { register, resetAttempt } from "../actions/authActions";
 
 class Register extends Component {
   constructor(props) {
@@ -19,69 +17,60 @@ class Register extends Component {
     this.props.resetAttempt();
 
     this.state = {
-        user: {
-            fname: '',
-            lname: '',
-            email: '',
-            password: '',
-            job_interests:[]
-        },
-        submitted: false,
-        errorMessage: '',
-        redirect:false
-
-      };
+      user: {
+        fname: "",
+        lname: "",
+        email: "",
+        password: "",
+        job_interests: [],
+      },
+      submitted: false,
+      errorMessage: "",
+      redirect: false,
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-}
+  }
 
-handleChange(event) {
+  handleChange(event) {
     const { name, value } = event.target;
     const { user } = this.state;
     this.setState({
-        user: {
-            ...user,
-            [name]: value
-        }
+      user: {
+        ...user,
+        [name]: value,
+      },
     });
-}
+  }
 
-handleSubmit(event) {
-
+  handleSubmit(event) {
     event.preventDefault();
 
     this.setState({ submitted: true });
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
-        this.props.resetAttempt();
-        this.props.register(user);
+      this.props.resetAttempt();
+      this.props.register(user);
+    }
+  }
 
-   }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.auth.attemptDone) {
+      console.log("here");
+      if (nextProps.auth.isAuthenticated) {
+        return { errorMessage: "Success", redirect: true };
+      } else {
+        console.log("authenticated fail");
 
+        return {
+          errorMessage: "There is already a user associated with this email.",
+        };
+      }
+    }
+  }
 
-}
-
- static getDerivedStateFromProps(nextProps, prevState){
-
-   if(nextProps.auth.attemptDone){
-     console.log('here')
-     if(nextProps.auth.isAuthenticated){
-       return {errorMessage:"Success", redirect:true};
-
-
-     }else {
-       console.log('authenticated fail')
-
-       return {errorMessage:"There is already a user associated with this email."};
-
-     }
-
-   }
- }
-
-
-/*This lifecycle method has been declared unsafe for newer version of react
+  /*This lifecycle method has been declared unsafe for newer version of react
  componentWillReceiveProps(nextprops){
   if(nextprops.auth.isAuthenticated){
     this.setState({errorMessage:"", redirect:true})
@@ -94,74 +83,116 @@ handleSubmit(event) {
 
   }
 }*/
-renderRedirect = () => {
-  if (this.state.redirect) {
-      var link="/";
-      return <Redirect to={link}/>
-  }
-
-};
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      var link = "/";
+      return <Redirect to={link} />;
+    }
+  };
   render() {
-    const { user, submitted, errorMessage} = this.state;
+    const { user, submitted, errorMessage } = this.state;
     return (
       <div className="container-fluid app p-0 m-0">
-
         <Helmet>
-            <title>Register | YoloShadow</title>
+          <title>Register | YoloShadow</title>
         </Helmet>
         {this.renderRedirect()}
         <div className="nav">
-          <Navbar textColor={"black"}  />
+          <Navbar textColor={"black"} />
         </div>
 
         <div className="experience-fig-1 row align-items-center">
           <div className="col-md-2"></div>
-          <h2><em>Register</em></h2>
+          <h2>
+            <em>Register</em>
+          </h2>
         </div>
-        <MDBContainer >
+        <MDBContainer>
           <div className="col-md-6 col-md-offset-3">
             <p className="text-danger">{errorMessage}</p>
             <form name="form" onSubmit={this.handleSubmit}>
-              <div className={'form-group' + (submitted && !user.fname ? ' has-error' : '')}>
+              <div
+                className={
+                  "form-group" + (submitted && !user.fname ? " has-error" : "")
+                }
+              >
                 <label htmlFor="fname">First Name</label>
-                <input type="text" className="form-control" name="fname" value={user.fname} onChange={this.handleChange} />
-                {submitted && !user.fname &&
+                <input
+                  type="text"
+                  className="form-control"
+                  name="fname"
+                  value={user.fname}
+                  onChange={this.handleChange}
+                />
+                {submitted && !user.fname && (
                   <div className="help-block">First Name is required</div>
-                }
+                )}
               </div>
-              <div className={'form-group' + (submitted && !user.lname ? ' has-error' : '')}>
+              <div
+                className={
+                  "form-group" + (submitted && !user.lname ? " has-error" : "")
+                }
+              >
                 <label htmlFor="lname">Last Name</label>
-                <input type="text" className="form-control" name="lname" value={user.lname} onChange={this.handleChange} />
-                {submitted && !user.lname &&
+                <input
+                  type="text"
+                  className="form-control"
+                  name="lname"
+                  value={user.lname}
+                  onChange={this.handleChange}
+                />
+                {submitted && !user.lname && (
                   <div className="help-block">Last Name is required</div>
-                }
+                )}
               </div>
-              <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
+              <div
+                className={
+                  "form-group" + (submitted && !user.email ? " has-error" : "")
+                }
+              >
                 <label htmlFor="email">Email</label>
-                <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
-                {submitted && !user.email &&
+                <input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  value={user.email}
+                  onChange={this.handleChange}
+                />
+                {submitted && !user.email && (
                   <div className="help-block">Email is required</div>
-                }
+                )}
               </div>
-              <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
-                <label htmlFor="password">Password</label>
-                <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                {submitted && !user.password &&
-                  <div className="help-block">Password is required</div>
+              <div
+                className={
+                  "form-group" +
+                  (submitted && !user.password ? " has-error" : "")
                 }
+              >
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={user.password}
+                  onChange={this.handleChange}
+                />
+                {submitted && !user.password && (
+                  <div className="help-block">Password is required</div>
+                )}
               </div>
               <div className="form-group">
-
                 <button className="btn btn-primary">Register</button>
 
                 {/*
                   <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                 */}
-                <Link to="/login" className="btn btn-warning">Go to login</Link>
+                <Link to="/login" className="btn btn-warning">
+                  Go to login
+                </Link>
               </div>
             </form>
           </div>
-        </MDBContainer >
+        </MDBContainer>
 
         <div className="col offset-.5 footerpage p-0 m-0">
           <FooterPage />
@@ -171,21 +202,16 @@ renderRedirect = () => {
   }
 }
 
-
-
-
-
 Register.propTypes = {
-    register: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-
-}
+  register: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-    auth:state.auth //item represents the entire state
+  auth: state.auth, //item represents the entire state
 });
 
 export default compose(
   withRouter,
-  connect(mapStateToProps,  {register,resetAttempt})
+  connect(mapStateToProps, { register, resetAttempt })
 )(Register);

@@ -5,24 +5,23 @@ import ExperienceDetail from "./explore/experienceDetail";
 import ShadowerReservation from "./bookExperience/shadowerReservation";
 import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience";
-import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./auth/register";
-import HostRegister from "./registration/hostRegister"
-import HostRegister_Round2 from "./registration/hostRegister_Round2"
+import HostRegister from "./registration/hostRegister";
+import HostRegister_Round2 from "./registration/hostRegister_Round2";
 import FeatureStory from "./story/featureStory";
 import About from "./about/about";
 import HostGuidelines from "./hostExperience/hostGuidelines";
-import Dashboard from './hostInterface/dashboard'
-import ShadowerDashboard from './shadowerInterface/shadowerDashboard'
+import Dashboard from "./hostInterface/dashboard";
+import ShadowerDashboard from "./shadowerInterface/shadowerDashboard";
 import Admin from "./admin/admin";
-import {persistor,store} from './store';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react'
-
+import { persistor, store } from "./store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 class App extends React.Component {
   constructor(props) {
-     super(props);
+    super(props);
     // this.state = {
     //   user: null,
     //   auth:{userName: 'Kaixin', isAuthenticated: 1}
@@ -30,125 +29,79 @@ class App extends React.Component {
     // this.authListener = this.authListener.bind(this);
   }
 
-//   componentDidMount() { //Load user every time App is rendered
-//   store.dispatch(loadUser());
-// }
+  //   componentDidMount() { //Load user every time App is rendered
+  //   store.dispatch(loadUser());
+  // }
 
   render() {
     return (
       <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router>
+            <div>
+              <Switch>
+                <Route path="/explore" exact component={Explore} />
 
-      <Router>
-      <div>
-      <Switch>
+                <Route path="/explore/:id" exact component={ExperienceDetail} />
 
-      <Route
-        path="/explore"
-        exact
-        component={Explore}
-      />
+                <Route
+                  path="/reserve/:id"
+                  exact
+                  component={ShadowerReservation}
+                />
 
-      <Route
-        path='/explore/:id'
-        exact
-        component={ExperienceDetail}
-      />
+                <Route
+                  path="/hostexperience"
+                  exact
+                  component={HostExperience}
+                />
 
-      <Route
-        path='/reserve/:id'
-        exact
-        component={ShadowerReservation}
-      />
+                <Route
+                  path="/hostguidelines"
+                  exact
+                  component={HostGuidelines}
+                />
 
-      <Route
-        path="/hostexperience"
-        exact
-        component={HostExperience}
-      />
+                <Route path="/register" exact component={Register} />
 
-      <Route
-        path="/hostguidelines"
-        exact
-        component={HostGuidelines}
-      />
+                <Route path="/about" exact component={About} />
 
-      <Route
-        path="/register"
-        exact
-        component={Register}
-      />
+                <Route path="/login" exact component={Login} />
 
-      <Route
-        path="/about"
-        exact
-        component={About}
-      />
+                <Route path="/story" exact component={FeatureStory} />
 
-      <Route
-        path="/login"
-        exact
-        component={Login}
-      />
+                <Route path="/hostregister" exact component={HostRegister} />
 
-      <Route
-        path="/story"
-        exact
-        component={FeatureStory}
-      />
+                <Route
+                  path="/hostregister/round2"
+                  exact
+                  component={HostRegister_Round2}
+                />
 
-      <Route
-        path="/hostregister"
-        exact
-        component={HostRegister}
-      />
+                <Route
+                  path="/hostguidelines"
+                  exact
+                  component={HostGuidelines}
+                />
 
-      <Route
-        path="/hostregister/round2"
-        exact
-        component={HostRegister_Round2}
-      />
+                <Route path="/" exact component={Homepage} />
 
-      <Route
-        path="/hostguidelines"
-        exact
-        component={HostGuidelines}
-      />
+                <Route path="/hostdashboard" exact component={Dashboard} />
 
-      <Route
-        path="/"
-        exact
-        component={Homepage}
-      />
+                <Route
+                  path="/shadowerdashboard"
+                  exact
+                  component={ShadowerDashboard}
+                />
 
-      <Route
-        path="/hostdashboard"
-        exact
-        component={Dashboard}
-      />
-
-      <Route
-        path="/shadowerdashboard"
-        exact
-        component={ShadowerDashboard}
-      />
-
-      <Route
-        path="/admin"
-        exact
-        component={Admin}
-      />
-
-       </Switch>
-       </div>
-      </Router>
-      </PersistGate>
+                <Route path="/admin" exact component={Admin} />
+              </Switch>
+            </div>
+          </Router>
+        </PersistGate>
       </Provider>
-
     );
   }
 }
-
-
 
 export default App;

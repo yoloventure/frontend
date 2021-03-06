@@ -1,58 +1,56 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Experience = require('../models/experience');
+const Experience = require("../models/experience");
 
 //Get all experiences
-router.get('/', function (req, res) {
+router.get("/", function (req, res) {
   Experience.find()
-  .populate({
-    path: 'host',
-    populate: { path: 'user' }
-  })
-  .populate({
-    path: 'host',
-    populate: { path: 'company' }
-  })
-  .then( experiences =>{
-    res.send(experiences);
-  });
-
-
+    .populate({
+      path: "host",
+      populate: { path: "user" },
+    })
+    .populate({
+      path: "host",
+      populate: { path: "company" },
+    })
+    .then((experiences) => {
+      res.send(experiences);
+    });
 });
 
 //Retrive experience by Id
-router.get('/:id', function (req, res, next) {
-  Experience.findById({_id: req.params.id})
-  .populate({
-    path: 'host',
-    populate: { path: 'user' }
-  })
-  .populate({
-    path: 'host',
-    populate: { path: 'company' }
-  })
-  .then(function (experience) {
-    res.send(experience);
-  });
+router.get("/:id", function (req, res, next) {
+  Experience.findById({ _id: req.params.id })
+    .populate({
+      path: "host",
+      populate: { path: "user" },
+    })
+    .populate({
+      path: "host",
+      populate: { path: "company" },
+    })
+    .then(function (experience) {
+      res.send(experience);
+    });
 });
 //Retrive experience by host Id
-router.get('/host/:id', function (req, res, next) {
-  Experience.findOne({host: req.params.id})
-  .populate({
-    path: 'host',
-    populate: { path: 'user' }
-  })
-  .populate({
-    path: 'host',
-    populate: { path: 'company' }
-  })
-  .then(function (experience) {
-    console.log(experience)
-    res.send(experience);
-  });
+router.get("/host/:id", function (req, res, next) {
+  Experience.findOne({ host: req.params.id })
+    .populate({
+      path: "host",
+      populate: { path: "user" },
+    })
+    .populate({
+      path: "host",
+      populate: { path: "company" },
+    })
+    .then(function (experience) {
+      console.log(experience);
+      res.send(experience);
+    });
 });
 //Create and save new experience instance
-router.post('/', function (req, res, next) {
+router.post("/", function (req, res, next) {
   Experience.create(req.body)
     .then(function (experience) {
       res.send(experience); //send back info to client
@@ -61,30 +59,38 @@ router.post('/', function (req, res, next) {
 });
 
 //Edit experience found with expereince ID
-router.put('/:id', function (req, res, next) {
+router.put("/:id", function (req, res, next) {
   //find and update specific application
-  Experience.findByIdAndUpdate({_id: req.params.id}, req.body).then(function () {
-    //find and send back updated application for display
-    Experience.findOne({_id: req.params.id}, req.body).then(function (experience) {
-      res.send(experience);
-    });
-  });
+  Experience.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
+    function () {
+      //find and send back updated application for display
+      Experience.findOne({ _id: req.params.id }, req.body).then(function (
+        experience
+      ) {
+        res.send(experience);
+      });
+    }
+  );
 });
 
 //Edit experience found with Host ID
-router.put('/host/:id', function (req, res, next) {
+router.put("/host/:id", function (req, res, next) {
   //find and update specific application
-  console.log(req.body)
-  Experience.findOneAndUpdate({host: req.params.id}, req.body, {new:true}).then(function (experience) {
+  console.log(req.body);
+  Experience.findOneAndUpdate({ host: req.params.id }, req.body, {
+    new: true,
+  }).then(function (experience) {
     //find and send back updated application for display
-    console.log(experience)
-     res.send(experience)
+    console.log(experience);
+    res.send(experience);
   });
 });
 
 //Delete experience
-router.delete('/:id', function (req, res, next) {
-  Experience.findByIdAndRemove({_id: req.params.id}).then(function (experience) {
+router.delete("/:id", function (req, res, next) {
+  Experience.findByIdAndRemove({ _id: req.params.id }).then(function (
+    experience
+  ) {
     res.send(experience);
   });
 });

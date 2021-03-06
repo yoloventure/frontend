@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,19 +12,15 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
-    return(
+    return (
       <div>
         <Helmet>
-            <title>Profile | YoloShadow</title> // insert dynamic title
+          <title>Profile | YoloShadow</title> // insert dynamic title
         </Helmet>
-
-
       </div>
     );
   }
