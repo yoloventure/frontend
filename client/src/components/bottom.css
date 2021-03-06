@@ -13,7 +13,7 @@
     top: 500px; */
 }
 
-.asides {
+.asides{
   width: 50%;
   height: 64px;
   /* left: 450px;
@@ -84,68 +84,69 @@
   color: #776c82;
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
-  .openQuote {
+  .openQuote{
     max-width: 30px;
     max-height: 30px;
   }
-  .asides {
+  .asides{
     font-size: 20px;
     line-height: 40px;
+
   }
-  .newsletter {
-    font-size: 27px;
-    line-height: 40px;
+  .newsletter{
+  font-size: 27px;
+  line-height: 40px;
   }
-  .stay-tuned {
-    font-size: 13px;
-    line-height: 10px;
+  .stay-tuned{
+  font-size: 13px;
+  line-height: 10px;
   }
-  .slidepic {
-    max-width: 160px;
-    max-height: 160px;
+  .slidepic{
+  max-width: 160px;
+  max-height: 160px;
   }
 }
 @media screen and (min-width: 600px) and (max-width: 900px) {
-  .openQuote {
+  .openQuote{
     max-width: 45px;
     max-height: 45px;
   }
-  .asides {
+  .asides{
     line-height: 45px;
     font-size: 25px;
   }
-  .newsletter {
-    font-size: 32px;
-    line-height: 50px;
+  .newsletter{
+  font-size: 32px;
+  line-height: 50px;
   }
-  .stay-tuned {
-    font-size: 16px;
-    line-height: 15px;
+  .stay-tuned{
+  font-size: 16px;
+  line-height: 15px;
   }
-  .slidepic {
-    max-width: 230px;
-    max-height: 230px;
+  .slidepic{
+  max-width: 230px;
+  max-height: 230px;
   }
 }
 @media screen and (min-width: 900px) and (max-width: 1200px) {
-  .openQuote {
+  .openQuote{
     max-width: 70px;
     max-height: 70px;
   }
-  .asides {
+  .asides{
     line-height: 60px;
     font-size: 30px;
   }
-  .newsletter {
-    font-size: 40px;
-    line-height: 60px;
+  .newsletter{
+  font-size: 40px;
+  line-height: 60px;
   }
-  .stay-tuned {
-    font-size: 20px;
-    line-height: 20px;
+  .stay-tuned{
+  font-size: 20px;
+  line-height: 20px;
   }
-  .slidepic {
-    max-width: 320px;
-    max-height: 320px;
+  .slidepic{
+  max-width: 320px;
+  max-height: 320px;
   }
 }

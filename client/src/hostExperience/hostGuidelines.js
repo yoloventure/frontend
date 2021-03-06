@@ -40,14 +40,17 @@ class HostGuidelines extends React.Component {
                   <br />
                   <h3 className="whyHost">Host Guidelines</h3>
                   <br />
+                  </div>
+                  <div className="row">
+                  <button className="applyButton" style={{background:"#5e239d",color:"#fcfcfc"}}>
+                      <a href="/hostregister" style={{background:"#5e239d",color:"#fcfcfc", textAlign:"center", margin:"auto"}}>Apply Now</a>
+                    </button>
 
-                  <button className="applyNow-1">
-                    <a href="#">Apply Now</a>
-                  </button>
-                  <button className="applyNow-1">
-                    <a href="#">Why Host</a>
-                  </button>
-                </div>
+                    <button className="hostGuideButton ml-5" style={{color:"#5e239d",background:"#fcfcfc"}}>
+                      <a href="/#" style={{color:"#5e239d",background:"#fcfcfc", textAlign:"center", margin:"auto" }}>Why Host</a>
+                   </button>
+                   </div>
+               
               </figure>
             </div>
           </div>

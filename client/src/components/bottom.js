@@ -16,7 +16,7 @@ class Bottom extends React.Component {
       currentIndex: 0,
       email: "",
       fname: "",
-      lname: "",
+      lname:""
       //translateValue: 0
     };
 
@@ -25,43 +25,43 @@ class Bottom extends React.Component {
   }
 
   handleChange(event) {
-    const { id, value } = event.target;
+    const {id,value}=event.target
     this.setState({ [id]: value });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (!this.state.fname || !this.state.lname || !this.state.email) {
-      alert("Please fill all fields before submitting");
+    if(!this.state.fname || !this.state.lname || !this.state.email){
+      alert("Please fill all fields before submitting")
       return;
+
     }
     return fetch("/api/emailList", {
       method: "POST",
 
       body: JSON.stringify({
         fname: this.state.fname,
-        lname: this.state.lname,
-        email: this.state.email,
+        lname:this.state.lname,
+        email: this.state.email
       }),
       headers: {
-        "Content-Type": "application/JSON",
-      },
+        "Content-Type": "application/JSON"
+      }
     })
-      .then((response) => {
+      .then(response => {
         if (response.ok) {
           alert("You have successfully subscribed to our Newsletter.");
           this.setState({ email: "" });
         } else if (response.status === 409) {
           alert("You have already subscribed to our Newsletter. Thank you!");
           this.setState({ email: "" });
-        } else {
-          alert(
-            "Please try again, there was an error in getting you subscribed!"
-          );
+        }else{
+          alert("Please try again, there was an error in getting you subscribed!");
+          
         }
         return response;
       })
-      .catch((error) => error);
+      .catch(error => error);
   }
 
   goToPrevSlide = () => {
@@ -70,14 +70,14 @@ class Bottom extends React.Component {
     // to the first image in the array.
     if (this.state.currentIndex === 0) {
       return this.setState({
-        currentIndex: this.state.images.length - 1,
+        currentIndex: this.state.images.length - 1
         //translateValue: -(this.state.images.length-1)*(this.slideWidth())
       });
     }
 
     // This will not run if we met the if condition above
-    this.setState((prevState) => ({
-      currentIndex: prevState.currentIndex - 1,
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex - 1
       //  translateValue: prevState.translateValue + (this.slideWidth())
     }));
   };
@@ -88,14 +88,14 @@ class Bottom extends React.Component {
     // to the first image in the array.
     if (this.state.currentIndex === this.state.images.length - 1) {
       return this.setState({
-        currentIndex: 0,
+        currentIndex: 0
         //translateValue: 0
       });
     }
 
     // This will not run if we met the if condition above
-    this.setState((prevState) => ({
-      currentIndex: prevState.currentIndex + 1,
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex + 1
       //translateValue: prevState.translateValue + -(this.slideWidth())
     }));
   };
@@ -133,7 +133,10 @@ class Bottom extends React.Component {
             <img className="openQuote " src={quotes} alt="" />
           </div>
           <div className="col-7 ">
-            <p className="asides">YOLO empowers me to be an adventurer </p>
+            <p className="asides">YOLO
+            empowers me 
+            to be an 
+            adventurer </p>
           </div>
         </div>
 
@@ -143,9 +146,7 @@ class Bottom extends React.Component {
         >
           <div className="row d-flex flex-column">
             <div className="col d-flex justify-content-center">
-              <h3 className="newsletter d-none d-md-block col-lg-2 col-2">
-                Subscribe to Our Newsletter
-              </h3>
+              <h3 className="newsletter d-none d-md-block col-lg-2 col-2">Subscribe to Our Newsletter</h3>
             </div>
             <br />
             <div className="col d-flex justify-content-center mt-2 pt-2">
@@ -173,7 +174,7 @@ class Bottom extends React.Component {
               <form action="" onSubmit={this.handleSubmit}>
                 <div className="row d-flex justify-content-center mb-2 w-20">
                   <input
-                    style={{ width: "30%" }}
+                    style={{width:"30%"}}
                     type="text"
                     id="fname"
                     placeholder="Enter First Name"
@@ -183,7 +184,7 @@ class Bottom extends React.Component {
                 </div>
                 <div className="row d-flex justify-content-center mb-2">
                   <input
-                    style={{ width: "30%" }}
+                    style={{width:"30%"}}
                     type="text"
                     id="lname"
                     placeholder="Enter Last Name"
@@ -193,7 +194,7 @@ class Bottom extends React.Component {
                 </div>
                 <div className="row d-flex justify-content-center mb-2">
                   <input
-                    style={{ width: "30%" }}
+                    style={{width:"30%"}}
                     type="email"
                     id="email"
                     placeholder="Enter Email"

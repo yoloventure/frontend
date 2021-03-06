@@ -1,3 +1,4 @@
+  
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import hostbackground from "../photos/hostbackground.jpg";
@@ -5,7 +6,7 @@ import "./hostExperience.css";
 import Navbar from "../components/navbar";
 import Bottom from "../components/bottom";
 import FooterPage from "../components/footer";
-import chef_photo from "../photos/chef.png";
+import mark_photo from "../photos/mark.png";
 import woman from "../photos/woman.jpg";
 import faces from "../photos/Faces.png";
 import kaixin from "../photos/kaixin.jpg";
@@ -86,7 +87,7 @@ class HostExperience extends React.Component {
               </figure>
               <div className="col-md-3 ">
                 <img
-                  src={chef_photo}
+                  src={mark_photo}
                   alt="photo of a smiling chef"
                   className=""
                   // style={{height:"100%", width:"100%"}}

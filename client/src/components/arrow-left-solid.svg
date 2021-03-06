@@ -1,10 +1,1 @@
-<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle r="13.5" transform="matrix(-1 0 0 1 13.5 13.5)" fill="#C4C4C4" fill-opacity="0.05"/>
-<circle r="13" transform="matrix(-1 0 0 1 13.5 13.5)" stroke="white" stroke-opacity="0.5"/>
-<path d="M9.20895 13.8536C9.01368 13.6583 9.01368 13.3417 9.20895 13.1464L12.3909 9.96447C12.5862 9.7692 12.9028 9.7692 13.098 9.96447C13.2933 10.1597 13.2933 10.4763 13.098 10.6716L10.2696 13.5L13.098 16.3284C13.2933 16.5237 13.2933 16.8403 13.098 17.0355C12.9028 17.2308 12.5862 17.2308 12.3909 17.0355L9.20895 13.8536ZM17.4375 14H9.5625V13H17.4375V14Z" fill="#F4F4ED"/>
-</svg>
-
-
-
-
-
+<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path></svg>
