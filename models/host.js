@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const company = require('./company');
-const user = require('./user');
+const mongoose = require("mongoose");
+const company = require("./company");
+const user = require("./user");
 
 const hostSchema = new mongoose.Schema({
   user: {
@@ -22,7 +22,7 @@ const hostSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
- idImage: {
+  idImage: {
     type: String,
     default: null,
   },
@@ -102,7 +102,7 @@ const hostSchema = new mongoose.Schema({
     //host application approval stage
     //values: pending/approved/rejected
     type: String,
-    default: 'pending',
+    default: "pending",
     required: true,
   },
 
@@ -112,4 +112,4 @@ const hostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Host', hostSchema);
+module.exports = mongoose.model("Host", hostSchema);

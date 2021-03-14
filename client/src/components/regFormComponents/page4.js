@@ -1,41 +1,40 @@
 // import React from "./node_modules/reacte_modules/react";
 import React, { Component } from "react";
-import {Button} from "reactstrap"
+import { Button } from "reactstrap";
 
 class Page4 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
 
     this.handleClick = this.handleClick.bind(this);
   }
-  handleSubmitPage4Next=()=>{
+  handleSubmitPage4Next = () => {
     // let host=this.props.host
     // if(!host.street|| !host.city ||!host.state){
     //   this.setState({submittedPage2:true, errorPage1:"Please fill all required fields"})
     // }else{
-      this.props.setNextTrue()
+    this.props.setNextTrue();
 
     // }
-  }
-  handleSubmitPage4Back=()=>{
+  };
+  handleSubmitPage4Back = () => {
     // let host=this.props.host
     // if(!host.street|| !host.city ||!host.state){
     //   this.setState({submittedPage2:true, errorPage1:"Please fill all required fields"})
     // }else{
-      this.props.setNextFalse()
+    this.props.setNextFalse();
 
     // }
-  }
+  };
 
-  handleClick(e){
-    let currentText=document.getElementById('textArea').innerHTML
-    currentText=currentText.concat(e.currentTarget.textContent+',')
-    document.getElementById('textArea').innerHTML=currentText
-    let event={}
-    event['target']={'name':'expertise','value':currentText}
-    this.props.handleInputChange(event)
+  handleClick(e) {
+    let currentText = document.getElementById("textArea").innerHTML;
+    currentText = currentText.concat(e.currentTarget.textContent + ",");
+    document.getElementById("textArea").innerHTML = currentText;
+    let event = {};
+    event["target"] = { name: "expertise", value: currentText };
+    this.props.handleInputChange(event);
   }
   render() {
     return (
@@ -63,30 +62,46 @@ class Page4 extends React.Component {
                 />
               </div>
             </div>
-            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Artificial Intelligence</Button>
-            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Woodmaking</Button>
-            <Button className='pr-2' style={{margin:'5%'}} variant="light" onClick={(e)=>this.handleClick(e)}>Cooking</Button>
+            <Button
+              className="pr-2"
+              style={{ margin: "5%" }}
+              variant="light"
+              onClick={(e) => this.handleClick(e)}
+            >
+              Artificial Intelligence
+            </Button>
+            <Button
+              className="pr-2"
+              style={{ margin: "5%" }}
+              variant="light"
+              onClick={(e) => this.handleClick(e)}
+            >
+              Woodmaking
+            </Button>
+            <Button
+              className="pr-2"
+              style={{ margin: "5%" }}
+              variant="light"
+              onClick={(e) => this.handleClick(e)}
+            >
+              Cooking
+            </Button>
             <div className="row mt-5 mb-4">
-                    <div className="col-4 offset-4">
-                      <input
-                        className="btn nextBtn"
-                        onClick={this.handleSubmitPage4Back}
-
-                        value="Previous Step"
-                      />
-                    </div>
-                    <div className="col-4">
-                      <input
-                      className="btn nextBtn"
-
-                      onClick={this.handleSubmitPage4Next}
-
-                        value="Next Step"
-                      />
-                    </div>
-
+              <div className="col-4 offset-4">
+                <input
+                  className="btn nextBtn"
+                  onClick={this.handleSubmitPage4Back}
+                  value="Previous Step"
+                />
+              </div>
+              <div className="col-4">
+                <input
+                  className="btn nextBtn"
+                  onClick={this.handleSubmitPage4Next}
+                  value="Next Step"
+                />
+              </div>
             </div>
-
           </div>
         </form>
       </div>

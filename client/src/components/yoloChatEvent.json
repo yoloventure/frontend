@@ -1,33 +1,28 @@
-
 [
-    {
-      "id":1,
-      "speaker": "Alex Marinov",
-      "date":"September 13, 2020",
-      "time":"2PM-3PM EST",
-      "image":"../photos/chat2.png",
-      "link":"http://tinyurl.com/yolochatwithalex"
-      },
+  {
+    "id": 1,
+    "speaker": "Alex Marinov",
+    "date": "September 13, 2020",
+    "time": "2PM-3PM EST",
+    "image": "../photos/chat2.png",
+    "link": "http://tinyurl.com/yolochatwithalex"
+  },
 
-      {
-       "id":2,
-      "speaker": "Sarah Spoto",
-      "date":"August 29, 2020",
-      "time":"7PM-8PM EST",
-      "image":"../photos/chat1.png",
-      "link":"http://tinyurl.com/yolochatwithalex"
-        },
+  {
+    "id": 2,
+    "speaker": "Sarah Spoto",
+    "date": "August 29, 2020",
+    "time": "7PM-8PM EST",
+    "image": "../photos/chat1.png",
+    "link": "http://tinyurl.com/yolochatwithalex"
+  },
 
-         {
-       "id":3,
-      "speaker": "Mike Alcazaren",
-      "date":"August 20, 2020",
-      "time":"7PM-8PM EST",
-      "image":"../photos/chat1.png",
-      "link":"http://tinyurl.com/yolochatwithalex"
-        }
-
-
-
-
+  {
+    "id": 3,
+    "speaker": "Mike Alcazaren",
+    "date": "August 20, 2020",
+    "time": "7PM-8PM EST",
+    "image": "../photos/chat1.png",
+    "link": "http://tinyurl.com/yolochatwithalex"
+  }
 ]

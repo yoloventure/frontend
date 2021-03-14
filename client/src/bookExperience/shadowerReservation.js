@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./shadowerReservation.css";
 import Navbar from "../components/navbar";
 import RegistrationFooter from "../components/registrationFooter";
@@ -19,9 +19,9 @@ import APIReservation from "../api/apiReservation";
 
 import APIBookExp from "../api/apiBookExp";
 
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { register,loadUser } from '../actions/authActions';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { register, loadUser } from "../actions/authActions";
 
 class ShadowReservation extends React.Component {
   constructor(props) {
@@ -51,19 +51,21 @@ class ShadowReservation extends React.Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-//this.props.match.params.id will return host ID.
+  //this.props.match.params.id will return host ID.
   componentWillMount() {
     try {
-      APIExperience.getExperienceById(this.props.match.params.id)
-          .then(experience => this.setState(prevState => {
+      APIExperience.getExperienceById(this.props.match.params.id).then(
+        (experience) =>
+          this.setState((prevState) => {
             return {
               data: {
                 ...prevState.data,
-                experience: experience
+                experience: experience,
               },
-              loaded: true
-            }
-          }));
+              loaded: true,
+            };
+          })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -72,101 +74,119 @@ class ShadowReservation extends React.Component {
   }
 
   goNext = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         counter: prevState.counter + 1,
         progress: prevState.progress + 15,
-        goNext: false
-      }
+        goNext: false,
+      };
     }, this.handleSubmit);
-  }
+  };
 
   goPrev = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         counter: prevState.counter - 1,
         progress: prevState.progress - 15,
-        goPrev: false
-      }
+        goPrev: false,
+      };
     }, this.handleSubmit);
-  }
+  };
 
   handleDateRange(availableRanges) {
-    this.setState(prevState => {
-      return {
-        data: {
-          ...prevState.data,
-          availableRanges: availableRanges
-        }
+    this.setState(
+      (prevState) => {
+        return {
+          data: {
+            ...prevState.data,
+            availableRanges: availableRanges,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleAspectSelect(aspects) {
-    this.setState(prevState => {
-      return {
-        data: {
-          ...prevState.data,
-          aspects: aspects
-        }
+    this.setState(
+      (prevState) => {
+        return {
+          data: {
+            ...prevState.data,
+            aspects: aspects,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleOtherAspects(otherAspects) {
-    this.setState(prevState => {
-      return {
-        data: {
-          ...prevState.data,
-          otherAspects: otherAspects
-        }
+    this.setState(
+      (prevState) => {
+        return {
+          data: {
+            ...prevState.data,
+            otherAspects: otherAspects,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleWhatMakesGood(whatMakesGood) {
-    this.setState(prevState => {
-      return {
-        data: {
-          ...prevState.data,
-          whatMakesGood: whatMakesGood
-        }
+    this.setState(
+      (prevState) => {
+        return {
+          data: {
+            ...prevState.data,
+            whatMakesGood: whatMakesGood,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleAccomodations(accomodations) {
-    this.setState(prevState => {
-      return {
-        data: {
-          ...prevState.data,
-          accomodations: accomodations
-        }
+    this.setState(
+      (prevState) => {
+        return {
+          data: {
+            ...prevState.data,
+            accomodations: accomodations,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleFileUpload(file, index) {
-    this.setState(prevState => {
-      prevState.data.files[index] = file;
-      return {
-        data: {
-          ...prevState.data,
-        }
+    this.setState(
+      (prevState) => {
+        prevState.data.files[index] = file;
+        return {
+          data: {
+            ...prevState.data,
+          },
+        };
+      },
+      () => {
+        console.log(this.state.data);
       }
-    }, () => {
-      console.log(this.state.data);
-    });
+    );
   }
 
   handleSubmit() {
@@ -181,10 +201,9 @@ class ShadowReservation extends React.Component {
 
       data.user = this.props.auth.user._id;
 
-      APIReservation.createReservation(data)
-          .then((function (res) {
-            console.log(res);
-          }));
+      APIReservation.createReservation(data).then(function (res) {
+        console.log(res);
+      });
     }
   }
 
@@ -193,8 +212,10 @@ class ShadowReservation extends React.Component {
     let success = true;
 
     if (!data.availableRanges) {
-      toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
-      this.setState({counter: 5, progress: 75});
+      toast.error("You need to specify your availability", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      this.setState({ counter: 5, progress: 75 });
       success = false;
     }
     /*
@@ -214,27 +235,74 @@ class ShadowReservation extends React.Component {
   }
 
   handlePageRender(counter) {
-    switch(counter) {
+    switch (counter) {
       case 1:
-        return <Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page1
+            handleDateRange={this.handleDateRange}
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 2:
-        return <Page2 handleAspectSelect={this.handleAspectSelect} handleOtherAspects={this.handleOtherAspects} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page2
+            handleAspectSelect={this.handleAspectSelect}
+            handleOtherAspects={this.handleOtherAspects}
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 3:
-        return <Page3 handleWhatMakesGood={this.handleWhatMakesGood} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page3
+            handleWhatMakesGood={this.handleWhatMakesGood}
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 4:
-        return <Page4 handleAccomodations={this.handleAccomodations} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page4
+            handleAccomodations={this.handleAccomodations}
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 5:
-        return <Page5 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page5
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 6:
-        return <Page6 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page6
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
       case 7:
-        return <Page7 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
+        return (
+          <Page7
+            goNext={this.goNext}
+            goPrev={this.goPrev}
+            data={this.state.data}
+          />
+        );
         break;
     }
   }
@@ -242,74 +310,89 @@ class ShadowReservation extends React.Component {
   render() {
     if (this.state.loaded) {
       return (
-          <div className="container-fluid app">
+        <div className="container-fluid app">
+          <Helmet>
+            <title>
+              Shadow an experienced {this.state.data.experience.host.title} |
+              YoloShadow
+            </title>
+          </Helmet>
 
-            <Helmet>
-              <title>Shadow an experienced {this.state.data.experience.host.title} | YoloShadow</title>
-            </Helmet>
+          <div className="nav pb-5">
+            <Navbar textColor={"black"} />
+          </div>
 
-            <div className="nav pb-5">
-              <Navbar textColor={"black"} />
-            </div>
-
-            <div className="container pt-5 mt-5 mb-5">
-              <div className="top row">
-                <div className="col-md-4">
-                  <img
-                      src={rebecca_photo}
-                      alt="photo of orthodontist"
-                      className="chefimage"
-                  />
-                </div>
-                <div className="col apply ml-5">
-                  <p>Shadow an experienced {this.state.data.experience.host.title}</p>
-                </div>
+          <div className="container pt-5 mt-5 mb-5">
+            <div className="top row">
+              <div className="col-md-4">
+                <img
+                  src={rebecca_photo}
+                  alt="photo of orthodontist"
+                  className="chefimage"
+                />
               </div>
-            </div>
-
-            <div className="main container">
-              {/*Progress Bar*/}
-
-              <div onSubmit={this.handleSubmit}>
-                <div className="row mt-5">
-                  <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
-                    <p>PROGRESS</p>
-                  </div>
-
-                  <div className="col-sm-10 progress" style={{ height: "2px" }}>
-                    <div
-                        className={"progress-bar  w-" + this.state.progress}
-                        role="progressbar"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                    ></div>
-                  </div>
-                </div>
-                {/*Components go here: replace with components */}
-
-                <div className="insert">
-                  {this.handlePageRender(this.state.counter)}
-                </div>
+              <div className="col apply ml-5">
+                <p>
+                  Shadow an experienced {this.state.data.experience.host.title}
+                </p>
               </div>
-            </div>
-
-            <div className="footerpages">
-              <RegistrationFooter />
             </div>
           </div>
+
+          <div className="main container">
+            {/*Progress Bar*/}
+
+            <div onSubmit={this.handleSubmit}>
+              <div className="row mt-5">
+                <div
+                  className="col-sm-2"
+                  style={{
+                    fontFamily: "Mplus 1p",
+                    fontStyle: "normal",
+                    fontWeight: "800",
+                    fontSize: "140%",
+                    lineHeight: "26px",
+                    letterSpacing: "6px",
+                    textTransform: "uppercase",
+                    color: "#F61067",
+                  }}
+                >
+                  <p>PROGRESS</p>
+                </div>
+
+                <div className="col-sm-10 progress" style={{ height: "2px" }}>
+                  <div
+                    className={"progress-bar  w-" + this.state.progress}
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </div>
+              {/*Components go here: replace with components */}
+
+              <div className="insert">
+                {this.handlePageRender(this.state.counter)}
+              </div>
+            </div>
+          </div>
+
+          <div className="footerpages">
+            <RegistrationFooter />
+          </div>
+        </div>
       );
     } else {
       return (
-          <div>
-            <div className="nav pb-5">
-              <Navbar textColor={'black'}  />
-            </div>
-            // insert loading icon
-
-            <div className="footerpages">
-              <RegistrationFooter/>
-            </div>
+        <div>
+          <div className="nav pb-5">
+            <Navbar textColor={"black"} />
           </div>
+          // insert loading icon
+          <div className="footerpages">
+            <RegistrationFooter />
+          </div>
+        </div>
       );
     }
   }
@@ -318,11 +401,13 @@ class ShadowReservation extends React.Component {
 ShadowReservation.propTypes = {
   register: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-}
+  auth: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-  auth:state.auth //item represents the entire state
+  auth: state.auth, //item represents the entire state
 });
 
-export default connect(mapStateToProps,  {register,loadUser})(ShadowReservation)
+export default connect(mapStateToProps, { register, loadUser })(
+  ShadowReservation
+);
