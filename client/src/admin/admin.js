@@ -7,6 +7,7 @@ import ShowAllItem from "./showAllItem";
 
 import APIHost from "../api/apiHost";
 import APIUser from "../api/apiUser";
+import { isValidObjectId } from "mongoose";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -88,6 +89,22 @@ class Admin extends React.Component {
   acceptHost = (id) => {
     console.log("api/host/" + id);
     let path = "api/host/" + id;
+    fetch("api/experience/", {
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify({ host: id }),
+    })
+      .then((response) => {
+        response.json().then((data) => {
+          console.log(data);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     fetch(path, {
       method: "put",
       headers: new Headers({
@@ -113,8 +130,6 @@ class Admin extends React.Component {
           console.log(data);
         });
 
-        console.log(this.state.hostApps[id].approval);
-        // return response.json();
       })
       .catch((err) => {
         console.log(err);

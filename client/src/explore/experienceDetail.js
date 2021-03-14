@@ -38,12 +38,14 @@ export default class ExperienceDetail extends React.Component {
   }
 
   render() {
+ 
     if (this.state.experience) {
+      let host=this.state.experience.host;
       return (
         <div>
           <Helmet>
             <title>
-              Shadow an experienced {this.state.experience.host.title} |
+              Shadow an experienced {host.title} |
               YoloShadow
             </title>
           </Helmet>
@@ -52,37 +54,57 @@ export default class ExperienceDetail extends React.Component {
             <Navbar textColor={"black"} />
           </div>
 
-          <div className="container-fluid content">
+          <div className="container-fluid">
             <div className="row">
-              <div className="col-4 offset-1 name">
+              <div className="col-4 offset-1">
                 <img src={this.state.experience.image} />
-                <div className="d-flex pt-5">
-                  <h3> {this.state.experience.host.user.fname} </h3>
+                <div className="d-flex flex-row pt-5" 
+                     style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","letterSpacing":"0em"}}
+                >
+                  <p
+                      style={{"fontSize":"200%","lineHeight":"150%"}}
+                  >
+                      {host.user.fname} 
+                    </p>
+                    <a
+                      style={{paddingLeft:"6%",paddingTop:"3%","fontSize":"100%","lineHeight":"100%"}}
+                    > website </a>
+                  
+                    { host.intagramProfile?<a href={"instagram.com/"+host.intagramProfile} 
+                                              style={{paddingLeft:"6%",paddingTop:"3%","fontSize":"200%","lineHeight":"100%"}}
+                                            > Instagram </a>
+                    :null
+                    }
+
+                  
                 </div>
-                <div className="d-flex pt-2">
+                <div className="d-flex content">
                   <button id="btn-message" onclick="#">
                     Message
                   </button>
                 </div>
               </div>
-              <div className="col-7 overview">
+              <div className="col-7 overview content">
                 <div className="d-flex pt-5 title">
-                  <h1>
-                    {" "}
+                  <h1 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"50px","letterSpacing":"4px","textAlign":"left"}}>
+                    
                     Shadow an experienced {
-                      this.state.experience.host.title
-                    }{" "}
+                    host.title
+                    }
                   </h1>
                 </div>
 
-                <div className="d-flex pt-5 location">
-                  <span>
-                    {" "}
-                    {this.state.experience.host.company.city},{" "}
-                    {this.state.experience.host.company.state}{" "}
-                  </span>
+                <div className="d-flex pt-5" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
+                    Remote
                 </div>
-                <div className="d-flex pt-1 params">
+
+
+                <div className="d-flex pt-2" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
+                    {" "}
+                    {host.company.city},{" "}
+                    {host.company.state}{" "}
+                </div>
+                <div className="d-flex pt-1 " style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
                   <span> {this.state.experience.durationDays} days </span>
                   <span> {this.state.experience.price} </span>
                 </div>
@@ -110,7 +132,7 @@ export default class ExperienceDetail extends React.Component {
             </div>
 
             <div className="row offset-1">
-              {this.state.experience.whatICanOffer.map((item, index) => (
+              {host.offering.map((item, index) => (
                 <CardExpDetail item={item} key={index} />
               ))}
             </div>
