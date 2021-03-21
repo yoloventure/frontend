@@ -66,6 +66,7 @@ export default class ExperienceDetail extends React.Component {
                   >
                       {host.user.fname} 
                     </p>
+
                   
                     { (host.company.website!=="" && host.company.website!==undefined)?<a href={"http://"+host.company.website} 
                                               style={{paddingLeft:"6%",paddingTop:"3%","fontSize":"100%","lineHeight":"100%"}}
@@ -75,6 +76,7 @@ export default class ExperienceDetail extends React.Component {
                   
                     { (host.intagramProfile!=="" && host.intagramProfile!==undefined)?<a href={"http://instagram.com/"+host.intagramProfile} 
                                               style={{paddingLeft:"6%",paddingTop:"3%","fontSize":"100%","lineHeight":"100%"}}
+
                                             > Instagram </a>
                     :null
                     }
@@ -88,7 +90,9 @@ export default class ExperienceDetail extends React.Component {
                 </div>
               </div>
               <div className="col-7 overview content">
+
                 <div className="d-flex pt-5">
+
                   <h1 style={{whiteSpace:"pre","fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"50px","letterSpacing":"4px","textAlign":"left"}}>
                     
                     Shadow an experienced {
@@ -135,7 +139,7 @@ export default class ExperienceDetail extends React.Component {
             </div>
 
             <div className="row offset-1">
-              {console.log(host.offering)}
+
               {host.offering.map((item, index) => (
                 <CardExpDetail item={item} key={index} />
               ))}
