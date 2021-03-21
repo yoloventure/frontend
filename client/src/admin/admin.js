@@ -4,10 +4,9 @@ import HostApplicationItem from "./hostApplicationItem";
 import Navbar from "../components/navbar";
 import FooterPage from "../components/footer";
 import ShowAllItem from "./showAllItem";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import APIHost from "../api/apiHost";
-import APIUser from "../api/apiUser";
-import { isValidObjectId } from "mongoose";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -188,10 +187,11 @@ class Admin extends React.Component {
     //  console.log(this.state.accepted);
 
     //Check if user is an admin
-    let user = APIUser.getCurrentUser();
-    console.log(user);
+    let user = this.props.auth.user
+    // user.then(x=>console.log(x))
+    console.log(user)
     if (!user.isAdmin) {
-      //return "You don't have permission to view this page";
+      return "You don't have permission to view this page";
       //don't forget to uncomment
     }
 
@@ -252,8 +252,16 @@ class Admin extends React.Component {
           <FooterPage />
         </div>
       </div>
+    
     );
+
   }
 }
 
-export default Admin;
+Admin.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Admin);

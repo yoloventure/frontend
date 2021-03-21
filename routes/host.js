@@ -34,6 +34,7 @@ router.post("/", function (req, res, next) {
       return res.status(400).json({
         success: false,
         error: errors,
+        id:host._id
       });
     } else {
       Host.create(req.body)
