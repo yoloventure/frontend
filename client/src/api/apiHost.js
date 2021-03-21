@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import APIUser from "./apiUser";
 
 //returns the infomations about the Host with the given UID
@@ -65,22 +66,45 @@ function createNewHost(host) {
       console.log(err);
     });
 }
+function editOrCreateHost(host) {
+  var path = "/api/host/";
 
+  return fetch(path, {
+    method: "post",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    body: JSON.stringify(host),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 400 ) {
+        response.json().then(r=>{
+          console.log(r);
+          editHost(r.id, host);
+        })
+      }
+      else{
+      return response.json()
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
 function editHost(hostId, data) {
   var path = "/api/host/" + hostId;
+  console.log(data)
   return fetch(path, {
     method: "put",
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify({
-      idImage: data.idImage,
-      workingImage: data.workingImage,
-      availability: data.availability,
-    }),
+    body:  JSON.stringify(data),
     credentials: "include",
   })
     .then((response) => {
+      console.log(response.status)
       return response.json();
     })
     .catch((err) => {
@@ -111,4 +135,5 @@ export default {
   deleteHost,
   editHost,
   createNewHost,
+  editOrCreateHost
 };
