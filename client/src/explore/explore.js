@@ -100,6 +100,7 @@ class Explore extends React.Component {
 
     //filter the industries
     if (this.state.industryFilters.length !== 0) {
+      console.log(filteredData);
       filteredData = filteredData.filter((dataElement) => {
         let bool = false;
         this.state.industryFilters.forEach((industry) => {
@@ -243,6 +244,7 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(e.target.innerHTML);
     }
+    console.log(tempArr)
     this.setState({ industryFilters: tempArr }, () => {
       this.refilter();
     });
@@ -420,6 +422,7 @@ class Explore extends React.Component {
     let dataToUse = this.state.currentDataJSON;
     this.filterIndustry();
 
+
     let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
@@ -525,6 +528,7 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(parseInt(e.target.innerHTML));
     }
+    console.log(tempArr)
     this.setState({ durationDaysFilters: tempArr }, () => {
       this.refilter();
     });
