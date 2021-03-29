@@ -102,6 +102,7 @@ class Explore extends React.Component {
 
     //filter the industries
     if (this.state.industryFilters.length !== 0) {
+      console.log(filteredData);
       filteredData = filteredData.filter((dataElement) => {
         //console.log(dataElement);
         let bool = false;
