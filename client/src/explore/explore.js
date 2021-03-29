@@ -33,7 +33,6 @@ class Explore extends React.Component {
     })
       .then((response) => {
         response.json().then((data) => {
-          //console.log(data);
           data.forEach((element) => {
             element.availableFrom = element.availableRanges[0]; //set this to first element in available ranges, as we assume array is sorted
             element.availableTill =
@@ -97,13 +96,11 @@ class Explore extends React.Component {
   };
 
   refilter = () => {
-    //console.log(this.state.durationDaysFilters);
     let filteredData = this.state.originalData;
 
     //filter the industries
     if (this.state.industryFilters.length !== 0) {
       filteredData = filteredData.filter((dataElement) => {
-        //console.log(dataElement);
         let bool = false;
         this.state.industryFilters.forEach((industry) => {
           if (dataElement.host.industry) {
@@ -144,7 +141,6 @@ class Explore extends React.Component {
         new Date(from).getTime() >= new Date(startDate).getTime() &&
         new Date(endDate).getTime() >= new Date(to).getTime()
       ) {
-        //console.log("dates true");
         bool = true;
       }
 
@@ -230,12 +226,9 @@ class Explore extends React.Component {
 
   updateIndustryFilters = (e) => {
     if (e.target.classList.contains("disabled")) {
-      //console.log(e.target.classList);
       e.target.classList.remove("disabled");
-      //console.log(e.target.classList);
     } else {
       e.target.classList.add("disabled");
-      //console.log(e.target.classList);
     }
 
     //check if this filter is already inside the filter array. if found then delete it else add it
@@ -250,7 +243,6 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(e.target.innerHTML);
     }
-    console.log(tempArr)
     this.setState({ industryFilters: tempArr }, () => {
       this.refilter();
     });
@@ -258,7 +250,6 @@ class Explore extends React.Component {
 
   sortByKeyL(array, key) { //helper function for refilter method
     return array.sort(function (a, b) {
-      //console.log(a);
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
       return x < y ? -1 : x > y ? 1 : 0;
@@ -429,7 +420,6 @@ class Explore extends React.Component {
     let dataToUse = this.state.currentDataJSON;
     this.filterIndustry();
 
-    //console.log(dataToUse);
     let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
@@ -502,7 +492,6 @@ class Explore extends React.Component {
     this.setState({
       [name]: value,
     });
-    //console.log(this.state.searchValue);
   };
 
   search = () => {
@@ -513,7 +502,6 @@ class Explore extends React.Component {
     const results = fuse
       .search(this.state.searchValue)
       .map((result) => result.item);
-    //console.log(results);
 
     this.setState({ currentDataJSON: results }, () => {
       this.refilter();
@@ -522,12 +510,9 @@ class Explore extends React.Component {
 
   updateDurationFilters = (e) => {
     if (e.target.classList.contains("disabled")) {
-      //console.log(e.target.classList);
       e.target.classList.remove("disabled");
-      //console.log(e.target.classList);
     } else {
       e.target.classList.add("disabled");
-      //console.log(e.target.classList);
     }
 
     var found = false;
@@ -540,11 +525,9 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(parseInt(e.target.innerHTML));
     }
-    console.log(tempArr)
     this.setState({ durationDaysFilters: tempArr }, () => {
       this.refilter();
     });
-    //console.log(tempArr);
   };
 
   displayAll = () => {
@@ -553,8 +536,6 @@ class Explore extends React.Component {
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        console.log(filteredData[i]);
-
         results.push(
           <div className="row ">
               <div
