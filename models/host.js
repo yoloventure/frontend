@@ -76,8 +76,8 @@ const hostSchema = new mongoose.Schema({
   // },
   //----------------page-4------------------------------------
   offering: {
-    //what they can offer - String array
-    type: Array(String),
+    //what they can offer
+    type: Array(Object),
     default: null,
     required: true,
   },

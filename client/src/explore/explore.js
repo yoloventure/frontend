@@ -41,8 +41,8 @@ class Explore extends React.Component {
           });
 
           this.setState({
-            currentData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
-            currentDataHTML: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
+            originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
+            currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
             data: JSON.parse(JSON.stringify(data)),
             firstAPICallCompleted: true,
           });
@@ -78,27 +78,29 @@ class Explore extends React.Component {
     };
   }
 
-  handleChange1 = (date) => {
+  handleChangeStartDate = (date) => {
     this.setState(
       {
         startDate: date,
       },
-      () => this.filter()
+      () => this.refilter()
     );
   };
-  handleChange2 = (date) => {
+
+  handleChangeEndDate = (date) => {
     this.setState(
       {
         endDate: date,
       },
-      () => this.filter()
+      () => this.refilter()
     );
   };
 
-  filter = () => {
+  refilter = () => {
     //console.log(this.state.durationDaysFilters);
-    let filteredData = this.state.currentData;
+    let filteredData = this.state.originalData;
 
+    //filter the industries
     if (this.state.industryFilters.length !== 0) {
       filteredData = filteredData.filter((dataElement) => {
         //console.log(dataElement);
@@ -115,16 +117,11 @@ class Explore extends React.Component {
       });
     }
 
+    //filter durations
     if (this.state.durationDaysFilters.length !== 0) {
-      //console.log(this.state.currentData);
-
       filteredData = filteredData.filter((dataElement) => {
-        //console.log("here");
-
         let bool = false;
         this.state.durationDaysFilters.forEach((durationDays) => {
-          //console.log(durationDays);
-          //console.log(dataElement.durationDays);
           if (durationDays > 2 && dataElement.durationDays > 2) {
             bool = true;
           } else if (dataElement.durationDays == durationDays) {
@@ -135,12 +132,12 @@ class Explore extends React.Component {
         return bool;
       });
     }
+
+    //filter dates
     let startDate = this.state.startDate;
     let endDate = this.state.endDate;
     filteredData = filteredData.filter((dataElement) => {
       let bool = false;
-      //console.log(startDate);
-      //console.log(endDate);
       let from = new Date(dataElement.availableFrom);
       let to = new Date(dataElement.availableTill);
       if (
@@ -154,17 +151,18 @@ class Explore extends React.Component {
       return bool;
     });
 
+    ///finally sort the data
     if (this.state.sortSelection.localeCompare("L") === 0) {
       this.sortByKeyL(filteredData, "price");
     } else if (this.state.sortSelection.localeCompare("H") === 0) {
       this.sortByKeyH(filteredData, "price");
     }
-    let cardArray2 = [];
+
+    let filteredDataHTML = []; //temp array to be store HTML elements by processing filteredData
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        console.log(filteredData[i]._id);
-        cardArray2.push(
+        filteredDataHTML.push(
           <div className="row ">
               <div
                   className="card col-lg-4 offset-lg-1"
@@ -203,7 +201,7 @@ class Explore extends React.Component {
 
         );
       } else {
-        cardArray2.push(
+        filteredDataHTML.push(
           <Link to={`${match.url}/1`}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
@@ -225,8 +223,8 @@ class Explore extends React.Component {
     }
     // Then we use that to set the state for list
     this.setState({
-      cardArray: cardArray2,
-      currentDataHTML: filteredData,
+      cardArray: filteredDataHTML,
+      currentDataJSON: filteredData,
     });
   };
 
@@ -239,24 +237,26 @@ class Explore extends React.Component {
       e.target.classList.add("disabled");
       //console.log(e.target.classList);
     }
+
+    //check if this filter is already inside the filter array. if found then delete it else add it
     var found = false;
     let tempArr = this.state.industryFilters;
     tempArr.forEach((filter, i) => {
-      if (filter.localeCompare(e.target.innerHTML.substring(0, 1)) === 0) {
-        //console.log("here");
+      if (filter.localeCompare(e.target.innerHTML) === 0) {
         found = true;
         tempArr.splice(i, 1);
       }
     });
     if (found === false) {
-      tempArr.push(e.target.innerHTML.substring(0, 1));
+      tempArr.push(e.target.innerHTML);
     }
+    console.log(tempArr)
     this.setState({ industryFilters: tempArr }, () => {
-      this.filter();
+      this.refilter();
     });
   };
 
-  sortByKeyL(array, key) {
+  sortByKeyL(array, key) { //helper function for refilter method
     return array.sort(function (a, b) {
       //console.log(a);
       var x = parseInt(a[key].substring(1));
@@ -264,16 +264,17 @@ class Explore extends React.Component {
       return x < y ? -1 : x > y ? 1 : 0;
     });
   }
-  sortLow = () => {
-    let filteredData = this.state.currentDataHTML;
+
+  sortLow = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyL(filteredData, "price");
 
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
+        filteredDataHTML.push(
           <div className="row ">
                 <div
                   className="card col-lg-4 offset-lg-1"
@@ -311,7 +312,7 @@ class Explore extends React.Component {
           </div>
         );
       } else {
-        cardArray2.push(
+        filteredDataHTML.push(
           <Link to={`${match.url}/1`}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
@@ -333,13 +334,13 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Price: Low to High",
       sortSelection: "L",
     });
   };
 
-  sortByKeyH(array, key) {
+  sortByKeyH(array, key) { //helper function for refilter method
     return array.sort(function (a, b) {
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
@@ -347,16 +348,16 @@ class Explore extends React.Component {
     });
   }
 
-  sortHigh = () => {
-    let filteredData = this.state.currentDataHTML;
+  sortHigh = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyH(filteredData, "price");
 
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
+        filteredDataHTML.push(
           <div className="row ">
               <div
                   className="card col-lg-4 offset-lg-1"
@@ -394,7 +395,7 @@ class Explore extends React.Component {
           </div>
         );
       } else {
-        cardArray2.push(
+        filteredDataHTML.push(
           <Link to={`${match.url}/1`}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
@@ -416,24 +417,24 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Price: High to Low",
       sortSelection: "H",
     });
   };
 
-  sortUndo = () => {
-    let filteredData = this.state.currentDataHTML;
+  sortUndo = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
-    let dataToUse = this.state.currentDataHTML;
+    let dataToUse = this.state.currentDataJSON;
     this.filterIndustry();
 
     //console.log(dataToUse);
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
+        filteredDataHTML.push(
           <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div
@@ -467,7 +468,7 @@ class Explore extends React.Component {
           </Link>
         );
       } else {
-        cardArray2.push(
+        filteredDataHTML.push(
           <Link to={`${match.url}/1`}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
@@ -489,13 +490,14 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Sort By",
       sortSelection: "N",
     });
   };
 
-  handleInputChange = (event) => {
+
+  handleInputChange = (event) => { //for searchbar
     const { name, value } = event.target;
     this.setState({
       [name]: value,
@@ -504,7 +506,7 @@ class Explore extends React.Component {
   };
 
   search = () => {
-    var fuse = new Fuse(this.state.data, {
+    var fuse = new Fuse(this.state.originalData, {
       keys: ["industry", "profession", "city"],
     });
 
@@ -513,8 +515,8 @@ class Explore extends React.Component {
       .map((result) => result.item);
     //console.log(results);
 
-    this.setState({ currentData: results }, () => {
-      this.filter();
+    this.setState({ currentDataJSON: results }, () => {
+      this.refilter();
     });
   };
 
@@ -538,15 +540,16 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(parseInt(e.target.innerHTML));
     }
+    console.log(tempArr)
     this.setState({ durationDaysFilters: tempArr }, () => {
-      this.filter();
+      this.refilter();
     });
     //console.log(tempArr);
   };
 
   displayAll = () => {
     let results = [];
-    let filteredData = this.state.data;
+    let filteredData = this.state.originalData;
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
@@ -612,7 +615,7 @@ class Explore extends React.Component {
       }
     }
 
-    this.setState({ cardArray: results, currentDataHTML: filteredData });
+    this.setState({ cardArray: results, currentDataJSON: filteredData });
   };
 
   render() {
@@ -682,7 +685,7 @@ class Explore extends React.Component {
     }
     return (
       <div>
-        {!this.state.currentData ? (
+        {!this.state.currentDataJSON ? (
           <h1> Loading</h1>
         ) : (
           <div>
@@ -844,7 +847,7 @@ class Explore extends React.Component {
                         </p>
                         <DatePicker
                           selected={this.state.startDate}
-                          onChange={this.handleChange1}
+                          onChange={this.handleChangeStartDate}
                         />
                         <svg
                           width="1em"
@@ -887,7 +890,7 @@ class Explore extends React.Component {
 
                         <DatePicker
                           selected={this.state.endDate}
-                          onChange={this.handleChange2}
+                          onChange={this.handleChangeEndDate}
                         />
                         <svg
                           width="1em"
