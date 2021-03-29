@@ -199,7 +199,7 @@ class Explore extends React.Component {
         );
       } else {
         filteredDataHTML.push(
-          <Link to={`${match.url}/1`}>
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
@@ -306,7 +306,7 @@ class Explore extends React.Component {
         );
       } else {
         filteredDataHTML.push(
-          <Link to={`${match.url}/1`}>
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
@@ -389,7 +389,7 @@ class Explore extends React.Component {
         );
       } else {
         filteredDataHTML.push(
-          <Link to={`${match.url}/1`}>
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
@@ -421,7 +421,6 @@ class Explore extends React.Component {
 
     let dataToUse = this.state.currentDataJSON;
     this.filterIndustry();
-
 
     let filteredDataHTML = [];
     let match = this.state.match;
@@ -462,7 +461,7 @@ class Explore extends React.Component {
         );
       } else {
         filteredDataHTML.push(
-          <Link to={`${match.url}/1`}>
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
@@ -580,7 +579,7 @@ class Explore extends React.Component {
         );
       } else {
         results.push(
-          <Link to={`${match.url}/1`}>
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
