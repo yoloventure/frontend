@@ -21,7 +21,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               1
@@ -37,7 +37,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               2
@@ -53,7 +53,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               2
@@ -69,7 +69,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               3
@@ -85,7 +85,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               4
@@ -101,7 +101,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               5
@@ -117,7 +117,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               5
@@ -134,7 +134,7 @@ class Page5 extends React.Component {
           <div className="row mb-2">
             <div className="col-2">
               <p
-                className="ellipse"
+                className="host-reg-ellipse"
                 style={{
                   height: "75%",
                   width: "50%",
@@ -156,7 +156,7 @@ class Page5 extends React.Component {
           <div className="row mb-2">
             <div className="col-2">
               <p
-                className="ellipse"
+                className="host-reg-ellipse"
                 style={{
                   height: "75%",
                   width: "50%",
@@ -178,7 +178,7 @@ class Page5 extends React.Component {
           <div className="row mb-2">
             <div className="col-2">
               <p
-                className="ellipse"
+                className="host-reg-ellipse"
                 style={{
                   height: "75%",
                   width: "50%",
@@ -199,7 +199,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               6
@@ -215,7 +215,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               7
@@ -231,7 +231,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               8
@@ -247,7 +247,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               9
@@ -263,7 +263,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               10
@@ -279,7 +279,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               11
@@ -295,7 +295,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               12
@@ -311,7 +311,7 @@ class Page5 extends React.Component {
         <div className="row mb-2">
           <div className="col-2">
             <p
-              className="ellipse"
+              className="host-reg-ellipse"
               style={{ height: "75%", width: "50%", background: "transparent" }}
             >
               13
