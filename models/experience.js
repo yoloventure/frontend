@@ -10,9 +10,12 @@ const experienceSchema = new mongoose.Schema({
   durationDays: {
     type: Number,
   },
+  durationHours: {
+    type: Number,
+  },
   price: {
     //in the form: $112   that is dollar sign followed by number
-    type: String,
+    type: Number,
   },
   image: {
     type: Array(String), // list of image ids

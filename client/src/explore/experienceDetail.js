@@ -61,8 +61,8 @@ export default class ExperienceDetail extends React.Component {
 
           <div className="container-fluid">
             <div className="row">
-              <div className="col-4 offset-1 mt-5 pt-5"  style={{zIndex:2}}>
-                <img src={this.state.experience.image[0]}/>
+              <div className="col-lg-3 col-md-11 offset-1 col-sm-11 mt-5 pt-5"  style={{zIndex:2}}>
+                <img src={this.state.experience.image[0]} style={{width:'20rem'}}/>
                 <div className="d-flex flex-row pt-5" 
                      style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","letterSpacing":"0em"}}
                 >
@@ -92,10 +92,11 @@ export default class ExperienceDetail extends React.Component {
                   </button>
                 </div>
               </div>
-              <div className="col-7 expDetail-overview expDetail-content" style={{height:'65%'}}>
-                <div className='p-5'>
+              <div className="col-lg-8 col-md-12 col-sm-12 expDetail-overview expDetail-content" style={{height:'65%', width:'100%'}}>
+                <div style={{padding:'5rem'}}>
                   <div className="d-flex pt-4">
-                    <h1 style={{paddingTop:"2rem",paddingRight:"1.5rem",whiteSpace:"pre","fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"50px","letterSpacing":"4px","textAlign":"left"}}>
+
+                    <h1 style={{width:'100%',paddingTop:"2rem",paddingRight:"1.5rem","fontFamily":"Mplus 1p","fontSize":"1.5rem","fontStyle":"normal","fontWeight":"500","lineHeight":"2rem","letterSpacing":"4px","textAlign":"left"}}>
                       
                       Shadow an experienced {
                       host.title
@@ -116,8 +117,10 @@ export default class ExperienceDetail extends React.Component {
                       {host.company.state}{" "}
                   </div>
                   <div className="d-flex pt-1 " style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                    <span> {this.state.experience.durationDays} days </span>
-                    <span> {this.state.experience.price} </span>
+                  {console.log(this.state.experience.durationDays)}
+                    {this.state.experience.durationDays!=undefined? (this.state.experience.durationDays>1?  <span> {this.state.experience.durationDays} day  </span> :  <span> {this.state.experience.durationDays} days  </span>) :null}
+                    {this.state.experience.durationHours!=undefined?  <span> {this.state.experience.durationHours} hours  </span> : null}
+                    <span style={{marginLeft:'2rem'}}> ${this.state.experience.price} </span>
                   </div>
 
                   <div className="d-flex pt-1 controls">
@@ -139,11 +142,11 @@ export default class ExperienceDetail extends React.Component {
             <div className="row offset-1 expDetail_subsection">
               <h2> Expectations </h2>
             </div>
-            <div className="row offset-1 pt-2 pb-5">
+            <div className="row offset-1 pt-2">
               <h3> What I Can Offer </h3>
             </div>
 
-            <div className="row offset-1">
+            <div className="row offset-1 pt-0">
               {console.log(host)}
               {host.offering.map((item, index) => {
                 console.log(index)
@@ -152,8 +155,8 @@ export default class ExperienceDetail extends React.Component {
               }
             </div>
 
-            <div className="container pt-4 quote">
-              <blockquote>{this.state.experience.quote}</blockquote>
+            <div className="container pt-0 quote">
+              <blockquote>{this.state.experience.description}</blockquote>
             </div>
 
             <div className="row offset-1 expDetail_subsection">

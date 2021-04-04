@@ -10,7 +10,7 @@ export default class CardExpDetail extends React.Component {
       <div className="col-4">
         <p
               className="host-reg-ellipse"
-              style={{ height: "40%", width: "20%", background: "transparent" }}
+              style={{ height: "4rem", width: "4rem", background: "transparent" }}
             >
               {this.props.index+1}
         </p>
