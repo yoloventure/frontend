@@ -22,39 +22,6 @@ import { Button } from "reactstrap";
 import Fuse from "fuse.js";
 
 class Explore extends React.Component {
-  z;
-
-  componentDidMount() {
-    fetch("api/experience/", {
-      method: "get",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    })
-      .then((response) => {
-        response.json().then((data) => {
-          data.forEach((element) => {
-            element.availableFrom = element.availableRanges[0]; //set this to first element in available ranges, as we assume array is sorted
-            element.availableTill =
-              element.availableRanges[element.availableRanges.length - 1];
-          });
-
-          this.setState({
-            originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
-            currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
-            data: JSON.parse(JSON.stringify(data)),
-            firstAPICallCompleted: true,
-          });
-        });
-      })
-      .catch((err) => {
-        //console.log(err);
-      });
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -73,9 +40,114 @@ class Explore extends React.Component {
       sortHTML: "Sort By",
       sortSelection: "N",
       match: match,
-      firstAPICallCompleted: false,
     };
   }
+
+  displayAll=()=> {
+    let results = [];
+    let filteredData = this.state.originalData;
+    let match = this.state.match;
+    for (var i = 0; i < filteredData.length; i += 2) {
+      if (i + 1 < filteredData.length) {
+        results.push(
+          <div className="row ">
+              <div
+                  className="card col-lg-4 offset-lg-1"
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i]._id}>
+                    <Card
+                      image={filteredData[i].image}
+                      id={filteredData[i]._id}
+                      city={filteredData[i].city}
+                      profession={filteredData[i].profession}
+                      price={filteredData[i].price}
+                      durationDays={filteredData[i].durationDays}
+                    />
+                  </Link>
+                  
+                </div>
+                <div
+                  className="card col-lg-4  offset-lg-1 "
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
+
+                    <Card
+                      image={filteredData[i + 1].image}
+                      id={filteredData[i + 1]._id}
+                      city={filteredData[i + 1].city}
+                      profession={filteredData[i + 1].profession}
+                      price={filteredData[i + 1].price}
+                      durationDays={filteredData[i + 1].durationDays}
+                    />
+                    </Link>
+
+                </div>
+          </div>
+
+        );
+      } else {
+        results.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
+            <div className="row ">
+              <div className="card col-lg-4  offset-lg-1 ">
+                <div className="">
+                  <Card
+                    image={filteredData[i].image}
+                    id={filteredData[i]._id}
+                    city={filteredData[i].city}
+                    profession={filteredData[i].profession}
+                    price={filteredData[i].price}
+                    durationDays={filteredData[i].durationDays}
+                  />
+                </div>
+              </div>
+            </div>
+          </Link>
+        );
+      }
+    }
+
+    this.setState({ cardArray: results, currentDataJSON: filteredData });
+  };
+
+
+  
+
+  componentDidMount() {
+    fetch("api/experience/", {
+      method: "get",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => {
+        response.json().then((data) => {
+          data.forEach((element) => {
+            element.availableFrom = element.availableRanges[0]; //set this to first element in available ranges, as we assume array is sorted
+            element.availableTill =
+              element.availableRanges[element.availableRanges.length - 1];
+          });
+          console.log(data)
+          this.setState({
+            originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
+            currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
+            },
+            /**temporarily added to initialize card array with all experiences, while we have a small number of experiences */
+            ()=>this.displayAll()
+          );
+        });
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  
 
   handleChangeStartDate = (date) => {
     this.setState(
@@ -533,75 +605,7 @@ class Explore extends React.Component {
     });
   };
 
-  displayAll = () => {
-    let results = [];
-    let filteredData = this.state.originalData;
-    let match = this.state.match;
-    for (var i = 0; i < filteredData.length; i += 2) {
-      if (i + 1 < filteredData.length) {
-        results.push(
-          <div className="row ">
-              <div
-                  className="card col-lg-4 offset-lg-1"
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={`${match.url}/` + filteredData[i]._id}>
-                    <Card
-                      image={filteredData[i].image}
-                      id={filteredData[i]._id}
-                      city={filteredData[i].city}
-                      profession={filteredData[i].profession}
-                      price={filteredData[i].price}
-                      durationDays={filteredData[i].durationDays}
-                    />
-                  </Link>
-                  
-                </div>
-                <div
-                  className="card col-lg-4  offset-lg-1 "
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
-
-                    <Card
-                      image={filteredData[i + 1].image}
-                      id={filteredData[i + 1]._id}
-                      city={filteredData[i + 1].city}
-                      profession={filteredData[i + 1].profession}
-                      price={filteredData[i + 1].price}
-                      durationDays={filteredData[i + 1].durationDays}
-                    />
-                    </Link>
-
-                </div>
-          </div>
-
-        );
-      } else {
-        results.push(
-          <Link to={`${match.url}/` + filteredData[i]._id}>
-            <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
-                <div className="">
-                  <Card
-                    image={filteredData[i].image}
-                    id={filteredData[i]._id}
-                    city={filteredData[i].city}
-                    profession={filteredData[i].profession}
-                    price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays}
-                  />
-                </div>
-              </div>
-            </div>
-          </Link>
-        );
-      }
-    }
-
-    this.setState({ cardArray: results, currentDataJSON: filteredData });
-  };
-
+  
   render() {
     let results = [];
     if (this.state.cardArray.length === 0) {

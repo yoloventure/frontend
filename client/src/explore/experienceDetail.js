@@ -155,8 +155,8 @@ export default class ExperienceDetail extends React.Component {
               }
             </div>
 
-            <div className="container pt-0 quote">
-              <blockquote>{this.state.host.description}</blockquote>
+            <div className="container p-5 quote">
+              <blockquote>{this.state.experience.host.description}</blockquote>
             </div>
 
             <div className="row offset-1 expDetail_subsection">
