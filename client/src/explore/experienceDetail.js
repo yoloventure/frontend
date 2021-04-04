@@ -155,7 +155,7 @@ export default class ExperienceDetail extends React.Component {
               }
             </div>
 
-            <div className="container pt-0 quote">
+            <div className="container p-5 quote">
               <blockquote>{this.state.experience.host.description}</blockquote>
             </div>
 
