@@ -322,17 +322,18 @@ class ShadowReservation extends React.Component {
             <Navbar textColor={"black"} />
           </div>
 
-          <div className="container pt-5 mt-5 mb-5">
+          <div className="p-5 m-5 pt-5 mt-5 mb-5 pb-5">
             <div className="top row">
               <div className="col-md-4">
                 <img
                   src={rebecca_photo}
                   alt="photo of orthodontist"
                   className="chefimage"
+                  style={{width:'16rem'}}
                 />
               </div>
               <div className="col apply ml-5">
-                <p>
+                <p style={{width:'100%'}}>
                   Shadow an experienced {this.state.data.experience.host.title}
                 </p>
               </div>
