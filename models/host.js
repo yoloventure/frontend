@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+ const mongoose = require('mongoose');
 const company = require('./company');
 const user = require('./user');
 
@@ -25,6 +25,16 @@ const hostSchema = new mongoose.Schema({
  idImage: {
     type: String,
     default: null,
+  },
+  reservationStack:{
+     type: [{type:mongoose.Schema.Types.ObjectId,
+               ref:'reservation'}],
+        default:[],
+  },
+  reviewStack:{
+     type: [{type:mongoose.Schema.Types.ObjectId,
+               ref:'host_Review'}],
+        default:[],
   },
   imageCollection:{
     type:Array,

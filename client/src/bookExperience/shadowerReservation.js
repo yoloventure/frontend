@@ -14,9 +14,10 @@ import Page5 from "../components/bookingComponents/page5";
 import Page6 from "../components/bookingComponents/page6";
 import Page7 from "../components/bookingComponents/page7";
 import APIUser from "../api/apiUser";
+import APIHost from "../api/apiHost";
 import APIExperience from "../api/apiExperience";
 import APIReservation from "../api/apiReservation";
-
+import APIHostNotificationQueue from "../api/apiHost_Notification_Queue"
 import APIBookExp from "../api/apiBookExp";
 
 import { connect } from 'react-redux';
@@ -29,7 +30,8 @@ class ShadowReservation extends React.Component {
 
     this.state = {
       data: {
-        user: null,
+        host:null,
+        shadower: null,
         experience: null,
         availableRanges: null,
         aspects: {},
@@ -59,6 +61,8 @@ class ShadowReservation extends React.Component {
             return {
               data: {
                 ...prevState.data,
+                host:experience.host,
+                shadower:"5fc218e074ecddb9e05e3520",
                 experience: experience
               },
               loaded: true
@@ -179,11 +183,56 @@ class ShadowReservation extends React.Component {
       availableRanges.push(data.availableRanges.endDate);
       data.availableRanges = availableRanges;
 
-      data.user = this.props.auth.user._id;
+      data.shadower = this.props.auth.user._id;
 
       APIReservation.createReservation(data)
           .then((function (res) {
-            console.log(res);
+            
+            // var currentReservation = APIReservation.getReservationByUserId('603a7ab3956c426c8788ce00');
+            console.log("current");
+
+            console.log(res.host);
+              var path = "/api/host/" + res.host;
+              return fetch(path, {
+                  method: 'get',
+                  credentials: "include",
+                  headers: new Headers({
+                  'Content-Type': 'application/json'
+              }),
+              }).then((response) => {
+                console.log('response');
+                response.json().then( host=>{
+                  console.log(host);
+                  var currentReservationStack=host.reservationStack;
+                  console.log(res._id);
+                  currentReservationStack.unshift(res._id);
+                  console.log(currentReservationStack);
+            return fetch("/api/host/"+res.host, {
+            method: 'put',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                "reservationStack": currentReservationStack,
+            }),
+            credentials: "include"
+            }).then(response => {
+                            response.json().then( newHost=>{
+                  console.log(newHost);
+                 
+                 
+                  
+                }); 
+      }).catch((err) => {
+    console.log(err);
+  });
+                  
+                }); 
+              }).catch((err) => {
+                  console.log(err);
+              });
+            //let currentHost = APIHost.getHostById('5f14aba6e1d046aa0894f3c3');
+
           }));
     }
   }

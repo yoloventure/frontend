@@ -55,6 +55,8 @@ class HostRegister extends React.Component {
         confirmPassword:"",
         errorMessage:'',
         offering:[],
+        reservationStack:[],
+        reviewStack:[],
       },
       counter: 1,
       progress: 0,

@@ -12,6 +12,7 @@ const passport = require('passport');
 
 // Models
 const YoloChatAd = require('./models/yoloChatAd');
+
 const User = require('./models/user');
 const Experience = require('./models/experience')
 const Host = require('./models/host')
@@ -34,6 +35,7 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 const fileUpload = require('./routes/fileUpload');
 const reservation = require('./routes/reservation');
+const host_Notification_Queue = require ('./routes/host_Notification_Queue')
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
@@ -173,6 +175,7 @@ app.use(cors());
 
 // Use API Routes
 app.use('/api/yoloChatAd', yoloChatAd);
+app.use('/api/host_Notification_Queue',host_Notification_Queue);
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/emailList', emailList);
@@ -184,7 +187,7 @@ app.use('/api/review', review);
 app.use('/api/addressValidator', addressValidator);
 app.use('/api/fileUpload', fileUpload);
 app.use('/api/reservation', reservation);
-app.use('/uploaded_images', express.static('upload_images'));
+app.use('api/uploaded_images', express.static('upload_images'));
 // Error handling middleware
 app.use(function(err, req, res, next) {
   console.log(err);

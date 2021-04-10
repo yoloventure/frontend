@@ -11,12 +11,11 @@ const
 
 const {BlobServiceClient} = require("@azure/storage-blob");
 const { DefaultAzureCredential } = require("@azure/identity"); // Change to "@azure/storage-blob" in your package
-  const connStr = "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
-
-  const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
-  const account = "hdrive42078740948";
-  const accountKey = "X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==";
-  const defaultAzureCredential = new DefaultAzureCredential();
+const connStr = "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
+const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
+const account = "hdrive42078740948";
+const accountKey = "X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==";
+const defaultAzureCredential = new DefaultAzureCredential();
   // const blobServiceClient = new BlobServiceClient(
   // `https://${account}.blob.core.windows.net`,
   // defaultAzureCredential
@@ -31,13 +30,13 @@ async function connectAzure() {
   // for await (const container of containers) {
   //   console.log(`Container ${i++}: ${container.name}`);
   // }
-  const containerClient = blobServiceClient.getContainerClient('yolo');
+  // const containerClient = blobServiceClient.getContainerClient('yolo');
 
-  const content = "Hello world!";
-  const blobName = "newblob" + new Date().getTime();
-  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-  const uploadBlobResponse = await blockBlobClient.upload(content, content.length);
-  console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
+  // const content = "Hello world!";
+  // const blobName = "newblob" + new Date().getTime();
+  // const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  // const uploadBlobResponse = await blockBlobClient.upload(content, content.length);
+  // console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
 }
 
 // A helper method used to read a Node.js readable stream into string

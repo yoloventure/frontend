@@ -68,6 +68,7 @@ function editHost(hostId, data) {
         "idImage": data.idImage,
         "workingImage": data.workingImage,
         "availability": data.availability,
+        
     }),
     credentials: "include"
   }).then((response) => {

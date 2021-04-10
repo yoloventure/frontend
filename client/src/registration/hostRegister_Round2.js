@@ -18,9 +18,17 @@ import APIHost from "../api/apiHost";
 import PropTypes from 'prop-types';
 import { register,loadUser } from '../actions/authActions';
 import axios from 'axios';
-// import { InteractiveBrowserCredential } from "@azure/identity";
-// // we're using these objects from the storage sdk - there are others for different needs
-// import { BlobServiceClient, BlobItem } from "@azure/storage-blob";
+ // var storage = require('azure-storage');
+const {BlobServiceClient,StorageSharedKeyCredential} = require("@azure/storage-blob");
+ const { InteractiveBrowserCredential } = require("@azure/identity");
+  const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
+  const account = "yoloshadowstorage";
+  const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
+  const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
+  
+  //const defaultAzureCredential = new DefaultAzureCredential();
+  const containerName = "hostworkingimages";
+
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +65,7 @@ class HostRegister_Round2 extends React.Component {
       return {
         data: {
           ...prevState.data,
-          hostId: "5ff95d7a88a6f4b1c2b33a01",
+          hostId: "605eee00980c714b0b178513",
         }
       }
     });
@@ -127,37 +135,52 @@ class HostRegister_Round2 extends React.Component {
             availability: [...this.state.data.availability,...availability2]
          }
        }, () => {
-      console.log(this.state.data);
-      var formData = new FormData();
-      formData.append('imgCollection',this.state.data.files[0]);
-      formData.append('imgCollection',this.state.data.files[1]);
-      formData.forEach((value, key) => {
-console.log("key %s: value %s", key, value);
-})
-      APIHost.editHost(data.hostId, this.state.data);
-      var path = "/api/host/" + this.state.data.hostId;
-       axios.post(path, formData, {
-        headers: {
-        'content-type': 'multipart/form-data'
-       }
-       }).then(res => {
-            console.log(res.data)
-        }).catch(err => { 
-        if (err.response) {
-          console.log(err.response);
-        }
-         });
+
+       const defaultAzureCredential = new DefaultAzureCredential();
+       const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
+//        const blobServiceClient = new BlobServiceClient(
+//   `https://${account}.blob.core.windows.net`,
+//   defaultAzureCredential
+// );
+       const containerClient = blobServiceClient.getContainerClient(containerName);
+
+        const content = "hello world";
+        //const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
+        const blobName = "host_working_image" + new Date().getTime();
+         const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+        const uploadBlobResponse =  blockBlobClient.upload(content, content.length);
+        //console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
+        // const stream = getStream(this.state.data.files[0].buffer);
+        // const streamLength = this.state.data.files[0].buffer.length;
+
+        // const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+        // blockBlobClient.uploadStream(stream, streamLength);
+        console.log("blobname");
+        console.log(blobName);
+        // .then(response => {
+        //     res.send('Upload block blob ${blobName} successfully (requestId=${response.requestId})');
+        // });
+    
+        //const containerClient = blobServiceClient.getContainerClient('yolo');
+
+        //const content = "Hello world!";
+        // const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sasToken}`);
+        // const blobName = getBlobName(this.state.data.files[0]);
+        // const stream = getStream(this.state.data.files[0].buffer);
+        // const streamLength = this.state.data.files[0].buffer.length;
+
+        // const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+        // blockBlobClient.uploadStream(stream, streamLength);
+        
+    //  fetch("/api/host/upload", {
+    //   method: "POST",
+    // })
+
+     // .catch(error => error);
+ 
         APIHost.editHost(data.hostId, this.state.data);
     }); 
-      //var host = APIHost.getHostById(data.hostId);
-      //host.idImage=this.state.data.idImage;
-      // console.log("current image");
-      // console.log(this.state.data);
-      
-       // data.hostId = 'test123'; // overwrite hostId for testing
-       // APIHost.editHost(data.hostId, this.state.data);
-       // console.log(host.availability);
-      //APIHostApp.submitAppRound2(data);
+
     }
   }
 

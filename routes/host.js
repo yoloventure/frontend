@@ -6,6 +6,42 @@ const { v4: uuidv4 } = require('uuid');
 const DIR = 'upload_images/';
 const EmailList = require("../models/emailList");
 var nodemailer = require('nodemailer');
+var storage = require("azure-storage")
+const {BlobServiceClient} = require("@azure/storage-blob");
+const { DefaultAzureCredential } = require("@azure/identity");
+  const connStr = "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
+
+  const account = "hdrive42078740948";
+  const accountKey = "X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==";
+  const defaultAzureCredential = new DefaultAzureCredential();
+function generateSasToken() {
+  var startDate = new Date();
+    var expiryDate = new Date();
+    startDate.setTime(startDate.getTime() - 5*60*1000);
+    expiryDate.setTime(expiryDate.getTime() + 24*60*60*1000);
+    var AccountSasConstants = storage.Constants.AccountSasConstants;
+    var sharedAccessPolicy = {
+      AccessPolicy: {
+        Services: AccountSasConstants.Services.BLOB ,
+        ResourceTypes: AccountSasConstants.Resources.SERVICE + 
+                       AccountSasConstants.Resources.CONTAINER +
+                       AccountSasConstants.Resources.OBJECT,
+        Permissions: AccountSasConstants.Permissions.READ + 
+                     AccountSasConstants.Permissions.ADD +
+                     AccountSasConstants.Permissions.CREATE +
+                     AccountSasConstants.Permissions.WRITE +
+                     AccountSasConstants.Permissions.DELETE +
+                     AccountSasConstants.Permissions.LIST,
+        Protocols: AccountSasConstants.Protocols.HTTPSORHTTP,
+        Start: startDate,
+        Expiry: expiryDate
+      }
+      
+    };
+    var sas =storage.generateAccountSharedAccessSignature(account,accountKey,sharedAccessPolicy);
+    return sas;
+}
+
 
 const transporter = nodemailer.createTransport({
    host: 'smtp.gmail.com',
@@ -16,41 +52,30 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, DIR);
-    },
-    filename: (req, file, cb) => {
-        const fileName = file.originalname.toLowerCase().split(' ').join('-');
-        cb(null, uuidv4() + '-' + fileName)
-    }
-});
+async function uploadImage(photoId){
+  const sas = generateSasToken();
+const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
 
-var upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-            cb(null, true);
-        } else {
-            cb(null, false);
-            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-        }
-    }
-});
-router.post('/:id', upload.any(), (req, res, next) => {
+  const containerClient = blobServiceClient.getContainerClient('yolo');
+  const blobName = "newblob" + new Date().getTime();
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  const uploadBlobResponse = await blockBlobClient.upload(photoId, photoId.length);
+  console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
+}
+router.post('/upload', function(req, res){
     console.log("hi");
-    console.log(req.file);
-    const reqFiles = [];
-    const url = req.protocol + '://' 
-    console.log("Upload");
-    console.log(req.files[0].name);
-    for (var i = 0; i < 2; i++) {
-        reqFiles.push(url + '/upload_images/'+req.files[i].filename)
-    }
+    uploadImage(req.body.files[0]);
+    // const reqFiles = [];
+    // const url = req.protocol + '://' 
+    // console.log("Upload");
+    // console.log(req.files[0].name);
+    // for (var i = 0; i < 2; i++) {
+    //     reqFiles.push(url + '/upload_images/'+req.files[i].filename)
+    // }
 
-    Host.findByIdAndUpdate({_id: req.params.id},{ imgCollection: reqFiles }, {useFindAndModify: false})
-    .then(function (host) {
-    res.send(host);
+    // Host.findByIdAndUpdate({_id: req.params.id},{ imgCollection: reqFiles }, {useFindAndModify: false})
+    // .then(function (host) {
+    // res.send(host);
   });
     // const user = new User({
     //     _id: new mongoose.Types.ObjectId(),
@@ -72,7 +97,7 @@ router.post('/:id', upload.any(), (req, res, next) => {
     //         });
     // })
 
-})
+
 //Get all host applications
 router.get('/', function (req, res) {
   Host.find()
@@ -135,6 +160,17 @@ router.post('/', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   //find and update specific application
   Host.findByIdAndUpdate( req.params.id, req.body).then(function () {
+    //find and send back updated application for display
+    Host.findOne({_id: req.params.id}, req.body).then(function (host) {
+      res.send(host);
+    });
+  });
+});
+
+//edit application using put requests
+router.put('add_reservation/:id', function (req, res, next) {
+  //find and update specific application
+  Host.findByIdAndUpdate( req.params.id, {$push: {"reservationStack": req.body}}, ).then(function () {
     //find and send back updated application for display
     Host.findOne({_id: req.params.id}, req.body).then(function (host) {
       res.send(host);

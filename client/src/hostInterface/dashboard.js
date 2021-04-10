@@ -27,7 +27,99 @@ import {MDBBtn} from 'mdbreact'
 
 class Dashboard extends React.Component{
 
+    componentDidMount() {
+        let reservations = [];
+        let currentReservations = [];
+        fetch("/api/host/" + '5f14aba6e1d046aa0894f3c3', {
+              method: 'get',
+              credentials: "include"
+          }).then((response) => {
+              response.json().then( host=>{
+                console.log(host);
+                var i;
+                var len = 2; 
+                var path;
+                var path2;
+                // let reservations = [];
+                let fnames = [];
+                let lnames = [];
+                for (i=0;i<len;i++){
+                      path = "/api/reservation/" + host.reservationStack[i];
+                      console.log(path);
+                      fetch(path, {
+                          method: 'get',
+                          credentials: "include"
+                      }).then(response => {
+                         response.json().then(reservation=>{
+                           //  console.log("here");
+                           // reservations.push(reservation);
+                           console.log(reservations);
+                           path2 = "/api/user/" + reservation.shadower;
+                           fetch (path2,{
+                            method: 'get',
+                            credentials: "include"
+                           }).then(shadower=>{
+                                shadower.json().then(currentShadower=>{
+                                console.log("shadower");
+                                console.log(shadower);
+                                    // fnames.push(currentShadower.fname);
+                                    // lnames.push(currentShadower.lname);
+                                reservations.push(
+                                <div className='row mt-3' style={{"boxShadow":"0px 2px 10px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+                                    <div className='col-9 offset-1'>
+                                        <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {currentShadower.fname} sent you a shadowing request </h3>
+                                    </div>
+                                    <div className='col-2'>
+                                        <p> {reservation.availableRanges}</p>
+                                    </div>
+                                    <div className='col-1 offset-1'>
+                                        <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
+                                    </div>
+                                    <div className='col-3' >
+                                        <p
+                                        >
+                                            {currentShadower.fname}{currentShadower.lname}
+                                        </p>
+                                    </div>
+                                    <div className='col-3 offset-1'>
 
+
+                                        <button style={{"background":"#2ED47A","borderRadius":"4px", border:'transparent', fontSize:'90%'}}> Accept </button>
+
+                                    </div>
+                                    <div className='col-3'>
+
+
+                                        <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%'}}> Reject </button>
+
+                                    </div>
+                                </div>
+                            )
+    
+                                })
+                           }
+                           )
+                         })                 
+                      }).catch((err) => {
+                          console.log(err);
+                      })
+                      console.log("here4");
+                      console.log(reservations);
+
+                }
+
+              })
+          }).catch((err) => {
+              console.log(err);
+          });
+                      currentReservations=reservations.slice(0,1);
+
+      this.setState({
+          shadowRequests: reservations,
+          currentShadowRequests: currentReservations,
+    });
+    //toast.configure();
+  }
     constructor(props){
         super(props)
         this.Ref = createRef()
@@ -35,40 +127,40 @@ class Dashboard extends React.Component{
 
 
         //setup shadow requests
-        let tempArray=[]
-        shadowRequests.forEach(request=>{
-            tempArray.push(
-                <div className='row mt-3' style={{"boxShadow":"0px 2px 10px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
-                    <div className='col-9 offset-1'>
-                        <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {request.fname} sent you a shadowing request </h3>
-                    </div>
-                    <div className='col-2'>
-                        <p> {request.timeStamp}</p>
-                    </div>
-                    <div className='col-1 offset-1'>
-                        <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
-                    </div>
-                    <div className='col-3' >
-                        <p
-                        >
-                            {request.fname}
-                        </p>
-                    </div>
-                    <div className='col-3 offset-1'>
+        // let tempArray=[]
+        // shadowRequests.forEach(request=>{
+        //     tempArray.push(
+        //         <div className='row mt-3' style={{"boxShadow":"0px 2px 10px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
+        //             <div className='col-9 offset-1'>
+        //                 <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {request.fname} sent you a shadowing request </h3>
+        //             </div>
+        //             <div className='col-2'>
+        //                 <p> {request.timeStamp}</p>
+        //             </div>
+        //             <div className='col-1 offset-1'>
+        //                 <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
+        //             </div>
+        //             <div className='col-3' >
+        //                 <p
+        //                 >
+        //                     {request.fname}
+        //                 </p>
+        //             </div>
+        //             <div className='col-3 offset-1'>
 
 
-                        <button style={{"background":"#2ED47A","borderRadius":"4px", border:'transparent', fontSize:'90%'}}> Accept </button>
+        //                 <button style={{"background":"#2ED47A","borderRadius":"4px", border:'transparent', fontSize:'90%'}}> Accept </button>
 
-                    </div>
-                    <div className='col-3'>
+        //             </div>
+        //             <div className='col-3'>
 
 
-                        <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%'}}> Reject </button>
+        //                 <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%'}}> Reject </button>
 
-                    </div>
-                </div>
-            )
-        })
+        //             </div>
+        //         </div>
+        //     )
+        // })
 
         //setup review notifications
         let tempArray2=[]
@@ -110,7 +202,7 @@ class Dashboard extends React.Component{
                         </ShowMoreText>
                     </div>
                     <div className='col-1 offset-1'>
-                        <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
+                        <img src='http:/\/via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
                     </div>
                     <div className='col-3'>
                         <p> {notification.fname}</p>
@@ -127,14 +219,14 @@ class Dashboard extends React.Component{
 
 
 
-        let currentTemp=[];
+        // let currentTemp=[];
         let currentTemp2=[];
 
-        try{
-            currentTemp=tempArray.slice(0,1)
-        }catch(e){
+        // try{
+        //     currentTemp=tempArray.slice(0,1)
+        // }catch(e){
 
-        }
+        // }
         try{
             currentTemp2=tempArray2.slice(0,1)
         }catch(e){
@@ -159,8 +251,8 @@ class Dashboard extends React.Component{
             textboxIdCount:0,
             rangeEditDisabled:true,
             editExperience:false,
-            shadowRequests:tempArray,
-            currentShadowRequests:currentTemp,
+            shadowRequests:[],
+            currentShadowRequests:[],
             reviewNotifications:tempArray2,
             currentReviewNotifications:currentTemp2,
             myHistoryButton:'Show More',

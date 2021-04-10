@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const User = require('../models/user');
 var jwtDecode = require('jwt-decode');
-
 router.post(
 	'/userInfoFromToken',
 
@@ -49,7 +48,16 @@ router.get(
 		});
 	}
 );
-
+router.get('/:id', function (req, res, next) {
+  User.findById(req.params.id)
+  // .populate('user')
+  // .populate('company')
+  // .populate('location')
+  // .populate('experiences')
+  .then(function (user) {
+    res.send(user);
+  });
+});
 // @route   DELETE user/delete
 // @desc    Deletes user
 // @access  Private

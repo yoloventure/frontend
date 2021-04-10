@@ -7,14 +7,16 @@ const host_Notification_Queue_Schema = new mongoose.Schema({
       ref: 'Host',
       required: true
     },
+    //shaower request  to host
     shadowRequestNotificationQueue:{
         type: [{type:mongoose.Schema.Types.ObjectId,
-               ref:'reviewForHost'}],
+               ref:'reservation'}],
         default:[]
     },
+    //shadower to host
     reviewNotificationQueue:{
        type: [{type:mongoose.Schema.Types.ObjectId,
-              ref:'reviewForHost'}],
+              ref:'host_Review'}],
         default:[]
     },
 
