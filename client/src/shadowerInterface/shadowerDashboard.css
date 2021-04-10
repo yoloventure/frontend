@@ -28,3 +28,8 @@ button {
 .no-border {
   border: none !important;
 }
+
+.content1::after{
+  content: "\a";
+  white-space: pre;
+}

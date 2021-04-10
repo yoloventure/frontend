@@ -8,7 +8,7 @@ import moment from "moment";
 import { Button } from "reactstrap";
 
 import hostRequests from "./hostRequests.json";
-import hostReviews from "./hostReviews.json";
+// import hostReviews from "./hostReviews.json";
 import reviewShadowerNotifications from "./reviewShadowerNotifications.json";
 
 import "react-calendar/dist/Calendar.css";
@@ -20,6 +20,8 @@ import { Link } from "react-router-dom";
 import { MDBIcon, MDBBtn } from "mdbreact";
 import { DateRange } from "react-date-range";
 
+
+import Demo2 from './Demo2';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -197,44 +199,51 @@ class Dashboard extends React.Component {
       );
     });
 
-    let tempArray4 = [];
-    hostReviews.forEach((review) => {
-      tempArray4.push(
-        <div className="row m-1 mt-1">
-          <div className="col-6 offset-1">
-            <h3
-              style={{
-                fontFamily: "Poppins",
-                fontStyle: "normal",
-                color: "#4C5862",
-                fontWeight: "500",
-                fontSize: "13px",
-                lineHeight: "19.5px",
-                letterSpacing: "0.01em",
-              }}
-            >
-              {" "}
-              {review.timeStamp}
-            </h3>
-          </div>
-          <div className="col-11 offset-1">
-            <ShowMoreText
-              /* Default options */
-              lines={1}
-              more="+more"
-              less="-less"
-              anchorClass="moreClass"
-              onClick={this.executeOnClick}
-              expanded={false}
-              width={380}
-              color="black"
-            >
-              <p>{review.reviewContent}</p>
-            </ShowMoreText>
-          </div>
-        </div>
-      );
-    });
+    
+    // let hostReviews = [];
+    // hostReviews.forEach((review) => {
+    //   tempArray4.push(
+    //     <div className="row m-1 mt-1">
+    //       <div className="col-6 offset-1">
+    //         <h3
+    //           style={{
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             color: "#4C5862",
+    //             fontWeight: "500",
+    //             fontSize: "13px",
+    //             lineHeight: "19.5px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           {" "}
+    //           {review.timeStamp}
+    //         </h3>
+    //       </div>
+          
+    //       <div className="col-11 offset-1">
+    //         <ShowMoreText
+    //           /* Default options */
+    //           lines={1}
+    //           more="+more"
+    //           less="-less"
+    //           anchorClass="moreClass"
+    //           onClick={this.executeOnClick}
+    //           expanded={false}
+    //           width={380}
+    //           color="black"
+    //         >
+    //           <p>{review.reviewContent}</p>
+    //         </ShowMoreText>
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
+
+
+  
+
 
     let currentTemp = [];
     let currentTemp2 = [];
@@ -266,7 +275,7 @@ class Dashboard extends React.Component {
       hostRequests: tempArray,
       currenthostRequests: currentTemp,
       reviewShadowerNotifications: tempArray2,
-      hostReviews: tempArray4,
+      hostReviews: [],
       currentReviewShadowerNotifications: currentTemp2,
       myHistoryButton: "Show More",
       myReviewsAll: [],
@@ -277,11 +286,15 @@ class Dashboard extends React.Component {
       showRequests: true,
       showCompleted: true,
       notificationFilters: [],
+
+      rating: "",
+      review: "",
+      tempArray:[],
     };
 
     let tempArray3 = [];
     let currentTemp3 = [];
-    fetch("/api/review/", {
+    fetch("/api/review", {
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -290,6 +303,7 @@ class Dashboard extends React.Component {
       .then((response) => {
         response.json().then((reviewsData) => {
           //setup my myReviews
+          console.log(reviewsData)
           reviewsData.forEach((review) => {
             tempArray3.push(
               <React.Fragment>
@@ -315,6 +329,7 @@ class Dashboard extends React.Component {
                     width={280}
                     color="black"
                   >
+                   
                     <p style={{ fontSize: "80%" }}>{review.body}</p>
                   </ShowMoreText>
                 </div>
@@ -337,46 +352,50 @@ class Dashboard extends React.Component {
     console.log(tempArray3);
     console.log(currentTemp3);
 
-    fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
-      method: "get",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    })
-      .then((response) => {
-        console.log(response);
+  //   fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
+  //     // fetch("/api/experience/host/${this.props.auth.host.hostId}", {
+  //     method: "get",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
 
-        response.json().then((experience) => {
-          console.log(experience);
-          let tempskills = [];
-          let tempWhatCanIOffer = [];
-          let tempWhatCanIOfferBodies = [];
-          experience.skills.forEach((perk, i) => {
-            if (i === experience.skills.length - 1) {
-              tempskills.push(perk + ".");
-            } else {
-              tempskills.push(perk + ", ");
-            }
-          });
-          experience.whatICanOffer.forEach((offer, i) => {
-            if (i === experience.skills.length - 1) {
-              tempWhatCanIOffer.push(offer.title + ".");
-            } else {
-              tempWhatCanIOffer.push(offer.title + ", ");
-            }
-            tempWhatCanIOfferBodies.push(offer.body);
-          });
-          this.setState({
-            skills: tempskills,
-            whatCanIOfferTitles: tempWhatCanIOffer,
-            whatCanIOfferBodies: tempWhatCanIOfferBodies,
-          });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  //       response.json().then((experience) => {
+  //         console.log(experience);
+  //         let tempskills = [];
+  //         let tempWhatCanIOffer = [];
+  //         let tempWhatCanIOfferBodies = [];
+  //         experience.skills.forEach((perk, i) => {
+  //           if (i === experience.skills.length - 1) {
+  //             tempskills.push(perk + ".");
+  //           } else {
+  //             tempskills.push(perk + ", ");
+  //           }
+  //         });
+  //         experience.whatICanOffer.forEach((offer, i) => {
+  //           if (i === experience.skills.length - 1) {
+  //             tempWhatCanIOffer.push(offer.title + ".");
+  //           } else {
+  //             tempWhatCanIOffer.push(offer.title + ", ");
+  //           }
+  //           tempWhatCanIOfferBodies.push(offer.body);
+  //         });
+  //         this.setState({
+  //           skills: tempskills,
+  //           whatCanIOfferTitles: tempWhatCanIOffer,
+  //           whatCanIOfferBodies: tempWhatCanIOfferBodies,
+  //         });
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
+    
+  };
+  
 
   handleSelect = (ranges) => {
     if (this.state.counter === 1) {
@@ -689,6 +708,18 @@ class Dashboard extends React.Component {
     this.setState({ notificationFilters: temp });
   };
 
+
+
+  callbackFunction = (childData) => {
+    this.setState({
+      rating: childData[0],
+      review: childData[1],
+    render: childData[2]})
+}
+
+
+
+
   render() {
     let showRequests = false;
     let showCompleted = false;
@@ -732,11 +763,66 @@ class Dashboard extends React.Component {
       borderRadius: "4px",
       height: window.innerHeight / 2.2 + "px",
     };
+    // {this.state.tempArray = []}
+    // fetch("/api/review/", {
+    //   method: "post",
+    //   headers: new Headers({
+    //     "Content-Type": "application/json",
+    //   }),
+    // })
+    //   .then((response) => {
+    //     response.json().then((reviewsData) => {
+    //       //setup my myReviews
+    //       console.log(reviewsData)
+    //       reviewsData.forEach((review) => {
+    //         this.state.tempArray.push(
+    //           <React.Fragment>
+    //             <div className="col-11 ml-2 mb-2">
+    //               <p
+    //                 style={{
+    //                   fontSize: "90%",
+    //                   lineHeight: "10px",
+    //                   fontWeight: "500",
+    //                 }}
+    //               >
+    //                 {" "}
+    //                 {review.publishDate}{" "}
+    //               </p>
+    //               <ShowMoreText
+    //                 /* Default options */
+    //                 lines={1}
+    //                 more="+more"
+    //                 less="-less"
+    //                 anchorClass="moreClass"
+    //                 onClick={this.executeOnClick}
+    //                 expanded={false}
+    //                 width={280}
+    //                 color="black"
+    //               >
+                   
+    //                 <p style={{ fontSize: "80%" }}>{review.body}</p>
+    //               </ShowMoreText>
+    //             </div>
+    //           </React.Fragment>
+    //         );
+    //       });
+    //       // try {
+    //       //   currentTemp3 = tempArray3.slice(0, 1);
+    //       // } catch (e) {}
+    //       // this.setState({
+    //       //   myReviewsAll: tempArray3,
+    //       //   myReviewsCurrent: currentTemp3,
+    //       // });
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
 
     return (
       <div className="bg-light" style={styleViewPort}>
-        <Navbar className="mb-5" textColor={"black"} />
-
+        <Navbar className="mb-5" textColor={"black"} />  
         <div className="pt-5 mt-5 mr-5 bg-light">
           <div className="row pt-4">
             <div className="col-5  offset-1 mt-2">
@@ -762,6 +848,8 @@ class Dashboard extends React.Component {
                     {" "}
                     My Shadowing Progress
                   </h5>
+             
+       
                 </div>
                 <div style={{ height: "150px", marginLeft: "4%" }}>
                   <p
@@ -992,6 +1080,28 @@ class Dashboard extends React.Component {
                     </div>
                   </div>
                 </div>
+
+                <Demo2 parentCallback = {this.callbackFunction} hostReviews = {this.state.hostReviews} tempArray = {this.state.tempArray}> </Demo2>
+
+{/* 
+                <div>
+                {this.state.render}
+                {this.state.review}
+                {this.state.rating}
+                
+                
+                
+                
+              
+              
+
+              
+
+              {console.log(hostReviews)}
+              </div> */}
+         
+            
+            
 
                 <div
                   className="col-12 mt-4"
@@ -1251,11 +1361,71 @@ class Dashboard extends React.Component {
                         className="text-center d-flex justify-content-center"
                         style={{ color: "white" }}
                       >
-                        4.8
+                        4.7
                       </p>
                     </div>
-                    {this.state.myReviewsCurrent}
-                    {this.state.hostReviews}
+                    {this.state.myReviewsCurrent}  
+                    
+                    {console.log(this.state.hostReviews)} 
+                    
+                    
+                   
+   
+                  {this.state.tempArray = []}
+                  {this.state.hostReviews.forEach((review) => {
+                        this.state.tempArray.push(
+                          <div className=" m-1 mt-1">
+                            <div className="content1">
+                              <h3
+                                style={{
+                                  fontFamily: "Poppins",
+                                  fontStyle: "normal",
+                                  fontWeight: "600",
+                                  fontSize: "13px",
+                                  lineHeight: "19px",
+                                  letterSpacing: "0.01em"
+                                }}
+                              >
+                                {/* {" "} */}
+                                
+                                {review.publishDate}
+                              </h3>
+                            </div>
+                            
+                            <div className="">
+                              <ShowMoreText
+                                /* Default options */
+                                lines={1}
+                                more="+more"
+                                less="-less"
+                                anchorClass="moreClass"
+                                onClick={this.executeOnClick}
+                                expanded={false}
+                                width={380}
+                                color="black"
+                              >
+                                <div 
+                                style = {{fontFamily: "Poppins",
+                                fontStyle: "normal",
+                                fontWeight: "normal",
+                                fontSize: "13px",
+                                lineHeight: "19px",
+                                letterSpacing: "0.01em",
+                                color: "#4C5862"}}>
+                                <p>{review.body}</p></div>
+                                
+                              </ShowMoreText>
+                            </div>
+                          </div>
+                        );
+                      })}
+    
+   
+
+
+                    
+                    {/* {this.state.hostReviews} */}
+
                     <div className="col-12 d-flex justify-content-center">
                       <button
                         onClick={this.changeMyReviewCards}
@@ -1268,6 +1438,7 @@ class Dashboard extends React.Component {
                         {this.state.myReviewButton}
                       </button>
                     </div>
+
                   </div>
                 </div>
               </div>

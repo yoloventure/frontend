@@ -15,6 +15,8 @@ import "./dashboard.css";
 import { connect } from "react-redux";
 import reviewNotifications from "./reviewNotifications.json";
 // import './Dashboard.css'
+
+import Review from './Review';
 import {
   BrowserRouter as Router,
   Switch,
@@ -197,6 +199,8 @@ class Dashboard extends React.Component {
       );
     });
 
+
+
     let currentTemp = [];
     let currentTemp2 = [];
 
@@ -238,12 +242,18 @@ class Dashboard extends React.Component {
       whatICanOfferTitles: [],
       whatICanOfferBodies: [],
       perks: [],
+
+      hostReviews: [],
+      rating: "",
+      body: "",
+      tempArray:[],
     };
 
     let tempArray3 = [];
     let currentTemp3 = [];
-    console.log(this.props.auth.user);
-    fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+    console.log(this.props.auth)
+    fetch('/api/review/host/5f14aba6e1d046aa0894f3c3' ,{
+    // fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -251,7 +261,9 @@ class Dashboard extends React.Component {
     })
       .then((response) => {
         response.json().then((reviewsData) => {
+          console.log(reviewsData);
           //setup my myReviews
+          
           reviewsData.forEach((review) => {
             tempArray3.push(
               <React.Fragment>
@@ -295,12 +307,14 @@ class Dashboard extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+    
 
     console.log(tempArray3);
     console.log(currentTemp3);
 
     //fetch relevant experience for this host and set up initial states
-    fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+    fetch('/api/experience/host/5f14aba6e1d046aa0894f3c3' ,{
+    // fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -334,6 +348,41 @@ class Dashboard extends React.Component {
       });
   }
 
+   
+  postHostReviews = () => {
+    let bodyToSend = []
+    let test1 = {}
+    test1.host = "5f14aba6e1d046aa0894f3c3"
+    test1.id = "5f14aba6e1d046aa0894f3c3"
+    test1.author = "5ef660a01c7b54239095e6c5"
+    test1.body = "it was great "
+    test1.publishDate = "2018-05-12T04:00:00.000Z"
+    test1.rating = "4"
+    bodyToSend.push(test1)
+    // console.log(this.state.hostReviews);
+    console.log(bodyToSend)
+  
+       
+ 
+    
+    fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
+
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+     
+      body: JSON.stringify(this.state.bodyToSend),
+
+    })
+      .then((response) => { console.log(response);})
+      .catch((err) => {
+        console.log(err);
+      });
+    
+  }
+
+
   confirmExperienceEdit = () => {
     let bodyToSend = {};
     bodyToSend["perks"] = this.state.perks;
@@ -349,11 +398,11 @@ class Dashboard extends React.Component {
     this.state.whatICanOfferBodies.forEach((bodyToAdd, i) => {
       whatCanIOfferArray[i]["body"] = bodyToAdd;
     });
-
     bodyToSend["whatICanOffer"] = whatCanIOfferArray;
-
     //update database
-    fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+    // fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+      fetch('/api/experience/host/5f14aba6e1d046aa0894f3c3', {
+     
       method: "PUT",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -366,6 +415,8 @@ class Dashboard extends React.Component {
       });
     this.setState({ editExperience: false });
   };
+
+
   handleSelect = (ranges) => {
     if (this.state.counter === 1) {
       this.setState({
@@ -692,6 +743,12 @@ class Dashboard extends React.Component {
     this.setState({ notificationFilters: temp });
   };
 
+  callbackFunction = (childData) => {
+    this.setState({
+      rating: childData[0],
+      body: childData[1]})
+}
+
   render() {
     let showRequests = false;
     let showCompleted = false;
@@ -990,6 +1047,9 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
 
+                <Review parentCallback = {this.callbackFunction} hostReviews = {this.state.hostReviews} tempArray = {this.state.tempArray}  postHostReviews = {this.postHostReviews}> </Review>
+                {this.postHostReviews};
+
                 <div
                   className="col-12 mt-2"
                   style={{
@@ -1260,6 +1320,62 @@ class Dashboard extends React.Component {
                       </p>
                     </div>
                     {this.state.myReviewsCurrent}
+
+
+                  {this.state.tempArray = []}
+                  {this.state.hostReviews.forEach((review) => {
+                        this.state.tempArray.push(
+                          <div className=" m-1 mt-1">
+                            <div className="content1">
+                              <h3
+                                style={{
+                                  fontFamily: "Poppins",
+                                  fontStyle: "normal",
+                                  fontWeight: "600",
+                                  fontSize: "13px",
+                                  lineHeight: "19px",
+                                  letterSpacing: "0.01em"
+                                }}
+                              >
+                             
+                                
+                               
+                             <div className= "">{review.publishDate}</div>
+                              </h3>
+                            </div>
+                            
+                            <div className="">
+                              <ShowMoreText
+                              
+                                lines={1}
+                                more="+more"
+                                less="-less"
+                                anchorClass="moreClass"
+                                onClick={this.executeOnClick}
+                                expanded={false}
+                                width={380}
+                                color="black"
+                              >
+                                <div 
+                                style = {{fontFamily: "Poppins",
+                                fontStyle: "normal",
+                                fontWeight: "normal",
+                                fontSize: "13px",
+                                lineHeight: "19px",
+                                letterSpacing: "0.01em",
+                                color: "#4C5862"}}>
+                                <p>{review.body}</p></div>
+                                
+                              </ShowMoreText>
+                            </div>
+                          </div>
+                        );
+                      })} 
+
+        
+
+
+                    
 
                     <div className="col-12 d-flex justify-content-center">
                       <button
