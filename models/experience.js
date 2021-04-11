@@ -9,20 +9,19 @@ const experienceSchema = new mongoose.Schema({
   },
   durationDays: {
     type: Number,
-    required: true,
+  },
+  durationHours: {
+    type: Number,
   },
   price: {
     //in the form: $112   that is dollar sign followed by number
-    type: String,
-    required: true,
+    type: Number,
   },
   image: {
     type: Array(String), // list of image ids
-    required: true,
   },
   availableRanges: {
     type: Array(Date), //array of dates, in pairs [from, to, from,to...]
-    required: true,
   },
   whatICanOffer: {
     type: Array(Object),
@@ -34,7 +33,6 @@ const experienceSchema = new mongoose.Schema({
   },
   quote: {
     type: String,
-    required: false,
   },
   reviews: {
     type: Array(mongoose.Schema.Types.ObjectId), //array of ids , reviews will have separrate schema

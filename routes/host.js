@@ -30,10 +30,11 @@ router.get("/:id", function (req, res, next) {
 router.post("/", function (req, res, next) {
   Host.findOne({ user: req.body.user }).then((host) => {
     if (host) {
-      errors = "There is already a host associated with this account.";
+      let errors = "There is already a host associated with this account.";
       return res.status(400).json({
         success: false,
         error: errors,
+        id:host._id
       });
     } else {
       Host.create(req.body)

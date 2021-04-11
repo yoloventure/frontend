@@ -61,7 +61,7 @@ class Page2 extends React.Component {
               {this.props.data.experience.whatICanOffer.map((item, index) => (
                 <CardExpDetail
                   item={item}
-                  key={index}
+                  index={index}
                   id={index}
                   handleAspectSelect={this.handleAspectSelect}
                   aspects={this.state.aspects}

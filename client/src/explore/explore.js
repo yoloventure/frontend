@@ -12,7 +12,6 @@ import Footer from "../components/footer";
 import PropTypes from "prop-types";
 import Navbar from "../components/navbar";
 import "./explore.css";
-// import dataihuhkj from "../explore/data.json";
 import Card from "../components/card";
 import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
@@ -23,40 +22,6 @@ import { Button } from "reactstrap";
 import Fuse from "fuse.js";
 
 class Explore extends React.Component {
-  z;
-
-  componentDidMount() {
-    fetch("api/experience/", {
-      method: "get",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    })
-      .then((response) => {
-        response.json().then((data) => {
-          console.log(data);
-          data.forEach((element) => {
-            element.availableFrom = element.availableRanges[0]; //set this to first element in available ranges, as we assume array is sorted
-            element.availableTill =
-              element.availableRanges[element.availableRanges.length - 1];
-          });
-
-          this.setState({
-            currentData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
-            currentDataHTML: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
-            data: JSON.parse(JSON.stringify(data)),
-            firstAPICallCompleted: true,
-          });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -75,34 +40,140 @@ class Explore extends React.Component {
       sortHTML: "Sort By",
       sortSelection: "N",
       match: match,
-      firstAPICallCompleted: false,
     };
   }
 
-  handleChange1 = (date) => {
+  displayAll=()=> {
+    let results = [];
+    let filteredData = this.state.originalData;
+    let match = this.state.match;
+    for (var i = 0; i < filteredData.length; i += 2) {
+      if (i + 1 < filteredData.length) {
+        results.push(
+          <div className="row ">
+              <div
+                  className="card col-lg-4 offset-lg-1"
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i]._id}>
+                    <Card
+                      image={filteredData[i].image}
+                      id={filteredData[i]._id}
+                      city={filteredData[i].city}
+                      profession={filteredData[i].profession}
+                      price={filteredData[i].price}
+                      durationDays={filteredData[i].durationDays}
+                    />
+                  </Link>
+                  
+                </div>
+                <div
+                  className="card col-lg-4  offset-lg-1 "
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
+
+                    <Card
+                      image={filteredData[i + 1].image}
+                      id={filteredData[i + 1]._id}
+                      city={filteredData[i + 1].city}
+                      profession={filteredData[i + 1].profession}
+                      price={filteredData[i + 1].price}
+                      durationDays={filteredData[i + 1].durationDays}
+                    />
+                    </Link>
+
+                </div>
+          </div>
+
+        );
+      } else {
+        results.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
+            <div className="row ">
+              <div className="card col-lg-4  offset-lg-1 ">
+                <div className="">
+                  <Card
+                    image={filteredData[i].image}
+                    id={filteredData[i]._id}
+                    city={filteredData[i].city}
+                    profession={filteredData[i].profession}
+                    price={filteredData[i].price}
+                    durationDays={filteredData[i].durationDays}
+                  />
+                </div>
+              </div>
+            </div>
+          </Link>
+        );
+      }
+    }
+
+    this.setState({ cardArray: results, currentDataJSON: filteredData });
+  };
+
+
+  
+
+  componentDidMount() {
+    fetch("api/experience/", {
+      method: "get",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((response) => {
+        response.json().then((data) => {
+          data.forEach((element) => {
+            element.availableFrom = element.availableRanges[0]; //set this to first element in available ranges, as we assume array is sorted
+            element.availableTill =
+              element.availableRanges[element.availableRanges.length - 1];
+          });
+          console.log(data)
+          this.setState({
+            originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
+            currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
+            },
+            /**temporarily added to initialize card array with all experiences, while we have a small number of experiences */
+            ()=>this.displayAll()
+          );
+        });
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  
+
+  handleChangeStartDate = (date) => {
     this.setState(
       {
         startDate: date,
       },
-      () => this.filter()
+      () => this.refilter()
     );
   };
-  handleChange2 = (date) => {
+
+  handleChangeEndDate = (date) => {
     this.setState(
       {
         endDate: date,
       },
-      () => this.filter()
+      () => this.refilter()
     );
   };
 
-  filter = () => {
-    console.log(this.state.durationDaysFilters);
-    let filteredData = this.state.currentData;
+  refilter = () => {
+    let filteredData = this.state.originalData;
 
+    //filter the industries
     if (this.state.industryFilters.length !== 0) {
+      console.log(filteredData);
       filteredData = filteredData.filter((dataElement) => {
-        console.log(dataElement);
         let bool = false;
         this.state.industryFilters.forEach((industry) => {
           if (dataElement.host.industry) {
@@ -116,16 +187,11 @@ class Explore extends React.Component {
       });
     }
 
+    //filter durations
     if (this.state.durationDaysFilters.length !== 0) {
-      console.log(this.state.currentData);
-
       filteredData = filteredData.filter((dataElement) => {
-        console.log("here");
-
         let bool = false;
         this.state.durationDaysFilters.forEach((durationDays) => {
-          console.log(durationDays);
-          console.log(dataElement.durationDays);
           if (durationDays > 2 && dataElement.durationDays > 2) {
             bool = true;
           } else if (dataElement.durationDays == durationDays) {
@@ -136,76 +202,82 @@ class Explore extends React.Component {
         return bool;
       });
     }
+
+    //filter dates
     let startDate = this.state.startDate;
     let endDate = this.state.endDate;
     filteredData = filteredData.filter((dataElement) => {
       let bool = false;
-      console.log(startDate);
-      console.log(endDate);
       let from = new Date(dataElement.availableFrom);
       let to = new Date(dataElement.availableTill);
       if (
         new Date(from).getTime() >= new Date(startDate).getTime() &&
         new Date(endDate).getTime() >= new Date(to).getTime()
       ) {
-        console.log("dates true");
         bool = true;
       }
 
       return bool;
     });
 
+    ///finally sort the data
     if (this.state.sortSelection.localeCompare("L") === 0) {
       this.sortByKeyL(filteredData, "price");
     } else if (this.state.sortSelection.localeCompare("H") === 0) {
       this.sortByKeyH(filteredData, "price");
     }
-    let cardArray2 = [];
+
+    let filteredDataHTML = []; //temp array to be store HTML elements by processing filteredData
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
-          <Link to={`${match.url}/` + filteredData[i].id}>
-            <div className="row ">
+        filteredDataHTML.push(
+          <div className="row ">
               <div
-                className="card col-lg-4 offset-lg-1"
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i].image}
-                  id={filteredData[i].id}
-                  city={filteredData[i].city}
-                  profession={filteredData[i].profession}
-                  price={filteredData[i].price}
-                  durationDays={filteredData[i].durationDays}
-                />
-                {console.log(filteredData[i].image)}
-              </div>
-              <div
-                className="card col-lg-4  offset-lg-1 "
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i + 1].image}
-                  id={filteredData[i + 1].id}
-                  city={filteredData[i + 1].city}
-                  profession={filteredData[i + 1].profession}
-                  price={filteredData[i + 1].price}
-                  durationDays={filteredData[i + 1].durationDays}
-                />
-              </div>
-            </div>
-          </Link>
+                  className="card col-lg-4 offset-lg-1"
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i]._id}>
+                    <Card
+                      image={filteredData[i].image}
+                      id={filteredData[i]._id}
+                      city={filteredData[i].city}
+                      profession={filteredData[i].profession}
+                      price={filteredData[i].price}
+                      durationDays={filteredData[i].durationDays}
+                    />
+                  </Link>
+                  
+                </div>
+                <div
+                  className="card col-lg-4  offset-lg-1 "
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
+
+                    <Card
+                      image={filteredData[i + 1].image}
+                      id={filteredData[i + 1]._id}
+                      city={filteredData[i + 1].city}
+                      profession={filteredData[i + 1].profession}
+                      price={filteredData[i + 1].price}
+                      durationDays={filteredData[i + 1].durationDays}
+                    />
+                    </Link>
+
+                </div>
+          </div>
+
         );
       } else {
-        cardArray2.push(
-          <Link to={`${match.url}/1`}>
+        filteredDataHTML.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i].id}
+                    id={filteredData[i]._id}
                     city={filteredData[i].city}
                     profession={filteredData[i].profession}
                     price={filteredData[i].price}
@@ -220,97 +292,99 @@ class Explore extends React.Component {
     }
     // Then we use that to set the state for list
     this.setState({
-      cardArray: cardArray2,
-      currentDataHTML: filteredData,
+      cardArray: filteredDataHTML,
+      currentDataJSON: filteredData,
     });
   };
 
   updateIndustryFilters = (e) => {
     if (e.target.classList.contains("disabled")) {
-      console.log(e.target.classList);
       e.target.classList.remove("disabled");
-      console.log(e.target.classList);
     } else {
       e.target.classList.add("disabled");
-      console.log(e.target.classList);
     }
+
+    //check if this filter is already inside the filter array. if found then delete it else add it
     var found = false;
     let tempArr = this.state.industryFilters;
     tempArr.forEach((filter, i) => {
-      if (filter.localeCompare(e.target.innerHTML.substring(0, 1)) === 0) {
-        console.log("here");
+      if (filter.localeCompare(e.target.innerHTML) === 0) {
         found = true;
         tempArr.splice(i, 1);
       }
     });
     if (found === false) {
-      tempArr.push(e.target.innerHTML.substring(0, 1));
+      tempArr.push(e.target.innerHTML);
     }
+    console.log(tempArr)
     this.setState({ industryFilters: tempArr }, () => {
-      this.filter();
+      this.refilter();
     });
   };
 
-  sortByKeyL(array, key) {
+  sortByKeyL(array, key) { //helper function for refilter method
     return array.sort(function (a, b) {
-      console.log(a);
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
       return x < y ? -1 : x > y ? 1 : 0;
     });
   }
-  sortLow = () => {
-    let filteredData = this.state.currentDataHTML;
+
+  sortLow = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyL(filteredData, "price");
 
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
-          <Link to={`${match.url}/` + filteredData[i].id}>
-            <div className="row ">
-              <div
-                className="card col-lg-4 offset-lg-1"
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i].image}
-                  id={filteredData[i].id}
-                  city={filteredData[i].city}
-                  profession={filteredData[i].profession}
-                  price={filteredData[i].price}
-                  durationDays={filteredData[i].durationDays}
-                />
-                {console.log(filteredData[i].image)}
-              </div>
+        filteredDataHTML.push(
+          <div className="row ">
+                <div
+                  className="card col-lg-4 offset-lg-1"
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i]._id}>
+                    <Card
+                      image={filteredData[i].image}
+                      id={filteredData[i]._id}
+                      city={filteredData[i].city}
+                      profession={filteredData[i].profession}
+                      price={filteredData[i].price}
+                      durationDays={filteredData[i].durationDays}
+                    />
+                  </Link>
+                  
+                </div>
+                <div
+                  className="card col-lg-4  offset-lg-1 "
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
 
-              <div
-                className="card col-lg-4  offset-lg-1 "
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i + 1].image}
-                  id={filteredData[i + 1].id}
-                  city={filteredData[i + 1].city}
-                  profession={filteredData[i + 1].profession}
-                  price={filteredData[i + 1].price}
-                  durationDays={filteredData[i + 1].durationDays}
-                />
-              </div>
-            </div>
-          </Link>
+                    <Card
+                      image={filteredData[i + 1].image}
+                      id={filteredData[i + 1]._id}
+                      city={filteredData[i + 1].city}
+                      profession={filteredData[i + 1].profession}
+                      price={filteredData[i + 1].price}
+                      durationDays={filteredData[i + 1].durationDays}
+                    />
+                    </Link>
+
+                </div>
+          </div>
         );
       } else {
-        cardArray2.push(
-          <Link to={`${match.url}/1`}>
+        filteredDataHTML.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i].id}
+                    id={filteredData[i]._id}
                     city={filteredData[i].city}
                     profession={filteredData[i].profession}
                     price={filteredData[i].price}
@@ -325,13 +399,13 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Price: Low to High",
       sortSelection: "L",
     });
   };
 
-  sortByKeyH(array, key) {
+  sortByKeyH(array, key) { //helper function for refilter method
     return array.sort(function (a, b) {
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
@@ -339,58 +413,61 @@ class Explore extends React.Component {
     });
   }
 
-  sortHigh = () => {
-    let filteredData = this.state.currentDataHTML;
+  sortHigh = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyH(filteredData, "price");
 
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
-          <Link to={`${match.url}/` + filteredData[i].id}>
-            <div className="row ">
+        filteredDataHTML.push(
+          <div className="row ">
               <div
-                className="card col-lg-4 offset-lg-1"
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i].image}
-                  id={filteredData[i].id}
-                  city={filteredData[i].city}
-                  profession={filteredData[i].profession}
-                  price={filteredData[i].price}
-                  durationDays={filteredData[i].durationDays}
-                />
-                {console.log(filteredData[i].image)}
-              </div>
+                  className="card col-lg-4 offset-lg-1"
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i]._id}>
+                    <Card
+                      image={filteredData[i].image}
+                      id={filteredData[i]._id}
+                      city={filteredData[i].city}
+                      profession={filteredData[i].profession}
+                      price={filteredData[i].price}
+                      durationDays={filteredData[i].durationDays}
+                    />
+                  </Link>
+                  
+                </div>
+                <div
+                  className="card col-lg-4  offset-lg-1 "
+                  style={{ padding: "2%" }}
+                >
+                  <Link to={`${match.url}/` + filteredData[i+1]._id}>       
 
-              <div
-                className="card col-lg-4  offset-lg-1 "
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={filteredData[i + 1].image}
-                  id={filteredData[i + 1].id}
-                  city={filteredData[i + 1].city}
-                  profession={filteredData[i + 1].profession}
-                  price={filteredData[i + 1].price}
-                  durationDays={filteredData[i + 1].durationDays}
-                />
-              </div>
-            </div>
-          </Link>
+                    <Card
+                      image={filteredData[i + 1].image}
+                      id={filteredData[i + 1]._id}
+                      city={filteredData[i + 1].city}
+                      profession={filteredData[i + 1].profession}
+                      price={filteredData[i + 1].price}
+                      durationDays={filteredData[i + 1].durationDays}
+                    />
+                    </Link>
+
+                </div>
+          </div>
         );
       } else {
-        cardArray2.push(
-          <Link to={`${match.url}/1`}>
+        filteredDataHTML.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i].id}
+                    id={filteredData[i]._id}
                     city={filteredData[i].city}
                     profession={filteredData[i].profession}
                     price={filteredData[i].price}
@@ -405,25 +482,24 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Price: High to Low",
       sortSelection: "H",
     });
   };
 
-  sortUndo = () => {
-    let filteredData = this.state.currentDataHTML;
+  sortUndo = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+    let filteredData = this.state.currentDataJSON;
 
-    let dataToUse = this.state.currentDataHTML;
+    let dataToUse = this.state.currentDataJSON;
     this.filterIndustry();
 
-    console.log(dataToUse);
-    let cardArray2 = [];
+    let filteredDataHTML = [];
     let match = this.state.match;
     for (var i = 0; i < filteredData.length; i += 2) {
       if (i + 1 < filteredData.length) {
-        cardArray2.push(
-          <Link to={`${match.url}/` + filteredData[i].id}>
+        filteredDataHTML.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div
                 className="card col-lg-4 offset-lg-1"
@@ -431,13 +507,12 @@ class Explore extends React.Component {
               >
                 <Card
                   image={filteredData[i].image}
-                  id={filteredData[i].id}
+                  id={filteredData[i]._id}
                   city={filteredData[i].city}
                   profession={filteredData[i].profession}
                   price={filteredData[i].price}
                   durationDays={filteredData[i].durationDays}
                 />
-                {console.log(filteredData[i].image)}
               </div>
 
               <div
@@ -446,7 +521,7 @@ class Explore extends React.Component {
               >
                 <Card
                   image={filteredData[i + 1].image}
-                  id={filteredData[i + 1].id}
+                  id={filteredData[i + 1]._id}
                   city={filteredData[i + 1].city}
                   profession={filteredData[i + 1].profession}
                   price={filteredData[i + 1].price}
@@ -457,14 +532,14 @@ class Explore extends React.Component {
           </Link>
         );
       } else {
-        cardArray2.push(
-          <Link to={`${match.url}/1`}>
+        filteredDataHTML.push(
+          <Link to={`${match.url}/` + filteredData[i]._id}>
             <div className="row ">
               <div className="card col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i].id}
+                    id={filteredData[i]._id}
                     city={filteredData[i].city}
                     profession={filteredData[i].profession}
                     price={filteredData[i].price}
@@ -479,43 +554,39 @@ class Explore extends React.Component {
     }
 
     this.setState({
-      cardArray: cardArray2,
+      cardArray: filteredDataHTML,
       sortHTML: "Sort By",
       sortSelection: "N",
     });
   };
 
-  handleInputChange = (event) => {
+
+  handleInputChange = (event) => { //for searchbar
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
-    console.log(this.state.searchValue);
   };
 
   search = () => {
-    var fuse = new Fuse(this.state.data, {
+    var fuse = new Fuse(this.state.originalData, {
       keys: ["industry", "profession", "city"],
     });
 
     const results = fuse
       .search(this.state.searchValue)
       .map((result) => result.item);
-    console.log(results);
 
-    this.setState({ currentData: results }, () => {
-      this.filter();
+    this.setState({ currentDataJSON: results }, () => {
+      this.refilter();
     });
   };
 
   updateDurationFilters = (e) => {
     if (e.target.classList.contains("disabled")) {
-      console.log(e.target.classList);
       e.target.classList.remove("disabled");
-      console.log(e.target.classList);
     } else {
       e.target.classList.add("disabled");
-      console.log(e.target.classList);
     }
 
     var found = false;
@@ -528,77 +599,13 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(parseInt(e.target.innerHTML));
     }
+    console.log(tempArr)
     this.setState({ durationDaysFilters: tempArr }, () => {
-      this.filter();
+      this.refilter();
     });
-    console.log(tempArr);
   };
 
-  displayAll = () => {
-    let results = [];
-    let dataToDisplay = this.state.data;
-    let match = this.state.match;
-    for (var i = 0; i < dataToDisplay.length; i += 2) {
-      if (i + 1 < dataToDisplay.length) {
-        results.push(
-          <Link to={`${match.url}/` + dataToDisplay[i].id}>
-            <div className="row ">
-              <div
-                className="card col-lg-4 offset-lg-1"
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={dataToDisplay[i].image}
-                  id={dataToDisplay[i].id}
-                  city={dataToDisplay[i].city}
-                  profession={dataToDisplay[i].profession}
-                  price={dataToDisplay[i].price}
-                  durationDays={dataToDisplay[i].durationDays}
-                />
-                {console.log(dataToDisplay[i].image)}
-              </div>
-
-              <div
-                className="card col-lg-4  offset-lg-1 "
-                style={{ padding: "2%" }}
-              >
-                <Card
-                  image={dataToDisplay[i + 1].image}
-                  id={dataToDisplay[i + 1].id}
-                  city={dataToDisplay[i + 1].city}
-                  profession={dataToDisplay[i + 1].profession}
-                  price={dataToDisplay[i + 1].price}
-                  durationDays={dataToDisplay[i + 1].durationDays}
-                />
-              </div>
-            </div>
-          </Link>
-        );
-      } else {
-        results.push(
-          <Link to={`${match.url}/1`}>
-            <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
-                <div className="">
-                  <Card
-                    image={dataToDisplay[i].image}
-                    id={dataToDisplay[i].id}
-                    city={dataToDisplay[i].city}
-                    profession={dataToDisplay[i].profession}
-                    price={dataToDisplay[i].price}
-                    durationDays={dataToDisplay[i].durationDays}
-                  />
-                </div>
-              </div>
-            </div>
-          </Link>
-        );
-      }
-    }
-
-    this.setState({ cardArray: results, currentDataHTML: dataToDisplay });
-  };
-
+  
   render() {
     let results = [];
     if (this.state.cardArray.length === 0) {
@@ -666,7 +673,7 @@ class Explore extends React.Component {
     }
     return (
       <div>
-        {!this.state.currentData ? (
+        {!this.state.currentDataJSON ? (
           <h1> Loading</h1>
         ) : (
           <div>
@@ -828,7 +835,7 @@ class Explore extends React.Component {
                         </p>
                         <DatePicker
                           selected={this.state.startDate}
-                          onChange={this.handleChange1}
+                          onChange={this.handleChangeStartDate}
                         />
                         <svg
                           width="1em"
@@ -871,7 +878,7 @@ class Explore extends React.Component {
 
                         <DatePicker
                           selected={this.state.endDate}
-                          onChange={this.handleChange2}
+                          onChange={this.handleChangeEndDate}
                         />
                         <svg
                           width="1em"

@@ -4,9 +4,9 @@ import HostApplicationItem from "./hostApplicationItem";
 import Navbar from "../components/navbar";
 import FooterPage from "../components/footer";
 import ShowAllItem from "./showAllItem";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import APIHost from "../api/apiHost";
-import APIUser from "../api/apiUser";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -88,6 +88,22 @@ class Admin extends React.Component {
   acceptHost = (id) => {
     console.log("api/host/" + id);
     let path = "api/host/" + id;
+    fetch("api/experience/", {
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify({ host: id }),
+    })
+      .then((response) => {
+        response.json().then((data) => {
+          console.log(data);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     fetch(path, {
       method: "put",
       headers: new Headers({
@@ -113,8 +129,6 @@ class Admin extends React.Component {
           console.log(data);
         });
 
-        console.log(this.state.hostApps[id].approval);
-        // return response.json();
       })
       .catch((err) => {
         console.log(err);
@@ -173,10 +187,11 @@ class Admin extends React.Component {
     //  console.log(this.state.accepted);
 
     //Check if user is an admin
-    let user = APIUser.getCurrentUser();
-    console.log(user);
+    let user = this.props.auth.user
+    // user.then(x=>console.log(x))
+    console.log(user)
     if (!user.isAdmin) {
-      //return "You don't have permission to view this page";
+      return "You don't have permission to view this page";
       //don't forget to uncomment
     }
 
@@ -237,8 +252,16 @@ class Admin extends React.Component {
           <FooterPage />
         </div>
       </div>
+    
     );
+
   }
 }
 
-export default Admin;
+Admin.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Admin);

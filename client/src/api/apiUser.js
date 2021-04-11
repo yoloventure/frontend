@@ -11,7 +11,7 @@ function getCurrentUser() {
     credentials: "include",
   })
     .then((response) => {
-      return response.json();
+      response.json().then(x=>console.log(x));
     })
     .catch((err) => {
       console.log(err);

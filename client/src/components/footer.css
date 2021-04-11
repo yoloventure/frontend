@@ -118,7 +118,7 @@ left: 100px; */
   color: #fcfcfc;
 }
 
-.link {
+.footer-link {
   /* position: absolute; */
   position: relative;
   width: 130px;
@@ -135,12 +135,12 @@ left: 100px; */
   color: #fcfcfc;
 }
 
-.link1 {
+.footer-link1 {
   top: 25px;
   right: 20%;
 }
 
-.phone {
+.footer-phone {
   top: 25px;
   right: 20%;
 }
@@ -224,9 +224,9 @@ left: 100px; */
   color: #fcfcfc;
 }
 
-/* // Extra small devices (portrait phones, less than 576px) */
+/* // Extra small devices (portrait footer-phones, less than 576px) */
 
-/* // Small devices (landscape phones, less than 768px) */
+/* // Small devices (landscape footer-phones, less than 768px) */
 
 @media (max-width: 500px) {
   .logo {
@@ -245,15 +245,15 @@ left: 100px; */
     top: 0;
     left: 0;
   }
-  .link {
+  .footer-link {
     top: 0;
     left: 0;
   }
-  .link1 {
+  .footer-link1 {
     top: 0;
     left: 0;
   }
-  .phone {
+  .footer-phone {
     top: 0;
     left: 0;
   }
@@ -292,15 +292,15 @@ left: 100px; */
     top: 0;
     left: 0;
   }
-  .link {
+  .footer-link {
     top: 0;
     left: 0;
   }
-  .link1 {
+  .footer-link1 {
     top: 0;
     left: 0;
   }
-  .phone {
+  .footer-phone {
     top: 0;
     left: 0;
   }
@@ -341,15 +341,15 @@ left: 100px; */
     top: 0;
     left: 0;
   }
-  .link {
+  .footer-link {
     top: 0;
     left: 0;
   }
-  .link1 {
+  .footer-link1 {
     top: 0;
     left: 0;
   }
-  .phone {
+  .footer-phone {
     top: 0;
     left: 0;
   }

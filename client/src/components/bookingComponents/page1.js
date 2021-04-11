@@ -157,7 +157,7 @@ class Page1 extends React.Component {
                     this.state.rangeEditDisabled ? " disabled ml-3" : "ml-5"
                   }
                   size="sm"
-                  style={{ background: "#109CF1", height: "50%" }}
+                  style={{ background: "#109CF1", height: "3rem" }}
                   onClick={this.addRange}
                 >
                   Add Range{" "}
@@ -167,7 +167,7 @@ class Page1 extends React.Component {
                     this.state.rangeEditDisabled ? " disabled ml-3" : " ml-3"
                   }
                   size="sm"
-                  style={{ background: "#109CF1", height: "50%" }}
+                  style={{ background: "#109CF1", height: "3rem" }}
                   onClick={this.confirmRanges}
                 >
                   Confirm and Submit{" "}

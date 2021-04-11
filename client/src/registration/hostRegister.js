@@ -143,7 +143,7 @@ class HostRegister extends React.Component {
             console.log(this.state.host.offering);
             console.log("more offering");
             console.log(this.state.host.moreOffering);
-            APIHost.createNewHost(this.state.host);
+            APIHost.editOrCreateHost(this.state.host);
             this.setState({ firstLoad: false });
           }
         )
@@ -315,6 +315,7 @@ class HostRegister extends React.Component {
                 src={rebecca_photo}
                 alt="photo of orthodontist"
                 className="chefimage"
+                style={{width:"50%"}}
               />
             </div>
             <div className="col apply ml-5">
