@@ -42,6 +42,16 @@ export default class ExperienceDetail extends React.Component {
       editDisabled: !prevState.editDisabled,
     }));
   };
+
+  websiteURLChecker=(url)=>{
+    if (!url.includes('http://')&& !url.includes('https://')){
+      if (!url.includes('www.')){
+        return 'http://www.'+url
+      } 
+      return 'http://'+url
+    }
+    return url
+  }
   render() {
  
     if (this.state.experience) {
@@ -72,13 +82,12 @@ export default class ExperienceDetail extends React.Component {
                       {host.user.fname} 
                     </p>
                   
-                    { (host.company.website!=="" && host.company.website!==undefined)?<a href={"http://"+host.company.website} 
+                    { (host.company.website!=="" && host.company.website!==undefined)?<a href={this.websiteURLChecker(host.company.website)} 
                                               style={{color:"black",paddingLeft:"6rem", textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Website </a>
                     :null
                     }  
-                  
-                    { (host.instagramProfile!=="" && host.instagramProfile!==undefined)?<a href={"http://instagram.com/"+host.intagramProfile} 
+                    { (host.instagramProfile!=="" && host.instagramProfile!==undefined)?<a href={"https://www.instagram.com/"+host.instagramProfile} 
                                               style={{color:"black",paddingLeft:"1rem",textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Instagram </a>
                     :null
@@ -114,8 +123,7 @@ export default class ExperienceDetail extends React.Component {
                         "Remote"
                       : 
                         " "+
-                        host.company.city+", "+
-                        host.company.state
+                        host.company.city+( (host.company.state!=="" && host.company.state)?", "+ host.company.state :null)
                       }
                       
                   </div>
@@ -152,7 +160,7 @@ export default class ExperienceDetail extends React.Component {
               <h3> What I Can Offer </h3>
             </div>
 
-            <div className="row offset-1 pt-0">
+            <div className="row offset-1 pt-0 pl-3 pr-3">
               {console.log(host)}
               {host.offering.map((item, index) => {
                 console.log(index)
