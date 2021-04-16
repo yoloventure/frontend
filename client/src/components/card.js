@@ -13,8 +13,8 @@ export default class Card extends React.Component {
             <h3 style={{ fontSize: "140%", fontWeight:'400' }}> {this.props.city}{ (this.props.state!=="" && this.props.state)?", "+ this.props.state :null}  </h3>
           </div>
 
-          <div className="row  " style={{ color: "black",padding:'0px',margin:'0px', height:'3rem' }}>
-            <h3 style={{ fontSize: "120%",letterSpacing:"0.25rem", fontWeight:"700",textTransform:"uppercase" }}> {this.props.title} </h3>
+          <div className="row  " style={{ color: "black",padding:'0px',margin:'0px' }}>
+            <h3 style={{ fontSize: "120%",letterSpacing:"0.1rem", fontWeight:"700",textTransform:"uppercase" }}> {this.props.title} </h3>
           </div>    
 
           <div className="row " style={{padding:'0px',margin:'0px', height:'3rem',color:'black'}}>
@@ -29,7 +29,6 @@ export default class Card extends React.Component {
               </h3>
             </div>
           </div>
-         
         </span>
       </div>
     );
