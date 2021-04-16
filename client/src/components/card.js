@@ -23,13 +23,14 @@ export default class Card extends React.Component {
             </div>
             <div className="col-3" >
               <h3 style={{ fontSize: "160%",fontWeight:'400' }}> {(this.props.durationDays!=undefined && this.props.durationDays!==0)? this.props.durationDays+" days"
+
                                                   : 
                                                   this.props.durationHours+" hours" 
                                                 } 
               </h3>
             </div>
           </div>
-         
+
         </span>
       </div>
     );

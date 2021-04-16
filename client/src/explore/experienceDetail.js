@@ -83,11 +83,13 @@ export default class ExperienceDetail extends React.Component {
                     </p>
                   
                     { (host.company.website!=="" && host.company.website!==undefined)?<a href={this.websiteURLChecker(host.company.website)} 
+
                                               style={{color:"black",paddingLeft:"6rem", textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Website </a>
                     :null
                     }  
                     { (host.instagramProfile!=="" && host.instagramProfile!==undefined)?<a href={"https://www.instagram.com/"+host.instagramProfile} 
+
                                               style={{color:"black",paddingLeft:"1rem",textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Instagram </a>
                     :null
@@ -124,6 +126,7 @@ export default class ExperienceDetail extends React.Component {
                       : 
                         " "+
                         host.company.city+( (host.company.state!=="" && host.company.state)?", "+ host.company.state :null)
+
                       }
                       
                   </div>
