@@ -950,7 +950,7 @@ class Explore extends React.Component {
               </div>
             </div>
 
-            <div className="pt-5">{results}</div>
+            <div className="pt-5" style={{paddingBottom:'6rem'}}>{results}</div>
 
             <Footer />
           </div>
