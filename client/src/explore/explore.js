@@ -42,7 +42,6 @@ class Explore extends React.Component {
       match: match,
     };
   }
-
   /*function to assign unique URL to certain host's experiences*/
   customLink=(expID)=>{
     if (expID==="604e121843b96b001764168b"){
@@ -76,6 +75,7 @@ class Explore extends React.Component {
                       industry={filteredData[i].host.industry}
                       price={filteredData[i].price}
                       durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+
                     />
                   </Link>
                   
@@ -93,6 +93,7 @@ class Explore extends React.Component {
                       industry={filteredData[i + 1].host.industry}
                       price={filteredData[i + 1].price}
                       durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
+
                     />
                     </Link>
 
