@@ -64,7 +64,7 @@ class Explore extends React.Component {
         results.push(
           <div className="row ">
               <div
-                  className="card col-lg-4 offset-lg-1"
+                  className="col-lg-4 offset-lg-1"
                   style={{ padding: "2%" }}
                 >
                   <Link to={this.customLink(filteredData[i]._id)}>
@@ -81,7 +81,7 @@ class Explore extends React.Component {
                   
                 </div>
                 <div
-                  className="card col-lg-4  offset-lg-1 "
+                  className="col-lg-4  offset-lg-1 "
                   style={{ padding: "2%" }}
                 >
                  <Link to={this.customLink(filteredData[i+1]._id)}>      
@@ -105,7 +105,7 @@ class Explore extends React.Component {
         results.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
+              <div className="col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
@@ -248,7 +248,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <div className="row ">
               <div
-                  className="card col-lg-4 offset-lg-1"
+                  className="col-lg-4 offset-lg-1"
                   style={{ padding: "2%" }}
                 >
                   <Link to={this.customLink(filteredData[i]._id)}>
@@ -264,7 +264,7 @@ class Explore extends React.Component {
                   
                 </div>
                 <div
-                  className="card col-lg-4  offset-lg-1 "
+                  className="col-lg-4  offset-lg-1 "
                   style={{ padding: "2%" }}
                 >
                  <Link to={this.customLink(filteredData[i+1]._id)}>      
@@ -288,7 +288,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
+              <div className="col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
@@ -357,7 +357,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <div className="row ">
                 <div
-                  className="card col-lg-4 offset-lg-1"
+                  className="col-lg-4 offset-lg-1"
                   style={{ padding: "2%" }}
                 >
                   <Link to={this.customLink(filteredData[i]._id)}>
@@ -373,7 +373,7 @@ class Explore extends React.Component {
                   
                 </div>
                 <div
-                  className="card col-lg-4  offset-lg-1 "
+                  className="col-lg-4  offset-lg-1 "
                   style={{ padding: "2%" }}
                 >
                  <Link to={this.customLink(filteredData[i+1]._id)}>      
@@ -395,7 +395,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
+              <div className="col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
@@ -440,7 +440,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <div className="row ">
               <div
-                  className="card col-lg-4 offset-lg-1"
+                  className="col-lg-4 offset-lg-1"
                   style={{ padding: "2%" }}
                 >
                   <Link to={this.customLink(filteredData[i]._id)}>
@@ -456,7 +456,7 @@ class Explore extends React.Component {
                   
                 </div>
                 <div
-                  className="card col-lg-4  offset-lg-1 "
+                  className="col-lg-4  offset-lg-1 "
                   style={{ padding: "2%" }}
                 >
                  <Link to={this.customLink(filteredData[i+1]._id)}>      
@@ -478,7 +478,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
+              <div className="col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
@@ -516,7 +516,7 @@ class Explore extends React.Component {
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
               <div
-                className="card col-lg-4 offset-lg-1"
+                className="col-lg-4 offset-lg-1"
                 style={{ padding: "2%" }}
               >
                 <Card
@@ -530,7 +530,7 @@ class Explore extends React.Component {
               </div>
 
               <div
-                className="card col-lg-4  offset-lg-1 "
+                className="col-lg-4  offset-lg-1 "
                 style={{ padding: "2%" }}
               >
                 <Card
@@ -549,7 +549,7 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div className="card col-lg-4  offset-lg-1 ">
+              <div className="col-lg-4  offset-lg-1 ">
                 <div className="">
                   <Card
                     image={filteredData[i].image}
@@ -696,7 +696,7 @@ class Explore extends React.Component {
             <div className="mt-5"> </div>
 
             <div className=" row mt-3 pt-5 " style={{ marginTop: "10%" }}>
-              <div className=" searchArea col-12">
+              <div className=" searchArea col-12 pb-3">
                 <div className="search">
                   <h1
                     className="text-center pt-4"
