@@ -76,13 +76,7 @@
   color: #000000;
 }
 
-.expDetail-overview .location {
-  margin-top: 26px;
-}
 
-.expDetail-overview .controls {
-  margin-top: 52px;
-}
 
 .expDetail-content button,
 .expDetail-content a {
@@ -113,9 +107,6 @@
 
 .quote {
   margin-top: 2rem;
-
-  width: 90rem;
-  height: 50rem;
   background: #5e239d;
 }
 

@@ -41,8 +41,19 @@ class App extends React.Component {
             <div>
               <Switch>
                 <Route path="/explore" exact component={Explore} />
-
-                <Route path="/explore/:id" exact component={ExperienceDetail} />
+                {/*custom urls forcertain host experiences*/}
+                <Route path="/explore/markEdwardHarris" exact 
+                render={(props) => <ExperienceDetail {...props} customLinkExpID="604e121843b96b001764168b"/>} 
+                />
+                 <Route path="/explore/rebeccaWind" exact 
+                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d13fbddf10017793c06"/>} 
+                />
+                 <Route path="/explore/marisaKrol" exact 
+                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d0ffbddf10017793c05"/>} 
+                />
+                {/*End of custom urls forcertain host experiences*/}
+                
+                 <Route path="/explore/:id" exact component={ExperienceDetail} />
 
                 <Route
                   path="/reserve/:id"
