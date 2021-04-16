@@ -22,6 +22,7 @@ export default class Card extends React.Component {
               <h3 style={{ fontSize: "160%",fontWeight:'500' }}> ${this.props.price} </h3>
             </div>
             <div className="col-3" >
+              
               <h3 style={{ fontSize: "160%",fontWeight:'400' }}> {(this.props.durationDays!=undefined && this.props.durationDays!==0)? this.props.durationDays+" days"
                                                   : 
                                                   this.props.durationHours+" hours" 
