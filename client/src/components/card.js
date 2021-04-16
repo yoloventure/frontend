@@ -14,7 +14,7 @@ export default class Card extends React.Component {
           </div>
 
           <div className="row  " style={{ color: "black",padding:'0px',margin:'0px' }}>
-            <h3 style={{ fontSize: "120%",letterSpacing:"0.1rem", fontWeight:"700",textTransform:"uppercase" }}> {this.props.title} </h3>
+            <h3 style={{ fontSize: "120%",letterSpacing:"0.25rem",lineHeight:'2rem', fontWeight:"700",textTransform:"uppercase" }}> {this.props.title} </h3>
           </div>    
 
           <div className="row " style={{padding:'0px',margin:'0px', height:'3rem',color:'black'}}>
