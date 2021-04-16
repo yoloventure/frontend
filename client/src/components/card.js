@@ -13,7 +13,7 @@ export default class Card extends React.Component {
             <h3 style={{ fontSize: "140%", fontWeight:'400' }}> {this.props.city}{ (this.props.state!=="" && this.props.state)?", "+ this.props.state :null}  </h3>
           </div>
 
-          <div className="row  " style={{ color: "black",padding:'0px',margin:'0px' }}>
+          <div className="row  " style={{ color: "black",paddingTop:'1rem',margin:'0px' }}>
             <h3 style={{ fontSize: "120%",letterSpacing:"0.25rem",lineHeight:'2rem', fontWeight:"700",textTransform:"uppercase" }}> {this.props.title} </h3>
           </div>    
 
