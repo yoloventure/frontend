@@ -27,7 +27,7 @@ export default class ExperienceDetail extends React.Component {
 
   componentWillMount() {
     try {
-      let expId = this.props.match.params.id;
+      let expId = this.props.customLinkExpID?this.props.customLinkExpID: this.props.match.params.id;
       let experience = APIExperience.getExperienceById(expId).then((data) =>
         this.setState({
           experience: data,
@@ -73,13 +73,13 @@ export default class ExperienceDetail extends React.Component {
                     </p>
                   
                     { (host.company.website!=="" && host.company.website!==undefined)?<a href={"http://"+host.company.website} 
-                                              style={{color:"black",paddingLeft:"6rem",paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
+                                              style={{color:"black",paddingLeft:"6rem", textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Website </a>
                     :null
                     }  
                   
-                    { (host.intagramProfile!=="" && host.intagramProfile!==undefined)?<a href={"http://instagram.com/"+host.intagramProfile} 
-                                              style={{color:"black",paddingLeft:"1rem",paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
+                    { (host.instagramProfile!=="" && host.instagramProfile!==undefined)?<a href={"http://instagram.com/"+host.intagramProfile} 
+                                              style={{color:"black",paddingLeft:"1rem",textDecoration: 'underline', paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
                                             > Instagram </a>
                     :null
                     }
@@ -106,15 +106,18 @@ export default class ExperienceDetail extends React.Component {
 
                   </div>
 
-                  <div className="d-flex pt-5" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                      Remote
-                  </div>
+  
 
 
                   <div className="d-flex pt-2" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                      {" "}
-                      {host.company.city},{" "}
-                      {host.company.state}{" "}
+                      {this.state.experience.remote?
+                        "Remote"
+                      : 
+                        " "+
+                        host.company.city+", "+
+                        host.company.state
+                      }
+                      
                   </div>
                   <div className="d-flex pt-1 " style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
                   {console.log(this.state.experience.durationDays)}
@@ -123,7 +126,7 @@ export default class ExperienceDetail extends React.Component {
                     <span style={{marginLeft:'2rem'}}> ${this.state.experience.price} </span>
                   </div>
 
-                  <div className="d-flex pt-1 controls">
+                  <div className="d-flex pt-4 ">
                     <Link
                       id="btn-reserve"
                       className="btn"
@@ -131,9 +134,12 @@ export default class ExperienceDetail extends React.Component {
                     >
                       RESERVE NOW
                     </Link>
-                    <button id="btn-availability" onclick="#">
-                      Availability
-                    </button>
+                    <div style={{paddingLeft:"1rem"}}>
+                      <button  id="btn-availability" onclick="#">
+                        Availability
+                      </button>
+                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -155,7 +161,7 @@ export default class ExperienceDetail extends React.Component {
               }
             </div>
 
-            <div className="container p-5 quote">
+            <div className="container p-5 quote" style={{height:'100%'}}>
               <blockquote>{this.state.experience.host.description}</blockquote>
             </div>
 

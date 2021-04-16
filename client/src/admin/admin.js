@@ -6,6 +6,9 @@ import FooterPage from "../components/footer";
 import ShowAllItem from "./showAllItem";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import marisa from '../photos/marisa-headshot.jpeg'
+import monica from '../photos/monica-headshot.JPG'
+
 
 
 class Admin extends React.Component {
@@ -249,6 +252,9 @@ class Admin extends React.Component {
         {/* return <HostApplicationItem></HostApplicationItem> */}
         <br />
         <div className="footerpages">
+          <img src={marisa} style={{height:"5%"}}/>
+          <img src={monica} style={{height:"5%"}}/>
+
           <FooterPage />
         </div>
       </div>

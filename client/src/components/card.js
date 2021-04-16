@@ -10,18 +10,22 @@ export default class Card extends React.Component {
             <img src={this.props.image} />
           </div>
           <div className="row" style={{ color: "black" }}>
-            <h3 style={{ fontSize: "150%" }}> {this.props.location} </h3>
+            <h3 style={{ fontSize: "150%" }}> {this.props.title} </h3>
+          </div>    
+          <div className="row">
+          <div className="col" style={{ color: "black" }}>
+              <h3 style={{ fontSize: "150%" }}> ${this.props.price} </h3>
+            </div>
+            <div className="col" style={{ color: "black" }}>
+              <h3 style={{ fontSize: "150%" }}> {(this.props.durationDays!=undefined && this.props.durationDays!==0)? this.props.durationDays+" days"
+                                                  : 
+                                                  this.props.durationHours+" hours" 
+                                                } 
+              </h3>
+            </div>
           </div>
           <div className="row" style={{ color: "black" }}>
-            <h3 style={{ fontSize: "150%" }}> {this.props.profession} </h3>
-          </div>
-          <div className="row">
-            <div className="col" style={{ color: "black" }}>
-              <h3 style={{ fontSize: "150%" }}> {this.props.price} </h3>
-            </div>
-            <div className="col" style={{ color: "black" }}>
-              <h3 style={{ fontSize: "150%" }}> {this.props.duration} </h3>
-            </div>
+            <h3 style={{ fontSize: "150%" }}> {this.props.city}, {this.props.state}  </h3>
           </div>
         </span>
       </div>
