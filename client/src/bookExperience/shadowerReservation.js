@@ -205,7 +205,7 @@ class ShadowReservation extends React.Component {
                   console.log(host);
                   var currentReservationStack=host.reservationStack;
                   console.log(res._id);
-                  currentReservationStack.unshift(res._id);
+                  currentReservationStack.push(res._id);
                   console.log(currentReservationStack);
             return fetch("/api/host/"+res.host, {
             method: 'put',

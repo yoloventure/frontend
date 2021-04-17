@@ -37,13 +37,13 @@ class Dashboard extends React.Component{
               response.json().then( host=>{
                 console.log(host);
                 var i;
-                var len = 2; 
+                var len = host.reservationStack.length; 
                 var path;
                 var path2;
                 // let reservations = [];
                 let fnames = [];
                 let lnames = [];
-                for (i=0;i<len;i++){
+                for (i=len-1;i>=0;i--){
                       path = "/api/reservation/" + host.reservationStack[i];
                       console.log(path);
                       fetch(path, {
@@ -124,43 +124,6 @@ class Dashboard extends React.Component{
         super(props)
         this.Ref = createRef()
         const { match, location, history } = this.props;
-
-
-        //setup shadow requests
-        // let tempArray=[]
-        // shadowRequests.forEach(request=>{
-        //     tempArray.push(
-        //         <div className='row mt-3' style={{"boxShadow":"0px 2px 10px rgba(0, 0, 0, 0.08)","borderRadius":"4px"}}>
-        //             <div className='col-9 offset-1'>
-        //                 <h3 style={{"fontFamily":"Poppins","fontStyle":"normal","fontWeight":"600","fontSize":"80%","lineHeight":"22px","letterSpacing":"0.01em"}}> {request.fname} sent you a shadowing request </h3>
-        //             </div>
-        //             <div className='col-2'>
-        //                 <p> {request.timeStamp}</p>
-        //             </div>
-        //             <div className='col-1 offset-1'>
-        //                 <img src='http://via.placeholder.com/30x30' style={{borderRadius:'50%'}} />
-        //             </div>
-        //             <div className='col-3' >
-        //                 <p
-        //                 >
-        //                     {request.fname}
-        //                 </p>
-        //             </div>
-        //             <div className='col-3 offset-1'>
-
-
-        //                 <button style={{"background":"#2ED47A","borderRadius":"4px", border:'transparent', fontSize:'90%'}}> Accept </button>
-
-        //             </div>
-        //             <div className='col-3'>
-
-
-        //                 <button style={{"background":"#F7685B","borderRadius":"4px",border:'transparent', fontSize:'90%'}}> Reject </button>
-
-        //             </div>
-        //         </div>
-        //     )
-        // })
 
         //setup review notifications
         let tempArray2=[]

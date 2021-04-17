@@ -7,7 +7,7 @@ const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 require('./config/passport');
-
+const cors = require('cors');
 const passport = require('passport');
 
 // Models
@@ -41,7 +41,7 @@ const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
 
 var multer = require("multer");
-var cors = require("cors");
+
 
 //dotenv vonfig
 dotenv.config({
@@ -172,7 +172,13 @@ app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use(cors());
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
 // Use API Routes
 app.use('/api/yoloChatAd', yoloChatAd);
 app.use('/api/host_Notification_Queue',host_Notification_Queue);

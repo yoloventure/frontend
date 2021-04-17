@@ -20,7 +20,8 @@ const reservationSchema = new mongoose.Schema({
     required: true,
   },
   availableRanges: {
-    type: Array(Date), //array of dates, in pairs [from, to, from,to...]
+    type: Array(Date),
+     //array of dates, in pairs [from, to, from,to...]
     required: true,
   },
   aspects: {
