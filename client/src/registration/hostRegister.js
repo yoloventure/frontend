@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
-import ortho from "../photos/ortho.png";
 import Page1 from "../components/regFormComponents/page1";
 import Page2 from "../components/regFormComponents/page2";
 import Page3 from "../components/regFormComponents/page3";
@@ -209,11 +208,6 @@ class HostRegister extends React.Component {
         <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
             <div className="col-md-4">
-              <img
-                src={ortho}
-                alt="photo of orthodontist"
-                className="chefimage"
-              />
             </div>
             <div className="col apply ml-5">
               <p>Apply To Be A Host</p>

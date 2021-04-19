@@ -219,11 +219,6 @@ class HostRegister_Round2 extends React.Component {
         <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
             <div className="col-md-4">
-              <img
-                src={ortho}
-                alt="photo of orthodontist"
-                className="chefimage"
-              />
             </div>
             <div className="col apply ml-5">
               <p>Apply To Be A Host</p>
