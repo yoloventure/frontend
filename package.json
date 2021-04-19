@@ -33,7 +33,10 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "smartystreets-javascript-sdk": "^1.4.4"
+    "smartystreets-javascript-sdk": "^1.4.4",
+    "uuid": "^8.3.2",
+    "uuidv1": "^1.6.14",
+    "uuidv4": "^6.2.6"
   },
   "scripts": {
     "start": "node server.js",
