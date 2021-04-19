@@ -1,22 +1,22 @@
-const mongoose = require('mongoose');
-const user = require('./user');
-const experience = require('./experience');
+const mongoose = require("mongoose");
+const user = require("./user");
+const experience = require("./experience");
 
 const reservationSchema = new mongoose.Schema({
   shadower: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
-  host:{
+  host: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Host',
-    required: true
+    ref: "Host",
+    required: true,
   },
   experience: {
     //experienceID reference
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Experience',
+    ref: "Experience",
     required: true,
   },
   availableRanges: {
@@ -26,29 +26,25 @@ const reservationSchema = new mongoose.Schema({
   },
   aspects: {
     type: Object, // true/false for corresponding aspects selected
-
-
   },
   otherAspects: {
     type: String,
-    default:''
-
+    default: "",
   },
   whatMakesGood: {
     type: String,
-    default:''
+    default: "",
   },
   accomodations: {
     type: String,
-    default:''
-
+    default: "",
   },
   approval: {
     //reservation approval stage
     //values: pending/approved/rejected
     type: String,
-    default: 'pending',
+    default: "pending",
   },
 });
 
-module.exports = mongoose.model('Reservation', reservationSchema);
+module.exports = mongoose.model("Reservation", reservationSchema);

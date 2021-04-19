@@ -1,23 +1,32 @@
 import React, { Component } from "react";
 
 class Page1 extends React.Component {
-
-
-  state={
-    errorPage1:"",
-    submittedPage1:false,
-  }
-  handleSubmitPage1=(e)=>{
+  state = {
+    errorPage1: "",
+    submittedPage1: false,
+  };
+  handleSubmitPage1 = (e) => {
     e.preventDefault();
 
-    let host=this.props.host
-    if(!host.fname|| !host.lname ||!host.company ||!host.phone|| !host.email ||!host.title ||!host.yearsExp||!host.industry){
-      this.setState({submittedPage1:true, errorPage1:"Please fill all required fields"})
-    }else{
-      this.props.setNextTrue()
-
+    let host = this.props.host;
+    if (
+      !host.fname ||
+      !host.lname ||
+      !host.company ||
+      !host.phone ||
+      !host.email ||
+      !host.title ||
+      !host.yearsExp ||
+      !host.industry
+    ) {
+      this.setState({
+        submittedPage1: true,
+        errorPage1: "Please fill all required fields",
+      });
+    } else {
+      this.props.setNextTrue();
     }
-  }
+  };
   render() {
     return (
       <div>
@@ -29,10 +38,8 @@ class Page1 extends React.Component {
             <p className="text-danger">{this.state.errorPage1}</p>
 
             <div className="row mb-1">
-               <div className="col-sm-2">
-
+              <div className="col-sm-2">
                 <h6>Personal</h6>
-
               </div>
               {/*
               <div className="col-sm-2">
@@ -46,77 +53,68 @@ class Page1 extends React.Component {
               <div className="row mb-n2">
                 <div className="col ml-n3 ">
                   <label>First Name</label>
-
                 </div>
 
                 <div className="col ml-n3 ">
                   <label>Last Name</label>
                 </div>
-
               </div>
 
               <div className="row ">
-                    <div className="col-sm-6">
-                      <div className="row">
-                        <input
-                          type="text"
-                          name="fname"
-                          placeholder="First Name"
-                          value={this.props.host.fname}
-                          onChange={this.props.handleInputChange}
-                        />
-
-                      </div>
-                      {this.state.submittedPage1 && !this.props.host.fname?
-                          <div className="row">First Name is required</div>
-                          :null
-                      }
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="row">
-                        <input
-                          type="text"
-                          name="lname"
-                          placeholder="Last Name"
-                          value={this.props.host.lname}
-                          onChange={this.props.handleInputChange}
-                        />
-
-                      </div>
-                      {this.state.submittedPage1 && !this.props.host.lname?
-                          <div className="row">Last Name is required</div>
-                          :null
-                      }
-                    </div>
-
+                <div className="col-sm-6">
+                  <div className="row">
+                    <input
+                      type="text"
+                      name="fname"
+                      placeholder="First Name"
+                      value={this.props.host.fname}
+                      onChange={this.props.handleInputChange}
+                    />
+                  </div>
+                  {this.state.submittedPage1 && !this.props.host.fname ? (
+                    <div className="row">First Name is required</div>
+                  ) : null}
+                </div>
+                <div className="col-sm-6">
+                  <div className="row">
+                    <input
+                      type="text"
+                      name="lname"
+                      placeholder="Last Name"
+                      value={this.props.host.lname}
+                      onChange={this.props.handleInputChange}
+                    />
+                  </div>
+                  {this.state.submittedPage1 && !this.props.host.lname ? (
+                    <div className="row">Last Name is required</div>
+                  ) : null}
+                </div>
               </div>
               <div className="row mt-3 mb-n2">
-                    <div className="col sm-6 ml-n3">
-                      <label>Email</label>
-                    </div>
+                <div className="col sm-6 ml-n3">
+                  <label>Email</label>
+                </div>
 
-                  <div className="col-sm-6 ml-n3">
-                    <label>Gender</label>
-                  </div>
-
+                <div className="col-sm-6 ml-n3">
+                  <label>Gender</label>
+                </div>
               </div>
 
               <div className="row">
-                  <div className="col-sm-6">
-                    <div className="row">
-                      <input
-                        placeholder="user@email.com"
-                        name="email"
-                        value={this.props.host.email}
-                        onChange={this.props.handleInputChange}
-                        type="email"
-                      />
-                    </div>
-                    {this.state.submittedPage1 && !this.props.host.email?
-                        <div className="row">Email is required</div>
-                        :null
-                    }
+                <div className="col-sm-6">
+                  <div className="row">
+                    <input
+                      placeholder="user@email.com"
+                      name="email"
+                      value={this.props.host.email}
+                      onChange={this.props.handleInputChange}
+                      type="email"
+                    />
                   </div>
+                  {this.state.submittedPage1 && !this.props.host.email ? (
+                    <div className="row">Email is required</div>
+                  ) : null}
+                </div>
                 <div className="col-sm-6">
                   <div className="row">
                     <select
@@ -131,57 +129,47 @@ class Page1 extends React.Component {
                     </select>
                   </div>
                 </div>
-
               </div>
-
 
               <div className="row mt-3 mb-n2">
-                  <div className="col-sm-6">
-                    <label>Phone</label>
-                  </div>
-                  <div className="col-sm-6">
-                    <label htmlFor="title">Title</label>
-                    </div>
-
+                <div className="col-sm-6">
+                  <label>Phone</label>
+                </div>
+                <div className="col-sm-6">
+                  <label htmlFor="title">Title</label>
+                </div>
               </div>
 
-
               <div className="row">
-                  <div className="col-sm-6">
-                      <div className="row">
-
-                        <input
-                          placeholder="+1 222-222-2222"
-                          name="phone"
-                          value={this.props.host.phone}
-                          type="tel"
-                          onChange={this.props.handleInputChange}
-                        />
-                      </div>
-                    {this.state.submittedPage1 && !this.props.host.phone?
-                        <div className="row">Phone is required</div>
-                        :null
-                    }
+                <div className="col-sm-6">
+                  <div className="row">
+                    <input
+                      placeholder="+1 222-222-2222"
+                      name="phone"
+                      value={this.props.host.phone}
+                      type="tel"
+                      onChange={this.props.handleInputChange}
+                    />
+                  </div>
+                  {this.state.submittedPage1 && !this.props.host.phone ? (
+                    <div className="row">Phone is required</div>
+                  ) : null}
                 </div>
                 <div className="col-sm-6">
                   <div className="row">
-
                     <input
                       name="title"
                       placeholder="ex: Recruiter"
                       value={this.props.host.title}
                       type="text"
                       onChange={this.props.handleInputChange}
-                      />
+                    />
                   </div>
-                    {this.state.submittedPage1 && !this.props.host.title?
-                        <div className="row">Title is required</div>
-                        :null
-                    }
-                  </div>
+                  {this.state.submittedPage1 && !this.props.host.title ? (
+                    <div className="row">Title is required</div>
+                  ) : null}
+                </div>
               </div>
-
-
 
               <div className="row mt-3 mb-n2">
                 <div className="col">
@@ -199,13 +187,12 @@ class Page1 extends React.Component {
                       onChange={this.props.handleInputChange}
                     />
                   </div>
-                  {this.state.submittedPage1 && !this.props.host.yearsExp?
-                      <div className="row">Years are required</div>
-                      :null
-                  }
+                  {this.state.submittedPage1 && !this.props.host.yearsExp ? (
+                    <div className="row">Years are required</div>
+                  ) : null}
 
                   <div className="row mt-3 mb-n2">
-                          <label>Industry</label>
+                    <label>Industry</label>
                   </div>
                   <div className="row">
                     <select
@@ -216,16 +203,16 @@ class Page1 extends React.Component {
                       <option value="">Select</option>
                       <option value="engineering">Engineering</option>
                       <option value="artAndDesign">Art & Design</option>
-                      <option value="businessAndFinance">Business & Finance</option>
+                      <option value="businessAndFinance">
+                        Business & Finance
+                      </option>
                       <option value="healthCare">Healthcare</option>
                       <option value="others">Others</option>
-
                     </select>
                   </div>
-                  {this.state.submittedPage1 && !this.props.host.phone?
-                      <div className="row">Industry is required</div>
-                      :null
-                  }
+                  {this.state.submittedPage1 && !this.props.host.phone ? (
+                    <div className="row">Industry is required</div>
+                  ) : null}
 
                   <div className="row mt-3 mb-n3">
                     <label htmlFor="">
@@ -240,12 +227,10 @@ class Page1 extends React.Component {
                       value={this.props.host.company}
                       onChange={this.props.handleInputChange}
                     />
-
                   </div>
-                  {this.state.submittedPage1 && !this.props.host.company?
-                      <div className="row">Company is required</div>
-                      :null
-                  }
+                  {this.state.submittedPage1 && !this.props.host.company ? (
+                    <div className="row">Company is required</div>
+                  ) : null}
 
                   <div className="row mt-3 mb-n2">
                     <label>Company website</label>
@@ -260,31 +245,29 @@ class Page1 extends React.Component {
                       onChange={this.props.handleInputChange}
                     />
                   </div>
-
                 </div>
                 <div className="col">
-
                   <div className="row">
-                      <label htmlFor="">One line to describe what you do</label>
-                      <textarea name="description"
-                          value={this.props.host.description}
-                          onChange={this.props.handleInputChange}
-                      ></textarea>
+                    <label htmlFor="">One line to describe what you do</label>
+                    <textarea
+                      name="description"
+                      value={this.props.host.description}
+                      onChange={this.props.handleInputChange}
+                    ></textarea>
                   </div>
                   <div className="row mt-3 mb-n2">
                     <label>Twitter</label>
                   </div>
 
                   <div className="row">
-                     <div className="col">
-
-                    <input
-                      placeholder="optional"
-                      name="twitterProfile"
-                      value={this.props.host.twitterProfile}
-                      type="text"
-                      onChange={this.props.handleInputChange}
-                    />
+                    <div className="col">
+                      <input
+                        placeholder="optional"
+                        name="twitterProfile"
+                        value={this.props.host.twitterProfile}
+                        type="text"
+                        onChange={this.props.handleInputChange}
+                      />
                     </div>
                   </div>
                   <div className="row mt-3 mb-n2">
@@ -292,15 +275,14 @@ class Page1 extends React.Component {
                   </div>
 
                   <div className="row">
-                     <div className="col">
-
-                    <input
-                      placeholder="optional"
-                      name="linkedInProfile"
-                      value={this.props.host.linkedInProfile}
-                      type="text"
-                      onChange={this.props.handleInputChange}
-                    />
+                    <div className="col">
+                      <input
+                        placeholder="optional"
+                        name="linkedInProfile"
+                        value={this.props.host.linkedInProfile}
+                        type="text"
+                        onChange={this.props.handleInputChange}
+                      />
                     </div>
                   </div>
                   <div className="row mt-3 mb-n2">
@@ -308,19 +290,17 @@ class Page1 extends React.Component {
                   </div>
 
                   <div className="row">
-                     <div className="col">
-
-                    <input
-                      placeholder="optional"
-                      name="instagramProfile"
-                      value={this.props.host.instagramProfile}
-                      type="text"
-                      onChange={this.props.handleInputChange}
-                    />
+                    <div className="col">
+                      <input
+                        placeholder="optional"
+                        name="instagramProfile"
+                        value={this.props.host.instagramProfile}
+                        type="text"
+                        onChange={this.props.handleInputChange}
+                      />
                     </div>
                   </div>
-              </div>
-
+                </div>
               </div>
 
               <div className="row mt-5 mb-4">

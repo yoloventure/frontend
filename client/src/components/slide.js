@@ -1,22 +1,19 @@
-import React from 'react'
+import React from "react";
 import "./bottom.css";
 
 const Slide = ({ image }) => {
   const stylesImg = {
     backgroundImage: `url(${image})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: '50% 60%'
-  }
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "50% 60%",
+  };
 
-  return(
+  return (
+    <div className="slide">
+      <img className="slidepic" src={image} />
+    </div>
+  );
+};
 
-    <div className="slide" >
-
-     <img className="slidepic" src={image}/>
-
-  </div>
-)
-}
-
-export default Slide
+export default Slide;

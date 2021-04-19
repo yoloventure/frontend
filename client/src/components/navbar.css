@@ -1,11 +1,11 @@
 @media (max-width: 65em) {
-  .navbar{
+  .navbar {
     /* height:12%; */
   }
 }
 
 @media (min-width: 60em) {
-  .navbar{
+  .navbar {
     /* height:10%; */
   }
 }
@@ -14,8 +14,18 @@
 a:hover {
   text-decoration: underline !important;
 }
-.nav-link{
+.nav-link {
   font-family: Mplus 1p;
   font-style: normal;
   font-weight: 700;
 }
+
+
+/* change navbar background on collapse */
+@media (max-width: 992px) {
+  nav.navbar {
+    background:#150433;
+  }
+}
+
+

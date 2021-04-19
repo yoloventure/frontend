@@ -1,82 +1,97 @@
 //returns the infomations about the experience with the given UID
-function getExperienceById(experienceId){
+function getExperienceById(experienceId) {
   var path = "/api/experience/" + experienceId;
   return fetch(path, {
-      method: 'get',
-      credentials: "include"
-  }).then((response) => {
+    method: "get",
+    credentials: "include",
+  })
+    .then((response) => {
       return response.json();
-  }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
-  });
+    });
 }
 
 //returns the infomations about all the experiences in the system
-function getAllExperiences(){
+function getAllExperiences() {
   var path = "/api/experience/";
   return fetch(path, {
-      method: 'get',
-      credentials: "include"
-  }).then((response) => {
+    method: "get",
+    credentials: "include",
+  })
+    .then((response) => {
       return response.json();
-  }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
-  });
+    });
 }
 
 //creates a new experience in the system
 function createExperience(Experience) {
   var path = "/api/experience/";
   return fetch(path, {
-    method: 'post',
+    method: "post",
     headers: new Headers({
-        'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     }),
     body: JSON.stringify({
-        experience: Experience
+      experience: Experience,
     }),
-    credentials: "include"
-  }).then((response) => {
-    return response.json();
-  }).catch((err) => {
-    console.log(err);
-  });
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 //updatees an experience in the system
 function editExperience(experienceId, Experience) {
   var path = "/api/experience/" + experienceId;
   return fetch(path, {
-    method: 'put',
+    method: "put",
     headers: new Headers({
-        'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     }),
     body: JSON.stringify({
-        experience: Experience
+      experience: Experience,
     }),
-    credentials: "include"
-  }).then((response) => {
-    return response.json();
-  }).catch((err) => {
-    console.log(err);
-  });
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 //deletes an experience in the system
 function deleteExperience(experienceId) {
   var path = "/api/experience/" + experienceId;
   return fetch(path, {
-      method: 'DELETE',
-      headers: new Headers({
-          'Content-Type': 'application/json'
-      }),
-      credentials: "include"
-  }).then((response) => {
+    method: "DELETE",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    credentials: "include",
+  })
+    .then((response) => {
       return response.json;
-  }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
-  });
+    });
 }
 
-
-export default {getExperienceById, getAllExperiences, deleteExperience, editExperience, createExperience}
+export default {
+  getExperienceById,
+  getAllExperiences,
+  deleteExperience,
+  editExperience,
+  createExperience,
+};

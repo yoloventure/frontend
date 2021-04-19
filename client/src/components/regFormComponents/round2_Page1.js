@@ -1,7 +1,7 @@
 import React from "react";
-import { Calendar, DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import { Calendar, DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
 import moment from "moment";
 
 class Round2_Page1 extends React.Component {
@@ -10,14 +10,14 @@ class Round2_Page1 extends React.Component {
 
     if (props.data.dateRange) {
       this.state = {
-        selectionRange: props.data.dateRange
+        selectionRange: props.data.dateRange,
       };
     } else {
       this.state = {
         selectionRange: {
           startDate: new Date(),
           endDate: new Date(),
-          key: 'selection'
+          key: "selection",
         },
       };
     }
@@ -31,13 +31,18 @@ class Round2_Page1 extends React.Component {
   }
 
   handleSelect(ranges) {
-    this.setState({selectionRange: {
-      startDate: ranges.selection.startDate,
-      endDate: ranges.selection.endDate,
-      key: 'selection'
-    }}, () => {
-      this.props.handleDateRange(this.state.selectionRange);
-    });
+    this.setState(
+      {
+        selectionRange: {
+          startDate: ranges.selection.startDate,
+          endDate: ranges.selection.endDate,
+          key: "selection",
+        },
+      },
+      () => {
+        this.props.handleDateRange(this.state.selectionRange);
+      }
+    );
   }
 
   render() {
@@ -49,12 +54,8 @@ class Round2_Page1 extends React.Component {
           <div className="container-fluid">
             <div className="row mt-5 mb-4">
               <div className="col">
-                <h3>
-                  Select your availability for hosting.
-                </h3>
-                <p>
-                  You will be able to change it later on your dashboard.
-                </p>
+                <h3>Select your availability for hosting.</h3>
+                <p>You will be able to change it later on your dashboard.</p>
               </div>
             </div>
             <div className="row mt-5 mb-5">
@@ -64,7 +65,7 @@ class Round2_Page1 extends React.Component {
                   onChange={this.handleSelect}
                   moveRangeOnFirstSelection={false}
                   minDate={todayDate}
-                  scroll={{enabled: true}}
+                  scroll={{ enabled: true }}
                   //maxDate={this.state.rangeEditDisabled? todayDate: new Date()}
                 />
               </div>

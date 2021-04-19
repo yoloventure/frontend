@@ -1,24 +1,20 @@
 [
-    {
-      "id":1,
-      "fname": "Anna",
-      "timeStamp":"Jan 2020",
-      "reviewContent":"I’d recommend Gerardo as a shadower to everyone. Gerardo is such a passionate shadower asking great questions on t"
-      },
-      {
-        "id":2,
-        "fname": "Andrew",
-        "timeStamp":"Oct 2019",
-        "reviewContent":"Gerardo is a curious shadower, asking good questions on the spot and learning"
-
-        },
-        {
-        "id":3,
-        "fname": "John",
-        "timeStamp":"Aug 2019",
-        "reviewContent":"ipsum ipsum ipsum ipsum Hi Gerardo! ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum"
-        }
-
-
-
+  {
+    "id": 1,
+    "fname": "Anna",
+    "timeStamp": "Jan 2020",
+    "reviewContent": "I’d recommend Gerardo as a shadower to everyone. Gerardo is such a passionate shadower asking great questions on t"
+  },
+  {
+    "id": 2,
+    "fname": "Andrew",
+    "timeStamp": "Oct 2019",
+    "reviewContent": "Gerardo is a curious shadower, asking good questions on the spot and learning"
+  },
+  {
+    "id": 3,
+    "fname": "John",
+    "timeStamp": "Aug 2019",
+    "reviewContent": "ipsum ipsum ipsum ipsum Hi Gerardo! ipsum ipsum ipsum ipsum ipsum ipsum ipsum ipsum"
+  }
 ]
