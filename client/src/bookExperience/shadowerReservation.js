@@ -176,7 +176,6 @@ class ShadowReservation extends React.Component {
   handleSubmit() {
     if (this.state.counter == 6 && this.formValidation()) {
       console.log("Submit API called");
-
       let data = this.state.data;
       let availableRanges = [];
       availableRanges.push(data.availableRanges.startDate);
@@ -187,11 +186,6 @@ class ShadowReservation extends React.Component {
 
       APIReservation.createReservation(data)
           .then((function (res) {
-            
-            // var currentReservation = APIReservation.getReservationByUserId('603a7ab3956c426c8788ce00');
-            console.log("current");
-
-            console.log(res.host);
               var path = "/api/host/" + res.host;
               return fetch(path, {
                   method: 'get',
@@ -217,15 +211,54 @@ class ShadowReservation extends React.Component {
             }),
             credentials: "include"
             }).then(response => {
-                            response.json().then( newHost=>{
-                  console.log(newHost);
+               response.json().then( newHost=>{
+               console.log(newHost);
+                             var path2 = "/api/user/" + data.shadower;
+              return fetch(path2, {
+                  method: 'get',
+                  credentials: "include",
+                  headers: new Headers({
+                  'Content-Type': 'application/json'
+              }),
+              }).then((response) => {
+                console.log('response');
+                response.json().then( user=>{
+                  console.log(user);
+                  var currentmyreviews=user.myreviews;
+                  currentmyreviews.push(res._id);
+                  console.log("myreviews");
+                  console.log(currentmyreviews);
+            return fetch("/api/user/"+data.shadower, {
+            method: 'put',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                "myreviews": currentmyreviews,
+            }),
+            credentials: "include"
+            }).then(response => {
+                            response.json().then( newUser=>{
+                  console.log(newUser);
                  
                  
                   
                 }); 
-      }).catch((err) => {
-    console.log(err);
-  });
+            }).catch((err) => {
+              console.log(err);
+            });
+                  
+                }); 
+              }).catch((err) => {
+                  console.log(err);
+              });
+                 
+                 
+                  
+                }); 
+            }).catch((err) => {
+              console.log(err);
+            });
                   
                 }); 
               }).catch((err) => {

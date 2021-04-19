@@ -58,6 +58,16 @@ router.get('/:id', function (req, res, next) {
     res.send(user);
   });
 });
+
+router.put('/:id', function (req, res, next) {
+  //find and update specific application
+  User.findByIdAndUpdate( req.params.id, req.body).then(function () {
+    //find and send back updated application for display
+    User.findOne({_id: req.params.id}, req.body).then(function (user) {
+      res.send(user);
+    });
+  });
+});
 // @route   DELETE user/delete
 // @desc    Deletes user
 // @access  Private

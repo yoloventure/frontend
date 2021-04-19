@@ -49,7 +49,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    myreviews:{
+     type: [{type:mongoose.Schema.Types.ObjectId,
+               ref:'reservation'}],
+        default:[],
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
