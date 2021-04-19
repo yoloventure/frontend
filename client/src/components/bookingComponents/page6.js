@@ -5,9 +5,7 @@ class Page6 extends React.Component {
     return (
       <div>
         <div className="container-fluid">
-          <h3>
-            The host will get in touch with you soon!
-          </h3>
+          <h3>The host will get in touch with you soon!</h3>
         </div>
         <div className="row mt-5 mb-5"></div>
         <div className="row mt-5 mb-4">

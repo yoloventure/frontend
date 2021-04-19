@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import hostbackground from "../photos/hostbackground.jpg";
 import "./hostExperience.css";
 import Navbar from "../components/navbar";
@@ -16,13 +16,12 @@ class HostGuidelines extends React.Component {
   render() {
     return (
       <div className="container-fluid app">
-
         <Helmet>
-            <title>Host an experience | YoloShadow</title>
+          <title>Host an experience | YoloShadow</title>
         </Helmet>
 
         <div className="nav">
-          <Navbar textColor={"black"}/>
+          <Navbar textColor={"black"} />
         </div>
         <div className="row align-items-center experience-fig1">
           <h2 className="col">Host an Experience</h2>
@@ -41,14 +40,17 @@ class HostGuidelines extends React.Component {
                   <br />
                   <h3 className="whyHost">Host Guidelines</h3>
                   <br />
+                  </div>
+                  <div className="row">
+                  <button className="applyButton" style={{background:"#5e239d",color:"#fcfcfc"}}>
+                      <a href="/hostregister" style={{background:"#5e239d",color:"#fcfcfc", textAlign:"center", margin:"auto"}}>Apply Now</a>
+                    </button>
 
-                  <button className="applyNow-1">
-                    <a href="#">Apply Now</a>
-                  </button>
-                  <button className="applyNow-1">
-                    <a href="#">Why Host</a>
-                  </button>
-                </div>
+                    <button className="hostGuideButton ml-5" style={{color:"#5e239d",background:"#fcfcfc"}}>
+                      <a href="/#" style={{color:"#5e239d",background:"#fcfcfc", textAlign:"center", margin:"auto" }}>Why Host</a>
+                   </button>
+                   </div>
+               
               </figure>
             </div>
           </div>

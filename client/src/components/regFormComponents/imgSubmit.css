@@ -17,7 +17,7 @@ label.imgSubmit > input {
   margin-left: auto;
   margin-right: auto;
 
-  border: 2px solid #C4C4C4;
+  border: 2px solid #c4c4c4;
   box-sizing: border-box;
   border-radius: 4px;
 }
@@ -32,7 +32,7 @@ label.imgSubmit > input {
   width: 4px;
   height: 44px;
 
-  background: #C4C4C4;
+  background: #c4c4c4;
 }
 
 .hl {
@@ -45,5 +45,5 @@ label.imgSubmit > input {
   width: 44px;
   height: 4px;
 
-  background: #C4C4C4;
+  background: #c4c4c4;
 }

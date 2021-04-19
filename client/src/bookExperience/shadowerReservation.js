@@ -62,7 +62,7 @@ class ShadowReservation extends React.Component {
               data: {
                 ...prevState.data,
                 host:experience.host,
-                shadower:"5fc218e074ecddb9e05e3520",
+                shadower:this.props.auth.user._id,
                 experience: experience
               },
               loaded: true

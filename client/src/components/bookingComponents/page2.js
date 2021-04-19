@@ -7,7 +7,7 @@ class Page2 extends React.Component {
 
     this.state = {
       aspects: props.data.aspects,
-      otherAspects: props.data.otherAspects
+      otherAspects: props.data.otherAspects,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,26 +20,31 @@ class Page2 extends React.Component {
   }
 
   handleAspectSelect(key, event) {
-    const {checked} = event.target;
+    const { checked } = event.target;
     const key_val = key;
-    this.setState(prevState => {
-      prevState.aspects[key_val] = checked;
-      return {
-        aspects: prevState.aspects
+    this.setState(
+      (prevState) => {
+        prevState.aspects[key_val] = checked;
+        return {
+          aspects: prevState.aspects,
+        };
+      },
+      () => {
+        this.props.handleAspectSelect(this.state.aspects);
       }
-    }, () => {
-      this.props.handleAspectSelect(this.state.aspects);
-    });
+    );
   }
 
   handleOtherAspects(event) {
-    const {value} = event.target;
+    const { value } = event.target;
     this.setState(
       {
-        otherAspects: value
-      }, () => {
-      this.props.handleOtherAspects(this.state.otherAspects);
-    });
+        otherAspects: value,
+      },
+      () => {
+        this.props.handleOtherAspects(this.state.otherAspects);
+      }
+    );
   }
 
   render() {
@@ -49,22 +54,29 @@ class Page2 extends React.Component {
           <div className="container-fluid">
             <div className="row mt-5 mb-4">
               <div className="col">
-                <h3>
-                  What aspects are you most interested in shadowing?
-                </h3>
+                <h3>What aspects are you most interested in shadowing?</h3>
               </div>
             </div>
-            <div className='row offset-1'>
-              {this.props.data.experience.whatICanOffer.map((item, index) =>
-                <CardExpDetail item={item} key={index} id={index} handleAspectSelect={this.handleAspectSelect} aspects={this.state.aspects} />
-              )}
+            <div className="row offset-1">
+              {this.props.data.experience.whatICanOffer.map((item, index) => (
+                <CardExpDetail
+                  item={item}
+                  index={index}
+                  id={index}
+                  handleAspectSelect={this.handleAspectSelect}
+                  aspects={this.state.aspects}
+                />
+              ))}
             </div>
             <div className="row mt-5 mb-5">
               <div className="col">
-                <p>
-                  What other aspects do you want to learn?
-                </p>
-                <textarea name="otherAspects" onChange={this.handleOtherAspects}>{this.state.otherAspects}</textarea>
+                <p>What other aspects do you want to learn?</p>
+                <textarea
+                  name="otherAspects"
+                  onChange={this.handleOtherAspects}
+                >
+                  {this.state.otherAspects}
+                </textarea>
               </div>
             </div>
             <div className="row mt-5 mb-4">
