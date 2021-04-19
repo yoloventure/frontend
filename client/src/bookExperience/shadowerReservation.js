@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./shadowerReservation.css";
 import Navbar from "../components/navbar";
 import RegistrationFooter from "../components/registrationFooter";
-import ortho from "../photos/ortho.png";
 import Page1 from "../components/bookingComponents/page1";
 import Page2 from "../components/bookingComponents/page2";
 import Page3 from "../components/bookingComponents/page3";
@@ -337,11 +336,6 @@ class ShadowReservation extends React.Component {
             <div className="container pt-5 mt-5 mb-5">
               <div className="top row">
                 <div className="col-md-4">
-                  <img
-                      src={ortho}
-                      alt="photo of orthodontist"
-                      className="chefimage"
-                  />
                 </div>
                 <div className="col apply ml-5">
                   <p>Shadow an experienced {this.state.data.experience.host.title}</p>
