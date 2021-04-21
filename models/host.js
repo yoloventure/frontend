@@ -76,8 +76,8 @@ const hostSchema = new mongoose.Schema({
   // },
   //----------------page-4------------------------------------
   offering: {
-    //what they can offer
-    type: Array(Object),
+    //what they can offer - String array
+    type: Array(String),
     default: null,
     required: true,
   },
@@ -110,6 +110,8 @@ const hostSchema = new mongoose.Schema({
     type: Array(Date),
     default: null,
   },
+
+
 });
 
 module.exports = mongoose.model("Host", hostSchema);

@@ -200,8 +200,8 @@ class Dashboard extends React.Component {
     });
 
     
-    // let hostReviews = [];
-    // hostReviews.forEach((review) => {
+    // let reviewsForHost = [];
+    // reviewsForHost.forEach((review) => {
     //   tempArray4.push(
     //     <div className="row m-1 mt-1">
     //       <div className="col-6 offset-1">
@@ -275,7 +275,7 @@ class Dashboard extends React.Component {
       hostRequests: tempArray,
       currenthostRequests: currentTemp,
       reviewShadowerNotifications: tempArray2,
-      hostReviews: [],
+      reviewsForHost: [],
       currentReviewShadowerNotifications: currentTemp2,
       myHistoryButton: "Show More",
       myReviewsAll: [],
@@ -294,7 +294,9 @@ class Dashboard extends React.Component {
 
     let tempArray3 = [];
     let currentTemp3 = [];
-    fetch("/api/review", {
+    // fetch("/api/review", {
+      fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
+      
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -302,22 +304,31 @@ class Dashboard extends React.Component {
     })
       .then((response) => {
         response.json().then((reviewsData) => {
+          
           //setup my myReviews
+         
           console.log(reviewsData)
           reviewsData.forEach((review) => {
+            let todayDate = new Date(review.publishDate);
+            let todayDateArr = todayDate.toDateString().split(" ");
             tempArray3.push(
               <React.Fragment>
                 <div className="col-11 ml-2 mb-2">
-                  <p
-                    style={{
-                      fontSize: "90%",
-                      lineHeight: "10px",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {" "}
-                    {review.publishDate}{" "}
-                  </p>
+                <h3
+                style={{
+                  fontFamily: "Poppins",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "19px",
+                  letterSpacing: "0.01em"
+                }}
+              >
+                     <div>{todayDateArr[1]} {' '}
+                 {todayDateArr[3]}</div>
+                    {/* <div>{review.publishDate}</div> */}
+                    </h3>
+                  
                   <ShowMoreText
                     /* Default options */
                     lines={1}
@@ -329,7 +340,6 @@ class Dashboard extends React.Component {
                     width={280}
                     color="black"
                   >
-                   
                     <p style={{ fontSize: "80%" }}>{review.body}</p>
                   </ShowMoreText>
                 </div>
@@ -395,6 +405,48 @@ class Dashboard extends React.Component {
 
     
   };
+
+  postReviewsForHost = () => {
+  
+    let test1 = {}
+
+
+    // test1.host = "5f14aba6e1d046aa0894f3c3"
+    // test1.author = "5ef660a01c7b54239095e6c5"
+    // test1.body = "it was great "
+    // test1.publishDate = "2018-05-12T04:00:00.000Z"
+    // test1.rating = "4"
+
+    var i =  this.state.reviewsForHost.length-1;
+ 
+      test1.host = "5f14aba6e1d046aa0894f3c3"
+      test1.author = "5ef660a01c7b54239095e6c5"
+      test1.body = this.state.reviewsForHost[i].body
+      test1.publishDate =new Date(moment().format("MM-DD-YYYY"))
+      test1.rating = this.state.reviewsForHost[i].rating
+       
+         
+   
+      
+      fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
+  
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+       
+        body: JSON.stringify(test1),
+  
+      })
+        .then((response) => { console.log(response);})
+        .catch((err) => {
+          console.log(err);
+        });
+    
+   
+    
+  }
+
   
 
   handleSelect = (ranges) => {
@@ -1081,7 +1133,11 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
 
-                <Demo2 parentCallback = {this.callbackFunction} hostReviews = {this.state.hostReviews} tempArray = {this.state.tempArray}> </Demo2>
+                <Demo2 
+                parentCallback = {this.callbackFunction}
+                reviewsForHost = {this.state.reviewsForHost}
+                postReviewsForHost = {this.postReviewsForHost}> 
+                </Demo2>
 
 {/* 
                 <div>
@@ -1094,10 +1150,8 @@ class Dashboard extends React.Component {
                 
               
               
-
               
-
-              {console.log(hostReviews)}
+              {console.log(reviewsForHost)}
               </div> */}
          
             
@@ -1366,65 +1420,52 @@ class Dashboard extends React.Component {
                     </div>
                     {this.state.myReviewsCurrent}  
                     
-                    {console.log(this.state.hostReviews)} 
+                    {console.log(this.state.reviewsForHost)} 
                     
                     
                    
-   
-                  {this.state.tempArray = []}
-                  {this.state.hostReviews.forEach((review) => {
-                        this.state.tempArray.push(
-                          <div className=" m-1 mt-1">
-                            <div className="content1">
-                              <h3
-                                style={{
-                                  fontFamily: "Poppins",
-                                  fontStyle: "normal",
-                                  fontWeight: "600",
-                                  fontSize: "13px",
-                                  lineHeight: "19px",
-                                  letterSpacing: "0.01em"
-                                }}
-                              >
-                                {/* {" "} */}
-                                
-                                {review.publishDate}
-                              </h3>
-                            </div>
-                            
-                            <div className="">
-                              <ShowMoreText
-                                /* Default options */
-                                lines={1}
-                                more="+more"
-                                less="-less"
-                                anchorClass="moreClass"
-                                onClick={this.executeOnClick}
-                                expanded={false}
-                                width={380}
-                                color="black"
-                              >
-                                <div 
-                                style = {{fontFamily: "Poppins",
-                                fontStyle: "normal",
-                                fontWeight: "normal",
-                                fontSize: "13px",
-                                lineHeight: "19px",
-                                letterSpacing: "0.01em",
-                                color: "#4C5862"}}>
-                                <p>{review.body}</p></div>
-                                
-                              </ShowMoreText>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {/* no need to show reviewsForHost in the shadowerDashboard */}
+                    {/* {this.state.tempArray = []}
+                  {this.state.reviewsForHost.forEach((review) => {
+              this.state.tempArray.push(
+                <React.Fragment>
+                  <div className="col-11 ml-2 mb-2">
+                  <h3
+                  style={{
+                    fontFamily: "Poppins",
+                    fontStyle: "normal",
+                    fontWeight: "600",
+                    fontSize: "13px",
+                    lineHeight: "19px",
+                    letterSpacing: "0.01em"
+                  }}
+                >
+                    
+                    <div>{review.publishDate}</div>
+                    </h3>
+                  
+                  <ShowMoreText
+                    lines={1}
+                    more="+more"
+                    less="-less"
+                    anchorClass="moreClass"
+                    onClick={this.executeOnClick}
+                    expanded={false}
+                    width={280}
+                    color="black"
+                  >
+                    <p style={{ fontSize: "80%" }}>{review.body}</p>
+                  </ShowMoreText>
+                </div>
+              </React.Fragment>
+            );
+          })} */}
     
    
 
 
                     
-                    {/* {this.state.hostReviews} */}
+                    {/* {this.state.reviewsForHost} */}
 
                     <div className="col-12 d-flex justify-content-center">
                       <button

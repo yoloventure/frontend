@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+
+  // type : array of review id
+ 
 });
 
 module.exports = mongoose.model("User", userSchema);

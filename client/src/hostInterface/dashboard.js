@@ -243,10 +243,11 @@ class Dashboard extends React.Component {
       whatICanOfferBodies: [],
       perks: [],
 
-      hostReviews: [],
+      reviewsForShadowers: [],
       rating: "",
       body: "",
-      tempArray:[],
+      author: "",
+      host: "",
     };
 
     let tempArray3 = [];
@@ -261,23 +262,34 @@ class Dashboard extends React.Component {
     })
       .then((response) => {
         response.json().then((reviewsData) => {
-          console.log(reviewsData);
+          console.log(this.props.auth.user)
+        
+          
           //setup my myReviews
           
           reviewsData.forEach((review) => {
+            let todayDate = new Date(review.publishDate);
+            let todayDateArr = todayDate.toDateString().split(" ");
             tempArray3.push(
               <React.Fragment>
                 <div className="col-11 ml-2 mb-2">
-                  <p
-                    style={{
-                      fontSize: "90%",
-                      lineHeight: "10px",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {" "}
-                    {review.publishDate}{" "}
-                  </p>
+                <h3
+                style={{
+                  fontFamily: "Poppins",
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  lineHeight: "19px",
+                  letterSpacing: "0.01em"
+                }}
+              >
+                
+                 <div>{todayDateArr[1]} {' '}
+                 {todayDateArr[3]}</div>
+                   
+                    {/* <div>{review.publishDate}</div> */}
+                    </h3>
+                  
                   <ShowMoreText
                     /* Default options */
                     lines={1}
@@ -308,6 +320,54 @@ class Dashboard extends React.Component {
         console.log(err);
       });
     
+      // {this.state.reviewsForShadowers.forEach((review) => {
+      //   this.state.tempArray.push(
+      //     <div className=" m-1 mt-1">
+      //       <div className="content1">
+      //         <h3
+      //           style={{
+      //             fontFamily: "Poppins",
+      //             fontStyle: "normal",
+      //             fontWeight: "600",
+      //             fontSize: "13px",
+      //             lineHeight: "19px",
+      //             letterSpacing: "0.01em"
+      //           }}
+      //         >
+             
+                
+               
+      //        <div className= "">{review.publishDate}</div>
+      //         </h3>
+      //       </div>
+            
+      //       <div className="">
+      //         <ShowMoreText
+              
+      //           lines={1}
+      //           more="+more"
+      //           less="-less"
+      //           anchorClass="moreClass"
+      //           onClick={this.executeOnClick}
+      //           expanded={false}
+      //           width={380}
+      //           color="black"
+      //         >
+      //           <div 
+      //           style = {{fontFamily: "Poppins",
+      //           fontStyle: "normal",
+      //           fontWeight: "normal",
+      //           fontSize: "13px",
+      //           lineHeight: "19px",
+      //           letterSpacing: "0.01em",
+      //           color: "#4C5862"}}>
+      //           <p>{review.body}</p></div>
+                
+      //         </ShowMoreText>
+      //       </div>
+      //     </div>
+      //   );
+      // })} 
 
     console.log(tempArray3);
     console.log(currentTemp3);
@@ -349,38 +409,56 @@ class Dashboard extends React.Component {
   }
 
    
-  postHostReviews = () => {
-    let bodyToSend = []
-    let test1 = {}
-    test1.host = "5f14aba6e1d046aa0894f3c3"
-    test1.id = "5f14aba6e1d046aa0894f3c3"
-    test1.author = "5ef660a01c7b54239095e6c5"
-    test1.body = "it was great "
-    test1.publishDate = "2018-05-12T04:00:00.000Z"
-    test1.rating = "4"
-    bodyToSend.push(test1)
-    // console.log(this.state.hostReviews);
-    console.log(bodyToSend)
+  postReviewsForShadowers = () => {
   
-       
- 
-    
-    fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
+    let test1 = {}
 
-      method: "post",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
+
+    // test1.host = "5f14aba6e1d046aa0894f3c3"
+    // test1.author = "5ef660a01c7b54239095e6c5"
+    // test1.body = "it was great "
+    // test1.publishDate = "2018-05-12T04:00:00.000Z"
+    // test1.rating = "4"
+
+    var i =  this.state.reviewsForShadowers.length-1; 
+   
+      test1.shadower = "5f14aba6e1d046aa0894f3c3"
+      test1.author = "5ef660a01c7b54239095e6c5"
+      test1.body = this.state.reviewsForShadowers[i].body
+      test1.publishDate = new Date(moment().format("MM-DD-YYYY"))
+      test1.rating = this.state.reviewsForShadowers[i].rating
+      
+  
      
-      body: JSON.stringify(this.state.bodyToSend),
-
-    })
-      .then((response) => { console.log(response);})
-      .catch((err) => {
-        console.log(err);
-      });
+      console.log(test1);
+      console.log(this.state.body)
+      console.log(this.state.reviewsForShadowers[i].body)
+    
+         
+   
+      
+      fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
+  
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+       
+        body: JSON.stringify(test1),
+  
+      })
+        .then((response) => { console.log(response);})
+        .catch((err) => {
+          console.log(err);
+        });
+    
+   
     
   }
+
+
+
+  
 
 
   confirmExperienceEdit = () => {
@@ -746,7 +824,11 @@ class Dashboard extends React.Component {
   callbackFunction = (childData) => {
     this.setState({
       rating: childData[0],
-      body: childData[1]})
+      body: childData[1],
+      author:childData[2],
+      host: childData[3]}
+      
+      )
 }
 
   render() {
@@ -1047,8 +1129,14 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
 
-                <Review parentCallback = {this.callbackFunction} hostReviews = {this.state.hostReviews} tempArray = {this.state.tempArray}  postHostReviews = {this.postHostReviews}> </Review>
-                {this.postHostReviews};
+                <Review 
+                parentCallback = {this.callbackFunction}
+                reviewsForShadowers = {this.state.reviewsForShadowers}
+                 postReviewsForShadowers = {this.postReviewsForShadowers}
+                 >
+                </Review>
+                
+               
 
                 <div
                   className="col-12 mt-2"
@@ -1320,57 +1408,46 @@ class Dashboard extends React.Component {
                       </p>
                     </div>
                     {this.state.myReviewsCurrent}
+                    
+                    {/* no need to show reviewsForShadowers in the host dashboard unless needed */}
+                    {/* {this.state.tempArray = []}
+                  {this.state.reviewsForShadowers.forEach((review) => {
+              this.state.tempArray.push(
+                <React.Fragment>
+                  <div className="col-11 ml-2 mb-2">
+                  <h3
+                  style={{
+                    fontFamily: "Poppins",
+                    fontStyle: "normal",
+                    fontWeight: "600",
+                    fontSize: "13px",
+                    lineHeight: "19px",
+                    letterSpacing: "0.01em"
+                  }}
+                >
+                    
+                    <div>{review.publishDate}</div>
+                    </h3>
+                  
+                  <ShowMoreText
+                    lines={1}
+                    more="+more"
+                    less="-less"
+                    anchorClass="moreClass"
+                    onClick={this.executeOnClick}
+                    expanded={false}
+                    width={280}
+                    color="black"
+                  >
+                    <p style={{ fontSize: "80%" }}>{review.body}</p>
+                  </ShowMoreText>
+                </div>
+              </React.Fragment>
+            );
+          })} */}
 
 
-                  {this.state.tempArray = []}
-                  {this.state.hostReviews.forEach((review) => {
-                        this.state.tempArray.push(
-                          <div className=" m-1 mt-1">
-                            <div className="content1">
-                              <h3
-                                style={{
-                                  fontFamily: "Poppins",
-                                  fontStyle: "normal",
-                                  fontWeight: "600",
-                                  fontSize: "13px",
-                                  lineHeight: "19px",
-                                  letterSpacing: "0.01em"
-                                }}
-                              >
-                             
-                                
-                               
-                             <div className= "">{review.publishDate}</div>
-                              </h3>
-                            </div>
-                            
-                            <div className="">
-                              <ShowMoreText
-                              
-                                lines={1}
-                                more="+more"
-                                less="-less"
-                                anchorClass="moreClass"
-                                onClick={this.executeOnClick}
-                                expanded={false}
-                                width={380}
-                                color="black"
-                              >
-                                <div 
-                                style = {{fontFamily: "Poppins",
-                                fontStyle: "normal",
-                                fontWeight: "normal",
-                                fontSize: "13px",
-                                lineHeight: "19px",
-                                letterSpacing: "0.01em",
-                                color: "#4C5862"}}>
-                                <p>{review.body}</p></div>
-                                
-                              </ShowMoreText>
-                            </div>
-                          </div>
-                        );
-                      })} 
+            
 
         
 

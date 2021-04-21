@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import moment from "moment";
 import { Rating } from 'semantic-ui-react'
 import "./Review.css"
 
@@ -83,8 +84,12 @@ export default class Demo extends React.Component {
     this.setState({ open3: false });
   };
 
-  sendBackData = () => {
-    this.props.parentCallback([this.state.rating,this.state.review]);
+//   sendBackData = () => {
+//     this.props.parentCallback([this.state.rating,this.state.review]);
+// }
+
+sendBackData = () => {
+  this.props.parentCallback([this.state.rating,this.state.review, this.state.author, this.state.host]);
 }
 
 
@@ -125,7 +130,7 @@ export default class Demo extends React.Component {
           textAlign: "center",
 
           color: "#150433"}} >        
-          How was your shadowing experience with your host Rachel?
+        How was your hosting experience with your shadower Tyson?
          </div>
           </DialogTitle>
 
@@ -137,8 +142,7 @@ export default class Demo extends React.Component {
             fontWeight: "normal",
             fontSize: "16.2px",
             lineHeight: "163.35%"}}>
-            How would you recommend the host to other shadowers? Tell shadowers and hosts what you liked and what you wish was different!
-            </div>
+How would you recommend the shadower to other hosts? Tell hosts and shadowers what you liked and what you wish was different!            </div>
             </DialogContentText>
           </DialogContent>
           <DialogActions disabled style={{ textAlign: "center" }}> 
@@ -192,7 +196,8 @@ export default class Demo extends React.Component {
           textAlign: "center",
 
           color: "#150433"}} >      
-          How likely are you to recommend the host to other shadowers?</div></DialogTitle>
+            How likely are you to recommend the shadower to other hosts?
+          </div></DialogTitle>
           <DialogContent>
             <DialogContentText>
             </DialogContentText>
@@ -313,7 +318,7 @@ export default class Demo extends React.Component {
           textAlign: "center",
 
           color: "#150433"}} >        
-          Write a review for your host!
+            Write a review for your shadower!
           </div>
   </DialogTitle>
    
@@ -325,8 +330,7 @@ export default class Demo extends React.Component {
             fontWeight: "normal",
             fontSize: "16.2px",
             lineHeight: "163.35%"}}>
-            Reviews are published after both you and your host have completed the reviews, or when the 14-day review period has ended.  
-            </div>          
+    Reviews are published after both you and your shadower have completed the reviews, or when the 14-day review period has ended.              </div>          
             </DialogContentText>
         
             {/* <TextField
@@ -372,17 +376,18 @@ export default class Demo extends React.Component {
               this.handleClose2();
               this.handleClose3();
               this.sendBackData();
-              this.props.postHostReviews();
-             this.props.hostReviews.push({
-               _id:2,
-               author:"kathy",
-               publishDate:"Mar 2021",
+            
+             
+             this.props.reviewsForShadowers.push({
+               
+               author:"5ef660a01c7b54239095e6c5",
+              //  publishDate: new Date(moment().format("MM-DD-YYYY")),
               body:this.state.review,
               rating:this.state.rating,
              
             })
 
-           
+           this.props.postReviewsForShadowers();
             }}
         
              >

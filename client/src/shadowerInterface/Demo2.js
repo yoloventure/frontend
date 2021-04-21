@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import moment from "moment";
 import { Rating } from 'semantic-ui-react'
 import "./Demo.css"
 
@@ -372,12 +373,16 @@ export default class Demo extends React.Component {
               this.handleClose2();
               this.handleClose3();
               this.sendBackData();
-             this.props.hostReviews.push({id:2,fname:"kathy",
-              timeStamp:"Mar 2021",
-              reviewContent:this.state.review,
-              rating:this.state.rating})
+             this.props.reviewsForHost.push({
+            
+              author:"5ef660a01c7b54239095e6c5",
+              // publishDate: new Date(moment().format("MM-DD-YYYY")),
+             body:this.state.review,
+             rating:this.state.rating,
 
-           
+            })
+
+              this.props.postReviewsForHost();
             }}
         
              >
