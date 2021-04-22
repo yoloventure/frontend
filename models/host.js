@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const company = require("./company");
-const user = require("./user");
+ const mongoose = require('mongoose');
+const company = require('./company');
+const user = require('./user');
 
 const hostSchema = new mongoose.Schema({
   user: {
@@ -22,9 +22,22 @@ const hostSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  idImage: {
+ idImage: {
     type: String,
     default: null,
+  },
+  reservationStack:{
+     type: [{type:mongoose.Schema.Types.ObjectId,
+               ref:'reservation'}],
+        default:[],
+  },
+  reviewStack:{
+     type: [{type:mongoose.Schema.Types.ObjectId,
+               ref:'host_Review'}],
+        default:[],
+  },
+  imageCollection:{
+    type:Array,
   },
   gender: {
     type: String,
@@ -76,8 +89,8 @@ const hostSchema = new mongoose.Schema({
   // },
   //----------------page-4------------------------------------
   offering: {
-    //what they can offer
-    type: Array(Object),
+    //what they can offer - String array
+    type: Array(String),
     default: null,
     required: true,
   },
@@ -102,7 +115,7 @@ const hostSchema = new mongoose.Schema({
     //host application approval stage
     //values: pending/approved/rejected
     type: String,
-    default: "pending",
+    default: 'pending',
     required: true,
   },
 
@@ -112,4 +125,4 @@ const hostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Host", hostSchema);
+module.exports = mongoose.model('Host', hostSchema);
