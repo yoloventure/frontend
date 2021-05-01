@@ -1,7 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const Reservation = require("../models/reservation");
+var nodemailer = require('nodemailer');
 
+const transporter = nodemailer.createTransport({
+   host: 'smtp.gmail.com',
+  service: 'gmail',
+  auth: {
+    user: '1341452029zsr',
+    pass: 'zsr739146739146'
+  }
+});
 //Get all reservations
 router.get("/", function (req, res) {
   Reservation.find().then(function (reservations) {
@@ -48,6 +57,19 @@ router.post("/", function (req, res, next) {
 
 //Edit reservation
 router.put("/:id", function (req, res, next) {
+            var mailOptions = {
+            from: '1341452029zsr@gmail.com',
+            to: req.body.shadowerEmail,
+            subject: 'Yolo Shadow Host Application Received!',
+            text: 'Dear '+req.body.shadowerFname+', You have requested an reservation!'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
   //find and update specific application
   Reservation.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
     function () {

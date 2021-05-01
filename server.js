@@ -19,7 +19,7 @@ const Host = require('./models/host')
 const Company = require('./models/company')
 const Host_Review = require('./models/host_Review')
 const Reservation = require('./models/reservation');
-const Host_Notification_Queue = require('./models/host_Notification_Queue');
+// const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 
 // API Endpoints
@@ -35,7 +35,7 @@ const company = require('./routes/company');
 const addressValidator=require('./routes/addressValidator');
 const fileUpload = require('./routes/fileUpload');
 const reservation = require('./routes/reservation');
-const host_Notification_Queue = require ('./routes/host_Notification_Queue')
+// const host_Notification_Queue = require ('./routes/host_Notification_Queue')
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
@@ -181,7 +181,7 @@ app.use(function(req, res, next) {
 });
 // Use API Routes
 app.use('/api/yoloChatAd', yoloChatAd);
-app.use('/api/host_Notification_Queue',host_Notification_Queue);
+// app.use('/api/host_Notification_Queue',host_Notification_Queue);
 app.use('/api/user', user);
 app.use('/api/email', email);
 app.use('/api/emailList', emailList);
