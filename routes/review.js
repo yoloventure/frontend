@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const ReviewForHost = require("../models/host_Review");
-const ReviewForShadower = require("../models/shadowerReview");
+const ReviewForHost = require("../models/reviewForHost");
+const ReviewForShadower = require("../models/reviewForShadower");
 
 //Get all review
 router.get("/", function (req, res) {
@@ -21,7 +21,7 @@ router.get("/host/:id", function (req, res, next) {
   });
 });
 
-//Post reservation by HostId
+//Post review by HostId
 router.post("/host/:id", function (req, res, next) {
   console.log(req.body);
   ReviewForHost.create(req.body)

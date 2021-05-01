@@ -16,7 +16,7 @@ const User = require("./models/user");
 const Experience = require("./models/experience");
 const Host = require("./models/host");
 const Company = require("./models/company");
-const Host_Review = require("./models/host_Review");
+const reviewForHost = require("./models/reviewForHost");
 const Reservation = require("./models/reservation");
 
 const Host_Notification_Queue = require("./models/host_Notification_Queue");
@@ -153,7 +153,7 @@ mongoose
 // exp1.save()
 //
 //
-// const review1=new Host_Review({
+// const review1=new reviewsForHost({
 //   author:'5ef660a01c7b54239095e6c5',
 //   host:'5f14aba6e1d046aa0894f3c3',
 // rating:4,

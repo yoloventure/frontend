@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const host_Review_Schema = new mongoose.Schema({
+const reviewForHostSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -25,4 +25,4 @@ const host_Review_Schema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Host_Review", host_Review_Schema);
+module.exports = mongoose.model("ReviewForHost", reviewForHostSchema);

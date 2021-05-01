@@ -387,7 +387,7 @@ How would you recommend the shadower to other hosts? Tell hosts and shadowers wh
              
             })
 
-           this.props.postReviewsForShadowers();
+           this.props.postReviewsForShadower();
             }}
         
              >

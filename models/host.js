@@ -111,6 +111,12 @@ const hostSchema = new mongoose.Schema({
     default: null,
   },
 
+  review: {
+    type: Array(mongoose.Schema.Types.ObjectId),
+    default: [],
+
+  }
+
 
 });
 

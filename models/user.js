@@ -50,9 +50,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  review: {
+    type: Array(mongoose.Schema.Types.ObjectId), // type : array of review id
+    deafault: [],
+  }
 
 
-  // type : array of review id
+  
  
 });
 

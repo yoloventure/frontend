@@ -34,10 +34,10 @@ const experienceSchema = new mongoose.Schema({
   quote: {
     type: String,
   },
-  reviews: {
-    type: Array(mongoose.Schema.Types.ObjectId), //array of ids , reviews will have separrate schema
-    default: [],
-  },
+  // reviews: {
+  //   type: Array(mongoose.Schema.Types.ObjectId), //array of ids , reviews will have separrate schema
+  //   default: [],
+  // },
 });
 
 module.exports = mongoose.model("Experience", experienceSchema);

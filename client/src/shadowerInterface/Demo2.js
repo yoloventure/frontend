@@ -383,6 +383,8 @@ export default class Demo extends React.Component {
             })
 
               this.props.postReviewsForHost();
+              // this.props.postReviewsToHost();
+              
             }}
         
              >

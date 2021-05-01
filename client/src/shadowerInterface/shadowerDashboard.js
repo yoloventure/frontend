@@ -19,10 +19,11 @@ import { Link } from "react-router-dom";
 
 import { MDBIcon, MDBBtn } from "mdbreact";
 import { DateRange } from "react-date-range";
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import Demo2 from './Demo2';
-class Dashboard extends React.Component {
+class shadowerDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.Ref = createRef();
@@ -290,11 +291,14 @@ class Dashboard extends React.Component {
       rating: "",
       review: "",
       tempArray:[],
+
+      bodyToSend: {},
+      tempBody: [],
     };
 
     let tempArray3 = [];
     let currentTemp3 = [];
-    // fetch("/api/review", {
+
       fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
       
       method: "get",
@@ -361,6 +365,9 @@ class Dashboard extends React.Component {
 
     console.log(tempArray3);
     console.log(currentTemp3);
+    console.log(this.props.auth)
+
+
 
   //   fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
   //     // fetch("/api/experience/host/${this.props.auth.host.hostId}", {
@@ -403,21 +410,36 @@ class Dashboard extends React.Component {
   //       console.log(err);
   //     });
 
+  //restore the historical reviews 
+  fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
+      
+    method: "get",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((response) => {
+      response.json().then((reviewsData) => {
+        console.log(reviewsData)
+        reviewsData.review.forEach((oneReview) => {
+          console.log(oneReview)
+          this.state.tempBody.push(oneReview)
+         } );
+       
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     
   };
-
-  postReviewsForHost = () => {
   
-    let test1 = {}
 
 
-    // test1.host = "5f14aba6e1d046aa0894f3c3"
-    // test1.author = "5ef660a01c7b54239095e6c5"
-    // test1.body = "it was great "
-    // test1.publishDate = "2018-05-12T04:00:00.000Z"
-    // test1.rating = "4"
-
-    var i =  this.state.reviewsForHost.length-1;
+   postReviewsForHost =  () => {
+     let test1 = {}
+      console.log(this.state);
+      var i =  this.state.reviewsForHost.length-1;
  
       test1.host = "5f14aba6e1d046aa0894f3c3"
       test1.author = "5ef660a01c7b54239095e6c5"
@@ -425,11 +447,8 @@ class Dashboard extends React.Component {
       test1.publishDate =new Date(moment().format("MM-DD-YYYY"))
       test1.rating = this.state.reviewsForHost[i].rating
        
-         
-   
       
-      fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
-  
+        fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
         method: "post",
         headers: new Headers({
           "Content-Type": "application/json",
@@ -438,16 +457,39 @@ class Dashboard extends React.Component {
         body: JSON.stringify(test1),
   
       })
-        .then((response) => { console.log(response);})
+        .then((response) => { 
+          
+          response.json().then((reviewsData) => { 
+            
+            this.state.tempBody.push(reviewsData._id)
+            this.setState({bodyToSend: this.state.tempBody}, ()=>this.postReviewsToHost() )            
+           }
+          )
+        })
         .catch((err) => {
           console.log(err);
-        });
-    
-   
-    
+        })
   }
 
-  
+  postReviewsToHost = () => {
+    let test1 = {}
+    test1.review =  this.state.bodyToSend;
+    console.log(this.state.bodyToSend)
+     fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(test1),
+    })
+    .then((response) => {
+      response.json().then((reviewsData) => {
+        console.log(reviewsData)}
+    )})
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   handleSelect = (ranges) => {
     if (this.state.counter === 1) {
@@ -566,6 +608,8 @@ class Dashboard extends React.Component {
   };
   confirmRanges = () => {
     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
+    
+   
   };
 
   changeCards = () => {
@@ -815,62 +859,7 @@ class Dashboard extends React.Component {
       borderRadius: "4px",
       height: window.innerHeight / 2.2 + "px",
     };
-    // {this.state.tempArray = []}
-    // fetch("/api/review/", {
-    //   method: "post",
-    //   headers: new Headers({
-    //     "Content-Type": "application/json",
-    //   }),
-    // })
-    //   .then((response) => {
-    //     response.json().then((reviewsData) => {
-    //       //setup my myReviews
-    //       console.log(reviewsData)
-    //       reviewsData.forEach((review) => {
-    //         this.state.tempArray.push(
-    //           <React.Fragment>
-    //             <div className="col-11 ml-2 mb-2">
-    //               <p
-    //                 style={{
-    //                   fontSize: "90%",
-    //                   lineHeight: "10px",
-    //                   fontWeight: "500",
-    //                 }}
-    //               >
-    //                 {" "}
-    //                 {review.publishDate}{" "}
-    //               </p>
-    //               <ShowMoreText
-    //                 /* Default options */
-    //                 lines={1}
-    //                 more="+more"
-    //                 less="-less"
-    //                 anchorClass="moreClass"
-    //                 onClick={this.executeOnClick}
-    //                 expanded={false}
-    //                 width={280}
-    //                 color="black"
-    //               >
-                   
-    //                 <p style={{ fontSize: "80%" }}>{review.body}</p>
-    //               </ShowMoreText>
-    //             </div>
-    //           </React.Fragment>
-    //         );
-    //       });
-    //       // try {
-    //       //   currentTemp3 = tempArray3.slice(0, 1);
-    //       // } catch (e) {}
-    //       // this.setState({
-    //       //   myReviewsAll: tempArray3,
-    //       //   myReviewsCurrent: currentTemp3,
-    //       // });
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
+  
 
     return (
       <div className="bg-light" style={styleViewPort}>
@@ -1136,7 +1125,10 @@ class Dashboard extends React.Component {
                 <Demo2 
                 parentCallback = {this.callbackFunction}
                 reviewsForHost = {this.state.reviewsForHost}
-                postReviewsForHost = {this.postReviewsForHost}> 
+                postReviewsForHost = {this.postReviewsForHost}
+                
+                // postReviewsToHost = {this.postReviewsToHost}
+                > 
                 </Demo2>
 
 {/* 
@@ -1420,8 +1412,8 @@ class Dashboard extends React.Component {
                     </div>
                     {this.state.myReviewsCurrent}  
                     
-                    {console.log(this.state.reviewsForHost)} 
-                    
+              
+               
                     
                    
                       {/* no need to show reviewsForHost in the shadowerDashboard */}
@@ -1490,5 +1482,11 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-export default Dashboard;
+shadowerDashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(shadowerDashboard);
