@@ -36,6 +36,8 @@ class ShadowReservation extends React.Component {
         whatMakesGood: "",
         accomodations: "",
         approval: "pending",
+        shadowerFname: "",
+        shadowerEmail: ""
       },
       loaded: false,
       counter: 1,
@@ -60,7 +62,9 @@ class ShadowReservation extends React.Component {
                 ...prevState.data,
                 host:experience.host,
                 shadower:this.props.auth.user._id,
-                experience: experience
+                experience: experience,
+                shadowerFname: this.props.auth.user.fname,
+                shadowerEmail: this.props.auth.user.email
               },
               loaded: true
             }
@@ -210,7 +214,7 @@ class ShadowReservation extends React.Component {
             }).then(response => {
                response.json().then( newHost=>{
                console.log(newHost);
-                             var path2 = "/api/user/" + data.shadower;
+               var path2 = "/api/user/" + data.shadower;
               return fetch(path2, {
                   method: 'get',
                   credentials: "include",
@@ -223,8 +227,6 @@ class ShadowReservation extends React.Component {
                   console.log(user);
                   var currentmyreviews=user.myreviews;
                   currentmyreviews.push(res._id);
-                  console.log("myreviews");
-                  console.log(currentmyreviews);
             return fetch("/api/user/"+data.shadower, {
             method: 'put',
             headers: new Headers({
@@ -235,12 +237,30 @@ class ShadowReservation extends React.Component {
             }),
             credentials: "include"
             }).then(response => {
-                            response.json().then( newUser=>{
-                  console.log(newUser);
-                 
-                 
-                  
-                }); 
+            response.json().then( newUser=>{   
+                  console.log("here"); 
+                  console.log(user); 
+                  const fname = user.fname;
+                  const email = user.email;
+                  console.log(user.email); 
+                    return fetch('/api/reservation/'+res._id, {
+                    method: 'put',
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    }),
+                    body: JSON.stringify({
+                        "shadowerFname": fname,
+                        "shadowerEmail": email
+                    }),
+                    //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
+                    credentials: "include"
+                  }).then((response) => {
+                    console.log("here1"); 
+                    return response.json();
+                  }).catch((err) => {
+                    console.log(err);
+                  }); 
+            }); 
             }).catch((err) => {
               console.log(err);
             });

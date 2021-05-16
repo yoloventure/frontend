@@ -11,7 +11,16 @@ const cors = require("cors");
 const passport = require("passport");
 
 // Models
-const YoloChatAd = require("./models/yoloChatAd");
+const YoloChatAd = require('./models/yoloChatAd');
+
+const User = require('./models/user');
+const Experience = require('./models/experience')
+const Host = require('./models/host')
+const Company = require('./models/company')
+const Host_Review = require('./models/host_Review')
+const Reservation = require('./models/reservation');
+// const Host_Notification_Queue = require('./models/host_Notification_Queue');
+
 
 const User = require("./models/user");
 const Experience = require("./models/experience");
@@ -22,19 +31,20 @@ const Reservation = require("./models/reservation");
 // const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 // API Endpoints
-const yoloChatAd = require("./routes/yoloChatAd");
-const user = require("./routes/user");
-const email = require("./routes/email");
-const emailList = require("./routes/emailList");
-const auth = require("./routes/auth");
-const host = require("./routes/host");
-const experience = require("./routes/experience");
-const review = require("./routes/review");
-const company = require("./routes/company");
-const addressValidator = require("./routes/addressValidator");
-const fileUpload = require("./routes/fileUpload");
-const reservation = require("./routes/reservation");
-// const host_Notification_Queue = require("./routes/host_Notification_Queue");
+const yoloChatAd = require('./routes/yoloChatAd');
+const user = require('./routes/user');
+const email = require('./routes/email');
+const emailList = require('./routes/emailList');
+const auth = require('./routes/auth');
+const host = require('./routes/host');
+const experience = require('./routes/experience');
+const review = require('./routes/review');
+const company = require('./routes/company');
+const addressValidator=require('./routes/addressValidator');
+const fileUpload = require('./routes/fileUpload');
+const reservation = require('./routes/reservation');
+// const host_Notification_Queue = require ('./routes/host_Notification_Queue')
+
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
@@ -180,20 +190,21 @@ app.use(function (req, res, next) {
   next();
 });
 // Use API Routes
-app.use("/api/yoloChatAd", yoloChatAd);
-// app.use("/api/host_Notification_Queue", host_Notification_Queue);
-app.use("/api/user", user);
-app.use("/api/email", email);
-app.use("/api/emailList", emailList);
-app.use("/api/auth", auth);
-app.use("/api/host", host);
-app.use("/api/experience", experience);
-app.use("/api/company", company);
-app.use("/api/review", review);
-app.use("/api/addressValidator", addressValidator);
-app.use("/api/fileUpload", fileUpload);
-app.use("/api/reservation", reservation);
-app.use("api/uploaded_images", express.static("upload_images"));
+app.use('/api/yoloChatAd', yoloChatAd);
+// app.use('/api/host_Notification_Queue',host_Notification_Queue);
+app.use('/api/user', user);
+app.use('/api/email', email);
+app.use('/api/emailList', emailList);
+app.use('/api/auth', auth);
+app.use('/api/host', host);
+app.use('/api/experience', experience);
+app.use('/api/company', company);
+app.use('/api/review', review);
+app.use('/api/addressValidator', addressValidator);
+app.use('/api/fileUpload', fileUpload);
+app.use('/api/reservation', reservation);
+app.use('api/uploaded_images', express.static('upload_images'));
+
 // Error handling middleware
 app.use(function (err, req, res, next) {
   console.log(err);

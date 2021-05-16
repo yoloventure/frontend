@@ -17,14 +17,16 @@ import APIHost from "../api/apiHost";
 import PropTypes from 'prop-types';
 import { register,loadUser } from '../actions/authActions';
 import axios from 'axios';
+  //var azure = require('@azure/storage-blob');
  // var storage = require('azure-storage');
-const {BlobServiceClient,StorageSharedKeyCredential,AZCloudBlobContainer} = require("@azure/storage-blob");
+  const {BlobServiceClient,StorageSharedKeyCredential,AZCloudBlobContainer} = require("@azure/storage-blob");
  //const { DefaultAzureCredential } = require("@azure/identity");
   const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
   const account = "yoloshadowstorage";
   const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
   const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
-  
+  var workingImageUrl = "";
+  var idImageUrl = "";
   //const defaultAzureCredential = new DefaultAzureCredential();
 
 
@@ -40,7 +42,8 @@ class HostRegister_Round2 extends React.Component {
         workingImage: "",
         idImage: "" ,
         availability: [],
-        imgCollection:[]
+        email:"",
+        fname:""
       },
       counter: 1,
       progress: 25,
@@ -64,7 +67,9 @@ class HostRegister_Round2 extends React.Component {
       return {
         data: {
           ...prevState.data,
-          hostId: "605eee00980c714b0b178513",
+          hostId: user.hostId,
+          fname: user.fname,
+          email: user.email
         }
       }
     });
@@ -126,30 +131,51 @@ class HostRegister_Round2 extends React.Component {
       const start = new Date(this.state.data.dateRange.startDate);
       const end = new Date(this.state.data.dateRange.endDate);
       const availability2 = [start,end];
-      this.setState({ 
-        data: {
-            ...this.state.data,
-            workingImage: "working image",
-            idImage: "id image",
-            availability: [...this.state.data.availability,...availability2]
-         }
-       }, () => {
        const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
        const containerClient = blobServiceClient.getContainerClient("hostworkingimages");
        const containerClient2 = blobServiceClient.getContainerClient("hostidimages");
         const workingImage = this.state.data.files[0];
          const idImage = this.state.data.files[1];
         //const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
-        const blobName = "host_working_image"+this.state.data.hostId;
-        const blobName2 = "host_id_image"+this.state.data.hostId;
-        const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-        const blockBlobClient2 = containerClient2.getBlockBlobClient(blobName2);
-
+        const workingblobName = "host_working_image"+this.state.data.hostId;
+        const idblobName = "host_id_image"+this.state.data.hostId;
+        const blockBlobClient = containerClient.getBlockBlobClient(workingblobName);
+        const blockBlobClient2 = containerClient2.getBlockBlobClient(idblobName);
         blockBlobClient.uploadBrowserData(workingImage);
         blockBlobClient2.uploadBrowserData(idImage); 
-        APIHost.editHost(data.hostId, this.state.data);
-    }); 
-
+        // APIHost.editHost(data.hostId, this.state.data);
+          var uploadpath = "/api/host/" + this.state.data.hostId;
+          workingImageUrl = "https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/"+workingblobName;
+          idImageUrl =  "https://yoloshadowstorage.blob.core.windows.net/hostidimages/"+idblobName;
+          this.setState({ 
+            data: {
+              ...this.state.data,
+              availability: [...this.state.data.availability,...availability2],
+              "workingImage": workingImageUrl,
+              "idImage": idImageUrl
+            }
+          }, () => {
+            return fetch(uploadpath, {
+            method: 'put',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                "workingImage": workingImageUrl,
+                "idImage": idImageUrl,
+                "availability": this.state.data.availability,
+                "fname": this.state.data.fname,
+                "email": this.state.data.email
+            }),
+            //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
+            credentials: "include"
+          }).then((response) => {
+            return response.json();
+          }).catch((err) => {
+            console.log(err);
+          });
+            // APIHost.editHost(this.state.data);
+          }); 
     }
   }
 

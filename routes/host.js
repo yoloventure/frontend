@@ -9,6 +9,8 @@ var nodemailer = require("nodemailer");
 var storage = require("azure-storage");
 const { BlobServiceClient } = require("@azure/storage-blob");
 const { DefaultAzureCredential } = require("@azure/identity");
+  const connStr = "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
+
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -37,8 +39,26 @@ async function uploadImage(photoId) {
     uploadBlobResponse.requestId
   );
 }
-// router.post('/upload', function(req, res){
+// router.put('uploadhostimages/:id', function(req, res){
 //     console.log("hi");
+
+//       const sharedKeyCredential = new StorageSharedKeyCredential("yoloshadowstorage","N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==");
+//       const workingblobSAS = generateBlobSASQueryParameters({
+//         containerName : "hostworkingimages", // Required
+//         blobName:req.body.workingBlobName , // Required
+//         permissions: BlobSASPermissions.parse("r"), // Required
+//         startsOn: new Date(), // Required
+//         expiresOn: new Date(new Date().valueOf() + 86400) // Optional. Date type
+//        },
+//       sharedKeyCredential // StorageSharedKeyCredential - `new StorageSharedKeyCredential(account, accountKey)`
+//     ).toString();
+//     Host.findByIdAndUpdate( req.params.id, workingImage:workingblobSAS).then(function () {
+//     //find and send back updated application for display
+//     Host.findOne({_id: req.params.id}, req.body).then(function (host) {
+//       res.send(host);
+//     });
+//   });
+
 //     uploadImage(req.body.files[0]);
 //     // const reqFiles = [];
 //     // const url = req.protocol + '://'
@@ -48,10 +68,12 @@ async function uploadImage(photoId) {
 //     //     reqFiles.push(url + '/upload_images/'+req.files[i].filename)
 //     // }
 
+
 //     // Host.findByIdAndUpdate({_id: req.params.id},{ imgCollection: reqFiles }, {useFindAndModify: false})
 //     // .then(function (host) {
 //     // res.send(host);
 //   });
+
 // const user = new User({
 //     _id: new mongoose.Types.ObjectId(),
 //     name: req.body.name,
@@ -71,6 +93,7 @@ async function uploadImage(photoId) {
 //             error: err
 //         });
 // })
+
 
 //Get all host applications
 router.get("/", function (req, res) {
@@ -119,7 +142,25 @@ router.post("/", function (req, res, next) {
         if (error) {
           console.log(error);
         } else {
-          console.log("Email sent: " + info.response);
+            var mailOptions = {
+            from: '1341452029zsr@gmail.com',
+            to: req.body.email,
+            subject: 'Yolo Shadow Host Application Received!',
+            text: 'Dear '+req.body.fname+', Thank you for applying! We will notify you when the decision is made.'
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+          Host.create(req.body)
+            .then(function (host) {
+              res.send(host); //send back info to client
+            })
+            .catch(next);
+
         }
       });
       Host.create(req.body)
@@ -132,7 +173,21 @@ router.post("/", function (req, res, next) {
 });
 
 //edit application using put requests
-router.put("/:id", function (req, res, next) {
+router.put('/:id', function (req, res, next) {
+            var mailOptions2 = {
+            from: '1341452029zsr@gmail.com',
+            to: req.body.email,
+            subject: 'Yolo Shadow Host Application Received!',
+            text: 'Dear '+req.body.fname+', Thank you for applying for yolo shadow host application round2! We will notify you when the decision is made.'
+          };
+          transporter.sendMail(mailOptions2, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
   //find and update specific application
   Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
     //find and send back updated application for display
