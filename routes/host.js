@@ -42,6 +42,11 @@ router.post("/", function (req, res, next) {
           res.send(host); //send back info to client
         })
         .catch(next);
+        // Experience.create(req.body)
+        // .then(function (experience) {
+        //   res.send(experience); //send back info to client
+        // })
+        // .catch(next);
     }
   });
 });

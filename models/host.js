@@ -14,6 +14,10 @@ const hostSchema = new mongoose.Schema({
     type: Number,
     default: null,
   },
+  isIndividual:{
+   type: Boolean,
+   default: false
+  },
   workingImage: {
     type: String,
     default: null,
@@ -32,7 +36,6 @@ const hostSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: false,
     default: null,
   },
   title: {
@@ -42,7 +45,7 @@ const hostSchema = new mongoose.Schema({
   },
   industry: {
     type: String,
-    required: true,
+    default:""
   },
   twitterProfile: {
     type: String,
@@ -78,8 +81,7 @@ const hostSchema = new mongoose.Schema({
   offering: {
     //what they can offer
     type: Array(Object),
-    default: null,
-    required: true,
+    default: null
   },
   // moreOffering: {
   //   //other aspects of what they can offer
@@ -90,20 +92,17 @@ const hostSchema = new mongoose.Schema({
   //----------------page-4------------------------------------
   expertise: {
     type: Array(String),
-    default: null,
-    required: true,
+    default: null
   },
   experiences: {
     type: Array(mongoose.Schema.Types.ObjectId),
-    default: [],
-    required: true,
+    default: []
   },
   approval: {
     //host application approval stage
     //values: pending/approved/rejected
     type: String,
-    default: "pending",
-    required: true,
+    default: "pending"
   },
 
   availability: {
