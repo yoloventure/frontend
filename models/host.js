@@ -1,6 +1,6 @@
- const mongoose = require('mongoose');
-const company = require('./company');
-const user = require('./user');
+const mongoose = require("mongoose");
+const company = require("./company");
+const user = require("./user");
 
 const hostSchema = new mongoose.Schema({
   user: {
@@ -14,6 +14,10 @@ const hostSchema = new mongoose.Schema({
     type: Number,
     default: null,
   },
+  isIndividual: {
+    type: Boolean,
+    default: false,
+  },
   workingImage: {
     type: String,
     default: null,
@@ -22,22 +26,20 @@ const hostSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
- idImage: {
+  idImage: {
     type: String,
     default: null,
   },
-  reservationStack:{
-     type: [{type:mongoose.Schema.Types.ObjectId,
-               ref:'reservation'}],
-        default:[],
+  reservationStack: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "reservation" }],
+    default: [],
   },
-  reviewStack:{
-     type: [{type:mongoose.Schema.Types.ObjectId,
-               ref:'host_Review'}],
-        default:[],
+  reviewStack: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "host_Review" }],
+    default: [],
   },
-  imageCollection:{
-    type:Array,
+  imageCollection: {
+    type: Array,
   },
   gender: {
     type: String,
@@ -45,7 +47,6 @@ const hostSchema = new mongoose.Schema({
   },
   phone: {
     type: Number,
-    required: false,
     default: null,
   },
   title: {
@@ -55,7 +56,7 @@ const hostSchema = new mongoose.Schema({
   },
   industry: {
     type: String,
-    required: true,
+    default: "",
   },
   twitterProfile: {
     type: String,
@@ -89,10 +90,9 @@ const hostSchema = new mongoose.Schema({
   // },
   //----------------page-4------------------------------------
   offering: {
-    //what they can offer - String array
-    type: Array(String),
+    //what they can offer
+    type: Array(Object),
     default: null,
-    required: true,
   },
   // moreOffering: {
   //   //other aspects of what they can offer
@@ -104,19 +104,16 @@ const hostSchema = new mongoose.Schema({
   expertise: {
     type: Array(String),
     default: null,
-    required: true,
   },
   experiences: {
     type: Array(mongoose.Schema.Types.ObjectId),
     default: [],
-    required: true,
   },
   approval: {
     //host application approval stage
     //values: pending/approved/rejected
     type: String,
-    default: 'pending',
-    required: true,
+    default: "pending",
   },
 
   availability: {
@@ -125,4 +122,4 @@ const hostSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Host', hostSchema);
+module.exports = mongoose.model("Host", hostSchema);
