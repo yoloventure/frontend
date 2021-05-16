@@ -14,9 +14,9 @@ const hostSchema = new mongoose.Schema({
     type: Number,
     default: null,
   },
-  isIndividual:{
-   type: Boolean,
-   default: false
+  isIndividual: {
+    type: Boolean,
+    default: false,
   },
   workingImage: {
     type: String,
@@ -29,6 +29,17 @@ const hostSchema = new mongoose.Schema({
   idImage: {
     type: String,
     default: null,
+  },
+  reservationStack: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "reservation" }],
+    default: [],
+  },
+  reviewStack: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "host_Review" }],
+    default: [],
+  },
+  imageCollection: {
+    type: Array,
   },
   gender: {
     type: String,
@@ -45,7 +56,7 @@ const hostSchema = new mongoose.Schema({
   },
   industry: {
     type: String,
-    default:""
+    default: "",
   },
   twitterProfile: {
     type: String,
@@ -81,7 +92,7 @@ const hostSchema = new mongoose.Schema({
   offering: {
     //what they can offer
     type: Array(Object),
-    default: null
+    default: null,
   },
   // moreOffering: {
   //   //other aspects of what they can offer
@@ -92,17 +103,17 @@ const hostSchema = new mongoose.Schema({
   //----------------page-4------------------------------------
   expertise: {
     type: Array(String),
-    default: null
+    default: null,
   },
   experiences: {
     type: Array(mongoose.Schema.Types.ObjectId),
-    default: []
+    default: [],
   },
   approval: {
     //host application approval stage
     //values: pending/approved/rejected
     type: String,
-    default: "pending"
+    default: "pending",
   },
 
   availability: {

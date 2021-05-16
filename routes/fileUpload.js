@@ -1,37 +1,64 @@
-const express = require("express"),
-  router = express.Router(),
-  multer = require("multer"),
-  inMemoryStorage = multer.memoryStorage(),
-  uploadStrategy = multer({ storage: inMemoryStorage }).single("image"),
-  getStream = require("into-stream");
-const {
-  BlobServiceClient,
-  StorageSharedKeyCredential,
-} = require("@azure/storage-blob");
-const account = process.env.ACCOUNT_NAME;
-const accountKey = process.env.ACCOUNT_KEY;
+const
+      express = require('express')
+    , router = express.Router()
 
-const containerName = "yolo";
+    , multer = require('multer')
+    , inMemoryStorage = multer.memoryStorage()
+    , uploadStrategy = multer({ storage: inMemoryStorage }).single('image')
 
-const handleError = (err, res) => {
-  res.status(500);
-  res.render("error", { error: err });
-};
+    , getStream = require('into-stream')
+;
 
-const getBlobName = (originalName) => {
-  //const identifier = Math.random().toString().replace(/0\./, ''); // remove "0." from start of string
-  const identifier = Date.now();
-  return "${identifier}-${originalName}";
-};
-/*try {
+const {BlobServiceClient} = require("@azure/storage-blob");
+const { DefaultAzureCredential } = require("@azure/identity"); // Change to "@azure/storage-blob" in your package
+const connStr = "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
+const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
+const account = "hdrive42078740948";
+const accountKey = "X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==";
+const defaultAzureCredential = new DefaultAzureCredential();
+  // const blobServiceClient = new BlobServiceClient(
+  // `https://${account}.blob.core.windows.net`,
+  // defaultAzureCredential
+  // );
+async function connectAzure() {
+  //  const containerName = `newcontainer${new Date().getTime()}`;
+  // const containerClient = blobServiceClient.getContainerClient(containerName);
+  // const createContainerResponse = await containerClient.create();
+  // console.log(`Create container ${containerName} successfully`, createContainerResponse.requestId)
+  //   let i = 1;
+  // let containers = blobServiceClient.listContainers();
+  // for await (const container of containers) {
+  //   console.log(`Container ${i++}: ${container.name}`);
+  // }
+  // const containerClient = blobServiceClient.getContainerClient('yolo');
+
+  // const content = "Hello world!";
+  // const blobName = "newblob" + new Date().getTime();
+  // const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  // const uploadBlobResponse = await blockBlobClient.upload(content, content.length);
+  // console.log(`Upload block blob ${blobName} successfully`, uploadBlobResponse.requestId);
+}
+
+// A helper method used to read a Node.js readable stream into string
+async function streamToString(readableStream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    readableStream.on("data", data => {
+      chunks.push(data.toString());
+    });
+    readableStream.on("end", () => {
+      resolve(chunks.join(""));
+    });
+    readableStream.on("error", reject);
+  });
+}
+try {
     // Use StorageSharedKeyCredential with storage account and account key
-    const sharedKeyCredential = new StorageSharedKeyCredential(account, accountKey);
-    const blobServiceClient = new BlobServiceClient(
-    `https://${account}.blob.core.windows.net`,
-    sharedKeyCredential
-    );
-
-    router.post('/', uploadStrategy, (req, res) => {
+connectAzure()
+  .catch(err => {
+    console.log(err.message);
+  });
+    router.post('/upload', uploadStrategy, (req, res) => {
         const containerClient = blobServiceClient.getContainerClient(containerName);
 
         //const content = "Hello world!";
@@ -49,6 +76,7 @@ const getBlobName = (originalName) => {
 
 } catch {
     console.log("fileUpload.js: Error while connecting to Azure (check env variables)");
-}*/
+}
+
 
 module.exports = router;

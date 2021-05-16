@@ -92,24 +92,26 @@ function editOrCreateHost(host) {
       console.log(err)
     });
 }
+
 function editHost(hostId, data) {
   var path = "/api/host/" + hostId;
-  console.log(data)
   return fetch(path, {
-    method: "put",
+    method: 'put',
     headers: new Headers({
-      "Content-Type": "application/json",
+        'Content-Type': 'application/json'
     }),
-    body:  JSON.stringify(data),
-    credentials: "include",
-  })
-    .then((response) => {
-      console.log(response.status)
-      return response.json();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    body: JSON.stringify({
+        "idImage": data.idImage,
+        "workingImage": data.workingImage,
+        "availability": data.availability,
+        
+    }),
+    credentials: "include"
+  }).then((response) => {
+    return response.json();
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
 function deleteHost(hostId) {
