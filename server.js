@@ -22,13 +22,6 @@ const Reservation = require('./models/reservation');
 // const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 
-const User = require("./models/user");
-const Experience = require("./models/experience");
-const Host = require("./models/host");
-const Company = require("./models/company");
-const Host_Review = require("./models/host_Review");
-const Reservation = require("./models/reservation");
-// const Host_Notification_Queue = require('./models/host_Notification_Queue');
 
 // API Endpoints
 const yoloChatAd = require('./routes/yoloChatAd');
