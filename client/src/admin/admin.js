@@ -6,10 +6,10 @@ import FooterPage from "../components/footer";
 import ShowAllItem from "./showAllItem";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import marisa from '../photos/marisa-headshot.jpeg'
-import monica from '../photos/monica-headshot.JPG'
-
-
+import marisa from "../photos/marisa-headshot.jpeg";
+import monica from "../photos/monica-headshot.JPG";
+import mark from "../photos/mark-headshot.png";
+import rebecca from "../photos/rebecca-headshot.png";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -131,7 +131,6 @@ class Admin extends React.Component {
         response.json().then((data) => {
           console.log(data);
         });
-
       })
       .catch((err) => {
         console.log(err);
@@ -190,9 +189,9 @@ class Admin extends React.Component {
     //  console.log(this.state.accepted);
 
     //Check if user is an admin
-    let user = this.props.auth.user
+    let user = this.props.auth.user;
     // user.then(x=>console.log(x))
-    console.log(user)
+    console.log(user);
     if (!user.isAdmin) {
       return "You don't have permission to view this page";
       //don't forget to uncomment
@@ -252,15 +251,15 @@ class Admin extends React.Component {
         {/* return <HostApplicationItem></HostApplicationItem> */}
         <br />
         <div className="footerpages">
-          <img src={marisa} style={{height:"5%"}}/>
-          <img src={monica} style={{height:"5%"}}/>
+          <img src={marisa} style={{ height: "5%" }} />
+          <img src={monica} style={{ height: "5%" }} />
+          <img src={mark} style={{ height: "5%" }} />
+          <img src={rebecca} style={{ height: "5%" }} />
 
           <FooterPage />
         </div>
       </div>
-    
     );
-
   }
 }
 

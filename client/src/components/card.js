@@ -7,7 +7,7 @@ export default class Card extends React.Component {
       <div>
         <span>
           <div className="row">
-            <img src={this.props.image} />
+            <img src={this.props.image} width="450rem" />
           </div>
           <div
             className="row  "
@@ -53,13 +53,13 @@ export default class Card extends React.Component {
               color: "black",
             }}
           >
-            <div className="col-3">
+            <div className="col-6">
               <h3 style={{ fontSize: "160%", fontWeight: "500" }}>
                 {" "}
                 ${this.props.price}{" "}
               </h3>
             </div>
-            <div className="col-3">
+            <div className="col-6">
               <h3 style={{ fontSize: "160%", fontWeight: "400" }}>
                 {" "}
                 {this.props.durationDays != undefined &&
