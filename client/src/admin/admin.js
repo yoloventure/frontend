@@ -10,6 +10,7 @@ import marisa from "../photos/marisa-headshot.jpeg";
 import monica from "../photos/monica-headshot.JPG";
 import mark from "../photos/mark-headshot.png";
 import rebecca from "../photos/rebecca-headshot.png";
+import visualDX from "../photos/visualDX.jpg";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -255,6 +256,7 @@ class Admin extends React.Component {
           <img src={monica} style={{ height: "5%" }} />
           <img src={mark} style={{ height: "5%" }} />
           <img src={rebecca} style={{ height: "5%" }} />
+          <img src={visualDX} style={{ height: "5%" }} />
 
           <FooterPage />
         </div>
