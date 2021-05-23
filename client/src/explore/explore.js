@@ -43,19 +43,18 @@ class Explore extends React.Component {
     };
   }
   /*function to assign unique URL to certain host's experiences*/
-  customLink=(expID)=>{
-    if (expID==="604e121843b96b001764168b"){
-      return  this.state.match.url +"/"+"markEdwardHarris"
-    }else  if (expID==="60572d13fbddf10017793c06"){
-      return  this.state.match.url +"/"+"rebeccaWind"
-    }else  if (expID==="60572d0ffbddf10017793c05"){
-      return  this.state.match.url +"/"+"marisaKrol"
+  customLink = (expID) => {
+    if (expID === "604e121843b96b001764168b") {
+      return this.state.match.url + "/" + "markEdwardHarris";
+    } else if (expID === "60572d13fbddf10017793c06") {
+      return this.state.match.url + "/" + "rebeccaWind";
+    } else if (expID === "60572d0ffbddf10017793c05") {
+      return this.state.match.url + "/" + "marisaKrol";
+    } else {
+      return this.state.match.url + "/" + expID;
     }
-    else{
-      return this.state.match.url +"/"+expID;
-    }
-  }
-  displayAll=()=> {
+  };
+  displayAll = () => {
     let results = [];
     let filteredData = this.state.originalData;
     let match = this.state.match;
@@ -63,43 +62,39 @@ class Explore extends React.Component {
       if (i + 1 < filteredData.length) {
         results.push(
           <div className="row ">
-              <div
-                  className="col-lg-4 offset-lg-1"
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={this.customLink(filteredData[i]._id)}>
-                    <Card
-                      image={filteredData[i].image}
-                      id={filteredData[i]._id} title={filteredData[i].host.title}
-                      city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
-                      industry={filteredData[i].host.industry}
-                      price={filteredData[i].price}
-                      durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
-
-                    />
-                  </Link>
-                  
-                </div>
-                <div
-                  className="col-lg-4  offset-lg-1 "
-                  style={{ padding: "2%" }}
-                >
-                 <Link to={this.customLink(filteredData[i+1]._id)}>      
-
-                    <Card
-                      image={filteredData[i + 1].image}
-                      id={filteredData[i+1]._id} title={filteredData[i+1].host.title}
-                      city={filteredData[i+1].host.company.city} state={filteredData[i+1].host.company.state}
-                      industry={filteredData[i + 1].host.industry}
-                      price={filteredData[i + 1].price}
-                      durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
-
-                    />
-                    </Link>
-
-                </div>
+            <div className="col-lg-4 offset-lg-1" style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i]._id)}>
+                <Card
+                  image={filteredData[i].image}
+                  id={filteredData[i]._id}
+                  title={filteredData[i].host.title}
+                  remote={filteredData[i].remote}
+                  city={filteredData[i].host.company.city}
+                  state={filteredData[i].host.company.state}
+                  industry={filteredData[i].host.industry}
+                  price={filteredData[i].price}
+                  durationDays={filteredData[i].durationDays}
+                  durationHours={filteredData[i].durationHours}
+                />
+              </Link>
+            </div>
+            <div className="col-lg-4  offset-lg-1 " style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i + 1]._id)}>
+                <Card
+                  image={filteredData[i + 1].image}
+                  id={filteredData[i + 1]._id}
+                  title={filteredData[i + 1].host.title}
+                  remote={filteredData[i + 1].remote}
+                  city={filteredData[i + 1].host.company.city}
+                  state={filteredData[i + 1].host.company.state}
+                  industry={filteredData[i + 1].host.industry}
+                  price={filteredData[i + 1].price}
+                  durationDays={filteredData[i + 1].durationDays}
+                  durationHours={filteredData[i + 1].durationHours}
+                />
+              </Link>
+            </div>
           </div>
-
         );
       } else {
         results.push(
@@ -109,11 +104,15 @@ class Explore extends React.Component {
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i]._id} title={filteredData[i].host.title}
-                    city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                    id={filteredData[i]._id}
+                    title={filteredData[i].host.title}
+                    remote={filteredData[i].remote}
+                    city={filteredData[i].host.company.city}
+                    state={filteredData[i].host.company.state}
                     industry={filteredData[i].host.industry}
                     price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                    durationDays={filteredData[i].durationDays}
+                    durationHours={filteredData[i].durationHours}
                   />
                 </div>
               </div>
@@ -125,9 +124,6 @@ class Explore extends React.Component {
 
     this.setState({ cardArray: results, currentDataJSON: filteredData });
   };
-
-
-  
 
   componentDidMount() {
     fetch("api/experience/", {
@@ -143,13 +139,14 @@ class Explore extends React.Component {
             element.availableTill =
               element.availableRanges[element.availableRanges.length - 1];
           });
-          console.log(data)
-          this.setState({
-            originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
-            currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
+          console.log(data);
+          this.setState(
+            {
+              originalData: JSON.parse(JSON.stringify(data)), //store in JSON form the current filtered data to display
+              currentDataJSON: JSON.parse(JSON.stringify(data)), //store in HTML form the current filtered data that is being displayed
             },
             /**temporarily added to initialize card array with all experiences, while we have a small number of experiences */
-            ()=>this.displayAll()
+            () => this.displayAll()
           );
         });
       })
@@ -160,8 +157,6 @@ class Explore extends React.Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
-
-  
 
   handleChangeStartDate = (date) => {
     this.setState(
@@ -208,7 +203,10 @@ class Explore extends React.Component {
         this.state.durationDaysFilters.forEach((durationDays) => {
           if (durationDays > 2 && dataElement.durationDays > 2) {
             bool = true;
-          } else if (dataElement.durationDays == durationDays || (dataElement.durationDays==0 &&durationDays===1) ) {
+          } else if (
+            dataElement.durationDays == durationDays ||
+            (dataElement.durationDays == 0 && durationDays === 1)
+          ) {
             bool = true;
           }
         });
@@ -247,42 +245,39 @@ class Explore extends React.Component {
       if (i + 1 < filteredData.length) {
         filteredDataHTML.push(
           <div className="row ">
-              <div
-                  className="col-lg-4 offset-lg-1"
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={this.customLink(filteredData[i]._id)}>
-                    <Card
-                      image={filteredData[i].image}
-                      id={filteredData[i]._id} title={filteredData[i].host.title}
-                      city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
-                      industry={filteredData[i].host.industry}
-                      price={filteredData[i].price}
-                      durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
-                    />
-                  </Link>
-                  
-                </div>
-                <div
-                  className="col-lg-4  offset-lg-1 "
-                  style={{ padding: "2%" }}
-                >
-                 <Link to={this.customLink(filteredData[i+1]._id)}>      
-
-                    <Card
-                      image={filteredData[i + 1].image}
-                      id={filteredData[i+1]._id} title={filteredData[i+1].host.title}
-                      
-                      city={filteredData[i+1].host.company.city} state={filteredData[i+1].host.company.state}
-                      industry={filteredData[i + 1].host.industry}
-                      price={filteredData[i + 1].price}
-                      durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
-                    />
-                    </Link>
-
-                </div>
+            <div className="col-lg-4 offset-lg-1" style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i]._id)}>
+                <Card
+                  image={filteredData[i].image}
+                  id={filteredData[i]._id}
+                  title={filteredData[i].host.title}
+                  remote={filteredData[i].remote}
+                  city={filteredData[i].host.company.city}
+                  state={filteredData[i].host.company.state}
+                  industry={filteredData[i].host.industry}
+                  price={filteredData[i].price}
+                  durationDays={filteredData[i].durationDays}
+                  durationHours={filteredData[i].durationHours}
+                />
+              </Link>
+            </div>
+            <div className="col-lg-4  offset-lg-1 " style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i + 1]._id)}>
+                <Card
+                  image={filteredData[i + 1].image}
+                  id={filteredData[i + 1]._id}
+                  title={filteredData[i + 1].host.title}
+                  remote={filteredData[i + 1].remote}
+                  city={filteredData[i + 1].host.company.city}
+                  state={filteredData[i + 1].host.company.state}
+                  industry={filteredData[i + 1].host.industry}
+                  price={filteredData[i + 1].price}
+                  durationDays={filteredData[i + 1].durationDays}
+                  durationHours={filteredData[i + 1].durationHours}
+                />
+              </Link>
+            </div>
           </div>
-
         );
       } else {
         filteredDataHTML.push(
@@ -292,11 +287,15 @@ class Explore extends React.Component {
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i]._id} title={filteredData[i].host.title}
-                    city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                    id={filteredData[i]._id}
+                    title={filteredData[i].host.title}
+                    remote={filteredData[i].remote}
+                    city={filteredData[i].host.company.city}
+                    state={filteredData[i].host.company.state}
                     industry={filteredData[i].host.industry}
                     price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                    durationDays={filteredData[i].durationDays}
+                    durationHours={filteredData[i].durationHours}
                   />
                 </div>
               </div>
@@ -331,13 +330,14 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(e.target.innerHTML);
     }
-    console.log(tempArr)
+    console.log(tempArr);
     this.setState({ industryFilters: tempArr }, () => {
       this.refilter();
     });
   };
 
-  sortByKeyL(array, key) { //helper function for refilter method
+  sortByKeyL(array, key) {
+    //helper function for refilter method
     return array.sort(function (a, b) {
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
@@ -345,7 +345,8 @@ class Explore extends React.Component {
     });
   }
 
-  sortLow = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+  sortLow = () => {
+    //called by onclick function of sort button. Sorts current data without the need to call refilter
     let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyL(filteredData, "price");
@@ -356,39 +357,38 @@ class Explore extends React.Component {
       if (i + 1 < filteredData.length) {
         filteredDataHTML.push(
           <div className="row ">
-                <div
-                  className="col-lg-4 offset-lg-1"
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={this.customLink(filteredData[i]._id)}>
-                    <Card
-                      image={filteredData[i].image}
-                      id={filteredData[i]._id} title={filteredData[i].host.title}
-                      city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
-                      industry={filteredData[i].host.industry}
-                      price={filteredData[i].price}
-                      durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
-                    />
-                  </Link>
-                  
-                </div>
-                <div
-                  className="col-lg-4  offset-lg-1 "
-                  style={{ padding: "2%" }}
-                >
-                 <Link to={this.customLink(filteredData[i+1]._id)}>      
-
-                    <Card
-                      image={filteredData[i + 1].image}
-                      id={filteredData[i+1]._id} title={filteredData[i+1].host.title}
-                      city={filteredData[i+1].host.company.city} state={filteredData[i+1].host.company.state}
-                      industry={filteredData[i + 1].host.industry}
-                      price={filteredData[i + 1].price}
-                      durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
-                    />
-                    </Link>
-
-                </div>
+            <div className="col-lg-4 offset-lg-1" style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i]._id)}>
+                <Card
+                  image={filteredData[i].image}
+                  id={filteredData[i]._id}
+                  title={filteredData[i].host.title}
+                  remote={filteredData[i].remote}
+                  city={filteredData[i].host.company.city}
+                  state={filteredData[i].host.company.state}
+                  industry={filteredData[i].host.industry}
+                  price={filteredData[i].price}
+                  durationDays={filteredData[i].durationDays}
+                  durationHours={filteredData[i].durationHours}
+                />
+              </Link>
+            </div>
+            <div className="col-lg-4  offset-lg-1 " style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i + 1]._id)}>
+                <Card
+                  image={filteredData[i + 1].image}
+                  id={filteredData[i + 1]._id}
+                  title={filteredData[i + 1].host.title}
+                  remote={filteredData[i + 1].remote}
+                  city={filteredData[i + 1].host.company.city}
+                  state={filteredData[i + 1].host.company.state}
+                  industry={filteredData[i + 1].host.industry}
+                  price={filteredData[i + 1].price}
+                  durationDays={filteredData[i + 1].durationDays}
+                  durationHours={filteredData[i + 1].durationHours}
+                />
+              </Link>
+            </div>
           </div>
         );
       } else {
@@ -399,11 +399,15 @@ class Explore extends React.Component {
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i]._id} title={filteredData[i].host.title}
-                    city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                    id={filteredData[i]._id}
+                    title={filteredData[i].host.title}
+                    remote={filteredData[i].remote}
+                    city={filteredData[i].host.company.city}
+                    state={filteredData[i].host.company.state}
                     industry={filteredData[i].host.industry}
                     price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                    durationDays={filteredData[i].durationDays}
+                    durationHours={filteredData[i].durationHours}
                   />
                 </div>
               </div>
@@ -420,7 +424,8 @@ class Explore extends React.Component {
     });
   };
 
-  sortByKeyH(array, key) { //helper function for refilter method
+  sortByKeyH(array, key) {
+    //helper function for refilter method
     return array.sort(function (a, b) {
       var x = parseInt(a[key].substring(1));
       var y = parseInt(b[key].substring(1));
@@ -428,7 +433,8 @@ class Explore extends React.Component {
     });
   }
 
-  sortHigh = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+  sortHigh = () => {
+    //called by onclick function of sort button. Sorts current data without the need to call refilter
     let filteredData = this.state.currentDataJSON;
 
     this.sortByKeyH(filteredData, "price");
@@ -439,39 +445,38 @@ class Explore extends React.Component {
       if (i + 1 < filteredData.length) {
         filteredDataHTML.push(
           <div className="row ">
-              <div
-                  className="col-lg-4 offset-lg-1"
-                  style={{ padding: "2%" }}
-                >
-                  <Link to={this.customLink(filteredData[i]._id)}>
-                    <Card
-                      image={filteredData[i].image}
-                      id={filteredData[i]._id} title={filteredData[i].host.title}
-                      city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
-                      industry={filteredData[i].host.industry}
-                      price={filteredData[i].price}
-                      durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
-                    />
-                  </Link>
-                  
-                </div>
-                <div
-                  className="col-lg-4  offset-lg-1 "
-                  style={{ padding: "2%" }}
-                >
-                 <Link to={this.customLink(filteredData[i+1]._id)}>      
-
-                    <Card
-                      image={filteredData[i + 1].image}
-                      id={filteredData[i+1]._id} title={filteredData[i+1].host.title}
-                      city={filteredData[i+1].host.company.city} state={filteredData[i+1].host.company.state}
-                      industry={filteredData[i + 1].host.industry}
-                      price={filteredData[i + 1].price}
-                      durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
-                    />
-                    </Link>
-
-                </div>
+            <div className="col-lg-4 offset-lg-1" style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i]._id)}>
+                <Card
+                  image={filteredData[i].image}
+                  id={filteredData[i]._id}
+                  title={filteredData[i].host.title}
+                  remote={filteredData[i].remote}
+                  city={filteredData[i].host.company.city}
+                  state={filteredData[i].host.company.state}
+                  industry={filteredData[i].host.industry}
+                  price={filteredData[i].price}
+                  durationDays={filteredData[i].durationDays}
+                  durationHours={filteredData[i].durationHours}
+                />
+              </Link>
+            </div>
+            <div className="col-lg-4  offset-lg-1 " style={{ padding: "2%" }}>
+              <Link to={this.customLink(filteredData[i + 1]._id)}>
+                <Card
+                  image={filteredData[i + 1].image}
+                  id={filteredData[i + 1]._id}
+                  title={filteredData[i + 1].host.title}
+                  remote={filteredData[i + 1].remote}
+                  city={filteredData[i + 1].host.company.city}
+                  state={filteredData[i + 1].host.company.state}
+                  industry={filteredData[i + 1].host.industry}
+                  price={filteredData[i + 1].price}
+                  durationDays={filteredData[i + 1].durationDays}
+                  durationHours={filteredData[i + 1].durationHours}
+                />
+              </Link>
+            </div>
           </div>
         );
       } else {
@@ -482,11 +487,15 @@ class Explore extends React.Component {
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i]._id} title={filteredData[i].host.title}
-                    city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                    id={filteredData[i]._id}
+                    title={filteredData[i].host.title}
+                    remote={filteredData[i].remote}
+                    city={filteredData[i].host.company.city}
+                    state={filteredData[i].host.company.state}
                     industry={filteredData[i].host.industry}
                     price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                    durationDays={filteredData[i].durationDays}
+                    durationHours={filteredData[i].durationHours}
                   />
                 </div>
               </div>
@@ -503,7 +512,8 @@ class Explore extends React.Component {
     });
   };
 
-  sortUndo = () => { //called by onclick function of sort button. Sorts current data without the need to call refilter
+  sortUndo = () => {
+    //called by onclick function of sort button. Sorts current data without the need to call refilter
     let filteredData = this.state.currentDataJSON;
 
     let dataToUse = this.state.currentDataJSON;
@@ -515,31 +525,33 @@ class Explore extends React.Component {
         filteredDataHTML.push(
           <Link to={this.customLink(filteredData[i]._id)}>
             <div className="row ">
-              <div
-                className="col-lg-4 offset-lg-1"
-                style={{ padding: "2%" }}
-              >
+              <div className="col-lg-4 offset-lg-1" style={{ padding: "2%" }}>
                 <Card
                   image={filteredData[i].image}
-                  id={filteredData[i]._id} title={filteredData[i].host.title}
-                  city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                  id={filteredData[i]._id}
+                  title={filteredData[i].host.title}
+                  remote={filteredData[i].remote}
+                  city={filteredData[i].host.company.city}
+                  state={filteredData[i].host.company.state}
                   industry={filteredData[i].host.industry}
                   price={filteredData[i].price}
-                  durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                  durationDays={filteredData[i].durationDays}
+                  durationHours={filteredData[i].durationHours}
                 />
               </div>
 
-              <div
-                className="col-lg-4  offset-lg-1 "
-                style={{ padding: "2%" }}
-              >
+              <div className="col-lg-4  offset-lg-1 " style={{ padding: "2%" }}>
                 <Card
                   image={filteredData[i + 1].image}
-                  id={filteredData[i+1]._id} title={filteredData[i+1].host.title}
-                  city={filteredData[i+1].host.company.city} state={filteredData[i+1].host.company.state}
+                  id={filteredData[i + 1]._id}
+                  title={filteredData[i + 1].host.title}
+                  remote={filteredData[i + 1].remote}
+                  city={filteredData[i + 1].host.company.city}
+                  state={filteredData[i + 1].host.company.state}
                   industry={filteredData[i + 1].host.industry}
                   price={filteredData[i + 1].price}
-                  durationDays={filteredData[i+1].durationDays} durationHours={filteredData[i+1].durationHours}
+                  durationDays={filteredData[i + 1].durationDays}
+                  durationHours={filteredData[i + 1].durationHours}
                 />
               </div>
             </div>
@@ -553,11 +565,15 @@ class Explore extends React.Component {
                 <div className="">
                   <Card
                     image={filteredData[i].image}
-                    id={filteredData[i]._id} title={filteredData[i].host.title}
-                    city={filteredData[i].host.company.city} state={filteredData[i].host.company.state}
+                    id={filteredData[i]._id}
+                    title={filteredData[i].host.title}
+                    remote={filteredData[i].remote}
+                    city={filteredData[i].host.company.city}
+                    state={filteredData[i].host.company.state}
                     industry={filteredData[i].host.industry}
                     price={filteredData[i].price}
-                    durationDays={filteredData[i].durationDays} durationHours={filteredData[i].durationHours}
+                    durationDays={filteredData[i].durationDays}
+                    durationHours={filteredData[i].durationHours}
                   />
                 </div>
               </div>
@@ -574,8 +590,8 @@ class Explore extends React.Component {
     });
   };
 
-
-  handleInputChange = (event) => { //for searchbar
+  handleInputChange = (event) => {
+    //for searchbar
     const { name, value } = event.target;
     this.setState({
       [name]: value,
@@ -613,13 +629,12 @@ class Explore extends React.Component {
     if (found === false) {
       tempArr.push(parseInt(e.target.innerHTML));
     }
-    console.log(tempArr)
+    console.log(tempArr);
     this.setState({ durationDaysFilters: tempArr }, () => {
       this.refilter();
     });
   };
 
-  
   render() {
     let results = [];
     if (this.state.cardArray.length === 0) {
@@ -950,7 +965,9 @@ class Explore extends React.Component {
               </div>
             </div>
 
-            <div className="pt-5" style={{paddingBottom:'6rem'}}>{results}</div>
+            <div className="pt-5" style={{ paddingBottom: "6rem" }}>
+              {results}
+            </div>
 
             <Footer />
           </div>

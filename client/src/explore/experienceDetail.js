@@ -269,6 +269,18 @@ export default class ExperienceDetail extends React.Component {
               })}
             </div>
 
+            <div className="row offset-1 pt-2 pb-5">
+              <h3> Interim Schedule </h3>
+            </div>
+
+            <div className="row offset-1 pt-2 pb-5">
+              {this.state.experience.agenda.map((agendaItem) => (
+                <p>
+                  {agendaItem.time} : {agendaItem.activity}
+                </p>
+              ))}
+            </div>
+
             <div className="container p-5 quote" style={{ height: "100%" }}>
               <blockquote>{this.state.experience.host.description}</blockquote>
             </div>
