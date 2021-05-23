@@ -275,11 +275,13 @@ export default class ExperienceDetail extends React.Component {
 
             <div className="row offset-1 pt-2 pb-5">
               {this.state.experience.agenda.map((agendaItem) => (
+
                 <div className="row">
                   <p>
                     {agendaItem.time} : {agendaItem.activity}
                   </p>
                 </div>
+
               ))}
             </div>
 
