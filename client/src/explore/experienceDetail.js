@@ -269,17 +269,20 @@ export default class ExperienceDetail extends React.Component {
               })}
             </div>
 
-            <div className="row offset-1 pt-2 pb-5">
+            <div className="row offset-1 pt-2">
               <h3> Interim Schedule </h3>
             </div>
 
-            <div className="row offset-1 pt-2 pb-5">
+            <div className="row offset-1 pt-1 pb-5">
               {this.state.experience.agenda.map((agendaItem) => (
-                <div className="row">
-                  <p>
-                    {agendaItem.time} : {agendaItem.activity}
-                  </p>
-                </div>
+                <React.Fragment>
+                  <div className="col-1">
+                    <p>{agendaItem.time}</p>
+                  </div>
+                  <div className="col-11">
+                    <p>{agendaItem.activity}</p>
+                  </div>
+                </React.Fragment>
               ))}
             </div>
 
