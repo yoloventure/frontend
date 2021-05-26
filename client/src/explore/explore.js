@@ -17,7 +17,7 @@ import mapImage from "../photos/map.png";
 import searchArrow from "../photos/searchArrow.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ExperienceDetail from "../explore/experienceDetail";
+import ExperienceDetail from "./experienceDetail";
 import { Button } from "reactstrap";
 import Fuse from "fuse.js";
 
@@ -50,6 +50,8 @@ class Explore extends React.Component {
       return this.state.match.url + "/" + "rebeccaWind";
     } else if (expID === "60572d0ffbddf10017793c05") {
       return this.state.match.url + "/" + "marisaKrol";
+    } else if (expID === "60a111ea609db199fbb9a0f3") {
+      return this.state.match.url + "/" + "visualDX";
     } else {
       return this.state.match.url + "/" + expID;
     }

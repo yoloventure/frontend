@@ -25,7 +25,7 @@ export default class ExperienceDetail extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     try {
       let expId = this.props.customLinkExpID
         ? this.props.customLinkExpID
@@ -243,13 +243,31 @@ export default class ExperienceDetail extends React.Component {
                   </div>
 
                   <div className="d-flex pt-4 ">
-                    <Link
-                      id="btn-reserve"
-                      className="btn"
-                      to={"/reserve/" + this.props.match.params.id}
-                    >
-                      RESERVE NOW
-                    </Link>
+                    {
+                      //custom registeration google form for Visual DX
+                      this.props.customLinkExpID ===
+                      "60a111ea609db199fbb9a0f3" ? (
+                        <a
+                          className="btn"
+                          href="//docs.google.com/forms/u/1/d/e/1FAIpQLSeaREkIS5gY_zNx3xV0yMB16ld5e-kE-sj_IncG7xru6bY6xA/viewform?usp=send_form"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : (
+                        <Link
+                          id="btn-reserve"
+                          className="btn"
+                          to={
+                            "/reserve/" + this.props.customLinkExpID
+                              ? this.props.customLinkExpID
+                              : this.props.match.params.id
+                          }
+                        >
+                          RESERVE NOW
+                        </Link>
+                      )
+                    }
+
                     <div style={{ paddingLeft: "1rem" }}>
                       <button id="btn-availability" onclick="#">
                         Availability

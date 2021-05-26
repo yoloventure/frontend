@@ -72,6 +72,16 @@ class App extends React.Component {
                     />
                   )}
                 />
+                <Route
+                  path="/explore/visualDX"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60a111ea609db199fbb9a0f3"
+                    />
+                  )}
+                />
                 {/*End of custom urls forcertain host experiences*/}
 
                 <Route path="/explore/:id" exact component={ExperienceDetail} />
