@@ -60,7 +60,11 @@ export default class ExperienceDetail extends React.Component {
       return (
         <div>
           <Helmet>
-            <title>Shadow an experienced {host.title} | YoloShadow</title>
+            <title>
+              {" "}
+              {this.state.experience.title ? this.state.experience.title : ""} |
+              YoloShadow
+            </title>
           </Helmet>
 
           <div className="nav pb-5">
@@ -182,7 +186,9 @@ export default class ExperienceDetail extends React.Component {
                         textAlign: "left",
                       }}
                     >
-                      Shadow an experienced {host.title}
+                      {this.state.experience.title
+                        ? this.state.experience.title
+                        : ""}
                     </h1>
                     {<img src={Star} style={{ height: "2rem" }} />}
                   </div>

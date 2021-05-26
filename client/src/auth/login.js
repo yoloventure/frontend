@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import PropTypes from "prop-types";
-import { login } from "../actions/authActions";
+import { login, resetAttempt } from "../actions/authActions";
 
 class Login extends Component {
   constructor(props) {
@@ -55,12 +55,14 @@ class Login extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.submitted) {
-      if (nextProps.auth.isAuthenticated) {
-        return { errorMessage: "Success", redirect: true };
-      } else {
-        console.log("authenticated fail");
-
-        return { errorMessage: "Username or Password was incorrect." };
+      if (nextProps.auth.attemptDone) {
+        if (nextProps.auth.isAuthenticated) {
+          return { errorMessage: "", redirect: true };
+        } else {
+          console.log("authenticated fail");
+          return { errorMessage: "Username or Password was incorrect." };
+        }
+        this.props.resetAttempt();
       }
     }
   }
