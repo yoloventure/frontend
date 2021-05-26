@@ -7,8 +7,8 @@ import Login from "./auth/login";
 import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./auth/register";
-import HostRegister from "./registration/hostRegister";
-import HostRegister_Round2 from "./registration/hostRegister_Round2";
+import HostRegister from "./hostRegistration/hostRegister";
+import HostRegister_Round2 from "./hostRegistration/hostRegister_Round2";
 import FeatureStory from "./story/featureStory";
 import About from "./about/about";
 import HostGuidelines from "./hostExperience/hostGuidelines";
@@ -42,18 +42,49 @@ class App extends React.Component {
               <Switch>
                 <Route path="/explore" exact component={Explore} />
                 {/*custom urls forcertain host experiences*/}
-                <Route path="/explore/markEdwardHarris" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="604e121843b96b001764168b"/>} 
+                <Route
+                  path="/explore/markEdwardHarris"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="604e121843b96b001764168b"
+                    />
+                  )}
                 />
-                 <Route path="/explore/rebeccaWind" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d13fbddf10017793c06"/>} 
+                <Route
+                  path="/explore/rebeccaWind"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60572d13fbddf10017793c06"
+                    />
+                  )}
                 />
-                 <Route path="/explore/marisaKrol" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d0ffbddf10017793c05"/>} 
+                <Route
+                  path="/explore/marisaKrol"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60572d0ffbddf10017793c05"
+                    />
+                  )}
+                />
+                <Route
+                  path="/explore/visualDX"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60a111ea609db199fbb9a0f3"
+                    />
+                  )}
                 />
                 {/*End of custom urls forcertain host experiences*/}
-                
-                 <Route path="/explore/:id" exact component={ExperienceDetail} />
+
+                <Route path="/explore/:id" exact component={ExperienceDetail} />
 
                 <Route
                   path="/reserve/:id"
