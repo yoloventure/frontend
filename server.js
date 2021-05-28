@@ -7,19 +7,12 @@ const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 require("./config/passport");
-
+const cors = require("cors");
 const passport = require("passport");
 
 // Models
 const YoloChatAd = require("./models/yoloChatAd");
-const User = require("./models/user");
-const Experience = require("./models/experience");
-const Host = require("./models/host");
-const Company = require("./models/company");
-const reviewForHost = require("./models/reviewForHost");
-const Reservation = require("./models/reservation");
 
-const Host_Notification_Queue = require("./models/host_Notification_Queue");
 
 // API Endpoints
 const yoloChatAd = require("./routes/yoloChatAd");
@@ -34,12 +27,12 @@ const company = require("./routes/company");
 const addressValidator = require("./routes/addressValidator");
 const fileUpload = require("./routes/fileUpload");
 const reservation = require("./routes/reservation");
+// const host_Notification_Queue = require ('./routes/host_Notification_Queue')
 
 const app = express();
 app.disable("x-powered-by"); //Hide Powered-By
 
 var multer = require("multer");
-var cors = require("cors");
 
 //dotenv vonfig
 dotenv.config({
@@ -153,7 +146,7 @@ mongoose
 // exp1.save()
 //
 //
-// const review1=new reviewsForHost({
+// const review1=new Host_Review({
 //   author:'5ef660a01c7b54239095e6c5',
 //   host:'5f14aba6e1d046aa0894f3c3',
 // rating:4,
@@ -169,9 +162,19 @@ app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, "client/dist")));
 
 app.use(cors());
-
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin,X-Requested-With,Content-Type,Accept,content-type,application/json"
+  );
+  next();
+});
 // Use API Routes
 app.use("/api/yoloChatAd", yoloChatAd);
+// app.use('/api/host_Notification_Queue',host_Notification_Queue);
 app.use("/api/user", user);
 app.use("/api/email", email);
 app.use("/api/emailList", emailList);
@@ -183,6 +186,7 @@ app.use("/api/review", review);
 app.use("/api/addressValidator", addressValidator);
 app.use("/api/fileUpload", fileUpload);
 app.use("/api/reservation", reservation);
+app.use("api/uploaded_images", express.static("upload_images"));
 
 // Error handling middleware
 app.use(function (err, req, res, next) {
