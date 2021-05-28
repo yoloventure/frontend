@@ -7,7 +7,7 @@ export default class CardExpDetail extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div className="col-4">
+      <div className="col-4"  style={{"fontFamily":"Mplus 1p","fontSize":"100%","fontStyle":"normal","fontWeight":"500","lineHeight":"24px"}}>
         <p
               className="host-reg-ellipse"
               style={{ height: "4rem", width: "4rem", background: "transparent" }}

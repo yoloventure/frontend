@@ -8,7 +8,7 @@ import moment from "moment";
 import { Button } from "reactstrap";
 
 import hostRequests from "./hostRequests.json";
-// import hostReviews from "./hostReviews.json";
+import hostReviews from "./hostReviews.json";
 import reviewShadowerNotifications from "./reviewShadowerNotifications.json";
 
 import "react-calendar/dist/Calendar.css";
@@ -101,9 +101,120 @@ class shadowerDashboard extends React.Component {
       );
     });
 
-    //setup review notifications
+    // //setup review notifications
+    // let tempArray2 = [];
+    // reviewShadowerNotifications.forEach((notification) => {
+    //   tempArray2.push(
+    //     <div
+    //       className="row mt-3"
+    //       style={{
+    //         boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.08)",
+    //         borderRadius: "4px",
+    //       }}
+    //     >
+    //       <div className="col-6 offset-1">
+    //         <h3
+    //           style={{
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "600",
+    //             fontSize: "80%",
+    //             lineHeight: "22px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           {" "}
+    //           {notification.fname} wrote me a review{" "}
+    //         </h3>
+    //       </div>
+    //       <div className="col-4 offset-1">
+    //         <p> {notification.reviewDate}</p>
+    //       </div>
+    //       <div className="col-4 offset-1">
+    //         <h5
+    //           style={{
+    //             color: "#707683",
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "400",
+    //             fontSize: "80%",
+    //             lineHeight: "10px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           Shadowing Dates:{" "}
+    //         </h5>
+    //       </div>
+    //       <div className="col-6 ">
+    //         <h5
+    //           style={{
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "400",
+    //             fontSize: "80%",
+    //             lineHeight: "10px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           {" "}
+    //           {notification.shadowStartDate} - {notification.shadowEndDate}{" "}
+    //         </h5>
+    //       </div>
+
+    //       <div className="col-11 offset-1">
+    //         <ShowMoreText
+    //           /* Default options */
+    //           lines={1}
+    //           more="+more"
+    //           less="-less"
+    //           anchorClass="moreClass"
+    //           onClick={this.executeOnClick}
+    //           expanded={false}
+    //           width={280}
+    //           color="black"
+    //         >
+    //           <p>{notification.reviewContent}</p>
+    //         </ShowMoreText>
+    //       </div>
+    //       <div className="col-1 offset-1">
+    //         <img
+    //           src="http://via.placeholder.com/30x30"
+    //           style={{ borderRadius: "50%" }}
+    //         />
+    //       </div>
+    //       <div className="col-3">
+    //         <p> {notification.fname}</p>
+    //       </div>
+    //       <div className="col-3 offset-4">
+    //         <button
+    //           style={{
+    //             color: "#C4C4C4",
+    //             borderRadius: "4px",
+    //             border: "1px solid #C4C4C4",
+    //           }}
+    //         >
+    //           Completed
+    //         </button>
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
     let tempArray2 = [];
-    reviewShadowerNotifications.forEach((notification) => {
+    fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3' ,{
+      // fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+        method: "get",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      })
+        .then((response) => {
+          response.json().then((reviewsData) => {
+            console.log(reviewsData)
+        
+ 
+            
+      reviewsData.forEach((review) => {
       tempArray2.push(
         <div
           className="row mt-3"
@@ -124,11 +235,12 @@ class shadowerDashboard extends React.Component {
               }}
             >
               {" "}
-              {notification.fname} wrote me a review{" "}
+              {/* {notification.fname} wrote me a review{" "} */}
+               wrote me a review{" "}
             </h3>
           </div>
           <div className="col-4 offset-1">
-            <p> {notification.reviewDate}</p>
+            <p> {review.publishDate}</p>
           </div>
           <div className="col-4 offset-1">
             <h5
@@ -157,7 +269,7 @@ class shadowerDashboard extends React.Component {
               }}
             >
               {" "}
-              {notification.shadowStartDate} - {notification.shadowEndDate}{" "}
+              {/* {notification.shadowStartDate} - {notification.shadowEndDate}{" "} */}
             </h5>
           </div>
 
@@ -173,7 +285,7 @@ class shadowerDashboard extends React.Component {
               width={280}
               color="black"
             >
-              <p>{notification.reviewContent}</p>
+              <p>{review.body}</p>
             </ShowMoreText>
           </div>
           <div className="col-1 offset-1">
@@ -183,7 +295,7 @@ class shadowerDashboard extends React.Component {
             />
           </div>
           <div className="col-3">
-            <p> {notification.fname}</p>
+            {/* <p> {notification.fname}</p> */}
           </div>
           <div className="col-3 offset-4">
             <button
@@ -199,51 +311,8 @@ class shadowerDashboard extends React.Component {
         </div>
       );
     });
-
-    
-    // let reviewsForHost = [];
-    // reviewsForHost.forEach((review) => {
-    //   tempArray4.push(
-    //     <div className="row m-1 mt-1">
-    //       <div className="col-6 offset-1">
-    //         <h3
-    //           style={{
-    //             fontFamily: "Poppins",
-    //             fontStyle: "normal",
-    //             color: "#4C5862",
-    //             fontWeight: "500",
-    //             fontSize: "13px",
-    //             lineHeight: "19.5px",
-    //             letterSpacing: "0.01em",
-    //           }}
-    //         >
-    //           {" "}
-    //           {review.timeStamp}
-    //         </h3>
-    //       </div>
-          
-    //       <div className="col-11 offset-1">
-    //         <ShowMoreText
-    //           /* Default options */
-    //           lines={1}
-    //           more="+more"
-    //           less="-less"
-    //           anchorClass="moreClass"
-    //           onClick={this.executeOnClick}
-    //           expanded={false}
-    //           width={380}
-    //           color="black"
-    //         >
-    //           <p>{review.reviewContent}</p>
-    //         </ShowMoreText>
-    //       </div>
-    //     </div>
-    //   );
-    // });
-
-
-
-  
+  })
+})
 
 
     let currentTemp = [];
@@ -298,9 +367,7 @@ class shadowerDashboard extends React.Component {
 
     let tempArray3 = [];
     let currentTemp3 = [];
-
-      fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
-      
+    fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -308,31 +375,21 @@ class shadowerDashboard extends React.Component {
     })
       .then((response) => {
         response.json().then((reviewsData) => {
-          
           //setup my myReviews
-         
-          console.log(reviewsData)
           reviewsData.forEach((review) => {
-            let todayDate = new Date(review.publishDate);
-            let todayDateArr = todayDate.toDateString().split(" ");
             tempArray3.push(
               <React.Fragment>
                 <div className="col-11 ml-2 mb-2">
-                <h3
-                style={{
-                  fontFamily: "Poppins",
-                  fontStyle: "normal",
-                  fontWeight: "600",
-                  fontSize: "13px",
-                  lineHeight: "19px",
-                  letterSpacing: "0.01em"
-                }}
-              >
-                     <div>{todayDateArr[1]} {' '}
-                 {todayDateArr[3]}</div>
-                    {/* <div>{review.publishDate}</div> */}
-                    </h3>
-                  
+                  <p
+                    style={{
+                      fontSize: "90%",
+                      lineHeight: "10px",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {" "}
+                    {review.publishDate}{" "}
+                  </p>
                   <ShowMoreText
                     /* Default options */
                     lines={1}
@@ -365,12 +422,8 @@ class shadowerDashboard extends React.Component {
 
     console.log(tempArray3);
     console.log(currentTemp3);
-    console.log(this.props.auth)
-
-
 
   //   fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
-  //     // fetch("/api/experience/host/${this.props.auth.host.hostId}", {
   //     method: "get",
   //     headers: new Headers({
   //       "Content-Type": "application/json",
@@ -409,7 +462,9 @@ class shadowerDashboard extends React.Component {
   //     .catch((err) => {
   //       console.log(err);
   //     });
+  // }
 
+  
   //restore the historical reviews 
   fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
       
@@ -608,8 +663,6 @@ class shadowerDashboard extends React.Component {
   };
   confirmRanges = () => {
     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
-    
-   
   };
 
   changeCards = () => {
@@ -804,16 +857,12 @@ class shadowerDashboard extends React.Component {
     this.setState({ notificationFilters: temp });
   };
 
-
-
   callbackFunction = (childData) => {
     this.setState({
       rating: childData[0],
       review: childData[1],
     render: childData[2]})
 }
-
-
 
 
   render() {
@@ -859,11 +908,11 @@ class shadowerDashboard extends React.Component {
       borderRadius: "4px",
       height: window.innerHeight / 2.2 + "px",
     };
-  
 
     return (
       <div className="bg-light" style={styleViewPort}>
-        <Navbar className="mb-5" textColor={"black"} />  
+        <Navbar className="mb-5" textColor={"black"} />
+
         <div className="pt-5 mt-5 mr-5 bg-light">
           <div className="row pt-4">
             <div className="col-5  offset-1 mt-2">
@@ -889,8 +938,6 @@ class shadowerDashboard extends React.Component {
                     {" "}
                     My Shadowing Progress
                   </h5>
-             
-       
                 </div>
                 <div style={{ height: "150px", marginLeft: "4%" }}>
                   <p
@@ -1130,24 +1177,6 @@ class shadowerDashboard extends React.Component {
                 // postReviewsToHost = {this.postReviewsToHost}
                 > 
                 </Demo2>
-
-{/* 
-                <div>
-                {this.state.render}
-                {this.state.review}
-                {this.state.rating}
-                
-                
-                
-                
-              
-              
-              
-              {console.log(reviewsForHost)}
-              </div> */}
-         
-            
-            
 
                 <div
                   className="col-12 mt-4"
@@ -1407,58 +1436,11 @@ class shadowerDashboard extends React.Component {
                         className="text-center d-flex justify-content-center"
                         style={{ color: "white" }}
                       >
-                        4.7
+                        4.8
                       </p>
                     </div>
-                    {this.state.myReviewsCurrent}  
-                    
-              
-               
-                    
-                   
-                      {/* no need to show reviewsForHost in the shadowerDashboard */}
-                    {/* {this.state.tempArray = []}
-                  {this.state.reviewsForHost.forEach((review) => {
-              this.state.tempArray.push(
-                <React.Fragment>
-                  <div className="col-11 ml-2 mb-2">
-                  <h3
-                  style={{
-                    fontFamily: "Poppins",
-                    fontStyle: "normal",
-                    fontWeight: "600",
-                    fontSize: "13px",
-                    lineHeight: "19px",
-                    letterSpacing: "0.01em"
-                  }}
-                >
-                    
-                    <div>{review.publishDate}</div>
-                    </h3>
-                  
-                  <ShowMoreText
-                    lines={1}
-                    more="+more"
-                    less="-less"
-                    anchorClass="moreClass"
-                    onClick={this.executeOnClick}
-                    expanded={false}
-                    width={280}
-                    color="black"
-                  >
-                    <p style={{ fontSize: "80%" }}>{review.body}</p>
-                  </ShowMoreText>
-                </div>
-              </React.Fragment>
-            );
-          })} */}
-    
-   
-
-
-                    
-                    {/* {this.state.reviewsForHost} */}
-
+                    {this.state.myReviewsCurrent}
+                    {this.state.hostReviews}
                     <div className="col-12 d-flex justify-content-center">
                       <button
                         onClick={this.changeMyReviewCards}
@@ -1471,7 +1453,6 @@ class shadowerDashboard extends React.Component {
                         {this.state.myReviewButton}
                       </button>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -1482,6 +1463,7 @@ class shadowerDashboard extends React.Component {
     );
   }
 }
+
 shadowerDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,

@@ -14,8 +14,11 @@ const experienceSchema = new mongoose.Schema({
     type: Number,
   },
   price: {
-    //in the form: $112   that is dollar sign followed by number
+    
     type: Number,
+  },
+  remote:{
+    type:Boolean
   },
   image: {
     type: Array(String), // list of image ids
@@ -23,21 +26,15 @@ const experienceSchema = new mongoose.Schema({
   availableRanges: {
     type: Array(Date), //array of dates, in pairs [from, to, from,to...]
   },
-  whatICanOffer: {
-    type: Array(Object),
-    default: [],
-  },
+  
   perks: {
     type: Array(String),
     default: [],
   },
-  quote: {
-    type: String,
+  reviews: {
+    type: Array(mongoose.Schema.Types.ObjectId), //array of ids , reviews will have separrate schema
+    default: [],
   },
-  // reviews: {
-  //   type: Array(mongoose.Schema.Types.ObjectId), //array of ids , reviews will have separrate schema
-  //   default: [],
-  // },
 });
 
 module.exports = mongoose.model("Experience", experienceSchema);

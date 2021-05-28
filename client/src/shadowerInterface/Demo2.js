@@ -6,17 +6,17 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import moment from "moment";
-import { Rating } from 'semantic-ui-react'
+// import moment from "moment";
+// import { Rating } from 'semantic-ui-react'
 import "./Demo.css"
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+// import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
+// import PropTypes from 'prop-types';
+// import { withStyles, makeStyles } from '@material-ui/core/styles';
+// import Slider from '@material-ui/core/Slider';
+// import Typography from '@material-ui/core/Typography';
+// import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = {
   dialogPaper: {

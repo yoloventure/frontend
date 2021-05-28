@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./shadowerReservation.css";
 import Navbar from "../components/navbar";
 import RegistrationFooter from "../components/registrationFooter";
-import rebecca_photo from "../photos/rebecca_photo.png";
 import Page1 from "../components/bookingComponents/page1";
 import Page2 from "../components/bookingComponents/page2";
 import Page3 from "../components/bookingComponents/page3";
@@ -14,11 +13,10 @@ import Page5 from "../components/bookingComponents/page5";
 import Page6 from "../components/bookingComponents/page6";
 import Page7 from "../components/bookingComponents/page7";
 import APIUser from "../api/apiUser";
+import APIHost from "../api/apiHost";
 import APIExperience from "../api/apiExperience";
 import APIReservation from "../api/apiReservation";
-
 import APIBookExp from "../api/apiBookExp";
-
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register, loadUser } from "../actions/authActions";
@@ -29,7 +27,8 @@ class ShadowReservation extends React.Component {
 
     this.state = {
       data: {
-        user: null,
+        host: null,
+        shadower: null,
         experience: null,
         availableRanges: null,
         aspects: {},
@@ -37,6 +36,9 @@ class ShadowReservation extends React.Component {
         whatMakesGood: "",
         accomodations: "",
         approval: "pending",
+        shadowerFname: "",
+        shadowerEmail: "",
+        showLoginLink: false,
       },
       loaded: false,
       counter: 1,
@@ -52,25 +54,33 @@ class ShadowReservation extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //this.props.match.params.id will return host ID.
-  componentWillMount() {
-    try {
-      APIExperience.getExperienceById(this.props.match.params.id).then(
-        (experience) =>
-          this.setState((prevState) => {
-            return {
-              data: {
-                ...prevState.data,
-                experience: experience,
-              },
-              loaded: true,
-            };
-          })
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  componentDidMount() {
+    if (!this.props.auth.user) {
+      this.setState({ showLoginLink: true });
+    } else {
+      try {
+        APIExperience.getExperienceById(this.props.match.params.id).then(
+          (experience) =>
+            this.setState((prevState) => {
+              return {
+                data: {
+                  ...prevState.data,
+                  host: experience.host,
+                  shadower: this.props.auth.user._id,
+                  experience: experience,
+                  shadowerFname: this.props.auth.user.fname,
+                  shadowerEmail: this.props.auth.user.email,
+                },
+                loaded: true,
+              };
+            })
+        );
+      } catch (error) {
+        console.log(error);
+      }
 
-    toast.configure();
+      toast.configure();
+    }
   }
 
   goNext = () => {
@@ -192,17 +202,115 @@ class ShadowReservation extends React.Component {
   handleSubmit() {
     if (this.state.counter == 6 && this.formValidation()) {
       console.log("Submit API called");
-
       let data = this.state.data;
       let availableRanges = [];
       availableRanges.push(data.availableRanges.startDate);
       availableRanges.push(data.availableRanges.endDate);
       data.availableRanges = availableRanges;
 
-      data.user = this.props.auth.user._id;
+      data.shadower = this.props.auth.user._id;
 
       APIReservation.createReservation(data).then(function (res) {
-        console.log(res);
+        var path = "/api/host/" + res.host;
+        return fetch(path, {
+          method: "get",
+          credentials: "include",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+        })
+          .then((response) => {
+            console.log("response");
+            response.json().then((host) => {
+              console.log(host);
+              var currentReservationStack = host.reservationStack;
+              console.log(res._id);
+              currentReservationStack.push(res._id);
+              console.log(currentReservationStack);
+              return fetch("/api/host/" + res.host, {
+                method: "put",
+                headers: new Headers({
+                  "Content-Type": "application/json",
+                }),
+                body: JSON.stringify({
+                  reservationStack: currentReservationStack,
+                }),
+                credentials: "include",
+              })
+                .then((response) => {
+                  response.json().then((newHost) => {
+                    console.log(newHost);
+                    var path2 = "/api/user/" + data.shadower;
+                    return fetch(path2, {
+                      method: "get",
+                      credentials: "include",
+                      headers: new Headers({
+                        "Content-Type": "application/json",
+                      }),
+                    })
+                      .then((response) => {
+                        console.log("response");
+                        response.json().then((user) => {
+                          console.log(user);
+                          var currentmyreviews = user.myreviews;
+                          currentmyreviews.push(res._id);
+                          return fetch("/api/user/" + data.shadower, {
+                            method: "put",
+                            headers: new Headers({
+                              "Content-Type": "application/json",
+                            }),
+                            body: JSON.stringify({
+                              myreviews: currentmyreviews,
+                            }),
+                            credentials: "include",
+                          })
+                            .then((response) => {
+                              response.json().then((newUser) => {
+                                console.log("here");
+                                console.log(user);
+                                const fname = user.fname;
+                                const email = user.email;
+                                console.log(user.email);
+                                return fetch("/api/reservation/" + res._id, {
+                                  method: "put",
+                                  headers: new Headers({
+                                    "Content-Type": "application/json",
+                                  }),
+                                  body: JSON.stringify({
+                                    shadowerFname: fname,
+                                    shadowerEmail: email,
+                                  }),
+                                  //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
+                                  credentials: "include",
+                                })
+                                  .then((response) => {
+                                    console.log("here1");
+                                    return response.json();
+                                  })
+                                  .catch((err) => {
+                                    console.log(err);
+                                  });
+                              });
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                            });
+                        });
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        //let currentHost = APIHost.getHostById('5f14aba6e1d046aa0894f3c3');
       });
     }
   }
@@ -322,18 +430,11 @@ class ShadowReservation extends React.Component {
             <Navbar textColor={"black"} />
           </div>
 
-          <div className="p-5 m-5 pt-5 mt-5 mb-5 pb-5">
+          <div className="container pt-5 mt-5 mb-5">
             <div className="top row">
-              <div className="col-md-4">
-                <img
-                  src={rebecca_photo}
-                  alt="photo of orthodontist"
-                  className="chefimage"
-                  style={{width:'16rem'}}
-                />
-              </div>
+              <div className="col-md-4"></div>
               <div className="col apply ml-5">
-                <p style={{width:'100%'}}>
+                <p>
                   Shadow an experienced {this.state.data.experience.host.title}
                 </p>
               </div>
@@ -385,15 +486,29 @@ class ShadowReservation extends React.Component {
       );
     } else {
       return (
-        <div>
-          <div className="nav pb-5">
-            <Navbar textColor={"black"} />
-          </div>
-          // insert loading icon
-          <div className="footerpages">
-            <RegistrationFooter />
-          </div>
-        </div>
+        <React.Fragment>
+          {this.state.showLoginLink ? (
+            <div className="p-5">
+              <h1>
+                You must be logged in to access this page. Go to
+                <a href="yoloshadow.com/login"> here </a>
+                to login or to
+                <a href="yoloshadow.com/register"> here </a>
+                to create an account.{" "}
+              </h1>
+            </div>
+          ) : (
+            <div>
+              <div className="nav pb-5">
+                <Navbar textColor={"black"} />
+              </div>
+              // insert loading icon
+              <div className="footerpages">
+                <RegistrationFooter />
+              </div>
+            </div>
+          )}
+        </React.Fragment>
       );
     }
   }

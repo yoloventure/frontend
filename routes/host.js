@@ -1,6 +1,96 @@
 const express = require("express");
 const router = express.Router();
 const Host = require("../models/host");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+const DIR = "upload_images/";
+const EmailList = require("../models/emailList");
+var nodemailer = require("nodemailer");
+var storage = require("azure-storage");
+const { BlobServiceClient } = require("@azure/storage-blob");
+const { DefaultAzureCredential } = require("@azure/identity");
+const connStr =
+  "DefaultEndpointsProtocol=https;AccountName=hdrive42078740948;AccountKey=X1fJz9wTNEfYhvjtweIPuMSbZoplBxqB61Gp+92OwePkFOxDnqPRyi+EEhX56FAOfxHI+oRryV0NppOSu2/B3Q==;EndpointSuffix=core.windows.net";
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  service: "gmail",
+  auth: {
+    user: "1341452029zsr",
+    pass: "zsr739146739146",
+  },
+});
+
+async function uploadImage(photoId) {
+  const sas = generateSasToken();
+  const blobServiceClient = new BlobServiceClient(
+    `https://${account}.blob.core.windows.net${sas}`
+  );
+
+  const containerClient = blobServiceClient.getContainerClient("yolo");
+  const blobName = "newblob" + new Date().getTime();
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  const uploadBlobResponse = await blockBlobClient.upload(
+    photoId,
+    photoId.length
+  );
+  console.log(
+    `Upload block blob ${blobName} successfully`,
+    uploadBlobResponse.requestId
+  );
+}
+// router.put('uploadhostimages/:id', function(req, res){
+//     console.log("hi");
+
+//       const sharedKeyCredential = new StorageSharedKeyCredential("yoloshadowstorage","N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==");
+//       const workingblobSAS = generateBlobSASQueryParameters({
+//         containerName : "hostworkingimages", // Required
+//         blobName:req.body.workingBlobName , // Required
+//         permissions: BlobSASPermissions.parse("r"), // Required
+//         startsOn: new Date(), // Required
+//         expiresOn: new Date(new Date().valueOf() + 86400) // Optional. Date type
+//        },
+//       sharedKeyCredential // StorageSharedKeyCredential - `new StorageSharedKeyCredential(account, accountKey)`
+//     ).toString();
+//     Host.findByIdAndUpdate( req.params.id, workingImage:workingblobSAS).then(function () {
+//     //find and send back updated application for display
+//     Host.findOne({_id: req.params.id}, req.body).then(function (host) {
+//       res.send(host);
+//     });
+//   });
+
+//     uploadImage(req.body.files[0]);
+//     // const reqFiles = [];
+//     // const url = req.protocol + '://'
+//     // console.log("Upload");
+//     // console.log(req.files[0].name);
+//     // for (var i = 0; i < 2; i++) {
+//     //     reqFiles.push(url + '/upload_images/'+req.files[i].filename)
+//     // }
+
+//     // Host.findByIdAndUpdate({_id: req.params.id},{ imgCollection: reqFiles }, {useFindAndModify: false})
+//     // .then(function (host) {
+//     // res.send(host);
+//   });
+// const user = new User({
+//     _id: new mongoose.Types.ObjectId(),
+//     name: req.body.name,
+//     profileImg: url + '/public/' + req.file.filename
+// });
+// user.save().then(result => {
+//     res.status(201).json({
+//         message: "User registered successfully!",
+//         userCreated: {
+//             _id: result._id,
+//             profileImg: result.profileImg
+//         }
+//     })
+// }).catch(err => {
+//     console.log(err),
+//         res.status(500).json({
+//             error: err
+//         });
+// })
 
 //Get all host applications
 router.get("/", function (req, res) {
@@ -30,13 +120,48 @@ router.get("/:id", function (req, res, next) {
 router.post("/", function (req, res, next) {
   Host.findOne({ user: req.body.user }).then((host) => {
     if (host) {
-      let errors = "There is already a host associated with this account.";
+      errors = "There is already a host associated with this account.";
       return res.status(400).json({
         success: false,
         error: errors,
-        id:host._id
       });
     } else {
+      var mailOptions = {
+        from: "1341452029zsr@gmail.com",
+        to: req.body.email,
+        subject: "Yolo Shadow Host Application Received!",
+        text:
+          "Dear " +
+          req.body.fname +
+          ", Thank you for applying! We will notify you when the decision is made.",
+      };
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          var mailOptions = {
+            from: "1341452029zsr@gmail.com",
+            to: req.body.email,
+            subject: "Yolo Shadow Host Application Received!",
+            text:
+              "Dear " +
+              req.body.fname +
+              ", Thank you for applying! We will notify you when the decision is made.",
+          };
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
+          Host.create(req.body)
+            .then(function (host) {
+              res.send(host); //send back info to client
+            })
+            .catch(next);
+        }
+      });
       Host.create(req.body)
         .then(function (host) {
           res.send(host); //send back info to client
@@ -48,11 +173,40 @@ router.post("/", function (req, res, next) {
 
 //edit application using put requests
 router.put("/:id", function (req, res, next) {
+  var mailOptions2 = {
+    from: "1341452029zsr@gmail.com",
+    to: req.body.email,
+    subject: "Yolo Shadow Host Application Received!",
+    text:
+      "Dear " +
+      req.body.fname +
+      ", Thank you for applying for yolo shadow host application round2! We will notify you when the decision is made.",
+  };
+  transporter.sendMail(mailOptions2, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+
   //find and update specific application
   Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
     //find and send back updated application for display
     Host.findOne({ _id: req.params.id }, req.body).then(function (host) {
-      console.log(host);
+      res.send(host);
+    });
+  });
+});
+
+//edit application using put requests
+router.put("add_reservation/:id", function (req, res, next) {
+  //find and update specific application
+  Host.findByIdAndUpdate(req.params.id, {
+    $push: { reservationStack: req.body },
+  }).then(function () {
+    //find and send back updated application for display
+    Host.findOne({ _id: req.params.id }, req.body).then(function (host) {
       res.send(host);
     });
   });
@@ -65,25 +219,6 @@ router.delete("/:id", function (req, res, next) {
   });
 });
 
-// //Post review by HostId
-// router.post("/:id", function (req, res, next) {
-//   console.log(req.body);
-//   Host.create(req.body)
-//   .then(function (reviews) {
-//   // Host.create({
-//   //   company : "5f1b368e5a6d2ce1ebbac9a3",
-//   //   title : "exampleHost",
-//   //   user : "5ed390d9f49cf627001cb8b4",
-//   //   description : "Mark’s photography assignments have taken him to more than 100 countries on six continents. His editorial work has appeared in publications such as Vanity Fair, LIFE, The New York Times, The Washington Post, Time Magazine, GEO, Newsweek, Conde Nast Traveler, National Geographic Traveler, AFAR, Wallpaper, Vogue, Architectural Digest, The Los Angeles Times Magazine, and The London Sunday Times Travel Magazine as well as all the major photography and in-flight magazines. Among his numerous accolades are CLIO, ACE, Aurora Gold, and IPA awards. His books include Faces of the Twentieth Century: Master Photographers and Their Work, The Way of the Japanese Bath, Wanderlust, North Korea, South Korea, Inside Iran and The Travel Photo Essay: Describing A Journey Through Images. He is currently putting the final touches on The People of the Forest, a book about orangutans. After graduating from California State University, Los Angeles with a Master of Arts Degree in Pictorial/Documentary History, Mark Edward Harris started his professional photography career doing the stills for the Merv Griffin Show and various television and movie companies. When the show ended in 1986 he set off on a four- month trek across the Pacific and throughout Southeast Asia, China and Japan. The images created on that trip brought attention to his travel and documentary photography."
-//   //   ,review :  "5f14aba6e1d046aa0894f3c3",
-//   //   industry : "IT",
-//   // }).then(function (reviews) {
-//     res.send(reviews);
-//   }).catch(next);
-// })
-// // })
-
-
 router.post("/:id", function (req, res, next) {
   //find and update specific application
   Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
@@ -94,12 +229,5 @@ router.post("/:id", function (req, res, next) {
     });
   });
 });
-
-
-
-
-
-
-
 
 module.exports = router;

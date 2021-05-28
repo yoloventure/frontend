@@ -13,7 +13,7 @@ import searchArrow from "../photos/searchArrow.png";
 
 import APIExperience from "../api/apiExperience";
 import APIHost from "../api/apiHost";
-import Star from '../photos/Star.svg'
+import Star from "../photos/Star.svg";
 import "./experienceDetail.css";
 
 export default class ExperienceDetail extends React.Component {
@@ -21,13 +21,15 @@ export default class ExperienceDetail extends React.Component {
     super(props);
     this.state = {
       experience: null,
-      editDisabled:true
+      editDisabled: true,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     try {
-      let expId = this.props.match.params.id;
+      let expId = this.props.customLinkExpID
+        ? this.props.customLinkExpID
+        : this.props.match.params.id;
       let experience = APIExperience.getExperienceById(expId).then((data) =>
         this.setState({
           experience: data,
@@ -42,15 +44,25 @@ export default class ExperienceDetail extends React.Component {
       editDisabled: !prevState.editDisabled,
     }));
   };
+
+  websiteURLChecker = (url) => {
+    if (!url.includes("http://") && !url.includes("https://")) {
+      if (!url.includes("www.")) {
+        return "http://www." + url;
+      }
+      return "http://" + url;
+    }
+    return url;
+  };
   render() {
- 
     if (this.state.experience) {
-      let host=this.state.experience.host;
+      let host = this.state.experience.host;
       return (
         <div>
           <Helmet>
             <title>
-              Shadow an experienced {host.title} |
+              {" "}
+              {this.state.experience.title ? this.state.experience.title : ""} |
               YoloShadow
             </title>
           </Helmet>
@@ -61,30 +73,92 @@ export default class ExperienceDetail extends React.Component {
 
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-3 col-md-11 offset-1 col-sm-11 mt-5 pt-5"  style={{zIndex:2}}>
-                <img src={this.state.experience.image[0]} style={{width:'20rem'}}/>
-                <div className="d-flex flex-row pt-5" 
-                     style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"500","letterSpacing":"0em"}}
+              <div
+                className="col-lg-4 col-md-11 offset-1 col-sm-11 mt-5 pt-5"
+                style={{ zIndex: 2 }}
+              >
+                <img
+                  src={this.state.experience.image[0]}
+                  style={{ width: "20rem" }}
+                />
+                <div
+                  className="d-flex flex-row pt-5"
+                  style={{
+                    fontFamily: "Mplus 1p",
+                    fontStyle: "normal",
+                    fontWeight: "500",
+                    letterSpacing: "0em",
+                  }}
                 >
                   <p
-                      style={{color:"black","fontSize":"200%","lineHeight":"150%"}}
+                    style={{
+                      color: "black",
+                      fontSize: "180%",
+                      lineHeight: "150%",
+                    }}
                   >
-                      {host.user.fname} 
-                    </p>
-                  
-                    { (host.company.website!=="" && host.company.website!==undefined)?<a href={"http://"+host.company.website} 
-                                              style={{color:"black",paddingLeft:"6rem",paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
-                                            > Website </a>
-                    :null
-                    }  
-                  
-                    { (host.intagramProfile!=="" && host.intagramProfile!==undefined)?<a href={"http://instagram.com/"+host.intagramProfile} 
-                                              style={{color:"black",paddingLeft:"1rem",paddingTop:"1.5rem","fontSize":"80%","lineHeight":"80%"}}
-                                            > Instagram </a>
-                    :null
-                    }
+                    {host.isIndividual ? host.user.fname : host.company.name}
+                  </p>
 
-                  
+                  {host.company.website !== "" &&
+                  host.company.website !== undefined ? (
+                    <a
+                      href={this.websiteURLChecker(host.company.website)}
+                      style={{
+                        color: "black",
+                        paddingLeft: "6rem",
+                        textDecoration: "underline",
+                        paddingTop: "1.5rem",
+                        fontSize: "80%",
+                        lineHeight: "80%",
+                      }}
+                    >
+                      {" "}
+                      Website{" "}
+                    </a>
+                  ) : null}
+                  {host.instagramProfile !== "" &&
+                  host.instagramProfile !== undefined ? (
+                    <a
+                      href={
+                        host.instagramProfile.includes(".com")
+                          ? host.instagramProfile
+                          : "https://www.instagram.com/" + host.instagramProfile
+                      }
+                      style={{
+                        color: "black",
+                        paddingLeft: "1rem",
+                        textDecoration: "underline",
+                        paddingTop: "1.5rem",
+                        fontSize: "80%",
+                        lineHeight: "80%",
+                      }}
+                    >
+                      {" "}
+                      Instagram{" "}
+                    </a>
+                  ) : null}
+                  {host.linkedInProfile !== "" &&
+                  host.linkedInProfile !== undefined ? (
+                    <a
+                      href={
+                        host.linkedInProfile.includes(".com")
+                          ? host.linkedInProfile
+                          : "https://www.linkedin.com/" + host.linkedInProfile
+                      }
+                      style={{
+                        color: "black",
+                        paddingLeft: "1rem",
+                        textDecoration: "underline",
+                        paddingTop: "1.5rem",
+                        fontSize: "80%",
+                        lineHeight: "80%",
+                      }}
+                    >
+                      {" "}
+                      LinkedIn{" "}
+                    </a>
+                  ) : null}
                 </div>
                 <div className="d-flex expDetail-content">
                   <button id="btn-message" onclick="#">
@@ -92,48 +166,113 @@ export default class ExperienceDetail extends React.Component {
                   </button>
                 </div>
               </div>
-              <div className="col-lg-8 col-md-12 col-sm-12 expDetail-overview expDetail-content" style={{height:'65%', width:'100%'}}>
-                <div style={{padding:'5rem'}}>
+              <div
+                className="col-lg-7 col-md-12 col-sm-12 expDetail-overview expDetail-content"
+                style={{ height: "65%", width: "100%" }}
+              >
+                <div style={{ padding: "5rem" }}>
                   <div className="d-flex pt-4">
-
-                    <h1 style={{width:'100%',paddingTop:"2rem",paddingRight:"1.5rem","fontFamily":"Mplus 1p","fontSize":"1.5rem","fontStyle":"normal","fontWeight":"500","lineHeight":"2rem","letterSpacing":"4px","textAlign":"left"}}>
-                      
-                      Shadow an experienced {
-                      host.title
-                      }
-                    </h1>
-                    {<img src={Star} style={{height:"2rem"}}/>}
-
-                  </div>
-
-                  <div className="d-flex pt-5" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                      Remote
-                  </div>
-
-
-                  <div className="d-flex pt-2" style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                      {" "}
-                      {host.company.city},{" "}
-                      {host.company.state}{" "}
-                  </div>
-                  <div className="d-flex pt-1 " style={{"fontFamily":"Mplus 1p","fontSize":"24px","fontStyle":"normal","fontWeight":"500","lineHeight":"39px","letterSpacing":"0em","textAlign":"left"}}>
-                  {console.log(this.state.experience.durationDays)}
-                    {this.state.experience.durationDays!=undefined? (this.state.experience.durationDays>1?  <span> {this.state.experience.durationDays} day  </span> :  <span> {this.state.experience.durationDays} days  </span>) :null}
-                    {this.state.experience.durationHours!=undefined?  <span> {this.state.experience.durationHours} hours  </span> : null}
-                    <span style={{marginLeft:'2rem'}}> ${this.state.experience.price} </span>
-                  </div>
-
-                  <div className="d-flex pt-1 controls">
-                    <Link
-                      id="btn-reserve"
-                      className="btn"
-                      to={"/reserve/" + this.props.match.params.id}
+                    <h1
+                      style={{
+                        width: "100%",
+                        paddingTop: "2rem",
+                        paddingRight: "1.5rem",
+                        fontFamily: "Mplus 1p",
+                        fontSize: "1.5rem",
+                        fontStyle: "normal",
+                        fontWeight: "500",
+                        lineHeight: "2rem",
+                        letterSpacing: "4px",
+                        textAlign: "left",
+                      }}
                     >
-                      RESERVE NOW
-                    </Link>
-                    <button id="btn-availability" onclick="#">
-                      Availability
-                    </button>
+                      {this.state.experience.title
+                        ? this.state.experience.title
+                        : ""}
+                    </h1>
+                    {<img src={Star} style={{ height: "2rem" }} />}
+                  </div>
+
+                  <div
+                    className="d-flex pt-2"
+                    style={{
+                      fontFamily: "Mplus 1p",
+                      fontSize: "24px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "39px",
+                      letterSpacing: "0em",
+                      textAlign: "left",
+                    }}
+                  >
+                    {this.state.experience.remote
+                      ? "Remote"
+                      : " " +
+                        host.company.city +
+                        (host.company.state !== "" && host.company.state
+                          ? ", " + host.company.state
+                          : null)}
+                  </div>
+                  <div
+                    className="d-flex pt-1 "
+                    style={{
+                      fontFamily: "Mplus 1p",
+                      fontSize: "24px",
+                      fontStyle: "normal",
+                      fontWeight: "500",
+                      lineHeight: "39px",
+                      letterSpacing: "0em",
+                      textAlign: "left",
+                    }}
+                  >
+                    {console.log(this.state.experience.durationDays)}
+                    {this.state.experience.durationDays != undefined ? (
+                      this.state.experience.durationDays > 1 ? (
+                        <span> {this.state.experience.durationDays} day </span>
+                      ) : (
+                        <span> {this.state.experience.durationDays} days </span>
+                      )
+                    ) : null}
+                    {this.state.experience.durationHours != undefined ? (
+                      <span> {this.state.experience.durationHours} hours </span>
+                    ) : null}
+                    <span style={{ marginLeft: "2rem" }}>
+                      {" "}
+                      ${this.state.experience.price}{" "}
+                    </span>
+                  </div>
+
+                  <div className="d-flex pt-4 ">
+                    {
+                      //custom registeration google form for Visual DX
+                      this.props.customLinkExpID ===
+                      "60a111ea609db199fbb9a0f3" ? (
+                        <a
+                          className="btn"
+                          href="//docs.google.com/forms/u/1/d/e/1FAIpQLSeaREkIS5gY_zNx3xV0yMB16ld5e-kE-sj_IncG7xru6bY6xA/viewform?usp=send_form"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : (
+                        <Link
+                          id="btn-reserve"
+                          className="btn"
+                          to={
+                            "/reserve/" + this.props.customLinkExpID
+                              ? this.props.customLinkExpID
+                              : this.props.match.params.id
+                          }
+                        >
+                          RESERVE NOW
+                        </Link>
+                      )
+                    }
+
+                    <div style={{ paddingLeft: "1rem" }}>
+                      <button id="btn-availability" onclick="#">
+                        Availability
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -146,16 +285,32 @@ export default class ExperienceDetail extends React.Component {
               <h3> What I Can Offer </h3>
             </div>
 
-            <div className="row offset-1 pt-0">
+            <div className="row offset-1 pt-0 pl-3 pr-3">
               {console.log(host)}
               {host.offering.map((item, index) => {
-                console.log(index)
-                return <CardExpDetail item={item}  index={index}  />
-              })
-              }
+                console.log(index);
+                return <CardExpDetail item={item} index={index} />;
+              })}
             </div>
 
-            <div className="container p-5 quote">
+            <div className="row offset-1 pt-2">
+              <h3> Interim Schedule </h3>
+            </div>
+
+            <div className="row offset-1 pt-1 pb-5">
+              {this.state.experience.agenda.map((agendaItem) => (
+                <React.Fragment>
+                  <div className="col-1">
+                    <p>{agendaItem.time}</p>
+                  </div>
+                  <div className="col-11">
+                    <p>{agendaItem.activity}</p>
+                  </div>
+                </React.Fragment>
+              ))}
+            </div>
+
+            <div className="container p-5 quote" style={{ height: "100%" }}>
               <blockquote>{this.state.experience.host.description}</blockquote>
             </div>
 
