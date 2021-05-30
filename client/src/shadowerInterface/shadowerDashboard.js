@@ -19,8 +19,11 @@ import { Link } from "react-router-dom";
 
 import { MDBIcon, MDBBtn } from "mdbreact";
 import { DateRange } from "react-date-range";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-class Dashboard extends React.Component {
+import Demo2 from './Demo2';
+class shadowerDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.Ref = createRef();
@@ -98,9 +101,120 @@ class Dashboard extends React.Component {
       );
     });
 
-    //setup review notifications
+    // //setup review notifications
+    // let tempArray2 = [];
+    // reviewShadowerNotifications.forEach((notification) => {
+    //   tempArray2.push(
+    //     <div
+    //       className="row mt-3"
+    //       style={{
+    //         boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.08)",
+    //         borderRadius: "4px",
+    //       }}
+    //     >
+    //       <div className="col-6 offset-1">
+    //         <h3
+    //           style={{
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "600",
+    //             fontSize: "80%",
+    //             lineHeight: "22px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           {" "}
+    //           {notification.fname} wrote me a review{" "}
+    //         </h3>
+    //       </div>
+    //       <div className="col-4 offset-1">
+    //         <p> {notification.reviewDate}</p>
+    //       </div>
+    //       <div className="col-4 offset-1">
+    //         <h5
+    //           style={{
+    //             color: "#707683",
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "400",
+    //             fontSize: "80%",
+    //             lineHeight: "10px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           Shadowing Dates:{" "}
+    //         </h5>
+    //       </div>
+    //       <div className="col-6 ">
+    //         <h5
+    //           style={{
+    //             fontFamily: "Poppins",
+    //             fontStyle: "normal",
+    //             fontWeight: "400",
+    //             fontSize: "80%",
+    //             lineHeight: "10px",
+    //             letterSpacing: "0.01em",
+    //           }}
+    //         >
+    //           {" "}
+    //           {notification.shadowStartDate} - {notification.shadowEndDate}{" "}
+    //         </h5>
+    //       </div>
+
+    //       <div className="col-11 offset-1">
+    //         <ShowMoreText
+    //           /* Default options */
+    //           lines={1}
+    //           more="+more"
+    //           less="-less"
+    //           anchorClass="moreClass"
+    //           onClick={this.executeOnClick}
+    //           expanded={false}
+    //           width={280}
+    //           color="black"
+    //         >
+    //           <p>{notification.reviewContent}</p>
+    //         </ShowMoreText>
+    //       </div>
+    //       <div className="col-1 offset-1">
+    //         <img
+    //           src="http://via.placeholder.com/30x30"
+    //           style={{ borderRadius: "50%" }}
+    //         />
+    //       </div>
+    //       <div className="col-3">
+    //         <p> {notification.fname}</p>
+    //       </div>
+    //       <div className="col-3 offset-4">
+    //         <button
+    //           style={{
+    //             color: "#C4C4C4",
+    //             borderRadius: "4px",
+    //             border: "1px solid #C4C4C4",
+    //           }}
+    //         >
+    //           Completed
+    //         </button>
+    //       </div>
+    //     </div>
+    //   );
+    // });
+
     let tempArray2 = [];
-    reviewShadowerNotifications.forEach((notification) => {
+    fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3' ,{
+      // fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+        method: "get",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      })
+        .then((response) => {
+          response.json().then((reviewsData) => {
+            console.log(reviewsData)
+        
+ 
+            
+      reviewsData.forEach((review) => {
       tempArray2.push(
         <div
           className="row mt-3"
@@ -121,11 +235,12 @@ class Dashboard extends React.Component {
               }}
             >
               {" "}
-              {notification.fname} wrote me a review{" "}
+              {/* {notification.fname} wrote me a review{" "} */}
+               wrote me a review{" "}
             </h3>
           </div>
           <div className="col-4 offset-1">
-            <p> {notification.reviewDate}</p>
+            <p> {review.publishDate}</p>
           </div>
           <div className="col-4 offset-1">
             <h5
@@ -154,7 +269,7 @@ class Dashboard extends React.Component {
               }}
             >
               {" "}
-              {notification.shadowStartDate} - {notification.shadowEndDate}{" "}
+              {/* {notification.shadowStartDate} - {notification.shadowEndDate}{" "} */}
             </h5>
           </div>
 
@@ -170,7 +285,7 @@ class Dashboard extends React.Component {
               width={280}
               color="black"
             >
-              <p>{notification.reviewContent}</p>
+              <p>{review.body}</p>
             </ShowMoreText>
           </div>
           <div className="col-1 offset-1">
@@ -180,7 +295,7 @@ class Dashboard extends React.Component {
             />
           </div>
           <div className="col-3">
-            <p> {notification.fname}</p>
+            {/* <p> {notification.fname}</p> */}
           </div>
           <div className="col-3 offset-4">
             <button
@@ -196,45 +311,9 @@ class Dashboard extends React.Component {
         </div>
       );
     });
+  })
+})
 
-    let tempArray4 = [];
-    hostReviews.forEach((review) => {
-      tempArray4.push(
-        <div className="row m-1 mt-1">
-          <div className="col-6 offset-1">
-            <h3
-              style={{
-                fontFamily: "Poppins",
-                fontStyle: "normal",
-                color: "#4C5862",
-                fontWeight: "500",
-                fontSize: "13px",
-                lineHeight: "19.5px",
-                letterSpacing: "0.01em",
-              }}
-            >
-              {" "}
-              {review.timeStamp}
-            </h3>
-          </div>
-          <div className="col-11 offset-1">
-            <ShowMoreText
-              /* Default options */
-              lines={1}
-              more="+more"
-              less="-less"
-              anchorClass="moreClass"
-              onClick={this.executeOnClick}
-              expanded={false}
-              width={380}
-              color="black"
-            >
-              <p>{review.reviewContent}</p>
-            </ShowMoreText>
-          </div>
-        </div>
-      );
-    });
 
     let currentTemp = [];
     let currentTemp2 = [];
@@ -266,7 +345,7 @@ class Dashboard extends React.Component {
       hostRequests: tempArray,
       currenthostRequests: currentTemp,
       reviewShadowerNotifications: tempArray2,
-      hostReviews: tempArray4,
+      reviewsForHost: [],
       currentReviewShadowerNotifications: currentTemp2,
       myHistoryButton: "Show More",
       myReviewsAll: [],
@@ -277,11 +356,18 @@ class Dashboard extends React.Component {
       showRequests: true,
       showCompleted: true,
       notificationFilters: [],
+
+      rating: "",
+      review: "",
+      tempArray:[],
+
+      bodyToSend: {},
+      tempBody: [],
     };
 
     let tempArray3 = [];
     let currentTemp3 = [];
-    fetch("/api/review/", {
+    fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
       method: "get",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -337,42 +423,124 @@ class Dashboard extends React.Component {
     console.log(tempArray3);
     console.log(currentTemp3);
 
-    fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
-      method: "get",
+  //   fetch("/api/experience/host/5f19ae6cb21fedd6cfee46b9", {
+  //     method: "get",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+
+  //       response.json().then((experience) => {
+  //         console.log(experience);
+  //         let tempskills = [];
+  //         let tempWhatCanIOffer = [];
+  //         let tempWhatCanIOfferBodies = [];
+  //         experience.skills.forEach((perk, i) => {
+  //           if (i === experience.skills.length - 1) {
+  //             tempskills.push(perk + ".");
+  //           } else {
+  //             tempskills.push(perk + ", ");
+  //           }
+  //         });
+  //         experience.whatICanOffer.forEach((offer, i) => {
+  //           if (i === experience.skills.length - 1) {
+  //             tempWhatCanIOffer.push(offer.title + ".");
+  //           } else {
+  //             tempWhatCanIOffer.push(offer.title + ", ");
+  //           }
+  //           tempWhatCanIOfferBodies.push(offer.body);
+  //         });
+  //         this.setState({
+  //           skills: tempskills,
+  //           whatCanIOfferTitles: tempWhatCanIOffer,
+  //           whatCanIOfferBodies: tempWhatCanIOfferBodies,
+  //         });
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
+
+  
+  //restore the historical reviews 
+  fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
+      
+    method: "get",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((response) => {
+      response.json().then((reviewsData) => {
+        console.log(reviewsData)
+        reviewsData.review.forEach((oneReview) => {
+          console.log(oneReview)
+          this.state.tempBody.push(oneReview)
+         } );
+       
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
+  };
+  
+
+  //add review to review database, current is hardcoded
+   postReviewsForHost =  () => {
+     let test1 = {}
+      console.log(this.state);
+      var i =  this.state.reviewsForHost.length-1;
+ 
+      test1.host = "5f14aba6e1d046aa0894f3c3"
+      test1.author = "5ef660a01c7b54239095e6c5"
+      test1.body = this.state.reviewsForHost[i].body
+      test1.publishDate =new Date(moment().format("MM-DD-YYYY"))
+      test1.rating = this.state.reviewsForHost[i].rating
+       
+      
+        fetch('/api/review/host/5f14aba6e1d046aa0894f3c3', {
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+       
+        body: JSON.stringify(test1),
+  
+      })
+        .then((response) => { 
+          
+          response.json().then((reviewsData) => { 
+            
+            this.state.tempBody.push(reviewsData._id)
+            this.setState({bodyToSend: this.state.tempBody}, ()=>this.postReviewsToHost() )            
+           }
+          )
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+  }
+//add review to host database
+  postReviewsToHost = () => {
+    let test1 = {}
+    test1.review =  this.state.bodyToSend;
+    console.log(this.state.bodyToSend)
+     fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
+      method: "post",
       headers: new Headers({
         "Content-Type": "application/json",
       }),
+      body: JSON.stringify(test1),
     })
-      .then((response) => {
-        console.log(response);
-
-        response.json().then((experience) => {
-          console.log(experience);
-          let tempskills = [];
-          let tempWhatCanIOffer = [];
-          let tempWhatCanIOfferBodies = [];
-          experience.skills.forEach((perk, i) => {
-            if (i === experience.skills.length - 1) {
-              tempskills.push(perk + ".");
-            } else {
-              tempskills.push(perk + ", ");
-            }
-          });
-          experience.whatICanOffer.forEach((offer, i) => {
-            if (i === experience.skills.length - 1) {
-              tempWhatCanIOffer.push(offer.title + ".");
-            } else {
-              tempWhatCanIOffer.push(offer.title + ", ");
-            }
-            tempWhatCanIOfferBodies.push(offer.body);
-          });
-          this.setState({
-            skills: tempskills,
-            whatCanIOfferTitles: tempWhatCanIOffer,
-            whatCanIOfferBodies: tempWhatCanIOfferBodies,
-          });
-        });
-      })
+    .then((response) => {
+      response.json().then((reviewsData) => {
+        console.log(reviewsData)}
+    )})
       .catch((err) => {
         console.log(err);
       });
@@ -493,6 +661,7 @@ class Dashboard extends React.Component {
       editExperience: !prevState.editExperience,
     }));
   };
+  //TODO: refer to the same function in dashboard in hostInterface
   confirmRanges = () => {
     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
   };
@@ -688,6 +857,14 @@ class Dashboard extends React.Component {
     }
     this.setState({ notificationFilters: temp });
   };
+
+  callbackFunction = (childData) => {
+    this.setState({
+      rating: childData[0],
+      review: childData[1],
+    render: childData[2]})
+}
+
 
   render() {
     let showRequests = false;
@@ -993,6 +1170,15 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
 
+                <Demo2 
+                parentCallback = {this.callbackFunction}
+                reviewsForHost = {this.state.reviewsForHost}
+                postReviewsForHost = {this.postReviewsForHost}
+                
+                // postReviewsToHost = {this.postReviewsToHost}
+                > 
+                </Demo2>
+
                 <div
                   className="col-12 mt-4"
                   style={{
@@ -1279,4 +1465,11 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+shadowerDashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(shadowerDashboard);

@@ -55,6 +55,11 @@ const userSchema = new mongoose.Schema({
                ref:'reservation'}],
         default:[],
   },
+
+  review: {
+    type: Array(mongoose.Schema.Types.ObjectId), // type : array of review id
+    deafault: [],
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);
