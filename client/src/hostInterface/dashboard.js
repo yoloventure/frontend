@@ -372,7 +372,7 @@ class Dashboard extends React.Component{
 
         });
         this.setState({editExperience:false})
-
+            
         fetch('/api/user/5ed390d9f49cf627001cb8b4', {
             method: "get",
             headers: new Headers({
@@ -393,7 +393,7 @@ class Dashboard extends React.Component{
               console.log(err);
             });
           }
-    
+          //add review to review database, is currently hardcoded
           postReviewsForShadower = () => {
   
             let test1 = {}
@@ -425,7 +425,7 @@ class Dashboard extends React.Component{
                   console.log(err);
                 });
           }
-        
+        //add review to user/shadower database
           postReviewsToShadower = () => {
             let test1 = {}
              test1.review =  this.state.bodyToSend;

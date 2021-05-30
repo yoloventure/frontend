@@ -490,7 +490,7 @@ class shadowerDashboard extends React.Component {
   };
   
 
-
+  //add review to review database, current is hardcoded
    postReviewsForHost =  () => {
      let test1 = {}
       console.log(this.state);
@@ -525,7 +525,7 @@ class shadowerDashboard extends React.Component {
           console.log(err);
         })
   }
-
+//add review to host database
   postReviewsToHost = () => {
     let test1 = {}
     test1.review =  this.state.bodyToSend;
@@ -661,6 +661,7 @@ class shadowerDashboard extends React.Component {
       editExperience: !prevState.editExperience,
     }));
   };
+  //TODO: refer to the same function in dashboard in hostInterface
   confirmRanges = () => {
     //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
   };
