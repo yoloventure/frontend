@@ -1,5 +1,10 @@
 # Yolo Web App
 
+# Conventions
+Variables are camelCased.
+File and folder names start with small letters eg: "routes/home.js"
+For custom styling (i.e. not using bootstrap) class names for elements must be snake_cased and prefixed by the folder and file name eg: "route_home_button". This is because all css files and jsx files are bundled together when the app is built.
+
 # Pre Requisites
 
 1. NPM and NodeJS
