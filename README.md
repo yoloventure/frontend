@@ -27,4 +27,8 @@ For custom styling (i.e. not using bootstrap) class names for elements must be s
 2. **If conflicts then fix them and then,**
 3. git add .
 4. git commit -m "some-message"
-5. git push
+5. git push (updates your local branch)
+6. Go to github.com/yoloventure/frontend and visit your branch.
+7. Create a pull request using the online interface.
+8. If there are merge conflicts resolve them online, or resolve locally and push to your branch again. 
+9. Wait for heruko auto-deployment to complete and view it to check if the features you added work correctly. 
