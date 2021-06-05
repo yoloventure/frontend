@@ -1,9 +1,9 @@
 # Yolo Web App
 
 # Conventions
-Variables are camelCased.
-File and folder names start with small letters eg: "routes/home.js"
-For custom styling (i.e. not using bootstrap) class names for elements must be snake_cased and prefixed by the folder and file name eg: "route_home_button". This is because all css files and jsx files are bundled together when the app is built.
+1. Variables are camelCased.
+2. File and folder names start with small letters eg: "routes/home.js"
+3. For custom styling (i.e. not using bootstrap) class names for elements must be snake_cased and prefixed by the folder and file name eg: "route_home_button". This is because all css files and jsx files are bundled together when the app is built.
 
 # Pre Requisites
 
@@ -24,7 +24,7 @@ For custom styling (i.e. not using bootstrap) class names for elements must be s
 # Creating Pull Requests
 
 1. git fetch origin master
-2. **If conflicts then fix them and then,**
+2. **If there are merge conflicts then fix them before proceeding**
 3. git add .
 4. git commit -m "some-message"
 5. git push (updates your local branch)
