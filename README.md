@@ -10,16 +10,29 @@
 1. NPM and NodeJS
 
 # Getting Start
+(Note: When I say root folder I mean the highest level of the project in which you can see a client folder, and the server.js file)
 
-1. clone the repository in your host
-   Just For Frontend:
-2. cd into the the project react folder (frontend/client)
-3. run the command "npm i"
-4. run the command "npm start" to run just the frontend.
-   Backend: (You all should do both upper and lower steps)
-5. cd into the the project root folder (frontend)
+1. Go to a convenient place in your computer and create an empty folder. 
+2. Open your terminal (command line) with the path set inside this new folder. 
+3. Use "git init" 
+4. Then clone the repository using "git clone {$repository_link}"
+##   Setting up the Frontend:
+5. cd into the the project react folder (root/client)
 6. run the command "npm i"
-7. run the command "npm run dev". Server will run on localhost:5000 by default. Open the frontend port, usually localhost:8080, if it does not open automatically.
+
+##   Setting up the Backend: 
+8. cd into the the project root folder (frontend)
+9. run the command "npm i"
+
+# Running the project
+## Just the front-end
+Run the command "npm start" in the frontend/client folder to run just the frontend.
+ 
+## Just the back-end
+Run the command "npm start" in the root folder
+
+## Run back-end and front-end concurrently
+Run the command "npm run dev" in the root folder. Server will run on localhost:5000 by default. Open the frontend port, usually localhost:8080, if it does not open automatically.
 
 # Creating Pull Requests
 
