@@ -58,7 +58,7 @@ class HostApplicationItem extends React.Component {
                   {/* <input onClick={()=>this.props.acceptHost(hostApp._id)} className="btn btn-success" type="button" value="Accept" />
         <input onClick={()=>this.props.rejectHost(hostApp._id)} className="btn btn-danger" type="button" value="Reject" /> */}
                   <ConfirmButton
-                    onClick={() => this.props.acceptHost(hostApp._id)}
+                    onClick={() => this.props.acceptHost(hostApp._id, hostApp)}
                     className="btn btn-success"
                     type="button"
                     label="Accept"

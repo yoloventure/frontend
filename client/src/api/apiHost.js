@@ -71,9 +71,9 @@ function createNewHost(host) {
       console.log(err);
     });
 }
-function editOrCreateHost(host) {
+function editOrCreateHost(host, user) {
   var path = "/api/host/";
-
+  console.log(user);
   return fetch(path, {
     method: "post",
     headers: new Headers({
@@ -85,8 +85,9 @@ function editOrCreateHost(host) {
     .then((response) => {
       if (response.status == 400) {
         response.json().then((r) => {
+          //if we received the response that a host already exists
           console.log(r);
-          editHost(r.id, host);
+          editHost(host, user);
         });
       } else {
         return response.json();
@@ -97,18 +98,16 @@ function editOrCreateHost(host) {
     });
 }
 
-function editHost(host) {
-  var path = "/api/host/" + host.hostId;
+function editHost(host, user) {
+  console.log("editing host" + user.hostId);
+
+  var path = "/api/host/" + user.hostId;
   return fetch(path, {
     method: "put",
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify({
-      idImage: host.workingImageUrl,
-      workingImage: host.idImageUrl,
-      availability: host.availability,
-    }),
+    body: JSON.stringify(host),
     credentials: "include",
   })
     .then((response) => {

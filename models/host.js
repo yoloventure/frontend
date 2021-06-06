@@ -77,10 +77,14 @@ const hostSchema = new mongoose.Schema({
     required: true,
   },
   description: {
+    //description of their experience
+    type: String,
+    default: null,
+  },
+  whatIDo: {
     //one line to describe what they do
     type: String,
     default: null,
-    required: true,
   },
   //----------------page-3------------------------------------
   // location: {

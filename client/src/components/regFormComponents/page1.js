@@ -12,12 +12,13 @@ class Page1 extends React.Component {
     if (
       !host.fname ||
       !host.lname ||
-      !host.company ||
+      (host.isIndividual === false && !host.company) ||
       !host.phone ||
       !host.email ||
       !host.title ||
       !host.yearsExp ||
-      !host.industry
+      !host.industry ||
+      host.isIndividual === null
     ) {
       this.setState({
         submittedPage1: true,
@@ -72,7 +73,7 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.fname ? (
-                    <div className="row">First Name is required</div>
+                    <p className="row text-danger">First Name is required</p>
                   ) : null}
                 </div>
                 <div className="col-sm-6">
@@ -86,7 +87,7 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.lname ? (
-                    <div className="row">Last Name is required</div>
+                    <p className="row text-danger">Last Name is required</p>
                   ) : null}
                 </div>
               </div>
@@ -112,7 +113,7 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.email ? (
-                    <div className="row">Email is required</div>
+                    <p className="row text-danger">Email is required</p>
                   ) : null}
                 </div>
                 <div className="col-sm-6">
@@ -136,7 +137,9 @@ class Page1 extends React.Component {
                   <label>Phone</label>
                 </div>
                 <div className="col-sm-6">
-                  <label htmlFor="title">Title</label>
+                  <label htmlFor="title">
+                    Title for Your Hosting Experience
+                  </label>
                 </div>
               </div>
 
@@ -152,7 +155,7 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.phone ? (
-                    <div className="row">Phone is required</div>
+                    <p className="row text-danger">Phone is required</p>
                   ) : null}
                 </div>
                 <div className="col-sm-6">
@@ -166,7 +169,7 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.title ? (
-                    <div className="row">Title is required</div>
+                    <p className="row text-danger">Title is required</p>
                   ) : null}
                 </div>
               </div>
@@ -188,7 +191,9 @@ class Page1 extends React.Component {
                     />
                   </div>
                   {this.state.submittedPage1 && !this.props.host.yearsExp ? (
-                    <div className="row">Years are required</div>
+                    <div className="row text-danger">
+                      Years of exp are required
+                    </div>
                   ) : null}
 
                   <div className="row mt-3 mb-n2">
@@ -207,11 +212,36 @@ class Page1 extends React.Component {
                         Business & Finance
                       </option>
                       <option value="healthCare">Healthcare</option>
-                      <option value="others">Others</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
-                  {this.state.submittedPage1 && !this.props.host.phone ? (
-                    <div className="row">Industry is required</div>
+                  {this.state.submittedPage1 && !this.props.host.industry ? (
+                    <p className="row text-danger">Industry is required</p>
+                  ) : null}
+
+                  <div className="row mt-3 mb-n2">
+                    <label>Registering as a Company or as an Individual?</label>
+                  </div>
+                  <div className="row">
+                    <select
+                      name="isIndividual"
+                      value={
+                        this.props.host.isIndividual === true
+                          ? "BOOL!!true"
+                          : this.props.host.isIndividual === false
+                          ? "BOOL!!false"
+                          : ""
+                      }
+                      onChange={this.props.handleInputChange}
+                    >
+                      <option value="">Select</option>
+                      <option value="BOOL!!true">Individual</option>
+                      <option value="BOOL!!false">Company</option>
+                    </select>
+                  </div>
+                  {this.state.submittedPage1 &&
+                  this.props.host.isIndividual === null ? (
+                    <p className="row text-danger">This field is required</p>
                   ) : null}
 
                   <div className="row mt-3 mb-n3">
@@ -228,8 +258,10 @@ class Page1 extends React.Component {
                       onChange={this.props.handleInputChange}
                     />
                   </div>
-                  {this.state.submittedPage1 && !this.props.host.company ? (
-                    <div className="row">Company is required</div>
+                  {this.state.submittedPage1 &&
+                  this.props.host.isIndividual === false &&
+                  !this.props.host.company ? (
+                    <p className="row text-danger">Company name is required</p>
                   ) : null}
 
                   <div className="row mt-3 mb-n2">
@@ -250,11 +282,12 @@ class Page1 extends React.Component {
                   <div className="row">
                     <label htmlFor="">One line to describe what you do</label>
                     <textarea
-                      name="description"
-                      value={this.props.host.description}
+                      name="whatIDo"
+                      value={this.props.host.whatIDo}
                       onChange={this.props.handleInputChange}
                     ></textarea>
                   </div>
+
                   <div className="row mt-3 mb-n2">
                     <label>Twitter</label>
                   </div>
@@ -270,6 +303,18 @@ class Page1 extends React.Component {
                       />
                     </div>
                   </div>
+
+                  <div className="row">
+                    <label htmlFor="">
+                      Describe how a hosting experience would be like
+                    </label>
+                    <textarea
+                      name="description"
+                      value={this.props.host.description}
+                      onChange={this.props.handleInputChange}
+                    ></textarea>
+                  </div>
+
                   <div className="row mt-3 mb-n2">
                     <label>LinkedIn</label>
                   </div>
