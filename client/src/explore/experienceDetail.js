@@ -228,13 +228,17 @@ export default class ExperienceDetail extends React.Component {
                     {console.log(this.state.experience.durationDays)}
                     {this.state.experience.durationDays != undefined ? (
                       this.state.experience.durationDays > 1 ? (
-                        <span> {this.state.experience.durationDays} day </span>
-                      ) : (
                         <span> {this.state.experience.durationDays} days </span>
+                      ) : (
+                        <span> {this.state.experience.durationDays} day </span>
                       )
                     ) : null}
                     {this.state.experience.durationHours != undefined ? (
-                      <span> {this.state.experience.durationHours} hours </span>
+                      this.state.experience.durationHours == 1 ? (
+                        <span>{this.state.experience.durationHours} hour</span>
+                      ) : (
+                        <span>{this.state.experience.durationHours} hours</span>
+                      )
                     ) : null}
                     <span style={{ marginLeft: "2rem" }}>
                       {" "}
@@ -253,6 +257,43 @@ export default class ExperienceDetail extends React.Component {
                         >
                           RESERVE NOW
                         </a>
+                      ) : //custom registeration google form for Rebecca Wind
+                      this.props.customLinkExpID ===
+                        "60572d13fbddf10017793c06" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdbLraJyrh92SnRCGm_tCxgUWIk3vDOlwunw6MyALOpTje0_A/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //custom registeration google form for Monika Graef
+                      this.props.customLinkExpID ===
+                        "60572d13fbddf10017793c06" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLScVW58ZqcJuj4xeP3YRXwKf0ZBaeKVpMUDFRU2FRHu6qgq-rg/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //registeration form for Mark Harris
+                      this.props.customLinkExpID ===
+                        "604e121843b96b001764168b" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdKR7ck_EUvTz1zpzSBy300gbwm1rRubBvzR0Rul9vi6rbkWw/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //registeration form for Marisa Krol
+                      this.props.customLinkExpID ===
+                        "60572d0ffbddf10017793c05" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdAl647Q6xSAxu-41VSLuetIf_XMX2qAp97F85XACECck17JQ/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+
                       ) : (
                         <Link
                           id="btn-reserve"

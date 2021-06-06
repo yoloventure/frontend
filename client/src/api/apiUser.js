@@ -1,23 +1,3 @@
-// @route   GET api/user/current
-// @desc    Returns current user logging in
-// @access  Private
-function getCurrentUser() {
-  var path = "/api/user/current";
-  return fetch(path, {
-    method: "get",
-    headers: new Headers({
-      "Content-Type": "application/json",
-    }),
-    credentials: "include",
-  })
-    .then((response) => {
-      response.json().then(x=>console.log(x));
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
 // @route   GET api/user/
 // @desc    get all users from database
 // @access  Private
@@ -103,7 +83,6 @@ function deleteUser(username) {
 }
 
 export default {
-  getCurrentUser,
   getAllUsers,
   selectedUser,
   editUser,

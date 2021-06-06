@@ -15,7 +15,7 @@ class Page5 extends React.Component {
     return;
   }
   handleJSON(jsonText) {
-    var obj = JSON.parse(JSON.stringify(jsonText));
+    var host = JSON.parse(JSON.stringify(jsonText));
     return (
       <div className="container">
         <div className="row mb-2">
@@ -30,7 +30,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>userId</b>: {obj.hostId}{" "}
+              <b>userId</b>: {host.hostId}{" "}
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>first name:</b> {obj.fname}{" "}
+              <b>first name:</b> {host.fname}{" "}
             </p>
           </div>
         </div>
@@ -62,7 +62,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>lirst name:</b> {obj.lname}{" "}
+              <b>lirst name:</b> {host.lname}{" "}
             </p>
           </div>
         </div>
@@ -78,7 +78,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>gender:</b> {obj.gender}{" "}
+              <b>gender:</b> {host.gender}{" "}
             </p>
           </div>
         </div>
@@ -94,7 +94,46 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>title:</b> {obj.title}{" "}
+              <b>title:</b> {host.title}{" "}
+            </p>
+          </div>
+        </div>
+
+        {host.isIndividual === false ? (
+          <div className="row mb-2">
+            <div className="col-2">
+              <p
+                className="host-reg-ellipse"
+                style={{
+                  height: "75%",
+                  width: "50%",
+                  background: "transparent",
+                }}
+              >
+                5
+              </p>
+            </div>
+            <div className="col-6">
+              <p className="mt-2">
+                {" "}
+                <b>company:</b> {host.company}{" "}
+              </p>
+            </div>
+          </div>
+        ) : null}
+        <div className="row mb-2">
+          <div className="col-2">
+            <p
+              className="host-reg-ellipse"
+              style={{ height: "75%", width: "50%", background: "transparent" }}
+            >
+              5
+            </p>
+          </div>
+          <div className="col-6">
+            <p className="mt-2">
+              {" "}
+              <b>Experience Description:</b> {host.description}{" "}
             </p>
           </div>
         </div>
@@ -110,10 +149,11 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>company:</b> {obj.company}{" "}
+              <b>What I Do:</b> {host.whatIDo}{" "}
             </p>
           </div>
         </div>
+
         <div className="row mb-2">
           <div className="col-2">
             <p
@@ -126,11 +166,11 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>industry:</b> {obj.industry}{" "}
+              <b>industry:</b> {host.industry}{" "}
             </p>
           </div>
         </div>
-        {obj.twitterProfile ? (
+        {host.twitterProfile ? (
           <div className="row mb-2">
             <div className="col-2">
               <p
@@ -147,12 +187,12 @@ class Page5 extends React.Component {
             <div className="col-6">
               <p className="mt-2">
                 {" "}
-                <b>Twitter:</b> {obj.twitterProfile}{" "}
+                <b>Twitter:</b> {host.twitterProfile}{" "}
               </p>
             </div>
           </div>
         ) : null}
-        {obj.linkedInProfile ? (
+        {host.linkedInProfile ? (
           <div className="row mb-2">
             <div className="col-2">
               <p
@@ -169,12 +209,12 @@ class Page5 extends React.Component {
             <div className="col-6">
               <p className="mt-2">
                 {" "}
-                <b>LinkedIn:</b> {obj.linkedInProfile}{" "}
+                <b>LinkedIn:</b> {host.linkedInProfile}{" "}
               </p>
             </div>
           </div>
         ) : null}
-        {obj.instagramProfile ? (
+        {host.instagramProfile ? (
           <div className="row mb-2">
             <div className="col-2">
               <p
@@ -191,7 +231,7 @@ class Page5 extends React.Component {
             <div className="col-6">
               <p className="mt-2">
                 {" "}
-                <b>Instagram:</b> {obj.instagramProfile}{" "}
+                <b>Instagram:</b> {host.instagramProfile}{" "}
               </p>
             </div>
           </div>
@@ -208,7 +248,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>email:</b> {obj.email}{" "}
+              <b>email:</b> {host.email}{" "}
             </p>
           </div>
         </div>
@@ -224,7 +264,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>phone:</b> {obj.phone}{" "}
+              <b>phone:</b> {host.phone}{" "}
             </p>
           </div>
         </div>
@@ -240,7 +280,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>street:</b> {obj.street}{" "}
+              <b>street:</b> {host.street}{" "}
             </p>
           </div>
         </div>
@@ -256,7 +296,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>city:</b> {obj.city}{" "}
+              <b>city:</b> {host.city}{" "}
             </p>
           </div>
         </div>
@@ -272,7 +312,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>state:</b> {obj.state}{" "}
+              <b>state:</b> {host.state}{" "}
             </p>
           </div>
         </div>
@@ -288,7 +328,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>website:</b> {obj.website}{" "}
+              <b>website:</b> {host.website}{" "}
             </p>
           </div>
         </div>
@@ -304,7 +344,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>expertise:</b> {obj.expertise}{" "}
+              <b>expertise:</b> {host.expertise}{" "}
             </p>
           </div>
         </div>
@@ -320,7 +360,7 @@ class Page5 extends React.Component {
           <div className="col-6">
             <p className="mt-2">
               {" "}
-              <b>description:</b> {obj.description}{" "}
+              <b>description:</b> {host.description}{" "}
             </p>
           </div>
         </div>

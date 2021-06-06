@@ -173,22 +173,22 @@ router.post("/", function (req, res, next) {
 
 //edit application using put requests
 router.put("/:id", function (req, res, next) {
-  var mailOptions2 = {
-    from: "1341452029zsr@gmail.com",
-    to: req.body.email,
-    subject: "Yolo Shadow Host Application Received!",
-    text:
-      "Dear " +
-      req.body.fname +
-      ", Thank you for applying for yolo shadow host application round2! We will notify you when the decision is made.",
-  };
-  transporter.sendMail(mailOptions2, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+  // var mailOptions2 = {
+  //   from: "1341452029zsr@gmail.com",
+  //   to: req.body.email,
+  //   subject: "Yolo Shadow Host Application Received!",
+  //   text:
+  //     "Dear " +
+  //     req.body.fname +
+  //     ", Thank you for applying for yolo shadow host application round2! We will notify you when the decision is made.",
+  // };
+  // transporter.sendMail(mailOptions2, function (error, info) {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     console.log("Email sent: " + info.response);
+  //   }
+  // });
 
   //find and update specific application
   Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
