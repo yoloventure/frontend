@@ -293,6 +293,7 @@ export default class ExperienceDetail extends React.Component {
                         >
                           RESERVE NOW
                         </a>
+
                       ) : (
                         <Link
                           id="btn-reserve"

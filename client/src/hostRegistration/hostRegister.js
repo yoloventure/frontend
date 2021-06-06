@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+
 import "./hostRegister.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
@@ -17,6 +18,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register, loadUser } from "../actions/authActions";
 
+
 class HostRegister extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +28,7 @@ class HostRegister extends React.Component {
         user: "",
         fname: "",
         lname: "",
+
         gender: "",
         title: "",
         yearsExp: "",
@@ -45,6 +48,7 @@ class HostRegister extends React.Component {
         state: "",
         country: "USA",
         zip: "111",
+
         description: " ",
         offerOne: "",
         offerTwo: "",
@@ -63,6 +67,7 @@ class HostRegister extends React.Component {
       progress: 0,
       firstLoad: true,
       registered: false,
+
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -102,6 +107,7 @@ class HostRegister extends React.Component {
         ...host,
         [name]: value,
       },
+
     });
     console.log(this.state.host);
   }
@@ -110,6 +116,7 @@ class HostRegister extends React.Component {
     if (this.state.counter === 7) {
       //person creating host app was not registered as a user on the website prior to this
       let host = this.state.host;
+
       let user = {
         fname: host.fname,
         lname: host.lname,
@@ -211,6 +218,7 @@ class HostRegister extends React.Component {
         state: state,
       },
     });
+
   }
 
   handlePageRender(counter) {
@@ -308,6 +316,7 @@ class HostRegister extends React.Component {
           handleSubmit={this.handleSubmit}
         />
       );
+
       return pageToRender;
     }
   }
@@ -317,11 +326,13 @@ class HostRegister extends React.Component {
       <div className="m-0 p-0">
         <div className="nav pb-5">
           <Navbar textColor={"black"} />
+
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
             <div className="col-md-4"></div>
+
             <div className="col apply ml-5">
               <p>Apply To Be A Host</p>
             </div>
@@ -364,6 +375,7 @@ class HostRegister extends React.Component {
           </div>
         </div>
 
+
         <div className="m-0 p-0">
           <Footer />
         </div>
@@ -383,3 +395,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { register, loadUser })(HostRegister);
+
