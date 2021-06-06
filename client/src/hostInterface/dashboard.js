@@ -24,6 +24,8 @@ import {
 } from "react-router-dom";
 import {MDBBtn} from 'mdbreact'
 
+import Review from './Review';
+
 
 class Dashboard extends React.Component{
 
@@ -229,16 +231,24 @@ class Dashboard extends React.Component{
             notificationFilters:[],
             whatICanOfferTitles:[],
             whatICanOfferBodies:[],
-            perks:[]
+            perks:[],
 
 
-
+            reviewsForShadowers: [],
+            rating: "",
+            body: "",
+            author: "",
+            host: "",
+      
+            bodyToSend: {},
+            tempBody: [],
         }
 
         let tempArray3=[]
         let currentTemp3=[]
         console.log(this.props.auth.user)
-        fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+        // fetch(`/api/review/host/${this.props.auth.user.hostId}`, {
+            fetch('/api/review/host/5f14aba6e1d046aa0894f3c3' ,{
 
             method: 'get',
             headers: new Headers({
@@ -290,7 +300,8 @@ class Dashboard extends React.Component{
         console.log(currentTemp3)
 
         //fetch relevant experience for this host and set up initial states
-        fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+        // fetch(`/api/experience/host/${this.props.auth.user.hostId}`, {
+            fetch('/api/experience/host/5f14aba6e1d046aa0894f3c3' ,{
             method: 'get',
             headers: new Headers({
                 'Content-Type':'application/json'
@@ -361,9 +372,82 @@ class Dashboard extends React.Component{
 
         });
         this.setState({editExperience:false})
-
+            
+        fetch('/api/user/5ed390d9f49cf627001cb8b4', {
+            method: "get",
+            headers: new Headers({
+              "Content-Type": "application/json",
+            }),
+          })
+            .then((response) => {
+              response.json().then((reviewsData) => {
+                console.log(reviewsData)
+                reviewsData.review.forEach((oneReview) => {
+                  console.log(oneReview)
+                  this.state.tempBody.push(oneReview)
+                 } );
+               
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          }
+          //add review to review database, is currently hardcoded
+          postReviewsForShadower = () => {
+  
+            let test1 = {}
+            var i =  this.state.reviewsForShadowers.length-1; 
+           
+              test1.shadower = "5f14aba6e1d046aa0894f3c3"
+              test1.author = "5ef660a01c7b54239095e6c5"
+              test1.body = this.state.reviewsForShadowers[i].body
+              test1.publishDate = new Date(moment().format("MM-DD-YYYY"))
+              test1.rating = this.state.reviewsForShadowers[i].rating
+           
+              fetch('/api/review/shadower/5f14aba6e1d046aa0894f3c3', {
+          
+                method: "post",
+                headers: new Headers({
+                  "Content-Type": "application/json",
+                }),
+               
+                body: JSON.stringify(test1),
+          
+              })
+                .then((response) => { 
+                  response.json().then((reviewsData) => { 
+                  this.state.tempBody.push(reviewsData._id)
+                  this.setState({bodyToSend: this.state.tempBody}, ()=>this.postReviewsToShadower() )  
+                })
+              })
+                .catch((err) => {
+                  console.log(err);
+                });
+          }
+        //add review to user/shadower database
+          postReviewsToShadower = () => {
+            let test1 = {}
+             test1.review =  this.state.bodyToSend;
+          
+             fetch('/api/user/5ed390d9f49cf627001cb8b4', {
+              method: "post",
+              headers: new Headers({
+                "Content-Type": "application/json",
+              }),
+              body: JSON.stringify(test1),
+            })
+            .then((response) => {
+              response.json().then((reviewsData) => {
+                console.log(reviewsData)}
+            )})
+              .catch((err) => {
+                console.log(err);
+              });
 
     }
+
+    
     handleSelect=(ranges)=>{
         if(this.state.counter===1){
             this.setState({selectionRange: {
@@ -448,10 +532,45 @@ class Dashboard extends React.Component{
             editExperience: !prevState.editExperience
         }));
     }
-    confirmRanges=()=>{
+    confirmRanges = () => {
+  
         //will send rangeObjects to database then clear state.rangeObjects and state.rangeTextboxes
-    }
-
+    
+        let test1 ={}
+      
+        test1.availability = []
+        for(var i = 0; i < this.state.rangeObjects.length; i++){
+        
+          if(this.state.rangeObjects[i]){
+            test1.availability.push(this.state.rangeObjects[i].startDate)
+            test1.availability.push(this.state.rangeObjects[i].endDate)
+          }
+        }
+       
+    
+        fetch('/api/host/5f19ae6cb21fedd6cfee46b9', {
+          method: "put",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+         
+          body: JSON.stringify(test1),
+    
+        })
+        .then((response) => {
+          response.json().then((reviewsData) => {
+            console.log(reviewsData)}
+         
+        )})
+          .catch((err) => {
+            console.log(err);
+          });
+    
+          this.state.rangeObjects = []
+          this.state.rangeTextboxes = []
+    
+      }
+    
     changeCards=()=>{
         let changeTo=1
         if(this.state.myHistoryButton.localeCompare('Show More')===0){
@@ -634,6 +753,16 @@ class Dashboard extends React.Component{
 
     }
 
+    callbackFunction = (childData) => {
+        this.setState({
+          rating: childData[0],
+          body: childData[1],
+          author:childData[2],
+          host: childData[3]}
+          
+          )
+    }
+
 
     render() {
 
@@ -789,6 +918,13 @@ class Dashboard extends React.Component{
                                     </div>
                                 </div>
 
+                                <Review 
+                parentCallback = {this.callbackFunction}
+                reviewsForShadowers = {this.state.reviewsForShadowers}
+                 postReviewsForShadower = {this.postReviewsForShadower}
+                 >
+                </Review>
+                
 
 
 

@@ -124,6 +124,12 @@ const hostSchema = new mongoose.Schema({
     type: Array(Date),
     default: null,
   },
+
+  review: {
+    type: Array(mongoose.Schema.Types.ObjectId),
+    default: [],
+
+  }
 });
 
 module.exports = mongoose.model("Host", hostSchema);

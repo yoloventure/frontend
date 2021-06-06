@@ -73,6 +73,7 @@ class App extends React.Component {
                   )}
                 />
 
+                />
                 <Route
                   path="/explore/marisaKrol"
                   exact
