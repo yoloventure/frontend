@@ -268,7 +268,7 @@ export default class ExperienceDetail extends React.Component {
                         </a>
                       ) : //custom registeration google form for Monika Graef
                       this.props.customLinkExpID ===
-                        "60572d13fbddf10017793c06" ? (
+                        "608124f27b48357651cded2d" ? (
                         <a
                           className="btn"
                           href="https://docs.google.com/forms/d/e/1FAIpQLScVW58ZqcJuj4xeP3YRXwKf0ZBaeKVpMUDFRU2FRHu6qgq-rg/viewform"
@@ -293,7 +293,6 @@ export default class ExperienceDetail extends React.Component {
                         >
                           RESERVE NOW
                         </a>
-
                       ) : (
                         <Link
                           id="btn-reserve"
