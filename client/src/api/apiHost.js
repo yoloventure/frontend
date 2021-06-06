@@ -87,7 +87,7 @@ function editOrCreateHost(host, user) {
         response.json().then((r) => {
           //if we received the response that a host already exists
           console.log(r);
-          editHost(host, user);
+          editHost(user.hostId, host);
         });
       } else {
         return response.json();
@@ -98,16 +98,16 @@ function editOrCreateHost(host, user) {
     });
 }
 
-function editHost(host, user) {
-  console.log("editing host" + user.hostId);
+function editHost(hostId, newBody) {
+  console.log("editing host" + hostId);
 
-  var path = "/api/host/" + user.hostId;
+  var path = "/api/host/" + hostId;
   return fetch(path, {
     method: "put",
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    body: JSON.stringify(host),
+    body: JSON.stringify(newBody),
     credentials: "include",
   })
     .then((response) => {
