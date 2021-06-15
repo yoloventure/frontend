@@ -45,3 +45,6 @@ Run the command "npm run dev" in the root folder. Server will run on localhost:5
 7. Create a pull request using the online interface.
 8. If there are merge conflicts resolve them online, or resolve locally and push to your branch again. 
 9. Wait for heruko auto-deployment to complete and view it to check if the features you added work correctly. 
+
+# Solutions to common set-up issues:
+1. If you run into a "unable to resolve dependency tree" error during your npm installation, try to run "npm install --legacy-peer-deps" instead.
