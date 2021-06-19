@@ -114,34 +114,34 @@ function editHost(host) {
     console.log(err);
   });
 }
-function uploadHostImages(hostid,workingBlob){
-  const sharedKeyCredential = new StorageSharedKeyCredential("yoloshadowstorage","N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==");
-  const idblobSAS = generateBlobSASQueryParameters({
-    containerName : "hostworkingimages", // Required
-    blobName:workingBlob , // Required
-    permissions: BlobSASPermissions.parse("r"), // Required
-    startsOn: new Date(), // Required
-    expiresOn: new Date(new Date().valueOf() + 86400) // Optional. Date type
-   },
-  sharedKeyCredential // StorageSharedKeyCredential - `new StorageSharedKeyCredential(account, accountKey)`
-).toString();
-  console.log(idblobSAS);
-    var path = "/api/host/" + hostId;
-  return fetch(path, {
-    method: 'put',
-    headers: new Headers({
-        'Content-Type': 'application/json'
-    }),
-    body: JSON.stringify({
-        "workingImage": idblobSAS,        
-    }),
-    credentials: "include"
-  }).then((response) => {
-    return response.json();
-  }).catch((err) => {
-    console.log(err);
-  });
-}
+// function uploadHostImages(hostid,workingBlob){
+//   const sharedKeyCredential = new StorageSharedKeyCredential("yoloshadowstorage","N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==");
+//   const idblobSAS = generateBlobSASQueryParameters({
+//     containerName : "hostworkingimages", // Required
+//     blobName:workingBlob , // Required
+//     permissions: BlobSASPermissions.parse("r"), // Required
+//     startsOn: new Date(), // Required
+//     expiresOn: new Date(new Date().valueOf() + 86400) // Optional. Date type
+//    },
+//   sharedKeyCredential // StorageSharedKeyCredential - `new StorageSharedKeyCredential(account, accountKey)`
+// ).toString();
+//   console.log(idblobSAS);
+//     var path = "/api/host/" + hostId;
+//   return fetch(path, {
+//     method: 'put',
+//     headers: new Headers({
+//         'Content-Type': 'application/json'
+//     }),
+//     body: JSON.stringify({
+//         "workingImage": idblobSAS,        
+//     }),
+//     credentials: "include"
+//   }).then((response) => {
+//     return response.json();
+//   }).catch((err) => {
+//     console.log(err);
+//   });
+// }
 
 function deleteHost(hostId) {
   var path = "/api/host/" + hostId;

@@ -174,7 +174,6 @@ class HostRegister_Round2 extends React.Component {
           }).catch((err) => {
             console.log(err);
           });
-            // APIHost.editHost(this.state.data);
           }); 
     }
   }
