@@ -17,18 +17,20 @@ import APIHost from "../api/apiHost";
 import PropTypes from 'prop-types';
 import { register,loadUser } from '../actions/authActions';
 import axios from 'axios';
-  //var azure = require('@azure/storage-blob');
- // var storage = require('azure-storage');
-  const {BlobServiceClient,StorageSharedKeyCredential,AZCloudBlobContainer} = require("@azure/storage-blob");
- //const { DefaultAzureCredential } = require("@azure/identity");
-  const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
-  const account = "yoloshadowstorage";
-  const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
-  const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
-  var workingImageUrl = "";
-  var idImageUrl = "";
-  //const defaultAzureCredential = new DefaultAzureCredential();
 
+//all the needed information to connect to our azure storage
+//how to test this functionality: 
+// 1. log in to your yolo shadow account
+// 2. go to http://localhost:5000/hostregister/round2
+// 3. upload the pictures 
+// 4. log in to azure portal with yolo tech gmail
+// 5. Go to storage account, then go to containers
+
+const {BlobServiceClient,StorageSharedKeyCredential,AZCloudBlobContainer} = require("@azure/storage-blob");
+const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
+const account = "yoloshadowstorage";
+const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
+const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
@@ -55,14 +57,7 @@ class HostRegister_Round2 extends React.Component {
   }
 
   componentDidMount() {
-    const user = this.props.auth.user;
-    console.log("host id");
-    console.log(user.hostId);
-    console.log("id");
-    console.log(user._id);
-    console.log("user");
     console.log(this.props.auth.user);
-    //hard code host id for now
     this.setState(prevState => {
       return {
         data: {
@@ -126,36 +121,49 @@ class HostRegister_Round2 extends React.Component {
     if (this.state.counter == 4 && this.formValidation()) {
       console.log("Submit API called");
       const { data } = this.state;
-       // let data = this.state.data;
-       console.log(data);
+      console.log(data);
       const start = new Date(this.state.data.dateRange.startDate);
       const end = new Date(this.state.data.dateRange.endDate);
       const availability2 = [start,end];
-       const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
-       const containerClient = blobServiceClient.getContainerClient("hostworkingimages");
-       const containerClient2 = blobServiceClient.getContainerClient("hostidimages");
-        const workingImage = this.state.data.files[0];
-         const idImage = this.state.data.files[1];
-        //const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
-        const workingblobName = "host_working_image"+this.state.data.hostId;
-        const idblobName = "host_id_image"+this.state.data.hostId;
-        const blockBlobClient = containerClient.getBlockBlobClient(workingblobName);
-        const blockBlobClient2 = containerClient2.getBlockBlobClient(idblobName);
-        blockBlobClient.uploadBrowserData(workingImage);
-        blockBlobClient2.uploadBrowserData(idImage); 
-        // APIHost.editHost(data.hostId, this.state.data);
-          var uploadpath = "/api/host/" + this.state.data.hostId;
-          workingImageUrl = "https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/"+workingblobName;
-          idImageUrl =  "https://yoloshadowstorage.blob.core.windows.net/hostidimages/"+idblobName;
-          this.setState({ 
-            data: {
-              ...this.state.data,
-              availability: [...this.state.data.availability,...availability2],
-              "workingImage": workingImageUrl,
-              "idImage": idImageUrl
-            }
-          }, () => {
-            return fetch(uploadpath, {
+
+      //create a client for our azure storage account from @azure/storage-blob library
+      const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
+      //client for the hostworkingimages container that stores all working images 
+      const containerClient = blobServiceClient.getContainerClient("hostworkingimages");
+      //client for the hostidimages container that stores all the id images
+      const containerClient2 = blobServiceClient.getContainerClient("hostidimages");
+      //uploaded id image from user
+      const idImage = this.state.data.files[1];
+      //uploaded working image from user
+      //note: I tried to make the user be able to upload multiple working images but 
+      //the whole constructor was built based on single uploading in our components file
+      //and database, it will cause many times and bugs to change the whole thing so I decided to 
+      //leave it for now. Now user can only upload one imge during working.
+      const workingImage = this.state.data.files[0];
+      //manually name the images files, which is the image type + the hostid that the images belong to
+      const workingblobName = "host_working_image"+this.state.data.hostId;
+      const idblobName = "host_id_image"+this.state.data.hostId;
+      //create specific clients for each specific image
+      const blockBlobClient = containerClient.getBlockBlobClient(workingblobName);
+      const blockBlobClient2 = containerClient2.getBlockBlobClient(idblobName);
+      //upload the images to azure
+      blockBlobClient.uploadBrowserData(workingImage);
+      blockBlobClient2.uploadBrowserData(idImage); 
+      var uploadpath = "/api/host/" + this.state.data.hostId;
+      //initialize the url for id and woking image that will be stored
+      var workingImageUrl = "https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/"+workingblobName;
+      var idImageUrl =  "https://yoloshadowstorage.blob.core.windows.net/hostidimages/"+idblobName;
+      //update the current state  
+      this.setState({ 
+        data: {
+          ...this.state.data,
+            availability: [...this.state.data.availability,...availability2],
+            "workingImage": workingImageUrl,
+            "idImage": idImageUrl
+          }
+        }, () => {
+          //update the data base and now the two image urls will be stored in database as two strings
+          return fetch(uploadpath, {
             method: 'put',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -167,7 +175,6 @@ class HostRegister_Round2 extends React.Component {
                 "fname": this.state.data.fname,
                 "email": this.state.data.email
             }),
-            //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
             credentials: "include"
           }).then((response) => {
             return response.json();

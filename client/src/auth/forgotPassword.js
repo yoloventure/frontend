@@ -8,15 +8,14 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import PropTypes from "prop-types";
-import { login, resetAttempt } from "../actions/authActions";
+import { resetAttempt } from "../actions/authActions";
 
-class Login extends Component {
+class ForgotPassword extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
-      password: "",
       submitted: false,
       errorMessage: "",
       redirect: false,
@@ -35,14 +34,13 @@ class Login extends Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { email, password } = this.state;
+    const { email} = this.state;
 
     const user = {
-      email,
-      password,
+      email
     };
 
-    this.props.login(user);
+    this.props.resetAttempt(user);
     // if(!this.props.isAuthenticated){
     //   console.log('authenticated fail')
     //
@@ -66,18 +64,6 @@ class Login extends Component {
       }
     }
   }
-  // componentWillReceiveProps(nextprops){
-  //   if(nextprops.auth.isAuthenticated){
-  //     this.setState({errorMessage:"", redirect:true})
-  //
-  //
-  //   }else{
-  //     console.log('authenticated fail')
-  //
-  //     this.setState({errorMessage:""})
-  //
-  //   }
-  // }
 
   renderRedirect = () => {
     if (this.state.redirect) {
@@ -87,12 +73,12 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, submitted, errorMessage } = this.state;
+    const { email,submitted, errorMessage } = this.state;
 
     return (
       <div className="container-fluid app p-0 m-0">
         <Helmet>
-          <title>Login | YoloShadow</title>
+          <title>Forgot Passwordttt89 | YoloShadow</title>
         </Helmet>
         {this.renderRedirect()}
         <div className="nav">
@@ -102,7 +88,7 @@ class Login extends Component {
         <div className="experience-fig-1 row align-items-center">
           <div className="col-md-2"></div>
           <h2>
-            <em>Login</em>
+            <em>Forgot Password</em>
           </h2>
         </div>
         <MDBContainer>
@@ -124,37 +110,14 @@ class Login extends Component {
                   onChange={this.handleChange}
                 />
                 {submitted && !email && (
-                  <div className="help-block">Username is required</div>
-                )}
-              </div>
-              <div
-                className={
-                  "form-group" + (submitted && !password ? " has-error" : "")
-                }
-              >
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={this.handleChange}
-                />
-                {submitted && !password && (
-                  <div className="help-block">Password is required</div>
+                  <div className="help-block">Email is required</div>
                 )}
               </div>
               <div className="form-group">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Submit</button>
                 {/*
                                     <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 */}
-                <Link to="/register" className="btn btn-warning">
-                  Register
-                </Link>
-                <Link to="/forgot" className="btn btn-warning">
-                    Forgot Password
-                </Link>
               </div>
             </form>
           </div>
@@ -168,7 +131,7 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
+ForgotPassword.propTypes = {
   login: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -177,4 +140,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth, //item represents the entire state
 });
 
-export default compose(withRouter, connect(mapStateToProps, { login }))(Login);
+export default compose(withRouter, connect(mapStateToProps, { resetAttempt }))(ForgotPassword);

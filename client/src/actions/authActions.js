@@ -8,14 +8,11 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   RESET_ATTEMPT,
+  USER_FOUND,
+  USER_NOTFOUND,
 } from "./types";
 import { returnErrors } from "./errorActions";
 
-export const resetAttempt = () => (dispatch) => {
-  dispatch({
-    type: RESET_ATTEMPT,
-  });
-};
 export const loadUser = () => (dispatch, getState) => {
   dispatch({
     type: USER_LOADING,
@@ -177,6 +174,43 @@ export const login = ({ email, password }) => {
         console.log("first" + err);
         dispatch({
           type: LOGIN_FAIL,
+        });
+      });
+  };
+};
+export const resetAttempt = ({ email }) => {
+  return (dispatch) => {
+    var path = "/api/auth/forgot";
+    return fetch(path, {
+      method: "post",
+      headers: new Headers({
+        Authorization:
+          "Basic " + new Buffer(email).toString("base64"),
+      }),
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          response.json().then((data) => {
+            console.log("now gonna find the user with this email");
+
+            dispatch({
+              type: USER_FOUND,
+              payload: data,
+            });
+            // console.log("now gonna load");
+            dispatch(loadUser());
+          });
+        } else {
+          dispatch({
+            type: USER_NOTFOUND,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("first" + err);
+        dispatch({
+          type: RESET_ATTEMPT,
         });
       });
   };

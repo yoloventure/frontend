@@ -9,3 +9,5 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const RESET_ATTEMPT = "RESET_ATTEMPT";
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const USER_FOUND = "USER_FOUND";
+export const USER_NOTFOUND = "USER_NOTFOUND";

@@ -252,7 +252,6 @@ class ShadowReservation extends React.Component {
                         "shadowerFname": fname,
                         "shadowerEmail": email
                     }),
-                    //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
                     credentials: "include"
                   }).then((response) => {
                     console.log("here1"); 
@@ -281,7 +280,6 @@ class ShadowReservation extends React.Component {
               }).catch((err) => {
                   console.log(err);
               });
-            //let currentHost = APIHost.getHostById('5f14aba6e1d046aa0894f3c3');
 
           }));
     }
