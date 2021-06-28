@@ -97,7 +97,7 @@ router.put('/:id', function (req, res, next) {
           let html2 = `<h2> Your job shadow application round2 has received at Yolo Shadow</h2>
           <p>Your Yolo Shadow shadower round1 application has been received. We will notify you when decision is made.</p>
           <br><p>Sincerely</p><p>The Yolo Shadow Team</p>`;
-          var mailOptions1 = {
+          var mailOption2 = {
           from: "yoloshadower.tech@gmail.com",
           to: req.body.email,
           subject: +req.body.fname+", You Yolo Shadow Job Application Round2 Has Been Received",

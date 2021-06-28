@@ -58,6 +58,7 @@ class HostRegister_Round2 extends React.Component {
 
   componentDidMount() {
     console.log(this.props.auth.user);
+    const user = this.props.auth.user;
     this.setState(prevState => {
       return {
         data: {
