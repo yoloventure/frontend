@@ -1,115 +1,174 @@
-import APIAuth from "./apiAuth";
-import APIHost from "./apiHost";
+mport { useEffect } from "react";
 import APIUser from "./apiUser";
-import axios from "axios";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import PropTypes from "prop-types";
+const {
+  BlobServiceClient,
+  StorageSharedKeyCredential,
+  AZCloudBlobContainer,
+} = require("@azure/storage-blob");
 
-function submitApp(hostApp) {
-  //   // var user = {
-  //   //   fname: hostApp.fname,
-  //   //   lname: hostApp.lname,
-  //   //   email: hostApp.email,
-  //   //   password: hostApp.password,
-  //   //   job_interests: hostApp.job_interests
-  //   // }
-  //   var user = {
-  //     fname: "test",
-  //     lname: "test",
-  //     email: "test@abdul",
-  //     password: "test",
-  //     job_interests: "nil"
-  //   }
-  //   console.log('here')
-  //   var newUser = null;
-  //   props.register(user).then(() => {
-  //      props.loadUser()
-  //   });
-  //
-  //   // var host = {
-  //   //   user: newUser._id,
-  //   //   gender: host.gender,
-  //   //   phone: host.phone,
-  //   //   title: host.title,
-  //   //   //company: createCompany(), //ref
-  //   //   description: host.description,
-  //   //   //location: createLocation(), //ref
-  //   //   offering: [host.offerOne, host.offerTwo, host.offerThree],
-  //   //   moreOffering: [host.moreOne, host.moreTwo, host.moreThree],
-  //   //   expertise: host.expertise,
-  //   //   //experiences: createExperience(), //ref
-  //   //   approval: 'pending',
-  //   // }
-  //   var host = {
-  //     user: props.auth.user._id,
-  //     category: "",
-  //     title:"",
-  //     street: "",
-  //     city: "",
-  //     state:"",
-  //     description: "",
-  //     offering: ["","",""],
-  //
-  //
-  //     expertise:"",
-  //     // experiences: createExperience(), //ref
-  //     approval: 'pending',
-  //   }
-  //
-  //   APIHost.createNewHost(host);
+//returns the infomations about the Host with the given UID
+function getHostById(hostId) {
+  var path = "/api/host/" + hostId;
+  return fetch(path, {
+    method: "get",
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-function approveApp(hostId) {
-  var host = APIHost.getHostById(hostId);
-  var user = APIUser.selectedUser(host.user); // change host model to store username instead of ObjectId?
+//returns the infomations about the current Host or null if not logged in
+// function getCurrentHost(){
+//   var user = getCurrentUser();
+//   var hostId = user.hostId;
+//   if (hostId != null) {
+//     return getHostById(hostId);
+//   } else {
+//     return null;
+//   }
+// }
 
-  user.hostId = host._id; // link user to host
-  APIUser.editUser(host.user, user);
-
-  host.approval = "approved"; // update host status
-  APIHost.editHost(hostId, host);
+//returns the infomations about all the hosts in the system
+function getAllHosts() {
+  var path = "/api/host/";
+  return fetch(path, {
+    method: "get",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    credentials: "include",
+  })
+    .then((response) => {
+      response.json().then((d) => console.log(d));
+      // return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-function rejectApp(hostId) {
-  var host = APIHost.getHostById(hostId);
+//creates a new Host in the system
+function createNewHost(host) {
+  console.log(JSON.stringify(host));
+  var path = "/api/host/";
 
-  host.approval = "rejected"; // update host status
-  APIHost.editHost(hostId, host);
+  return fetch(path, {
+    method: "post",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    body: JSON.stringify(host),
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+function editOrCreateHost(host, user) {
+  var path = "/api/host/";
+  console.log(user);
+  return fetch(path, {
+    method: "post",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    body: JSON.stringify(host),
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.status == 400) {
+        response.json().then((r) => {
+          //if we received the response that a host already exists
+          console.log(r);
+          editHost(user.hostId, host);
+        });
+      } else {
+        return response.json();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-function submitAppRound2(hostApp) {
-  // upload images
+function editHost(hostId, newBody) {
+  console.log("editing host" + hostId);
 
-  for (var i = 0; i < hostApp.files.length; i++) {
-    const data = new FormData();
-    data.append("file", hostApp.files[i]);
-    data.append("hostId", hostId);
-
-    //   const config = {
-    //   headers: { 'content-type': 'multipart/form-data' }
-    // }
-    //   axios.post("api/fileUpload", data, config)
-    //       .then(res => {
-    //         console.log(res.statusText)
-    //       });
-  }
-
-  // update host availability
-  var hostId = hostApp.hostId;
-  var host = APIHost.getHostById(hostId);
-  host.availability = [hostApp.dateRange.startDate, hostApp.dateRange.endDate];
-  //host.gender = "female";
-  APIHost.editHost(hostId, host);
+  var path = "/api/host/" + hostId;
+  return fetch(path, {
+    method: "put",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    body: JSON.stringify(newBody),
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-submitApp.propTypes = {
-  register: PropTypes.func.isRequired,
-  loadUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+// function uploadHostImages(hostid,workingBlob){
+//   const sharedKeyCredential = new StorageSharedKeyCredential("yoloshadowstorage","N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==");
+//   const idblobSAS = generateBlobSASQueryParameters({
+//     containerName : "hostworkingimages", // Required
+//     blobName:workingBlob , // Required
+//     permissions: BlobSASPermissions.parse("r"), // Required
+//     startsOn: new Date(), // Required
+//     expiresOn: new Date(new Date().valueOf() + 86400) // Optional. Date type
+//    },
+//   sharedKeyCredential // StorageSharedKeyCredential - `new StorageSharedKeyCredential(account, accountKey)`
+// ).toString();
+//   console.log(idblobSAS);
+//     var path = "/api/host/" + hostId;
+//   return fetch(path, {
+//     method: 'put',
+//     headers: new Headers({
+//         'Content-Type': 'application/json'
+//     }),
+//     body: JSON.stringify({
+//         "workingImage": idblobSAS,
+//     }),
+//     credentials: "include"
+//   }).then((response) => {
+//     return response.json();
+//   }).catch((err) => {
+//     console.log(err);
+//   });
+// }
+
+function deleteHost(hostId) {
+  var path = "/api/host/" + hostId;
+  return fetch(path, {
+    method: "DELETE",
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    credentials: "include",
+  })
+    .then((response) => {
+      return response.json;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export default {
+  getHostById,
+  getAllHosts,
+  deleteHost,
+  editHost,
+  createNewHost,
+  editOrCreateHost,
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth, //item represents the entire state
-});
-
-export default { submitApp, approveApp, rejectApp, submitAppRound2 };
