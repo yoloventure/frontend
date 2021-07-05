@@ -5,11 +5,12 @@ import ExperienceDetail from "./explore/experienceDetail";
 import ShadowerReservation from "./bookExperience/shadowerReservation";
 import Login from "./auth/login";
 import ForgotPassword from "./auth/forgotPassword";
+import ResetPassword from "./auth/resetPassword";
 import HostExperience from "./hostExperience/hostExperience";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./auth/register";
-import HostRegister from "./registration/hostRegister";
-import HostRegister_Round2 from "./registration/hostRegister_Round2";
+import HostRegister from "./hostRegistration/hostRegister";
+import HostRegister_Round2 from "./hostRegistration/hostRegister_Round2";
 import FeatureStory from "./story/featureStory";
 import About from "./about/about";
 import HostGuidelines from "./hostExperience/hostGuidelines";
@@ -81,6 +82,7 @@ class App extends React.Component {
                 <Route path="/login" exact component={Login} />
 
                 <Route path="/forgot" exact component={ForgotPassword} />
+                <Route path="/reset/:id" exact component={ResetPassword} />
 
                 <Route path="/story" exact component={FeatureStory} />
 

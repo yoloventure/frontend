@@ -93,6 +93,13 @@ router.post("/", function (req, res, next) {
 
 //edit application using put requests
 router.put('/:id', function (req, res, next) {
+            //find and update specific application
+          Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
+            //find and send back updated application for display
+            Host.findOne({ _id: req.params.id }, req.body).then(function (host) {
+              res.send(host);
+            });
+          });
           //mail configuration for round2
           let html2 = `<h2> Your job shadow application round2 has received at Yolo Shadow</h2>
           <p>Your Yolo Shadow shadower round1 application has been received. We will notify you when decision is made.</p>
@@ -111,13 +118,6 @@ router.put('/:id', function (req, res, next) {
             }
           });
 
-  //find and update specific application
-  Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
-    //find and send back updated application for display
-    Host.findOne({ _id: req.params.id }, req.body).then(function (host) {
-      res.send(host);
-    });
-  });
 });
 
 //edit application using put requests

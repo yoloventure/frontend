@@ -14,7 +14,6 @@ import { register, resetAttempt } from "../actions/authActions";
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.props.resetAttempt();
 
     this.state = {
       user: {
@@ -50,7 +49,7 @@ class Register extends Component {
     this.setState({ submitted: true });
     var user = this.state.user;
     if (user.fname && user.lname && user.email && user.password) {
-      this.props.resetAttempt();
+      // this.props.resetAttempt();
       this.props.register(user);
     }
   }
@@ -74,13 +73,9 @@ class Register extends Component {
  componentWillReceiveProps(nextprops){
   if(nextprops.auth.isAuthenticated){
     this.setState({errorMessage:"", redirect:true})
-
-
   }else{
     console.log('authenticated fail')
-
     this.setState({errorMessage:"There is already a user associated with this email."})
-
   }
 }*/
   renderRedirect = () => {
@@ -213,5 +208,5 @@ const mapStateToProps = (state) => ({
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, { register, resetAttempt })
+  connect(mapStateToProps, { register })
 )(Register);

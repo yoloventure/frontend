@@ -37,7 +37,8 @@ class ShadowReservation extends React.Component {
         accomodations: "",
         approval: "pending",
         shadowerFname: "",
-        shadowerEmail: ""
+        shadowerEmail: "",
+        showLoginLink: false
       },
       loaded: false,
       counter: 1,

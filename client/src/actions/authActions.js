@@ -10,6 +10,7 @@ import {
   RESET_ATTEMPT,
   USER_FOUND,
   USER_NOTFOUND,
+  RESET_FAIL
 } from "./types";
 import { returnErrors } from "./errorActions";
 
@@ -210,7 +211,52 @@ export const resetAttempt = ({ email }) => {
       .catch((err) => {
         console.log("first" + err);
         dispatch({
-          type: RESET_ATTEMPT,
+          type: RESET_FAIL,
+        });
+      });
+  };
+};
+
+export const resetPassword = (user) => {
+  return (dispatch) => {
+    console.log(user.userId);
+    var userInfo = user;
+    var password = userInfo.password;
+    var path = "/api/auth/reset/"+userInfo.userId;
+    fetch(path, {
+      method: "put",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization:
+          "Basic " +
+          new Buffer(userInfo.password).toString("base64"),
+      }),
+
+      credentials: "include",
+    })
+      .then((res) => {
+          if (response.status === 200) {
+          response.json().then((data) => {
+            console.log("now gonna find this user");
+
+            dispatch({
+              type: USER_FOUND,
+              payload: data,
+            });
+            // console.log("now gonna load");
+            dispatch(loadUser());
+          });
+        } else {
+          dispatch({
+            type: USER_NOTFOUND,
+          });
+        }
+
+      })
+      .catch((err) => {
+        console.log("first" + err);
+        dispatch({
+          type: RESET_FAIL,
         });
       });
   };

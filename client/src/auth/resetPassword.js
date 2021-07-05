@@ -8,16 +8,16 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import PropTypes from "prop-types";
-import { login, resetAttempt } from "../actions/authActions";
+import { login, resetPassword } from "../actions/authActions";
 
-class Login extends Component {
+class ResetPassword extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      email: "",
+      user:{
       password: "",
-      userId: this.props.location.pathname.substring(7),
+      userId :this.props.location.pathname.substring(7),
+    },
       submitted: false,
       errorMessage: "",
       redirect: false,
@@ -28,22 +28,23 @@ class Login extends Component {
   }
 
   handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
+    const { name, value } = event.target;
+    const { user } = this.state;
+    this.setState({
+      user: {
+        ...user,
+        [name]: value,
+      },
+    });
   }
 
   handleSubmit(e) {
+    console.log(this.props.location.pathname.substring(7));
     e.preventDefault();
 
-    this.setState({ submitted: true });
-    const { email, password } = this.state;
-
-    const user = {
-      email,
-      password,
-    };
-
-    this.props.login(user);
+    this.setState({ user:{userId:this.props.location.pathname.substring(8)},submitted: true });
+     var user = this.state.user;
+     this.props.resetPassword(user);
     // if(!this.props.isAuthenticated){
     //   console.log('authenticated fail')
     //
@@ -63,7 +64,7 @@ class Login extends Component {
           console.log("authenticated fail");
           return { errorMessage: "Username or Password was incorrect." };
         }
-        this.props.resetAttempt();
+        this.props.resetPassword(user);
       }
     }
   }
@@ -89,13 +90,11 @@ class Login extends Component {
 
   render() {
     const { email, password, submitted, errorMessage } = this.state;
-
     return (
       <div className="container-fluid app p-0 m-0">
         <Helmet>
-          <title>Login | YoloShadow</title>
+          <title>Reset Password | YoloShadow</title>
         </Helmet>
-        {this.renderRedirect()}
         <div className="nav">
           <Navbar textColor={"black"} />
         </div>
@@ -103,7 +102,7 @@ class Login extends Component {
         <div className="experience-fig-1 row align-items-center">
           <div className="col-md-2"></div>
           <h2>
-            <em>Login</em>
+            <em>Reset Password</em>
           </h2>
         </div>
         <MDBContainer>
@@ -111,23 +110,6 @@ class Login extends Component {
             <p className="text-danger">{errorMessage}</p>
 
             <form name="form" onSubmit={this.handleSubmit}>
-              <div
-                className={
-                  "form-group" + (submitted && !email ? " has-error" : "")
-                }
-              >
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={this.handleChange}
-                />
-                {submitted && !email && (
-                  <div className="help-block">Username is required</div>
-                )}
-              </div>
               <div
                 className={
                   "form-group" + (submitted && !password ? " has-error" : "")
@@ -146,15 +128,15 @@ class Login extends Component {
                 )}
               </div>
               <div className="form-group">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Reset</button>
                 {/*
                                     <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 */}
-                <Link to="/register" className="btn btn-warning">
-                  Register
+                <Link to="/login" className="btn btn-warning">
+                  Log In
                 </Link>
                 <Link to="/forgot" className="btn btn-warning">
-                    Forgot Password
+                   Forgot Password
                 </Link>
               </div>
             </form>
@@ -169,8 +151,7 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
+ResetPassword.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 
@@ -178,4 +159,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth, //item represents the entire state
 });
 
-export default compose(withRouter, connect(mapStateToProps, { login }))(Login);
+export default compose(withRouter, connect(mapStateToProps, { resetPassword }))(ResetPassword);
