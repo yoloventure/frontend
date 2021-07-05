@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Helmet } from 'react-helmet';
-import {connect} from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./hostRegister.css";
 import "../components/regFormComponents/imgSubmit.css";
 import Navbar from "../components/navbar";
@@ -31,6 +31,7 @@ const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPil
 const account = "yoloshadowstorage";
 const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
 const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
+
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
@@ -227,6 +228,7 @@ class HostRegister_Round2 extends React.Component {
   }
 
   render() {
+
      const { isAuthenticated, user } = this.props.auth;
         //      let fname='noOne'
         // try {
@@ -249,7 +251,6 @@ class HostRegister_Round2 extends React.Component {
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
-          <div className="top row">
             <div className="col-md-4">
             </div>
             <div className="col apply ml-5">
@@ -298,3 +299,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 export default connect(mapStateToProps)(HostRegister_Round2);
+

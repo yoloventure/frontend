@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   token: localStorage.getItem("token"),
-  isAuthenticated: null,
+  isAuthenticated: false,
   isLoading: false,
   user: null,
   error: "",
@@ -54,7 +54,6 @@ export default function (state = initialState, action) {
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
-    case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
       localStorage.removeItem("token");
       console.log("regfail");
@@ -68,6 +67,18 @@ export default function (state = initialState, action) {
         attemptDone: true,
       };
 
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem("token");
+      console.log("regfail");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        isLoading: false,
+        user: null,
+        error: "",
+        attemptDone: false,
+      };
     default:
       return state;
   }

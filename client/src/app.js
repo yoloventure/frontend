@@ -44,72 +44,102 @@ class App extends React.Component {
               <Switch>
                 <Route path="/explore" exact component={Explore} />
                 {/*custom urls forcertain host experiences*/}
-                <Route path="/explore/markEdwardHarris" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="604e121843b96b001764168b"/>} 
+                <Route
+                  path="/explore/markEdwardHarris"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="604e121843b96b001764168b"
+                    />
+                  )}
                 />
-                 <Route path="/explore/rebeccaWind" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d13fbddf10017793c06"/>} 
+                <Route
+                  path="/explore/rebeccaWind"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60572d13fbddf10017793c06"
+                    />
+                  )}
                 />
-                 <Route path="/explore/marisaKrol" exact 
-                render={(props) => <ExperienceDetail {...props} customLinkExpID="60572d0ffbddf10017793c05"/>} 
+                <Route
+                  path="/explore/monikaGraef"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="608124f27b48357651cded2d"
+                    />
+                  )}
+                />
+                />
+                <Route
+                  path="/explore/marisaKrol"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60572d0ffbddf10017793c05"
+                    />
+                  )}
+                />
+                <Route
+                  path="/explore/visualDX"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="60a111ea609db199fbb9a0f3"
+                    />
+                  )}
                 />
                 {/*End of custom urls forcertain host experiences*/}
-                
-                 <Route path="/explore/:id" exact component={ExperienceDetail} />
-
+                <Route path="/explore/:id" exact component={ExperienceDetail} />
                 <Route
                   path="/reserve/:id"
                   exact
                   component={ShadowerReservation}
                 />
-
                 <Route
                   path="/hostexperience"
                   exact
                   component={HostExperience}
                 />
-
                 <Route
                   path="/hostguidelines"
                   exact
                   component={HostGuidelines}
                 />
-
                 <Route path="/register" exact component={Register} />
-
                 <Route path="/about" exact component={About} />
-
                 <Route path="/login" exact component={Login} />
+
 
                 <Route path="/forgot" exact component={ForgotPassword} />
                 <Route path="/reset/:id" exact component={ResetPassword} />
 
+
                 <Route path="/story" exact component={FeatureStory} />
-
                 <Route path="/hostregister" exact component={HostRegister} />
-
                 <Route
                   path="/hostregister/round2"
                   exact
                   component={HostRegister_Round2}
                 />
-
                 <Route
                   path="/hostguidelines"
                   exact
                   component={HostGuidelines}
                 />
-
                 <Route path="/" exact component={Homepage} />
-
                 <Route path="/hostdashboard" exact component={Dashboard} />
-
                 <Route
                   path="/shadowerdashboard"
                   exact
                   component={ShadowerDashboard}
                 />
-
                 <Route path="/admin" exact component={Admin} />
               </Switch>
             </div>

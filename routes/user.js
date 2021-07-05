@@ -106,4 +106,22 @@ router.delete(
 	}
 );
 
+router.post("/:id", function (req, res, next) {
+  //find and update specific application
+  User.findByIdAndUpdate(req.params.id, req.body).then(function () {
+    //find and send back updated application for display
+    User.findOne({ _id: req.params.id }, req.body).then(function (user) {
+      console.log(user);
+      res.send(user);
+    });
+  });
+});
+
+router.get("/:id", function (req, res) {
+  User.findById(req.params.id)
+    .then(function (user) {
+      res.send(user);
+    });
+});
+
 module.exports = router;

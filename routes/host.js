@@ -74,12 +74,12 @@ router.post("/", function (req, res, next) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
+
           Host.create(req.body)
             .then(function (host) {
               res.send(host); //send back info to client
             })
           .catch(next);
-
         }
       });
       Host.create(req.body)
@@ -137,6 +137,17 @@ router.put("add_reservation/:id", function (req, res, next) {
 router.delete("/:id", function (req, res, next) {
   Host.findByIdAndRemove(req.params.id).then(function (host) {
     res.send(host);
+  });
+});
+
+router.post("/:id", function (req, res, next) {
+  //find and update specific application
+  Host.findByIdAndUpdate(req.params.id, req.body).then(function () {
+    //find and send back updated application for display
+    Host.findOne({ _id: req.params.id }, req.body).then(function (host) {
+      console.log(host);
+      res.send(host);
+    });
   });
 });
 

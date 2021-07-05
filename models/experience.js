@@ -14,11 +14,10 @@ const experienceSchema = new mongoose.Schema({
     type: Number,
   },
   price: {
-    
     type: Number,
   },
-  remote:{
-    type:Boolean
+  remote: {
+    type: Boolean,
   },
   image: {
     type: Array(String), // list of image ids
@@ -26,7 +25,21 @@ const experienceSchema = new mongoose.Schema({
   availableRanges: {
     type: Array(Date), //array of dates, in pairs [from, to, from,to...]
   },
-  
+  offering: {
+    //what they can offer
+    type: Array(Object),
+    default: null,
+  },
+  title: {
+    //job title
+    type: String,
+    required: true,
+  },
+  description: {
+    //description of their experience
+    type: String,
+    default: null,
+  },
   perks: {
     type: Array(String),
     default: [],

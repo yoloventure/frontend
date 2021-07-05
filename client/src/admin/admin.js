@@ -10,6 +10,7 @@ import marisa from "../photos/marisa-headshot.jpeg";
 import monica from "../photos/monica-headshot.JPG";
 import mark from "../photos/mark-headshot.png";
 import rebecca from "../photos/rebecca-headshot.png";
+import visualDX from "../photos/visualDX.jpg";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -88,15 +89,22 @@ class Admin extends React.Component {
     }
   }
 
-  acceptHost = (id) => {
+  acceptHost = (id, host) => {
     console.log("api/host/" + id);
     let path = "api/host/" + id;
+
+    //create an experience as a host is being accepted
     fetch("api/experience/", {
       method: "post",
       headers: new Headers({
         "Content-Type": "application/json",
       }),
-      body: JSON.stringify({ host: id }),
+      body: JSON.stringify({
+        host: id,
+        offering: host.offering,
+        description: host.description,
+        title: host.title,
+      }),
     })
       .then((response) => {
         response.json().then((data) => {
@@ -255,6 +263,7 @@ class Admin extends React.Component {
           <img src={monica} style={{ height: "5%" }} />
           <img src={mark} style={{ height: "5%" }} />
           <img src={rebecca} style={{ height: "5%" }} />
+          <img src={visualDX} style={{ height: "5%" }} />
 
           <FooterPage />
         </div>

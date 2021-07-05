@@ -166,6 +166,8 @@ export const login = ({ email, password }) => {
             dispatch(loadUser());
           });
         } else {
+          console.log("failed login");
+
           dispatch({
             type: LOGIN_FAIL,
           });

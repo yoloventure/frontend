@@ -19,11 +19,13 @@ export default class Card extends React.Component {
             }}
           >
             <h3 style={{ fontSize: "140%", fontWeight: "400" }}>
-              {" "}
-              {this.props.city}
-              {this.props.state !== "" && this.props.state
-                ? ", " + this.props.state
-                : null}{" "}
+              {this.props.remote
+                ? "Remote"
+                : " " +
+                  this.props.city +
+                  (this.props.state !== "" && this.props.state
+                    ? ", " + this.props.state + " "
+                    : null)}
             </h3>
           </div>
 

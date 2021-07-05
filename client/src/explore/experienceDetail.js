@@ -25,7 +25,7 @@ export default class ExperienceDetail extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     try {
       let expId = this.props.customLinkExpID
         ? this.props.customLinkExpID
@@ -60,7 +60,11 @@ export default class ExperienceDetail extends React.Component {
       return (
         <div>
           <Helmet>
-            <title>Shadow an experienced {host.title} | YoloShadow</title>
+            <title>
+              {" "}
+              {this.state.experience.title ? this.state.experience.title : ""} |
+              YoloShadow
+            </title>
           </Helmet>
 
           <div className="nav pb-5">
@@ -182,7 +186,9 @@ export default class ExperienceDetail extends React.Component {
                         textAlign: "left",
                       }}
                     >
-                      Shadow an experienced {host.title}
+                      {this.state.experience.title
+                        ? this.state.experience.title
+                        : ""}
                     </h1>
                     {<img src={Star} style={{ height: "2rem" }} />}
                   </div>
@@ -222,13 +228,17 @@ export default class ExperienceDetail extends React.Component {
                     {console.log(this.state.experience.durationDays)}
                     {this.state.experience.durationDays != undefined ? (
                       this.state.experience.durationDays > 1 ? (
-                        <span> {this.state.experience.durationDays} day </span>
-                      ) : (
                         <span> {this.state.experience.durationDays} days </span>
+                      ) : (
+                        <span> {this.state.experience.durationDays} day </span>
                       )
                     ) : null}
                     {this.state.experience.durationHours != undefined ? (
-                      <span> {this.state.experience.durationHours} hours </span>
+                      this.state.experience.durationHours == 1 ? (
+                        <span>{this.state.experience.durationHours} hour</span>
+                      ) : (
+                        <span>{this.state.experience.durationHours} hours</span>
+                      )
                     ) : null}
                     <span style={{ marginLeft: "2rem" }}>
                       {" "}
@@ -237,13 +247,67 @@ export default class ExperienceDetail extends React.Component {
                   </div>
 
                   <div className="d-flex pt-4 ">
-                    <Link
-                      id="btn-reserve"
-                      className="btn"
-                      to={"/reserve/" + this.props.match.params.id}
-                    >
-                      RESERVE NOW
-                    </Link>
+                    {
+                      //custom registeration google form for Visual DX
+                      this.props.customLinkExpID ===
+                      "60a111ea609db199fbb9a0f3" ? (
+                        <a
+                          className="btn"
+                          href="//docs.google.com/forms/u/1/d/e/1FAIpQLSeaREkIS5gY_zNx3xV0yMB16ld5e-kE-sj_IncG7xru6bY6xA/viewform?usp=send_form"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //custom registeration google form for Rebecca Wind
+                      this.props.customLinkExpID ===
+                        "60572d13fbddf10017793c06" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdbLraJyrh92SnRCGm_tCxgUWIk3vDOlwunw6MyALOpTje0_A/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //custom registeration google form for Monika Graef
+                      this.props.customLinkExpID ===
+                        "608124f27b48357651cded2d" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLScVW58ZqcJuj4xeP3YRXwKf0ZBaeKVpMUDFRU2FRHu6qgq-rg/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //registeration form for Mark Harris
+                      this.props.customLinkExpID ===
+                        "604e121843b96b001764168b" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdKR7ck_EUvTz1zpzSBy300gbwm1rRubBvzR0Rul9vi6rbkWw/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : //registeration form for Marisa Krol
+                      this.props.customLinkExpID ===
+                        "60572d0ffbddf10017793c05" ? (
+                        <a
+                          className="btn"
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdAl647Q6xSAxu-41VSLuetIf_XMX2qAp97F85XACECck17JQ/viewform"
+                        >
+                          RESERVE NOW
+                        </a>
+                      ) : (
+                        <Link
+                          id="btn-reserve"
+                          className="btn"
+                          to={
+                            "/reserve/" + this.props.customLinkExpID
+                              ? this.props.customLinkExpID
+                              : this.props.match.params.id
+                          }
+                        >
+                          RESERVE NOW
+                        </Link>
+                      )
+                    }
+
                     <div style={{ paddingLeft: "1rem" }}>
                       <button id="btn-availability" onclick="#">
                         Availability
@@ -267,6 +331,23 @@ export default class ExperienceDetail extends React.Component {
                 console.log(index);
                 return <CardExpDetail item={item} index={index} />;
               })}
+            </div>
+
+            <div className="row offset-1 pt-2">
+              <h3> Interim Schedule </h3>
+            </div>
+
+            <div className="row offset-1 pt-1 pb-5">
+              {this.state.experience.agenda.map((agendaItem) => (
+                <React.Fragment>
+                  <div className="col-1">
+                    <p>{agendaItem.time}</p>
+                  </div>
+                  <div className="col-11">
+                    <p>{agendaItem.activity}</p>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
 
             <div className="container p-5 quote" style={{ height: "100%" }}>
