@@ -299,4 +299,9 @@ Navbar.propTypes = {
 const mapStateToProps = (state) => ({
     auth: state.auth
 });
+<<<<<<< HEAD
 export default connect(mapStateToProps)(HostRegister_Round2);
+=======
+export default connect(mapStateToProps)(HostRegister_Round2);
+
+>>>>>>> d329d75d6159fa3343219d1e69a49bcb11826fdb
