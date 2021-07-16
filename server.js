@@ -184,9 +184,8 @@ app.use("/api/experience", experience);
 app.use("/api/company", company);
 app.use("/api/review", review);
 app.use("/api/addressValidator", addressValidator);
-app.use("/api/fileUpload", fileUpload);
+// app.use("/api/fileUpload", fileUpload);
 app.use("/api/reservation", reservation);
-app.use("api/uploaded_images", express.static("upload_images"));
 
 // Error handling middleware
 app.use(function (err, req, res, next) {
