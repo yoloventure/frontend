@@ -251,6 +251,7 @@ class HostRegister_Round2 extends React.Component {
         </div>
 
         <div className="container pt-5 mt-5 mb-5">
+          <div className="top row">
             <div className="col-md-4">
             </div>
             <div className="col apply ml-5">
@@ -299,4 +300,3 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 export default connect(mapStateToProps)(HostRegister_Round2);
-
