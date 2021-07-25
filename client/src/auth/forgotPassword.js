@@ -19,6 +19,7 @@ class ForgotPassword extends Component {
       submitted: false,
       errorMessage: "",
       redirect: false,
+      successMessage:"",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,29 +42,43 @@ class ForgotPassword extends Component {
     };
 
     this.props.resetAttempt(user);
-    if(!this.props.isAuthenticated){
-      console.log('authenticated fail')
-    
-      this.setState({errorMessage:"No Account associate to this email"})
-    }else{
-      this.setState({errorMessage:""})
-    
-    }
+    return fetch('api/auth/accountcheck/'+this.state.email, {
+            method: 'get',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            credentials: "include"
+          }).then((user) => {
+            console.log(user);
+            if(user.status==401){
+             this.setState({errorMessage:"No Account associate to this email"});
+
+            }else if(this.state.email==""){
+             this.setState({errorMessage:"An Email is Required"});
+
+            }
+            else {
+            this.setState({errorMessage:"An email has been sent to your email address to reset your password."});
+          }
+          }).catch((err) => {
+            this.setState({errorMessage:"No Account associate to this email"});
+
+          });
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (prevState.submitted) {
-      if (nextProps.auth.attemptDone) {
-        if (nextProps.auth.isAuthenticated) {
-          return { errorMessage: "", redirect: true };
-        } else {
-          console.log("authenticated fail");
-          return { errorMessage: "Username or Password was incorrect." };
-        }
-        //this.props.resetAttempt();
-      }
-    }
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (prevState.submitted) {
+  //     if (nextProps.auth.attemptDone) {
+  //       if (nextProps.auth.isAuthenticated) {
+  //         return { errorMessage: "", redirect: true };
+  //       } else {
+  //         console.log("authenticated fail");
+  //         return { errorMessage: "Username or Password was incorrect." };
+  //       }
+  //       //this.props.resetAttempt();
+  //     }
+  //   }
+  // }
 
   renderRedirect = () => {
     if (this.state.redirect) {
@@ -108,9 +123,6 @@ class ForgotPassword extends Component {
                   value={email}
                   onChange={this.handleChange}
                 />
-                {submitted && !email && (
-                  <div className="help-block">Email is required</div>
-                )}
               </div>
               <div className="form-group">
                 <button className="btn btn-primary">Submit</button>

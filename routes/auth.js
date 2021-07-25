@@ -67,12 +67,26 @@ router.post("/register", (req, res) => {
               newUser.password = hash;
               newUser
                 .save()
-                .then((user) =>
+                .then((user) =>{
+                var mailOptions = {
+                from: 'yoloshadower.tech@gmail.com',
+                to: user.email,
+                subject: 'Welcome To Yolo Shadow',
+                //update the hardcode url
+                text: 'Dear '+user.fname+', you have succesfully registered.'
+                };
+                transporter.sendMail(mailOptions, function(error, info){
+                  if (error) {
+                      console.log(error);
+                  } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                  });
                   res.status(200).json({
                     success: true,
                     message: "User successfully registered",
                   })
-                )
+                })
                 .catch((err) => console.log(err));
             });
           });
@@ -138,6 +152,19 @@ router.post("/login", (req, res) => {
   }
 });
 
+router.get("/accountcheck/:email",(req,res) => {
+ User.findOne({email: req.params.email})
+  .then(function (user) {
+    if(!user ){
+        return res.status(401).json({
+          success: false,
+          error: "No account associate to this email",
+        });
+    }else{
+    res.send(user);
+  }
+  });
+});
 
 //@Route: Forgot Password
 router.post("/forgot", (req, res) => {
@@ -165,9 +192,10 @@ router.post("/forgot", (req, res) => {
         });
       } else {
           var mailOptions = {
-          from: '1341452029zsr@gmail.com',
+          from: 'yoloshadower.tech@gmail.com',
           to: user.email,
           subject: 'Reset Yolo Shadow Password',
+          //update the hardcode url
           text: 'Dear '+user.fname+', Click the link below to reset your password.'+'http://localhost:5000/reset/'+user._id
         };
           transporter.sendMail(mailOptions, function(error, info){
@@ -210,26 +238,30 @@ router.put("/reset/:id", (req, res) => {
             error: errors,
           });
         } else {
-          // const newUser = new User({
-          //   username: userEmail,
-          //   fname: req.body.fname,
-          //   lname: req.body.lname,
-          //   job_interest: req.body.job_interest,
-          //   joinedSince: Date.now(),
-          //   email: req.body.email,
-          //   password: userPassword,
-          // });
-              console.log("here3");
+          console.log("url");
+                    User.findById({_id: req.params.id})
+                    .then(function (user2) {
+                                var mailOptions = {
+                                from: 'yoloshadower.tech@gmail.com',
+                                to: user2.email,
+                                subject: 'Yolo Shadow Password Has Been Reset',
+                                //update the hardcode url
+                                text: 'Dear '+user2.fname+', your password has been updated'
+                                 };
+                                transporter.sendMail(mailOptions, function(error, info){
+                                  if (error) {
+                                      console.log(error);
+                                  } else {
+                                      console.log('Email sent: ' + info.response);
+                                    }
+                                });
+                    });
           bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(userPassword, salt, (err, hash) => {
               if (err) throw err;
               userPassword = hash;
               User.findByIdAndUpdate( req.params.id, { password: hash },).then(function () {
     //find and send back updated application for display
-        console.log("here4");
-                // User.findOne({_id: req.params.id}, req.body).then(function (user2) {
-                //   res.send(user2);
-                // });
           })
                 .then((user) =>
                   res.status(200).json({
