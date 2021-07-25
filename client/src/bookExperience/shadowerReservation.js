@@ -53,6 +53,7 @@ class ShadowReservation extends React.Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   //this.props.match.params.id will return host ID.
   componentDidMount() {
     if (!this.props.auth.user) {
@@ -78,6 +79,7 @@ class ShadowReservation extends React.Component {
       } catch (error) {
         console.log(error);
       }
+
 
       toast.configure();
     }
@@ -306,6 +308,7 @@ class ShadowReservation extends React.Component {
                   console.log(err);
                 });
             });
+
           })
           .catch((err) => {
             console.log(err);

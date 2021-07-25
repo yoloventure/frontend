@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Helmet } from "react-helmet";
-
+import { Helmet } from 'react-helmet';
 import "./hostRegister.css";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
@@ -14,9 +13,11 @@ import Page7 from "../components/regFormComponents/page7";
 import APIHost from "../api/apiHost";
 import APICompany from "../api/apiCompany";
 
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { register, loadUser } from "../actions/authActions";
+
+
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
 
 
 class HostRegister extends React.Component {
@@ -28,7 +29,6 @@ class HostRegister extends React.Component {
         user: "",
         fname: "",
         lname: "",
-
         gender: "",
         title: "",
         yearsExp: "",
@@ -48,7 +48,6 @@ class HostRegister extends React.Component {
         state: "",
         country: "USA",
         zip: "111",
-
         description: " ",
         offerOne: "",
         offerTwo: "",
@@ -107,7 +106,6 @@ class HostRegister extends React.Component {
         ...host,
         [name]: value,
       },
-
     });
     console.log(this.state.host);
   }
@@ -341,7 +339,6 @@ class HostRegister extends React.Component {
 
         <div className="main container">
           {/*Progress Bar*/}
-
           <div className="row mt-5">
             <div
               className="col-sm-2"
@@ -375,7 +372,6 @@ class HostRegister extends React.Component {
           </div>
         </div>
 
-
         <div className="m-0 p-0">
           <Footer />
         </div>
@@ -395,4 +391,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { register, loadUser })(HostRegister);
+
 
