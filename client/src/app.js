@@ -115,13 +115,8 @@ class App extends React.Component {
                 <Route path="/register" exact component={Register} />
                 <Route path="/about" exact component={About} />
                 <Route path="/login" exact component={Login} />
-
-
-
                 <Route path="/forgot" exact component={ForgotPassword} />
                 <Route path="/reset/:id" exact component={ResetPassword} />
-
-
                 <Route path="/story" exact component={FeatureStory} />
                 <Route path="/hostregister" exact component={HostRegister} />
                 <Route
