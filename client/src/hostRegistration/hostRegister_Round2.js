@@ -14,27 +14,24 @@ import Round2_Page4 from "../components/regFormComponents/round2_Page4";
 import APIHostApp from "../api/apiHostApp";
 import APIUser from "../api/apiUser";
 import APIHost from "../api/apiHost";
-import PropTypes from "prop-types";
-import { register, loadUser } from "../actions/authActions";
-import axios from "axios";
-//var azure = require('@azure/storage-blob');
-// var storage = require('azure-storage');
-const {
-  BlobServiceClient,
-  StorageSharedKeyCredential,
-  AZCloudBlobContainer,
-} = require("@azure/storage-blob");
-//const { DefaultAzureCredential } = require("@azure/identity");
-const AccountKey =
-  "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
+import PropTypes from 'prop-types';
+import { register,loadUser } from '../actions/authActions';
+import axios from 'axios';
+
+//all the needed information to connect to our azure storage
+//how to test this functionality: 
+// 1. log in to your yolo shadow account
+// 2. go to http://localhost:5000/hostregister/round2
+// 3. upload the pictures 
+// 4. log in to azure portal with yolo tech gmail
+// 5. Go to storage account, then go to containers
+
+const {BlobServiceClient,StorageSharedKeyCredential,AZCloudBlobContainer} = require("@azure/storage-blob");
+const AccountKey = "N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==";
 const account = "yoloshadowstorage";
-const connStr =
-  "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
-const sas =
-  "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
-var workingImageUrl = "";
-var idImageUrl = "";
-//const defaultAzureCredential = new DefaultAzureCredential();
+const connStr = "DefaultEndpointsProtocol=https;AccountName=yoloshadowstorage;AccountKey=N+77w9avm+pK9dRjYIZthW2T5Fx5okTIjdPX6XCteyWbkmYJECFu0ydqqPiln0dTlbPNLKJEh/dpd2rRl+CK5Q==;EndpointSuffix=core.windows.net";
+const sas = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2025-04-04T03:35:25Z&st=2021-04-03T19:35:25Z&spr=https&sig=fCqTGZeiR9LbU641e7FbC7uogVs8jMDsEYOfhXBxzbg%3D";
+
 
 class HostRegister_Round2 extends React.Component {
   constructor(props) {
@@ -42,14 +39,14 @@ class HostRegister_Round2 extends React.Component {
 
     this.state = {
       data: {
-        hostId: null,
-        dateRange: null,
+        hostId: null, 
+        dateRange: null, 
         files: [],
         workingImage: "",
-        idImage: "",
+        idImage: "" ,
         availability: [],
-        email: "",
-        fname: "",
+        email:"",
+        fname:""
       },
       counter: 1,
       progress: 25,
@@ -61,146 +58,132 @@ class HostRegister_Round2 extends React.Component {
   }
 
   componentDidMount() {
-    const user = this.props.auth.user;
-    console.log("host id");
-    console.log(user.hostId);
-    console.log("id");
-    console.log(user._id);
-    console.log("user");
     console.log(this.props.auth.user);
-    //hard code host id for now
-    this.setState((prevState) => {
+    const user = this.props.auth.user;
+    this.setState(prevState => {
       return {
         data: {
           ...prevState.data,
           hostId: user.hostId,
           fname: user.fname,
-          email: user.email,
-        },
-      };
+          email: user.email
+        }
+      }
     });
 
     toast.configure();
   }
 
   goNext = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
         counter: prevState.counter + 1,
         progress: prevState.progress + 25,
-        goNext: false,
-      };
+        goNext: false
+      }
     }, this.handleSubmit);
-  };
+  }
   goPrev = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
         counter: prevState.counter - 1,
         progress: prevState.progress - 25,
-        goPrev: false,
-      };
+        goPrev: false
+      }
     }, this.handleSubmit);
-  };
+  }
 
   handleDateRange(dateRange) {
-    this.setState(
-      (prevState) => {
+    this.setState(prevState => {
         return {
           data: {
             ...prevState.data,
-            dateRange: dateRange,
-          },
-        };
-      },
-      () => {
-        console.log(this.state.data);
-      }
-    );
+            dateRange: dateRange
+          }
+        }
+    }, () => {
+      console.log(this.state.data);
+    });
   }
 
   handleFileUpload(file, index) {
-    this.setState(
-      (prevState) => {
+    this.setState(prevState => {
         prevState.data.files[index] = file;
         return {
           data: {
             ...prevState.data,
-          },
-        };
-      },
-      () => {
-        console.log(this.state.data);
-      }
-    );
+          }
+        }
+    }, () => {
+      console.log(this.state.data);
+    });
+
   }
   handleSubmit() {
     if (this.state.counter == 4 && this.formValidation()) {
       console.log("Submit API called");
       const { data } = this.state;
-      // let data = this.state.data;
       console.log(data);
       const start = new Date(this.state.data.dateRange.startDate);
       const end = new Date(this.state.data.dateRange.endDate);
-      const availability2 = [start, end];
-      const blobServiceClient = new BlobServiceClient(
-        `https://${account}.blob.core.windows.net${sas}`
-      );
-      const containerClient =
-        blobServiceClient.getContainerClient("hostworkingimages");
-      const containerClient2 =
-        blobServiceClient.getContainerClient("hostidimages");
-      const workingImage = this.state.data.files[0];
+      const availability2 = [start,end];
+
+      //create a client for our azure storage account from @azure/storage-blob library
+      const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
+      //client for the hostworkingimages container that stores all working images 
+      const containerClient = blobServiceClient.getContainerClient("hostworkingimages");
+      //client for the hostidimages container that stores all the id images
+      const containerClient2 = blobServiceClient.getContainerClient("hostidimages");
+      //uploaded id image from user
       const idImage = this.state.data.files[1];
-      //const blobServiceClient = new BlobServiceClient(`https://${account}.blob.core.windows.net${sas}`);
-      const workingblobName = "host_working_image" + this.state.data.hostId;
-      const idblobName = "host_id_image" + this.state.data.hostId;
-      const blockBlobClient =
-        containerClient.getBlockBlobClient(workingblobName);
+      //uploaded working image from user
+      //note: I tried to make the user be able to upload multiple working images but 
+      //the whole constructor was built based on single uploading in our components file
+      //and database, it will cause many times and bugs to change the whole thing so I decided to 
+      //leave it for now. Now user can only upload one imge during working.
+      const workingImage = this.state.data.files[0];
+      //manually name the images files, which is the image type + the hostid that the images belong to
+      const workingblobName = "host_working_image"+this.state.data.hostId;
+      const idblobName = "host_id_image"+this.state.data.hostId;
+      //create specific clients for each specific image
+      const blockBlobClient = containerClient.getBlockBlobClient(workingblobName);
       const blockBlobClient2 = containerClient2.getBlockBlobClient(idblobName);
+      //upload the images to azure
       blockBlobClient.uploadBrowserData(workingImage);
-      blockBlobClient2.uploadBrowserData(idImage);
-      // APIHost.editHost(data.hostId, this.state.data);
+      blockBlobClient2.uploadBrowserData(idImage); 
       var uploadpath = "/api/host/" + this.state.data.hostId;
-      workingImageUrl =
-        "https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/" +
-        workingblobName;
-      idImageUrl =
-        "https://yoloshadowstorage.blob.core.windows.net/hostidimages/" +
-        idblobName;
-      this.setState(
-        {
-          data: {
-            ...this.state.data,
-            availability: [...this.state.data.availability, ...availability2],
-            workingImage: workingImageUrl,
-            idImage: idImageUrl,
-          },
-        },
-        () => {
+      //initialize the url for id and woking image that will be stored
+      var workingImageUrl = "https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/"+workingblobName;
+      var idImageUrl =  "https://yoloshadowstorage.blob.core.windows.net/hostidimages/"+idblobName;
+      //update the current state  
+      this.setState({ 
+        data: {
+          ...this.state.data,
+            availability: [...this.state.data.availability,...availability2],
+            "workingImage": workingImageUrl,
+            "idImage": idImageUrl
+          }
+        }, () => {
+          //update the data base and now the two image urls will be stored in database as two strings
           return fetch(uploadpath, {
-            method: "put",
+            method: 'put',
             headers: new Headers({
-              "Content-Type": "application/json",
+                'Content-Type': 'application/json'
             }),
             body: JSON.stringify({
-              workingImage: workingImageUrl,
-              idImage: idImageUrl,
-              availability: this.state.data.availability,
-              fname: this.state.data.fname,
-              email: this.state.data.email,
+                "workingImage": workingImageUrl,
+                "idImage": idImageUrl,
+                "availability": this.state.data.availability,
+                "fname": this.state.data.fname,
+                "email": this.state.data.email
             }),
-            //https://yoloshadowstorage.blob.core.windows.net/hostworkingimages/host_working_image605eee00980c714b0b178513
-            credentials: "include",
-          })
-            .then((response) => {
-              return response.json();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          // APIHost.editHost(this.state.data);
-        }
-      );
+            credentials: "include"
+          }).then((response) => {
+            return response.json();
+          }).catch((err) => {
+            console.log(err);
+          });
+          }); 
     }
   }
 
@@ -209,24 +192,18 @@ class HostRegister_Round2 extends React.Component {
     let success = true;
 
     if (!data.dateRange) {
-      toast.error("You need to specify your availability", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      this.setState({ counter: 3, progress: 75 });
+      toast.error("You need to specify your availability", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
       success = false;
     }
     if (!data.files[0]) {
-      toast.error("You need to upload an ID", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      this.setState({ counter: 3, progress: 75 });
+      toast.error("You need to upload an ID", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
       success = false;
     }
     if (!data.files[1]) {
-      toast.error("You need to upload a picture of you at work", {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      this.setState({ counter: 3, progress: 75 });
+      toast.error("You need to upload a picture of you at work", {position: toast.POSITION.BOTTOM_RIGHT});
+      this.setState({counter: 3, progress: 75});
       success = false;
     }
 
@@ -234,64 +211,39 @@ class HostRegister_Round2 extends React.Component {
   }
 
   handlePageRender(counter) {
-    switch (counter) {
+    switch(counter) {
       case 1:
-        return (
-          <Round2_Page1
-            handleDateRange={this.handleDateRange}
-            goNext={this.goNext}
-            goPrev={this.goPrev}
-            data={this.state.data}
-          />
-        );
+        return <Round2_Page1 handleDateRange={this.handleDateRange} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 2:
-        return (
-          <Round2_Page2
-            handleFileUpload={this.handleFileUpload}
-            goNext={this.goNext}
-            goPrev={this.goPrev}
-            data={this.state.data}
-          />
-        );
+        return <Round2_Page2 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 3:
-        return (
-          <Round2_Page3
-            handleFileUpload={this.handleFileUpload}
-            goNext={this.goNext}
-            goPrev={this.goPrev}
-            data={this.state.data}
-          />
-        );
+        return <Round2_Page3 handleFileUpload={this.handleFileUpload} goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
       case 4:
-        return (
-          <Round2_Page4
-            goNext={this.goNext}
-            goPrev={this.goPrev}
-            data={this.state.data}
-          />
-        );
+        return <Round2_Page4 goNext={this.goNext} goPrev={this.goPrev} data={this.state.data} />;
         break;
     }
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
-    //      let fname='noOne'
-    // try {
 
-    //     fname=user.fname
+     const { isAuthenticated, user } = this.props.auth;
+        //      let fname='noOne'
+        // try {
 
-    // }
-    // catch(err) {
-    //      console.log("hi there")
-    // }
+        //     fname=user.fname
+
+        // }
+        // catch(err) {
+        //      console.log("hi there")
+        // }
     return (
       <div className="container-fluid app">
+
         <Helmet>
-          <title>Apply to be a host | YoloShadow</title>
+            <title>Apply to be a host | YoloShadow</title>
         </Helmet>
 
         <div className="nav pb-5">
@@ -300,7 +252,8 @@ class HostRegister_Round2 extends React.Component {
 
         <div className="container pt-5 mt-5 mb-5">
           <div className="top row">
-            <div className="col-md-4"></div>
+            <div className="col-md-4">
+            </div>
             <div className="col apply ml-5">
               <p>Apply To Be A Host</p>
             </div>
@@ -312,19 +265,7 @@ class HostRegister_Round2 extends React.Component {
 
           <div onSubmit={this.handleSubmit}>
             <div className="row mt-5">
-              <div
-                className="col-sm-2"
-                style={{
-                  fontFamily: "Mplus 1p",
-                  fontStyle: "normal",
-                  fontWeight: "800",
-                  fontSize: "140%",
-                  lineHeight: "26px",
-                  letterSpacing: "6px",
-                  textTransform: "uppercase",
-                  color: "#F61067",
-                }}
-              >
+              <div className="col-sm-2" style={{"fontFamily":"Mplus 1p","fontStyle":"normal","fontWeight":"800","fontSize":"140%","lineHeight":"26px","letterSpacing":"6px","textTransform":"uppercase","color":"#F61067"}}>
                 <p>PROGRESS</p>
               </div>
 
@@ -353,9 +294,10 @@ class HostRegister_Round2 extends React.Component {
   }
 }
 Navbar.propTypes = {
-  auth: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+    auth: state.auth
 });
 export default connect(mapStateToProps)(HostRegister_Round2);
+

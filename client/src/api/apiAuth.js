@@ -59,4 +59,21 @@ function logout() {
     });
 }
 
-export default { login, logout, register };
+function resetAttempt(username) {
+  var path = "/api/auth/forgot";
+  return fetch(path, {
+    method: "post",
+    headers: new Headers({
+      Authorization:
+        "Basic " + new Buffer(username).toString("base64"),
+    }),
+    credentials: "include",
+  })
+    .then((response) => {
+      response.json().then((data) => {});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+} 
+export default { login, logout, register, resetAttempt };
