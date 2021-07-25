@@ -117,6 +117,7 @@ class App extends React.Component {
                 <Route path="/login" exact component={Login} />
 
 
+
                 <Route path="/forgot" exact component={ForgotPassword} />
                 <Route path="/reset/:id" exact component={ResetPassword} />
 

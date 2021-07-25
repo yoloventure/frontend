@@ -234,7 +234,7 @@ export default class ExperienceDetail extends React.Component {
                       )
                     ) : null}
                     {this.state.experience.durationHours != undefined ? (
-                      this.state.experience.durationHours == 1 ? (
+                      this.state.experience.durationHours === 1 ? (
                         <span>{this.state.experience.durationHours} hour</span>
                       ) : (
                         <span>{this.state.experience.durationHours} hours</span>

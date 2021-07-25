@@ -66,8 +66,15 @@ export default class Card extends React.Component {
                 {" "}
                 {this.props.durationDays != undefined &&
                 this.props.durationDays !== 0
-                  ? this.props.durationDays + " days"
-                  : this.props.durationHours + " hours"}
+                  ? this.props.durationDays === 1
+                    ? this.props.durationDays + " day"
+                    : this.props.durationDays + " days"
+                  : this.props.durationHours != undefined &&
+                    this.props.durationHours !== 0
+                  ? this.props.durationHours === 1
+                    ? this.props.durationDays + " hour"
+                    : this.props.durationDays + " hours"
+                  : null}
               </h3>
             </div>
           </div>
