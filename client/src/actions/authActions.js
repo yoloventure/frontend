@@ -193,22 +193,22 @@ export const resetAttempt = ({ email }) => {
       credentials: "include",
     })
       .then((response) => {
-        if (response.status === 200) {
-          response.json().then((data) => {
-            console.log("now gonna find the user with this email");
+        // if (response.status === 200) {
+        //   response.json().then((data) => {
+        //     console.log("now gonna find the user with this email");
 
-            dispatch({
-              type: USER_FOUND,
-              payload: data,
-            });
-            // console.log("now gonna load");
-            dispatch(loadUser());
-          });
-        } else {
-          dispatch({
-            type: USER_NOTFOUND,
-          });
-        }
+        //     dispatch({
+        //       type: USER_FOUND,
+        //       payload: data,
+        //     });
+        //     // console.log("now gonna load");
+        //     dispatch(loadUser());
+        //   });
+        // } else {
+        //   dispatch({
+        //     type: USER_NOTFOUND,
+        //   });
+        // }
       })
       .catch((err) => {
         console.log("first" + err);
@@ -245,10 +245,14 @@ export const resetPassword = (user) => {
               type: USER_FOUND,
               payload: data,
             });
-            // console.log("now gonna load");
+             console.log(this.props);
+
+            this.props.isAuthenticated = true;
+            console.log(this.props);
             dispatch(loadUser());
           });
         } else {
+          
           dispatch({
             type: USER_NOTFOUND,
           });
