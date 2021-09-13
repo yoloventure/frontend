@@ -19,7 +19,7 @@ class ForgotPassword extends Component {
       submitted: false,
       errorMessage: "",
       redirect: false,
-      successMessage:"",
+      successMessage: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -35,35 +35,36 @@ class ForgotPassword extends Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { email} = this.state;
+    const { email } = this.state;
 
     const user = {
-      email
+      email,
     };
 
     this.props.resetAttempt(user);
-    return fetch('api/auth/accountcheck/'+this.state.email, {
-            method: 'get',
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            }),
-            credentials: "include"
-          }).then((user) => {
-            console.log(user);
-            if(user.status==401){
-             this.setState({errorMessage:"No Account associate to this email"});
-
-            }else if(this.state.email==""){
-             this.setState({errorMessage:"An Email is Required"});
-
-            }
-            else {
-            this.setState({errorMessage:"An email has been sent to your email address to reset your password."});
-          }
-          }).catch((err) => {
-            this.setState({errorMessage:"No Account associate to this email"});
-
+    return fetch("api/auth/accountcheck/" + this.state.email, {
+      method: "get",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      credentials: "include",
+    })
+      .then((user) => {
+        console.log(user);
+        if (user.status == 401) {
+          this.setState({ errorMessage: "No Account associate to this email" });
+        } else if (this.state.email == "") {
+          this.setState({ errorMessage: "An Email is Required" });
+        } else {
+          this.setState({
+            errorMessage:
+              "An email has been sent to your email address to reset your password.",
           });
+        }
+      })
+      .catch((err) => {
+        this.setState({ errorMessage: "No Account associate to this email" });
+      });
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
@@ -88,7 +89,7 @@ class ForgotPassword extends Component {
   };
 
   render() {
-    const { email,submitted, errorMessage } = this.state;
+    const { email, submitted, errorMessage } = this.state;
 
     return (
       <div className="container-fluid app p-0 m-0">
@@ -147,4 +148,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth, //item represents the entire state
 });
 
-export default compose(withRouter, connect(mapStateToProps, { resetAttempt }))(ForgotPassword);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { resetAttempt })
+)(ForgotPassword);

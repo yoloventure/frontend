@@ -14,10 +14,10 @@ class ResetPassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user:{
-      password: "",
-      userId :this.props.location.pathname.substring(7),
-    },
+      user: {
+        password: "",
+        userId: this.props.location.pathname.substring(7),
+      },
       submitted: false,
       errorMessage: "",
       redirect: false,
@@ -28,7 +28,7 @@ class ResetPassword extends Component {
   }
 
   handleChange(e) {
-    const { name, value } = event.target;
+    const { name, value } = e.target;
     const { user } = this.state;
     this.setState({
       user: {
@@ -42,9 +42,12 @@ class ResetPassword extends Component {
     console.log(this.props.location.pathname.substring(7));
     e.preventDefault();
 
-    this.setState({ user:{userId:this.props.location.pathname.substring(8)},submitted: true });
-     var user = this.state.user;
-     this.props.resetPassword(user);
+    this.setState({
+      user: { userId: this.props.location.pathname.substring(8) },
+      submitted: true,
+    });
+    var user = this.state.user;
+    this.props.resetPassword(user);
     // if(!this.props.isAuthenticated){
     //   console.log('authenticated fail')
     //
@@ -53,10 +56,12 @@ class ResetPassword extends Component {
     //   this.setState({errorMessage:"", redirect:true})
     //
     // }
-    if(this.state.user.password==""){
-      this.setState({errorMessage:"A Password is Required"});
-    }else{
-      this.setState({errorMessage:"Your Password Has Been Successfully Reset"});
+    if (this.state.user.password == "") {
+      this.setState({ errorMessage: "A Password is Required" });
+    } else {
+      this.setState({
+        errorMessage: "Your Password Has Been Successfully Reset",
+      });
     }
   }
 
@@ -69,7 +74,7 @@ class ResetPassword extends Component {
           console.log("authenticated fail");
           return { errorMessage: "Username or Password was incorrect." };
         }
-        this.props.resetPassword(user);
+        this.props.resetPassword(this.state.user);
       }
     }
   }
@@ -126,7 +131,7 @@ class ResetPassword extends Component {
                   Log In
                 </Link>
                 <Link to="/forgot" className="btn btn-warning">
-                   Forgot Password
+                  Forgot Password
                 </Link>
               </div>
             </form>
@@ -149,4 +154,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth, //item represents the entire state
 });
 
-export default compose(withRouter, connect(mapStateToProps, { resetPassword }))(ResetPassword);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { resetPassword })
+)(ResetPassword);
