@@ -53,6 +53,11 @@ class ResetPassword extends Component {
     //   this.setState({errorMessage:"", redirect:true})
     //
     // }
+    if(this.state.user.password==""){
+      this.setState({errorMessage:"A Password is Required"});
+    }else{
+      this.setState({errorMessage:"Your Password Has Been Successfully Reset"});
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -68,18 +73,6 @@ class ResetPassword extends Component {
       }
     }
   }
-  // componentWillReceiveProps(nextprops){
-  //   if(nextprops.auth.isAuthenticated){
-  //     this.setState({errorMessage:"", redirect:true})
-  //
-  //
-  //   }else{
-  //     console.log('authenticated fail')
-  //
-  //     this.setState({errorMessage:""})
-  //
-  //   }
-  // }
 
   renderRedirect = () => {
     if (this.state.redirect) {
@@ -123,9 +116,6 @@ class ResetPassword extends Component {
                   value={password}
                   onChange={this.handleChange}
                 />
-                {submitted && !password && (
-                  <div className="help-block">Password is required</div>
-                )}
               </div>
               <div className="form-group">
                 <button className="btn btn-primary">Reset</button>
