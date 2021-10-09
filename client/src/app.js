@@ -17,6 +17,8 @@ import HostGuidelines from "./hostExperience/hostGuidelines";
 import Dashboard from "./hostInterface/dashboard";
 import ShadowerDashboard from "./shadowerInterface/shadowerDashboard";
 import Admin from "./admin/admin";
+import TOS from "./termOfService/termOfService"
+import privacyAgreement from "./privacyAgreement/privacyAgreement"
 import { persistor, store } from "./store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -137,6 +139,8 @@ class App extends React.Component {
                   component={ShadowerDashboard}
                 />
                 <Route path="/admin" exact component={Admin} />
+                <Route path="/termofservice" exact component={TOS} />
+                <Route path="/privacyagreement" exact component={privacyAgreement} />
               </Switch>
             </div>
           </Router>

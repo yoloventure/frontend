@@ -19,10 +19,10 @@ const Footer = () => {
           </h5>
           <ul className="privacy">
             <li style={{color:"#fcfcfc"}} className="list-unstyled">
-              <a style={{color:"#fcfcfc"}}  href="#!">Terms</a>
+              <a style={{color:"#fcfcfc"}}  href="/termofservice">Terms</a>
             </li>
             <li style={{color:"#fcfcfc"}} className="list-unstyled">
-              <a style={{color:"#fcfcfc"}}  href="#!">Privacy Statement</a>
+              <a style={{color:"#fcfcfc"}}  href="/privacyagreement">Privacy Agreement</a>
             </li>
             <li style={{color:"#fcfcfc"}} className="list-unstyled">
               <a style={{color:"#fcfcfc"}}  href="#!">Site map</a>
