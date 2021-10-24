@@ -13,7 +13,7 @@ const Footer = () => {
 
         <div className="col-sm-2 pt-2 offset-1 offset-md-0">
           <h5 className="title title1">
-            <a style={{color:"#fcfcfc"}}  className="title title1" href="#">
+            <a style={{color:"#fcfcfc"}}  className="title title1" href="https://yoloshadow.com/about">
               ABOUT
             </a>
           </h5>
@@ -46,23 +46,23 @@ const Footer = () => {
 
         <div className="col-sm-2 pt-2 offset-1  offset-md-0">
           <h5 className="title title3 mb-md-5">
-            <a style={{color:"#fcfcfc"}}  className="title title1" href="#">
+            <a style={{color:"#fcfcfc"}}  className="title title1" href="https://yoloshadow.com/hostexperience">
               FOR HOST
             </a>
           </h5>
           <ul>
             <li style={{color:"#fcfcfc"}} className="guidelines list-unstyled">
-              <a style={{color:"#fcfcfc"}}  href="#!">Host Guidelines</a>
+              <a style={{color:"#fcfcfc"}}  href="https://yoloshadow.com/hostguidelines">Host Guidelines</a>
             </li>
             <li style={{color:"#fcfcfc"}} className="apply list-unstyled">
-              <a style={{color:"#fcfcfc"}}  href="#">Apply Now</a>
+              <a style={{color:"#fcfcfc"}}  href="https://yoloshadow.com/hostregister">Apply Now</a>
             </li>
           </ul>
         </div>
 
         <div className="col-sm-2 pt-2 offset-1 offset-md-0">
           <h5 className="title title4 mb-md-5">
-            <a style={{color:"#fcfcfc"}}  className="title title1" href="#">
+            <a style={{color:"#fcfcfc"}}  className="title title1" href="https://yoloshadow.com/explore">
               FOR SHADOWER
             </a>
           </h5>
