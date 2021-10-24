@@ -7,7 +7,7 @@
     "@azure/identity": "^1.2.5",
     "@azure/storage-blob": "^12.4.0",
     "address-validator": "^0.2.3",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "azure-storage": "^2.10.3",
     "babel-eslint": "^10.1.0",
     "bcryptjs": "^2.4.3",
