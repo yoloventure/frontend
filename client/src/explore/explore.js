@@ -54,6 +54,8 @@ class Explore extends React.Component {
       return this.state.match.url + "/" + "monikaGraef";
     } else if (expID === "60a111ea609db199fbb9a0f3") {
       return this.state.match.url + "/" + "visualDX";
+    } else if (expID === "6175acf099b56610e91f5a64") {
+      return this.state.match.url + "/" + "erikaFaith"      
     } else {
       return this.state.match.url + "/" + expID;
     }
