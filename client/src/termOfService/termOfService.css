@@ -1,0 +1,75 @@
+.tos-fig-1 {
+  mix-blend-mode: multiply;
+  background: url(../photos//TOSHeader.png);
+  width: 1440px;
+  height: 336px;  
+}
+
+.experience-fig h2 {
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 54px;
+  line-height: 80px;
+  color: #ffffff;
+}
+
+.getStarted{
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12.6px;
+  line-height: 26px;
+  letter-spacing: 6px;
+  color: #F61067;
+}
+
+.tos{
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 67px;
+  color: #30233D;
+}
+
+.exploreNowButton{
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13.5px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+
+  width: 197px;
+  height: 45px;
+  /* Colors/Secondary_200 */
+  background: #3A0475;
+  border-radius: 36px;
+}
+
+.content{
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 29px;
+
+  /* TextColors/Headers */
+
+  color: #30233D;
+}
+
+.bulletPoint{
+  font-family: Mplus 1p;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+
+  /* TextColors/Headers */
+
+  color: #30233D;
+}
