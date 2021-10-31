@@ -61,7 +61,7 @@ router.post("/", function (req, res, next) {
 //Edit experience found with expereince ID
 router.put("/:id", function (req, res, next) {
   //find and update specific application
-  Experience.findByIdAndUpdate({ _id: req.params.id }, req.body).then(
+  Experience.findByIdAndUpdate(req.params.id, req.body.experience).then(
     function () {
       //find and send back updated application for display
       Experience.findOne({ _id: req.params.id }, req.body).then(function (
@@ -70,7 +70,7 @@ router.put("/:id", function (req, res, next) {
         res.send(experience);
       });
     }
-  );
+  ).catch(console.error);
 });
 
 //Edit experience found with Host ID
