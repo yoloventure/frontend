@@ -19,6 +19,8 @@ import ShadowerDashboard from "./shadowerInterface/shadowerDashboard";
 import Admin from "./admin/admin";
 import TOS from "./termOfService/termOfService"
 import privacyAgreement from "./privacyAgreement/privacyAgreement"
+import checkoutSuccess from "./checkout/success";
+import checkoutCancel from "./checkout/cancel";
 import { persistor, store } from "./store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -141,6 +143,8 @@ class App extends React.Component {
                 <Route path="/admin" exact component={Admin} />
                 <Route path="/termofservice" exact component={TOS} />
                 <Route path="/privacyagreement" exact component={privacyAgreement} />
+                <Route path="/checkoutsuccess" exact component={checkoutSuccess} />
+                <Route path="/checkoutcancel" exact component={checkoutCancel} />
               </Switch>
             </div>
           </Router>

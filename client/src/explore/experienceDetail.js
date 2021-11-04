@@ -190,7 +190,7 @@ export default class ExperienceDetail extends React.Component {
                         ? this.state.experience.title
                         : ""}
                     </h1>
-                    {<img src={Star} style={{ height: "2rem" }} />}
+                    {<img src={Star} style={{ height: "2rem" }} alt='img' />}
                   </div>
 
                   <div
@@ -247,6 +247,12 @@ export default class ExperienceDetail extends React.Component {
                   </div>
 
                   <div className="d-flex pt-4 ">
+                    <div style={{ paddingRight: "1rem" }} >
+                      <form action="/api/checkout" method="POST">
+                        <button className="btn">Checkout</button>
+                      </form>
+                    </div>
+                    
                     {
                       //custom registeration google form for Visual DX
                       this.props.customLinkExpID ===

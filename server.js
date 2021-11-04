@@ -27,6 +27,7 @@ const company = require("./routes/company");
 const addressValidator = require("./routes/addressValidator");
 const fileUpload = require("./routes/fileUpload");
 const reservation = require("./routes/reservation");
+const checkout = require("./routes/checkout");
 // const host_Notification_Queue = require ('./routes/host_Notification_Queue')
 
 const app = express();
@@ -159,7 +160,7 @@ mongoose
 app.use(passport.initialize());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(__dirname, "client/src")));
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -186,6 +187,7 @@ app.use("/api/review", review);
 app.use("/api/addressValidator", addressValidator);
 // app.use("/api/fileUpload", fileUpload);
 app.use("/api/reservation", reservation);
+app.use("/api/checkout", checkout);
 
 // Error handling middleware
 app.use(function (err, req, res, next) {
@@ -217,7 +219,7 @@ app.post("/api/file/upload", cors(), function(req, res) {
 */
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist/index.html"));
+  res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 
 // Defining our port
