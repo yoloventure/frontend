@@ -248,7 +248,9 @@ export default class ExperienceDetail extends React.Component {
 
                   <div className="d-flex pt-4 ">
                     <div style={{ paddingRight: "1rem" }} >
-                      <form action="/api/checkout" method="POST">
+                      <form action={`/api/checkout`} enctype="multipart/form-data" method="POST">
+                        <input type="hidden" name="name" value={this.state.experience.title}/>
+                        <input type="hidden" name="price" value={this.state.experience.price}/>
                         <button className="btn">Checkout</button>
                       </form>
                     </div>

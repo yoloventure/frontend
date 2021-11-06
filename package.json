@@ -26,7 +26,7 @@
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.8.9",
     "morgan": "~1.9.1",
-    "multer": "^1.4.2",
+    "multer": "^1.4.3",
     "node-env-file": "^0.1.8",
     "nodemailer": "^6.4.17",
     "nodemailer-express-handlebars": "^4.0.0",
