@@ -97,6 +97,16 @@ class App extends React.Component {
                     />
                   )}
                 />
+                <Route
+                  path="/explore/erikaFaith"
+                  exact
+                  render={(props) => (
+                    <ExperienceDetail
+                      {...props}
+                      customLinkExpID="6175acf099b56610e91f5a64"
+                    />
+                  )}
+                />
                 {/*End of custom urls forcertain host experiences*/}
                 <Route path="/explore/:id" exact component={ExperienceDetail} />
                 <Route
