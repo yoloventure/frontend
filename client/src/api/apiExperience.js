@@ -3,7 +3,6 @@ function getExperienceById(experienceId) {
   var path = "/api/experience/" + experienceId;
   return fetch(path, {
     method: "get",
-    credentials: "include",
   })
     .then((response) => {
       return response.json();

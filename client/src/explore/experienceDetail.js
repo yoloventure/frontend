@@ -13,8 +13,10 @@ import searchArrow from "../photos/searchArrow.png";
 
 import APIExperience from "../api/apiExperience";
 import APIHost from "../api/apiHost";
+import APICheckout from "../api/apiCheckout";
 import Star from "../photos/Star.svg";
 import "./experienceDetail.css";
+import { Button } from "@material-ui/core";
 
 export default class ExperienceDetail extends React.Component {
   constructor(props) {
@@ -190,7 +192,7 @@ export default class ExperienceDetail extends React.Component {
                         ? this.state.experience.title
                         : ""}
                     </h1>
-                    {<img src={Star} style={{ height: "2rem" }} alt='img' />}
+                    {<img src={Star} style={{ height: "2rem" }} />}
                   </div>
 
                   <div
@@ -248,13 +250,8 @@ export default class ExperienceDetail extends React.Component {
 
                   <div className="d-flex pt-4 ">
                     <div style={{ paddingRight: "1rem" }} >
-                      <form action={`/api/checkout`} enctype="multipart/form-data" method="POST">
-                        <input type="hidden" name="name" value={this.state.experience.title}/>
-                        <input type="hidden" name="price" value={this.state.experience.price}/>
-                        <button className="btn">Checkout</button>
-                      </form>
+                      <Button className="btn" onClick={APICheckout.checkout(this.state.experience.title, this.state.experience.price)}>Checkout</Button>
                     </div>
-                    
                     {
                       //custom registeration google form for Visual DX
                       this.props.customLinkExpID ===

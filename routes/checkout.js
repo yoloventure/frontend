@@ -27,8 +27,6 @@ app.use(upload.array());*/
 app.use(express.static('public'));
 
 router.post('/', async (req, res) => {
-  console.log(req.body)
-  console.log(req.statusCode)
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -47,8 +45,8 @@ router.post('/', async (req, res) => {
     success_url: domain + `checkoutsuccess`,
     cancel_url: domain + `checkoutcancel`,
   });
-
-  res.redirect(303, session.url)
+  
+  res.json({"url":session.url})
 });
 
 module.exports = router;
